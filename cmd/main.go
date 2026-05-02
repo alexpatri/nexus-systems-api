@@ -4,12 +4,15 @@ import (
 	"log"
 
 	"rpg-nexus/api/dnd/internal/api"
+	"rpg-nexus/api/dnd/internal/config"
 )
 
 func main() {
-	app, err := api.NewApp()
+	cfg := config.LoadConfig()
+
+	app, err := api.NewApp(cfg)
 	if err != nil {
 		log.Fatalf("falha ao iniciar a aplicação: %v", err)
 	}
-	log.Fatal(app.Listen(":8080"))
+	log.Fatal(app.Listen(":" + cfg.Server.Port))
 }

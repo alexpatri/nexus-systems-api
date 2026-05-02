@@ -20,11 +20,14 @@ func NewMongoDB(mongoURI, dbName string) (*DataBase, error) {
 	defer cancel()
 
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(mongoURI))
+	if err != nil {
+		return nil, err
+	}
 
 	return &DataBase{
 		dataBase: client.Database(dbName),
 		client:   client,
-	}, err
+	}, nil
 }
 
 func ConvertMapToBson(filterMap map[string]string) bson.M {

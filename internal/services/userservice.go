@@ -1,6 +1,7 @@
 package services
 
 import (
+	"rpg-nexus/api/dnd/internal/config"
 	"rpg-nexus/api/dnd/internal/database"
 	"rpg-nexus/api/dnd/internal/models"
 	"rpg-nexus/api/dnd/internal/utils"
@@ -12,9 +13,8 @@ type userService struct {
 	dataBase *database.DataBase
 }
 
-func NewUserService() (*userService, error) {
-	mongoURL := "mongodb://127.0.0.1:27017/"
-	db, err := database.NewMongoDB(mongoURL, "dndSheets")
+func NewUserService(dbCfg config.DatabaseConfig) (*userService, error) {
+	db, err := database.NewMongoDB(dbCfg.URI(), dbCfg.Name)
 	if err != nil {
 		return nil, err
 	}

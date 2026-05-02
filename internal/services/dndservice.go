@@ -3,6 +3,7 @@ package services
 import (
 	"encoding/json"
 
+	"rpg-nexus/api/dnd/internal/config"
 	"rpg-nexus/api/dnd/internal/database"
 	"rpg-nexus/api/dnd/internal/models"
 	"rpg-nexus/api/dnd/internal/utils"
@@ -18,9 +19,8 @@ type dndService struct {
 	skills      models.Skills
 }
 
-func NewDndService() (*dndService, error) {
-	mongoURL := "mongodb://127.0.0.1:27017/"
-	db, err := database.NewMongoDB(mongoURL, "dndSheets")
+func NewDndService(dbCfg config.DatabaseConfig) (*dndService, error) {
+	db, err := database.NewMongoDB(dbCfg.URI(), dbCfg.Name)
 	if err != nil {
 		return nil, err
 	}
