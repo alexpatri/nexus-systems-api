@@ -1,4 +1,4 @@
-module alexsandro/ps-back-end-alexsandro-junior
+module rpg-nexus/api/dnd
 
 go 1.22.2
 
