@@ -1,0 +1,11 @@
+.git
+.gitignore
+.env
+.env.*
+Dockerfile
+.dockerignore
+*.md
+
+# binários locais (caso existam no contexto)
+/api
+*.exe
