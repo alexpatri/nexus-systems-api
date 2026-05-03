@@ -1,18 +1,21 @@
 package api
 
 import (
-	"rpg-nexus/api/dnd/internal/config"
+	"rpg-nexus/api/dnd/internal/repository"
 	"rpg-nexus/api/dnd/internal/services"
 
 	"github.com/gofiber/fiber/v3"
 	"github.com/gofiber/fiber/v3/middleware/cors"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func NewApp(cfg *config.Config) (*fiber.App, error) {
+func NewApp(db *mongo.Database) (*fiber.App, error) {
 	app := fiber.New()
 	app.Use(cors.New())
 
-	dndService, err := services.NewDndService(cfg.DB)
+	catalogRepo := repository.NewCatalog(db)
+
+	dndService, err := services.NewDndService(catalogRepo)
 	if err != nil {
 		return nil, err
 	}

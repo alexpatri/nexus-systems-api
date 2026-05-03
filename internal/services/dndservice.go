@@ -1,12 +1,19 @@
 package services
 
 import (
-	"rpg-nexus/api/dnd/internal/config"
-	"rpg-nexus/api/dnd/internal/database"
+	"context"
+
 	"rpg-nexus/api/dnd/internal/models"
 
 	"github.com/gofiber/fiber/v3"
 )
+
+type CatalogRepository interface {
+	Classes(ctx context.Context) (models.Classes, error)
+	Races(ctx context.Context) (models.Races, error)
+	Backgrounds(ctx context.Context) (models.Backgrounds, error)
+	Skills(ctx context.Context) (models.Skills, error)
+}
 
 type dndService struct {
 	classes     models.Classes
@@ -15,29 +22,26 @@ type dndService struct {
 	skills      models.Skills
 }
 
-func NewDndService(dbCfg config.DatabaseConfig) (*dndService, error) {
-	db, err := database.NewMongoDB(dbCfg.URI(), dbCfg.Name)
+func NewDndService(repo CatalogRepository) (*dndService, error) {
+	ctx := context.Background()
+
+	classes, err := repo.Classes(ctx)
 	if err != nil {
 		return nil, err
 	}
 
-	var classes models.Classes
-	if err := db.Find("classes", struct{}{}, &classes.Docs); err != nil {
+	races, err := repo.Races(ctx)
+	if err != nil {
 		return nil, err
 	}
 
-	var races models.Races
-	if err := db.Find("races", struct{}{}, &races.Docs); err != nil {
+	bgs, err := repo.Backgrounds(ctx)
+	if err != nil {
 		return nil, err
 	}
 
-	var bgs models.Backgrounds
-	if err := db.Find("backgrounds", struct{}{}, &bgs.Docs); err != nil {
-		return nil, err
-	}
-
-	var skills models.Skills
-	if err := db.Find("skills", struct{}{}, &skills.Docs); err != nil {
+	skills, err := repo.Skills(ctx)
+	if err != nil {
 		return nil, err
 	}
 
