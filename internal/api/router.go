@@ -1,8 +1,8 @@
 package api
 
 import (
-	"rpg-nexus/api/dnd/internal/repository"
-	"rpg-nexus/api/dnd/internal/services"
+	"rpg-nexus/api/systems/internal/repository"
+	"rpg-nexus/api/systems/internal/services"
 
 	"github.com/gofiber/fiber/v3"
 	"github.com/gofiber/fiber/v3/middleware/cors"

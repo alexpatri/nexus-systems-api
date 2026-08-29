@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"rpg-nexus/api/dnd/internal/models"
+	"rpg-nexus/api/systems/internal/models"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"

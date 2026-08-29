@@ -3,9 +3,9 @@ package main
 import (
 	"log"
 
-	"rpg-nexus/api/dnd/internal/api"
-	"rpg-nexus/api/dnd/internal/config"
-	"rpg-nexus/api/dnd/internal/database"
+	"rpg-nexus/api/systems/internal/api"
+	"rpg-nexus/api/systems/internal/config"
+	"rpg-nexus/api/systems/internal/database"
 )
 
 func main() {
