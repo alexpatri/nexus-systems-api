@@ -1,0 +1,41 @@
+{
+  "hierarchy": ["story", "act", "session", "scene", "turn", "action"],
+  "scopes": [
+    { "id": "story",   "name": "História", "contains": "act",
+      "note": "O arco completo. Comprimentos sugeridos: 12–20 sessões (ideal), 6–12 focada, 3–6 curta, 1–3 degustação." },
+    { "id": "act",     "name": "Ato", "contains": "session", "countPerStory": 3,
+      "note": "Fases da história. Cada ato traz seus próprios avanços e regras — ver progression.json." },
+    { "id": "session", "name": "Sessão", "contains": "scene",
+      "note": "Uma noite de jogo." },
+    { "id": "scene",   "name": "Cena", "contains": "turn",
+      "note": "Segmento focado em um tópico, obstáculo ou objetivo. A Escuridão abre e fecha.",
+      "phases": ["abertura", "desenvolvimento", "fechamento"] },
+    { "id": "turn",    "name": "Turno", "contains": "action",
+      "note": "Usado quando o tempo urge. Cada Maculado executa 1 ação; a ordem é escolhida pelo grupo. Se todos pularem, a estrutura em turnos se encerra.",
+      "gmUsesTurns": false },
+    { "id": "action",  "name": "Ação",
+      "note": "O que um Maculado faz em seu turno.",
+      "uses": [
+        { "id": "take-test",   "label": "Enfrentar um teste" },
+        { "id": "simple-task", "label": "Fazer algo simples, sem risco: basta declarar" },
+        { "id": "use-power",   "label": "Usar um dom ou habilidade que exija uma ação" }
+      ] }
+  ],
+  "sceneKinds": [
+    { "id": "scene",     "name": "Cena", "note": "Cena comum, criada pela Escuridão." },
+    { "id": "challenge", "name": "Desafio",
+      "note": "Cena pré-estruturada que exige múltiplos sucessos para ser superada, acompanhados numa trilha de progresso. Nem sempre é combate: pode ser diplomacia, investigação, perseguição ou furtividade." },
+    { "id": "interlude", "name": "Interlúdio",
+      "requiresTest": false,
+      "note": "Cena muito curta: transição, troca breve ou descanso. Não envolve testes." }
+  ],
+  "durations": [
+    { "id": "instant",      "name": "Instantâneo",       "endsAt": null },
+    { "id": "next-turn",    "name": "Até o fim do próximo turno", "endsAt": "turn" },
+    { "id": "scene",        "name": "Pela duração da cena",       "endsAt": "scene" },
+    { "id": "while-marked", "name": "Enquanto o dom estiver marcado", "endsAt": "gift-mark-cleared",
+      "note": "Não é um escopo de tempo: dura até a marca do dom ser limpa (ceder ao impulso ou devaneio)." },
+    { "id": "per-session",  "name": "Uma vez por sessão", "resetsAt": "session", "kind": "usage-limit" },
+    { "id": "per-act",      "name": "Por ato",            "resetsAt": "act",     "kind": "usage-limit" }
+  ]
+}

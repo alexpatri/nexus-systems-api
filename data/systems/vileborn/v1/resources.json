@@ -1,0 +1,71 @@
+{
+  "rules": {
+    "definition": "Itens extremamente raros, capazes de diminuir a dificuldade de certos testes.",
+    "notPurchasable": "Se pode ser comprado ou trocado a preço de mercado, não é um recurso.",
+    "use": "Informe à Escuridão que quer usar o recurso durante um teste; ela leva isso em conta ao determinar a dificuldade. Explorar a vulnerabilidade de um Detestado reduz a dificuldade.",
+    "acquisition": "Concedidos pela Ordem aos Guardiões mais excepcionais, ou encontrados nos recantos mais perigosos de Egas. Missões cruciais, treinamento avançado, expedições e investigações podem recompensar com um recurso.",
+    "consumables": "Recursos consumíveis são riscados da ficha depois de usados.",
+    "perAct": "progression.json#acts"
+  },
+  "resources": [
+    {
+      "id": "cold-iron-or-silversteel-weapon",
+      "name": "Armas de ferro frio ou aço-argento",
+      "kind": "permanent",
+      "desc": "Forjadas por mestres ferreiros da Ordem Crepuscular; a técnica que as torna tão afiadas e duráveis permanece um mistério.",
+      "effectiveAgainst": [
+        "Ferozes (prata e aço-argento)",
+        "Feéricos (ferro frio)"
+      ]
+    },
+    {
+      "id": "last-light-pendant",
+      "name": "Pingente da Última Luz",
+      "kind": "permanent",
+      "desc": "Captura o último lampejo de vida dos olhos de um moribundo e passa a emitir uma luz pura.",
+      "effectiveAgainst": [
+        "Sombras"
+      ]
+    },
+    {
+      "id": "blessed-luminic-symbol",
+      "name": "Símbolo Lumínico abençoado",
+      "kind": "permanent",
+      "desc": "Abençoado por alguém de fé forte e genuína.",
+      "effectiveAgainst": [
+        "Amaldiçoados"
+      ]
+    },
+    {
+      "id": "order-bred-mount",
+      "name": "Montaria gerada pela Ordem",
+      "kind": "permanent",
+      "desc": "Treinada desde muito cedo para não sentir medo na presença dos Detestados.",
+      "effectiveAgainst": []
+    },
+    {
+      "id": "dispersive-charge",
+      "name": "Carga Dispersiva",
+      "kind": "consumable",
+      "desc": "Dispositivo explosivo que espalha limalha ou pó de metal em uma área. Pode ser carregada com salitre, prata, ferro frio ou líquido inflamável.",
+      "effectiveAgainst": []
+    },
+    {
+      "id": "blessed-water",
+      "name": "Água Abençoada",
+      "kind": "consumable",
+      "desc": "Similar a um símbolo abençoado, mas é esgotada após um único uso.",
+      "effectiveAgainst": [
+        "Amaldiçoados"
+      ]
+    },
+    {
+      "id": "shadowthorn-mixture",
+      "name": "Mistura de Espinumbra",
+      "kind": "consumable",
+      "desc": "Permite ignorar os efeitos de uma condição à escolha do usuário pela duração de uma cena.",
+      "cost": "o usuário sofre exaustão no fim da cena",
+      "effectiveAgainst": []
+    }
+  ]
+}

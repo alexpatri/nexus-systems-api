@@ -1,0 +1,166 @@
+{
+  "id": "vileborn",
+  "name": "Vileborn",
+  "tagline": "Abrace sua Escuridão",
+  "locale": "pt-BR",
+  "publisher": "Horrible Guild",
+  "author": "Claudio Pustorino",
+  "bookVersion": "Livro Básico 1.0 (2025-08-02)",
+  "schemaVersion": 1,
+  "characterTerm": "Maculado",
+  "gmTerm": "Escuridão",
+  "sheet": {
+    "approaches": {
+      "source": "approaches.json",
+      "count": 6,
+      "rules": "mechanics.json#dice.approach"
+    },
+    "origin": {
+      "source": "origins.json",
+      "picks": 1
+    },
+    "heritage": {
+      "source": "heritages.json",
+      "picks": 1
+    },
+    "personality": {
+      "min": 2,
+      "note": "1 da origem + 1 da herança sombria; ambas as listas admitem traço próprio"
+    },
+    "training": {
+      "min": 2,
+      "note": "1 da origem + 1 da herança sombria; ambas as listas admitem traço próprio"
+    },
+    "ability": {
+      "picks": 1,
+      "note": "escolhida entre as 4 da origem"
+    },
+    "gifts": {
+      "start": 1,
+      "markBoxesPerGift": 1,
+      "rules": "mechanics.json#gifts",
+      "note": "1 dom da herança sombria na criação; outros despertam ao longo da história. Cada dom tem 1 caixa de marca."
+    },
+    "heritageMarks": {
+      "boxes": 3,
+      "rules": "mechanics.json#heritageExploration",
+      "note": "Caixas sob o nome da herança. A quantidade marcada define a intensidade da Escuridão e trava a exploração na 3ª."
+    },
+    "drive": {
+      "picks": 1,
+      "marksFrom": [
+        "gifts",
+        "heritageMarks"
+      ],
+      "rules": "mechanics.json#urge",
+      "note": "Definido pela herança. A intensidade lê driveMarks pelo total de caixas marcadas entre dons e herança."
+    },
+    "wounds": {
+      "boxes": 3,
+      "outOfPlayBox": true,
+      "note": "A 4ª ferida marca a caixa de fora de jogo.",
+      "clearedBy": [
+        "sucesso em teste",
+        "aspiração",
+        "reverie"
+      ]
+    },
+    "conditions": {
+      "source": "conditions.json",
+      "boxesPerCondition": 1,
+      "note": "Sofrer condição já marcada vira uma ferida.",
+      "clearedBy": [
+        "sucesso em teste",
+        "dever"
+      ]
+    },
+    "motivations": {
+      "aspiration": {
+        "boxes": 1,
+        "effect": "marque para remover 1 ferida imediatamente"
+      },
+      "duty": {
+        "boxes": 1,
+        "effect": "marque para remover 1 condição imediatamente",
+        "note": "atribuído pela Escuridão, não escolhido"
+      },
+      "rules": "mechanics.json#test.resultModifiers"
+    },
+    "bonds": {
+      "min": 4,
+      "max": 10,
+      "start": 4,
+      "boxesPerBond": 1,
+      "rules": "mechanics.json#test.resultModifiers",
+      "note": "Um vínculo por Maculado do grupo."
+    },
+    "advances": {
+      "rules": "progression.json#advanceTypes",
+      "note": "Marcados na ficha conforme desbloqueados. 4 tipos, teto de 3 cada."
+    },
+    "reverieDependency": {
+      "track": "pontos",
+      "rules": "reverie.json#dependency",
+      "note": "Anotados ao lado do nome; a Escuridão gasta 1 para causar 1 revés."
+    },
+    "resources": {
+      "source": "resources.json",
+      "rules": "resources.json#rules",
+      "note": "Consumíveis são riscados após o uso."
+    }
+  },
+  "creation": {
+    "steps": [
+      {
+        "order": 1,
+        "id": "origin",
+        "label": "Escolha uma origem",
+        "grants": [
+          "2 aprimoramentos de abordagem",
+          "1 personalidade",
+          "1 treinamento",
+          "1 habilidade"
+        ]
+      },
+      {
+        "order": 2,
+        "id": "heritage",
+        "label": "Escolha uma herança sombria",
+        "grants": [
+          "2 aprimoramentos de abordagem",
+          "1 personalidade",
+          "1 treinamento",
+          "1 impulso",
+          "1 dom"
+        ]
+      },
+      {
+        "order": 3,
+        "id": "finishing",
+        "label": "Toques finais",
+        "grants": [
+          "nome",
+          "traço notável (opcional)",
+          "evento do passado (opcional)"
+        ]
+      }
+    ],
+    "freeform": {
+      "label": "Criação Livre",
+      "note": "Alternativa: distribua 4 aprimoramentos de abordagem livremente e escreva a própria personalidade e treinamento em vez de usar as listas."
+    }
+  },
+  "catalogs": [
+    "approaches.json",
+    "difficulties.json",
+    "conditions.json",
+    "mechanics.json",
+    "structure.json",
+    "origins.json",
+    "heritages.json",
+    "tables.json",
+    "progression.json",
+    "reverie.json",
+    "resources.json"
+  ]
+}

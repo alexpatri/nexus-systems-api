@@ -1,0 +1,219 @@
+{
+  "dice": {
+    "approach": {
+      "sizes": [
+        6,
+        8,
+        10
+      ],
+      "start": 6,
+      "max": 10,
+      "note": "Toda abordagem começa em d6. Cada aprimoramento sobe um degrau, até o teto de d10."
+    },
+    "darkness": {
+      "size": 12,
+      "rolledBy": "gm",
+      "note": "Único d12 do jogo. Rolado pela Escuridão em testes sombrios, junto com os dados do Maculado."
+    }
+  },
+  "test": {
+    "pool": [
+      {
+        "id": "approach",
+        "dice": 1,
+        "required": true,
+        "note": "1 dado do tamanho da abordagem escolhida. Todo dado adicional do teste usa esse mesmo tamanho."
+      },
+      {
+        "id": "personality",
+        "dice": 1,
+        "when": "ao menos 1 traço de personalidade é relevante",
+        "blockedBy": "shame"
+      },
+      {
+        "id": "training",
+        "dice": 1,
+        "when": "ao menos 1 traço de treinamento é relevante",
+        "blockedBy": "fear"
+      }
+    ],
+    "resolution": {
+      "compare": "maior dado rolado vs. dificuldade",
+      "above": "sucesso narrado pelo Maculado",
+      "equal": "sucesso narrado pelo Maculado + revés narrado pela Escuridão",
+      "below": "revés narrado pela Escuridão"
+    },
+    "keptSuccesses": {
+      "default": 1,
+      "max": 3,
+      "byAct": "progression.json#experienceGift.byAct",
+      "note": "Por padrão só o maior dado conta. O Dom da Experiência eleva para 2 e depois 3."
+    },
+    "successUses": [
+      "alcançar o objetivo declarado",
+      "descobrir uma informação",
+      "remover 1 ferida ou 1 condição"
+    ],
+    "resultModifiers": [
+      {
+        "id": "aspiration",
+        "trigger": "marque a caixa da aspiração",
+        "effect": "remove 1 ferida imediatamente",
+        "restoredBy": "progresso significativo rumo à aspiração",
+        "blockedBy": "confusion"
+      },
+      {
+        "id": "duty",
+        "trigger": "marque a caixa do dever",
+        "effect": "remove 1 condição imediatamente",
+        "restoredBy": "progresso significativo na missão",
+        "blockedBy": "confusion"
+      },
+      {
+        "id": "bond",
+        "trigger": "depois da rolagem, marque a caixa do vínculo",
+        "effect": "substitui um dado rolado por aquele Maculado pelo valor do vínculo, se for maior",
+        "excludes": "não pode alterar o dado da escuridão",
+        "blockedBy": "anger"
+      }
+    ]
+  },
+  "reaction": {
+    "note": "Instantânea: não consome turno. A Escuridão informa a abordagem e o valor-alvo.",
+    "pool": [
+      {
+        "id": "approach",
+        "dice": 1,
+        "required": true,
+        "note": "somente 1 dado, do tamanho da abordagem exigida"
+      }
+    ],
+    "excludes": [
+      "personality",
+      "training"
+    ],
+    "resolution": {
+      "gte": "evita o efeito",
+      "lt": "sofre o efeito narrado pela Escuridão"
+    }
+  },
+  "modifiers": {
+    "bonusPenalty": {
+      "appliesTo": "cada dado rolado, antes da comparação",
+      "stacking": "cumulativo",
+      "sources": [
+        "condições",
+        "efeitos de dons",
+        "habilidades"
+      ]
+    },
+    "advantage": {
+      "inTest": {
+        "advantage": "você pode rolar novamente 1 dado que resultou em revés",
+        "disadvantage": "você deve rolar novamente 1 dado que resultou em sucesso"
+      },
+      "inReaction": {
+        "advantage": "role o dado de abordagem 2 vezes e mantenha o maior",
+        "disadvantage": "role o dado de abordagem 2 vezes e mantenha o menor"
+      },
+      "stacking": "não acumula: múltiplas fontes opostas se cancelam uma a uma e prevalece a maioria; várias fontes do mesmo lado continuam valendo como uma."
+    }
+  },
+  "darkTest": {
+    "note": "Segue todas as regras do teste padrão, mais o dado da escuridão rolado pela Escuridão.",
+    "triggers": [
+      {
+        "id": "detested",
+        "label": "Enfrentar um Detestado"
+      },
+      {
+        "id": "explore-heritage",
+        "label": "Explorar sua herança sombria"
+      },
+      {
+        "id": "darkness-trace",
+        "label": "Interagir com um rastro da Escuridão (relíquia, lugar assombrado, ritual)"
+      }
+    ],
+    "intensities": [
+      {
+        "id": "weak",
+        "name": "Fraca",
+        "setbackOn": 9,
+        "aliases": []
+      },
+      {
+        "id": "normal",
+        "name": "Normal",
+        "setbackOn": 6,
+        "aliases": [
+          "Média"
+        ]
+      },
+      {
+        "id": "strong",
+        "name": "Forte",
+        "setbackOn": 3,
+        "aliases": [
+          "Intensa"
+        ]
+      }
+    ],
+    "resolution": "A Escuridão rola o d12: se o resultado for igual ou maior que setbackOn, causa 1 revés adicional; se menor, nada acontece."
+  },
+  "heritageExploration": {
+    "markBoxes": 3,
+    "onExplore": "marque 1 caixa sob o nome da herança, depois enfrente um teste sombrio",
+    "marksToIntensity": {
+      "1": "weak",
+      "2": "normal",
+      "3": "strong"
+    },
+    "darknessDieCountsForPlayer": true,
+    "darknessDieNote": "Ao explorar a herança o d12 conta também como dado do Maculado, podendo gerar o sucesso. Contra um Detestado é rolado uma única vez e nunca dispara os efeitos do desafio.",
+    "lockedAtMaxMarks": true,
+    "lockedNote": "Marcada a 3ª caixa, você não pode explorar a herança até limpar as marcas.",
+    "clearedBy": [
+      "yield-to-urge",
+      "reverie"
+    ]
+  },
+  "gifts": {
+    "markBoxesPerGift": 1,
+    "activation": "marque a caixa abaixo do nome do dom",
+    "requiresTest": false,
+    "requiresAction": false,
+    "requiresActionNote": "Ativar um dom não custa uma ação durante turnos, a menos que a descrição do dom diga o contrário.",
+    "effects": {
+      "benefit": "aplicado instantaneamente",
+      "cost": "imediato ou condicionado a uma rolagem, conforme a descrição; efeitos com 'enquanto este dom estiver marcado' duram até a marca ser limpa"
+    },
+    "reactivation": "só depois de limpar a marca",
+    "clearedBy": [
+      "yield-to-urge",
+      "reverie"
+    ]
+  },
+  "urge": {
+    "fedBy": [
+      "explorar a herança sombria",
+      "ativar um dom"
+    ],
+    "intensityFrom": "driveMarks da herança, indexado pelo total de caixas marcadas",
+    "provokedBy": "a Escuridão pode gastar 1 revés para provocar o impulso",
+    "resist": {
+      "type": "reaction",
+      "approach": "will",
+      "difficulty": "total de caixas marcadas entre dons e herança sombria",
+      "onSuccess": "as marcas permanecem, mas você mantém o controle"
+    },
+    "yield": {
+      "id": "yield-to-urge",
+      "requiresTest": false,
+      "voluntary": true,
+      "effect": "apague todas as marcas de dons e da herança sombria",
+      "note": "Não concede sucessos e não pode ser usado para alcançar um objetivo; o resultado é inerentemente negativo."
+    }
+  },
+  "durations": "structure.json#durations"
+}

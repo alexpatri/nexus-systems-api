@@ -1,0 +1,195 @@
+{
+  "names": {
+    "masculine": [
+      "Adrien",
+      "Armine",
+      "Bastien",
+      "Calvin",
+      "Dorian",
+      "Émeric",
+      "Étienne",
+      "Florian",
+      "Gaelìr",
+      "Guillaume",
+      "Lambert",
+      "Lance",
+      "Lendric",
+      "Lucan",
+      "Maerik",
+      "Mathias",
+      "Mathan",
+      "Octave",
+      "Pascal",
+      "Ramiel",
+      "Sébastien",
+      "Théo",
+      "Tristan",
+      "Victor",
+      "Yvain",
+      "Zac"
+    ],
+    "feminine": [
+      "Adelith",
+      "Ameline",
+      "Angélique",
+      "Brienne",
+      "Camille",
+      "Clemence",
+      "Élara",
+      "Esmée",
+      "Gabrielle",
+      "Gwendel",
+      "Heloise",
+      "Isabelle",
+      "Jocelline",
+      "Léona",
+      "Lilibeth",
+      "Maëlle",
+      "Mélindra",
+      "Miriel",
+      "Patience",
+      "Rosande",
+      "Sabryn",
+      "Sibille",
+      "Therese",
+      "Violette"
+    ],
+    "neutral": [
+      "Adan",
+      "Aimar",
+      "Amaranthe",
+      "Alar",
+      "Ardyn",
+      "Bastionne",
+      "Celeste",
+      "Corran",
+      "Danior",
+      "Elis",
+      "Eloen",
+      "Noir",
+      "Fleur",
+      "Gaelyn",
+      "Ilion",
+      "Jostan",
+      "Julnar",
+      "Lairith",
+      "Laëren",
+      "Léovan",
+      "Lior",
+      "Louvhan",
+      "Maelorn",
+      "Méliseth",
+      "Orwyn",
+      "Selvan"
+    ],
+    "surnames": [
+      "D'Alversen",
+      "De Normante",
+      "De Fioraine",
+      "De Lorchten",
+      "De Montfleur",
+      "De Salvarth",
+      "Aubrecht",
+      "Avremont",
+      "Blair",
+      "Corvalin",
+      "Durelle",
+      "Favreau",
+      "Galmire",
+      "Jussan",
+      "Lenoir",
+      "Marvoux",
+      "Noirval",
+      "Ormeaux",
+      "Perrand",
+      "Quessan",
+      "Rivaud",
+      "Sylvenne",
+      "Targel",
+      "Vallenne",
+      "Vernoux"
+    ]
+  },
+  "notableTraits": [
+    {
+      "id": "physical-traits",
+      "name": "Traços Físicos",
+      "die": 6,
+      "entries": [
+        "Uma mecha de cabelo com uma cor completamente diferente do restante.",
+        "Um estrabismo sutil que só aparece quando está concentrado.",
+        "Cicatrizes finas nas mãos, como se tivessem sido arranhadas com frequência.",
+        "Olhos de uma profundidade ou clareza incomuns.",
+        "Um dente lascado que lhe confere um sorriso único.",
+        "Uma pequena tatuagem incompleta, como se tivesse sido interrompida."
+      ]
+    },
+    {
+      "id": "mannerisms",
+      "name": "Trejeitos",
+      "die": 6,
+      "entries": [
+        "Você tende a resmungar para si mesmo quando está perdido em pensamentos.",
+        "Você frequentemente toca um objeto que sempre carrega consigo.",
+        "Você estala os dedos de forma rítmica quando está nervoso.",
+        "Você tem uma passada levemente assimétrica.",
+        "Você sempre tem um sorriso enigmático, até mesmo em momentos inapropriados.",
+        "Você frequentemente brinca com uma mecha de cabelos entre os seus dedos."
+      ]
+    },
+    {
+      "id": "speech-quirks",
+      "name": "Vícios de Linguagem",
+      "die": 6,
+      "entries": [
+        "Sua risada é particularmente contagiosa.",
+        "Você dá apelidos naturalmente a todos, até mesmo estranhos.",
+        "Você tem um sotaque estranho, difícil de identificar.",
+        "Você frequentemente repete uma palavra ou frase, como um mantra.",
+        "Sua voz é mais grave ou mais aguda do que o esperado.",
+        "Você pausa no meio da frase para pensar e deixa os outros esperando."
+      ]
+    }
+  ],
+  "pastEvents": [
+    {
+      "id": "world-outside-the-order",
+      "name": "O Mundo Fora da Ordem",
+      "die": 6,
+      "entries": [
+        "Alguém de sua vida pretérita quer matá-lo para se vingar.",
+        "Você carrega um símbolo proibido.",
+        "Pouco antes de tornar-se um recruta, alguém lhe ofereceu uma saída para evitar a Ordem.",
+        "Você deve a alguém — uma dívida que nunca poderia quitar.",
+        "Alguém o vê como um arauto da fortuna ou ruína.",
+        "Você ouviu histórias de um lugar lendário, ligado à sua herança."
+      ]
+    },
+    {
+      "id": "the-twilight-order",
+      "name": "A Ordem Crepuscular",
+      "die": 6,
+      "entries": [
+        "Você é parente de um membro da Ordem Crepuscular.",
+        "Você testemunhou algo que nunca deveria ter visto.",
+        "Alguém na Ordem sabe um de seus segredos.",
+        "Um mentor na Ordem tem expectativas extremamente altas sobre você.",
+        "Você quebrou uma das regras da Ordem e teme as consequências.",
+        "Você tem um vínculo especial com um lugar secreto na Ordem."
+      ]
+    },
+    {
+      "id": "bonds-between-vileborn",
+      "name": "Vínculos entre Maculados",
+      "die": 6,
+      "entries": [
+        "Você conhecia um dos outros Maculados antes de entrar para a Ordem.",
+        "Você salvou a vida de outro Maculado uma vez, mas ele não sabe disso.",
+        "Um dos outros Maculados o ajudou a esconder um segredo sombrio.",
+        "Você e outro Maculado compartilham o mesmo presságio enigmático.",
+        "Você sonhou com um dos outros Maculados muito antes de tê-lo conhecido.",
+        "Você e outro Maculado testemunharam um evento terrível e juraram nunca falar disso com ninguém."
+      ]
+    }
+  ]
+}

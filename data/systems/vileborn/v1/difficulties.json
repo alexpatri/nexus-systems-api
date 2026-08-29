@@ -1,0 +1,48 @@
+{
+  "difficulties": [
+    {
+      "id": "easy",
+      "name": "Fácil",
+      "target": 4
+    },
+    {
+      "id": "normal",
+      "name": "Normal",
+      "target": 5
+    },
+    {
+      "id": "hard",
+      "name": "Difícil",
+      "target": 6
+    },
+    {
+      "id": "very-hard",
+      "name": "Muito Difícil",
+      "target": 7
+    }
+  ],
+  "resolution": {
+    "compare": "maior dado rolado vs. dificuldade",
+    "above": "sucesso narrado pelo Maculado",
+    "equal": "sucesso narrado pelo Maculado + revés narrado pela Escuridão",
+    "below": "revés narrado pela Escuridão"
+  },
+  "setbackOptions": [
+    {
+      "id": "escalate-scene",
+      "name": "Agravar a cena"
+    },
+    {
+      "id": "inflict-condition",
+      "name": "Impor uma condição"
+    },
+    {
+      "id": "inflict-wound",
+      "name": "Causar uma ferida"
+    },
+    {
+      "id": "provoke-drive",
+      "name": "Provocar o impulso"
+    }
+  ]
+}
