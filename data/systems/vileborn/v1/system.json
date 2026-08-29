@@ -1,5 +1,6 @@
 {
   "id": "vileborn",
+  "apiVersion": "v1",
   "name": "Vileborn",
   "tagline": "Abrace sua Escuridão",
   "locale": "pt-BR",
