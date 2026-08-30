@@ -13,7 +13,7 @@ func main() {
 
 	db, err := database.Connect(cfg.DB)
 	if err != nil {
-		log.Fatalf("falha ao conectar ao banco: %v", err)
+		log.Printf("aviso: mongodb indisponível, catálogos dnd/5e responderão 503: %v", err)
 	}
 
 	app, err := api.NewApp(db)

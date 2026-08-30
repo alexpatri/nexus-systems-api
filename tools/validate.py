@@ -163,6 +163,12 @@ def check(d):
 
     sysj = load(d, 'system.json')
     if sysj is None: return ["system.json ausente"], []
+
+    # Catálogo servido do Mongo não tem arquivo em disco: fora o manifesto,
+    # não há nada aqui para cruzar.
+    if sysj.get('catalogSource', 'embed') != 'embed':
+        return err, warn
+
     for f in sysj['catalogs']:
         if not (d / f).exists(): E(f"catálogo declarado e ausente: {f}")
 
