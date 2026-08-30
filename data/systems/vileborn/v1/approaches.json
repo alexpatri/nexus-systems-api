@@ -1,0 +1,34 @@
+{
+  "approaches": [
+    {
+      "id": "strength",
+      "name": "Força",
+      "desc": "Agir com força bruta ou sem pensar nas consequências."
+    },
+    {
+      "id": "will",
+      "name": "Vontade",
+      "desc": "Usar sua força interior e superar seus próprios limites."
+    },
+    {
+      "id": "influence",
+      "name": "Influência",
+      "desc": "Contar com a sua persuasão e presença."
+    },
+    {
+      "id": "reason",
+      "name": "Razão",
+      "desc": "Analisar, deduzir e aplicar conhecimento."
+    },
+    {
+      "id": "precision",
+      "name": "Precisão",
+      "desc": "Agir com cuidado, de forma meticulosa, com concentração."
+    },
+    {
+      "id": "subterfuge",
+      "name": "Subterfúgio",
+      "desc": "Quebrar as regras e jogar sujo."
+    }
+  ]
+}

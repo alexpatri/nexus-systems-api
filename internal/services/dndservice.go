@@ -3,7 +3,7 @@ package services
 import (
 	"context"
 
-	"rpg-nexus/api/dnd/internal/models"
+	"rpg-nexus/api/systems/internal/models"
 
 	"github.com/gofiber/fiber/v3"
 )

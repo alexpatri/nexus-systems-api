@@ -1,0 +1,72 @@
+{
+  "conditions": [
+    {
+      "id": "anxiety",
+      "name": "Ansiedade",
+      "effect": "-1 em testes de razão, precisão e subterfúgio.",
+      "modifier": {
+        "type": "penalty",
+        "value": -1,
+        "approaches": [
+          "reason",
+          "precision",
+          "subterfuge"
+        ]
+      }
+    },
+    {
+      "id": "exhaustion",
+      "name": "Exaustão",
+      "effect": "-1 em testes de força, vontade e influência.",
+      "modifier": {
+        "type": "penalty",
+        "value": -1,
+        "approaches": [
+          "strength",
+          "will",
+          "influence"
+        ]
+      }
+    },
+    {
+      "id": "shame",
+      "name": "Vergonha",
+      "effect": "Você não pode incluir sua personalidade na jogada.",
+      "modifier": {
+        "type": "block",
+        "blocks": "personality"
+      }
+    },
+    {
+      "id": "fear",
+      "name": "Medo",
+      "effect": "Você não pode incluir seu treinamento na jogada.",
+      "modifier": {
+        "type": "block",
+        "blocks": "training"
+      }
+    },
+    {
+      "id": "confusion",
+      "name": "Confusão",
+      "effect": "Você não pode incluir sua motivação na jogada.",
+      "modifier": {
+        "type": "block",
+        "blocks": "motivation"
+      }
+    },
+    {
+      "id": "anger",
+      "name": "Raiva",
+      "effect": "Você não pode incluir seus vínculos na jogada.",
+      "modifier": {
+        "type": "block",
+        "blocks": "bonds"
+      }
+    }
+  ],
+  "rules": {
+    "duplicate": "Sofrer uma condição já marcada faz você marcar uma ferida no lugar.",
+    "outOfPlay": "Marcadas 3 feridas, a próxima marca a 4ª caixa: você está fora de jogo."
+  }
+}

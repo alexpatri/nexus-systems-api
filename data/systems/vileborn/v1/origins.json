@@ -1,0 +1,445 @@
+{
+  "origins": [
+    {
+      "id": "burgher",
+      "name": "Burguês",
+      "summary": "Você vem de uma família de artesãos ou acadêmicos, recebeu uma educação sólida e desfrutou de certa estabilidade.",
+      "approachBonuses": [
+        "reason",
+        "precision"
+      ],
+      "personality": [
+        "estudioso",
+        "atencioso",
+        "focado",
+        "ambicioso",
+        "sabe-tudo",
+        "ousado",
+        "engenhoso"
+      ],
+      "training": [
+        "alquimia",
+        "estratégia",
+        "reparo",
+        "medicina",
+        "avaliação",
+        "prevenção",
+        "manufatura"
+      ],
+      "chooseIf": [
+        "Quiser se destacar na solução de problemas complexos.",
+        "Quiser enfrentar os desafios de competição e ambição.",
+        "Quiser proteger tudo aquilo que construiu.",
+        "Quiser deixar uma marca duradoura em um mundo em transformação."
+      ],
+      "abilities": [
+        {
+          "roll": 1,
+          "id": "burn-your-brains",
+          "name": "Queime os Miolos",
+          "hook": "Você sempre encontra uma solução, ainda que isso signifique pensar até que sua cabeça doa.",
+          "effect": "Você pode escolher sofrer confusão a qualquer momento para receber um sucesso em razão sem fazer um teste. Essa habilidade exige uma ação."
+        },
+        {
+          "roll": 2,
+          "id": "quid-pro-quo",
+          "name": "Quid Pro Quo",
+          "hook": "Você sabe como conseguir o que quer, e que tudo tem um preço.",
+          "effect": "Uma vez por sessão, você pode obter um favor de um alvo sem fazer um teste. Role 1d6: em um resultado par, pagam um favor que lhe deviam. Em um resultado ímpar, você deve um favor."
+        },
+        {
+          "roll": 3,
+          "id": "business-instinct",
+          "name": "Instinto para Negócios",
+          "hook": "Você se destaca em conseguir acordos favoráveis.",
+          "effect": "Você tem vantagem em qualquer teste envolvendo a avaliação de bens e itens, ou em negociações e contratos."
+        },
+        {
+          "roll": 4,
+          "id": "sharp-mind",
+          "name": "Mente Afiada",
+          "hook": "Sua atenção a detalhes coloca-o em vantagem quando sua mente é testada.",
+          "effect": "Você recebe +1 em todas as reações de razão."
+        }
+      ]
+    },
+    {
+      "id": "devout",
+      "name": "Devoto",
+      "summary": "Ter sido criado seguindo uma fé concedeu-lhe conhecimento da doutrina e uma profunda dedicação a uma causa religiosa ou espiritual.",
+      "approachBonuses": [
+        "will",
+        "influence"
+      ],
+      "personality": [
+        "inabalável",
+        "dogmático",
+        "zeloso",
+        "compassivo",
+        "intransigente",
+        "questionador",
+        "contemplativo"
+      ],
+      "training": [
+        "pregação",
+        "cura",
+        "escrituras sagradas",
+        "ouvir",
+        "inspirar",
+        "proteger",
+        "confortar"
+      ],
+      "chooseIf": [
+        "Quiser explorar o conflito entre a fé sincera e a rigidez dos dogmas.",
+        "Quiser entender os propósitos do clero, para o bem ou o mal.",
+        "Quiser equilibrar o respeito às tradições e a sede por liberdade.",
+        "Quiser questionar a verdadeira natureza de sua devoção."
+      ],
+      "abilities": [
+        {
+          "roll": 1,
+          "id": "act-of-contrition",
+          "name": "Ato de Contrição",
+          "hook": "Seu juízo de si próprio leva-o além de seus limites.",
+          "effect": "Você pode escolher sentir vergonha a qualquer momento para receber um sucesso em vontade sem jogar dados. Essa habilidade exige uma ação."
+        },
+        {
+          "roll": 2,
+          "id": "dogma-expert",
+          "name": "Expert em Dogma",
+          "hook": "Você tem profundo conhecimento de religiões, seus dogmas e ritos.",
+          "effect": "Você tem vantagem em qualquer teste relacionado a contextos religiosos."
+        },
+        {
+          "roll": 3,
+          "id": "unshakable-discipline",
+          "name": "Disciplina Inabalável",
+          "hook": "Sua disciplina de ferro enraizada ajuda a suprimir seus medos.",
+          "effect": "Você ignora todos os efeitos de medo. Quando receber essa condição, marque-a como de costume, mas ignore seus efeitos negativos."
+        },
+        {
+          "roll": 4,
+          "id": "duty-first",
+          "name": "Dever em Primeiro Lugar",
+          "hook": "Você foi ensinado a deixar de lado seus desejos e fazer a coisa certa.",
+          "effect": "Quando usar suas motivações, se seu dever já tiver sido marcado, você pode optar por marcar sua aspiração para usar seu dever uma segunda vez."
+        }
+      ]
+    },
+    {
+      "id": "outlaw",
+      "name": "Fora-da-Lei",
+      "summary": "Você viveu à margem da sociedade, sobrevivendo como um proscrito.",
+      "approachBonuses": [
+        "precision",
+        "subterfuge"
+      ],
+      "personality": [
+        "persuasivo",
+        "ganancioso",
+        "fiel ao bando",
+        "malandro",
+        "oportunista",
+        "desconfiado",
+        "traiçoeiro"
+      ],
+      "training": [
+        "furtividade",
+        "combate com facas",
+        "bater carteiras",
+        "abrir fechaduras",
+        "espionagem",
+        "mentir",
+        "caçar"
+      ],
+      "chooseIf": [
+        "Quiser interpretar um personagem que não tem medo de desafiar a lei.",
+        "Quiser explorar as dinâmicas de uma vida fugindo das autoridades.",
+        "Quiser usar sua astúcia e esperteza para superar situações difíceis.",
+        "Quiser interpretar um personagem leal aos seus, mas desconfiado dos outros."
+      ],
+      "abilities": [
+        {
+          "roll": 1,
+          "id": "thirst-for-freedom",
+          "name": "Sede de Liberdade",
+          "hook": "Você não tolera correntes: físicas ou metafóricas.",
+          "effect": "Uma vez por sessão, pergunte à Escuridão qual o caminho mais rápido para escapar de uma situação ou livrar-se de suas amarras. A Escuridão responderá a verdade."
+        },
+        {
+          "roll": 2,
+          "id": "soft-touch",
+          "name": "Toque Suave",
+          "hook": "Seus dedos são rápidos e precisos.",
+          "effect": "Você tem vantagem em qualquer teste para roubar objetos ou abrir fechaduras."
+        },
+        {
+          "roll": 3,
+          "id": "flexible-morals",
+          "name": "Moral Flexível",
+          "hook": "Você aprendeu a não ligar para o que os outros pensam de você.",
+          "effect": "Quando sofrer vergonha, role 1d6: em um resultado par, você não sofre a condição."
+        },
+        {
+          "roll": 4,
+          "id": "watch-yourself",
+          "name": "Tome Cuidado",
+          "hook": "Você aprendeu que confiar é bom, mas não confiar é definitivamente melhor.",
+          "effect": "Você recebe +1 em todas as reações de subterfúgio e precisão."
+        }
+      ]
+    },
+    {
+      "id": "noble",
+      "name": "Nobre",
+      "summary": "Você conhece os confortos da vida na corte, seu aspecto político e o fardo do poder.",
+      "approachBonuses": [
+        "strength",
+        "influence"
+      ],
+      "personality": [
+        "arrogante",
+        "autoritário",
+        "perspicaz",
+        "calculista",
+        "refinado",
+        "charmoso",
+        "leal"
+      ],
+      "training": [
+        "liderança",
+        "etiqueta",
+        "duelar",
+        "tática",
+        "diplomacia",
+        "heráldica",
+        "arte"
+      ],
+      "chooseIf": [
+        "Quiser explorar o contraste entre privilégio e dever.",
+        "Quiser interpretar um personagem que se destaca na arte da diplomacia e do comando.",
+        "Quiser explorar o peso da responsabilidade e das expectativas.",
+        "Quiser testar seu poder em um mundo que o desafia."
+      ],
+      "abilities": [
+        {
+          "roll": 1,
+          "id": "how-dare-you",
+          "name": "Como Ousa?!",
+          "hook": "Você não gosta de ser ignorado e aprendeu a se fazer ouvir em qualquer situação.",
+          "effect": "Você pode escolher sofrer raiva a qualquer momento para receber um sucesso em influência sem jogar dados. Essa habilidade exige uma ação."
+        },
+        {
+          "roll": 2,
+          "id": "mind-your-manners",
+          "name": "Tenha Modos",
+          "hook": "Você sabe se portar em ambientes formais e como dirigir-se a indivíduos em posições de prestígio.",
+          "effect": "Você tem vantagem em qualquer teste envolvendo política e etiqueta."
+        },
+        {
+          "roll": 3,
+          "id": "prestigious-lineage",
+          "name": "Linhagem de Prestígio",
+          "hook": "O nome de sua família tem peso, e você não hesita em usá-lo, se necessário.",
+          "effect": "Revele o nome de sua família a um alvo e role 1d6: se o resultado for par, ele o respeita e age de acordo. Se for ímpar, ele o detesta e porta-se conforme tal sentimento."
+        },
+        {
+          "roll": 4,
+          "id": "military-discipline",
+          "name": "Disciplina Militar",
+          "hook": "Você consegue manter a calma mesmo nas situações mais difíceis.",
+          "effect": "Quando sofrer confusão, role 1d6: em um resultado par, você não sofre a condição."
+        }
+      ]
+    },
+    {
+      "id": "nomad",
+      "name": "Nômade",
+      "summary": "A vida tem sido uma jornada, e você aprendeu a fazer de qualquer lugar o seu lar.",
+      "approachBonuses": [
+        "influence",
+        "subterfuge"
+      ],
+      "personality": [
+        "sociável",
+        "questionador",
+        "observador",
+        "adaptável",
+        "espírito livre",
+        "pragmático",
+        "empático"
+      ],
+      "training": [
+        "explorar",
+        "entreter",
+        "investigação",
+        "cultura local",
+        "negociação",
+        "sobrevivência",
+        "viagem"
+      ],
+      "chooseIf": [
+        "Quiser se adaptar a circunstâncias imprevisíveis e em constante mudança.",
+        "Quiser experimentar o mundo como uma tapeçaria de culturas esperando para ser descobertas.",
+        "Quiser explorar lugares desconhecidos e enfrentar seus desafios.",
+        "Quiser encontrar um lar nas pessoas, e não nos lugares."
+      ],
+      "abilities": [
+        {
+          "roll": 1,
+          "id": "road-tales",
+          "name": "Contos da Estrada",
+          "hook": "As histórias que você ouviu lhe oferecem dicas sobre o mundo à sua volta.",
+          "effect": "Uma vez por sessão, revele um rumor sobre um lugar, alvo ou evento. A Escuridão rola 1d6 sem revelar o resultado: se ímpar, a informação é falsa; se par, é verdadeira."
+        },
+        {
+          "roll": 2,
+          "id": "loyal-companion",
+          "name": "Companheiro Leal",
+          "hook": "Você sabe conquistar a confiança de alguém rapidamente.",
+          "effect": "Você tem vantagem em qualquer teste para conquistar a confiança de alguém."
+        },
+        {
+          "roll": 3,
+          "id": "carefree",
+          "name": "Despreocupado",
+          "hook": "Viajar lhe ensinou a não deixar que as adversidades o deixem para baixo.",
+          "effect": "Quando sofrer ansiedade, role 1d6: em um resultado par, você não sofre a condição."
+        },
+        {
+          "roll": 4,
+          "id": "safe-haven-nomad",
+          "name": "Refúgio Seguro",
+          "hook": "Você já esteve em tantos lugares que sabe dizer imediatamente se uma localização é segura.",
+          "effect": "Uma vez por sessão, pergunte à Escuridão se um lugar é seguro para você e seus aliados. Ela responderá verdadeiramente: \"Sim\", \"Não\", ou \"Sim e não\"."
+        }
+      ]
+    },
+    {
+      "id": "orphan",
+      "name": "Órfão",
+      "summary": "Você cresceu sem pais, aprendendo a depender somente de si mesmo e a se adaptar para sobreviver com pouco.",
+      "approachBonuses": [
+        "will",
+        "subterfuge"
+      ],
+      "personality": [
+        "reservado",
+        "inventivo",
+        "oportunista",
+        "malandro",
+        "desapegado",
+        "cínico",
+        "corajoso"
+      ],
+      "training": [
+        "roubar",
+        "saber das ruas",
+        "dissimulação",
+        "refúgio",
+        "furtividade",
+        "vigilância",
+        "golpe inesperado"
+      ],
+      "chooseIf": [
+        "Quiser transformar a solidão e a falta de raízes em poder.",
+        "Quiser construir vínculos e moldar um futuro que realmente pertença a você.",
+        "Quiser questionar seu passado e explorar seus mistérios.",
+        "Quiser poder confiar somente em si mesmo, quando mais importar."
+      ],
+      "abilities": [
+        {
+          "roll": 1,
+          "id": "hard-times",
+          "name": "Tempos Difíceis",
+          "hook": "A vida nas ruas lhe ensinou que, às vezes, fazer algo desonrado é melhor do que se aliar ao time que está perdendo.",
+          "effect": "Você pode escolher sofrer vergonha para receber um sucesso em subterfúgio sem fazer um teste. Essa habilidade exige uma ação."
+        },
+        {
+          "roll": 2,
+          "id": "tough-it-out",
+          "name": "Aguenta Firme",
+          "hook": "Uma vida de dificuldades lhe ensinou a ignorar até mesmo as condições mais adversas.",
+          "effect": "Você ignora todos os efeitos de exaustão. Quando receber essa condição, marque-a como de costume, mas ignore seus efeitos negativos."
+        },
+        {
+          "roll": 3,
+          "id": "seeking-connections",
+          "name": "Buscando Conexões",
+          "hook": "Você está sempre à procura de vínculos significativos com aqueles à sua volta.",
+          "effect": "Você pode usar seus vínculos duas vezes por ato."
+        },
+        {
+          "roll": 4,
+          "id": "safe-haven-orphan",
+          "name": "Refúgio Seguro",
+          "hook": "Você aprendeu a tratar a paranoia como uma aliada confiável.",
+          "effect": "Você pode escolher sofrer ansiedade a qualquer momento para receber um sucesso em precisão sem jogar dados. Essa habilidade exige uma ação."
+        }
+      ]
+    },
+    {
+      "id": "commoner",
+      "name": "Plebeu",
+      "summary": "Você vem de um ambiente miserável e teve que trabalhar duro desde muito jovem.",
+      "approachBonuses": [
+        "strength",
+        "will"
+      ],
+      "personality": [
+        "altruísta",
+        "cabreiro",
+        "cauteloso",
+        "rebelde",
+        "esperançoso",
+        "bondoso",
+        "teimoso"
+      ],
+      "training": [
+        "resiliência",
+        "folclore",
+        "prevenção de riscos",
+        "improviso",
+        "briga",
+        "discrição",
+        "rastrear"
+      ],
+      "chooseIf": [
+        "Quiser enfrentar dificuldades com determinação e perseverança.",
+        "Quiser encontrar sentido nas pequenas vitórias em um mundo hostil.",
+        "Quiser personificar a força daqueles que sempre se reerguem.",
+        "Quiser explorar o que significa lutar por toda conquista."
+      ],
+      "abilities": [
+        {
+          "roll": 1,
+          "id": "hard-work-pays-off",
+          "name": "Trabalho Duro Vale a Pena",
+          "hook": "Trabalho duro não o assusta. Seus esforços sempre levam a resultados.",
+          "effect": "Você pode escolher sofrer exaustão a qualquer momento para receber um sucesso em vontade sem fazer um teste. Essa habilidade exige uma ação."
+        },
+        {
+          "roll": 2,
+          "id": "fruits-of-the-earth",
+          "name": "Frutos da Terra",
+          "hook": "Você aprendeu a usar quaisquer recursos que a vida ofereça.",
+          "effect": "Você tem vantagem em qualquer teste para encontrar recursos úteis em ambientes naturais."
+        },
+        {
+          "roll": 3,
+          "id": "let-me-help",
+          "name": "Eu Te Ajudo!",
+          "hook": "Você sabe que ajudar os outros pode importar muito mais do que cuidar só de si mesmo.",
+          "effect": "Quando for bem-sucedido em uma reação para evitar um efeito negativo, você pode escolher sofrê-lo no lugar de um Maculado que falhou na mesma reação."
+        },
+        {
+          "roll": 4,
+          "id": "broad-shoulders",
+          "name": "Ombros Largos",
+          "hook": "Você está acostumado a carregar fardos, literais e figurativos.",
+          "effect": "Quando for sofrer exaustão, role 1d6: em um resultado par, você não sofre a condição."
+        }
+      ]
+    }
+  ]
+}

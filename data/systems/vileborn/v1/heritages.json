@@ -1,0 +1,718 @@
+{
+  "heritages": [
+    {
+      "id": "harbinger",
+      "name": "Agourento",
+      "tagline": "O que deve acontecer, acontecerá — você queira ou não.",
+      "summary": "Você carrega a marca dos Amaldiçoados, pressentindo desastres vindouros e comandando a maré da ruína e do azar.",
+      "kin": "Amaldiçoados",
+      "approachBonuses": [
+        "strength",
+        "will"
+      ],
+      "personality": [
+        "ressentido",
+        "vingativo",
+        "sinistro",
+        "fatalista",
+        "perturbado",
+        "dúbio",
+        "impassível"
+      ],
+      "training": [
+        "quiromancia",
+        "interpretação",
+        "ritos proibidos",
+        "desapego",
+        "manipulação",
+        "corrupção",
+        "sexto sentido"
+      ],
+      "drive": "Conduzir os outros ao infortúnio, assistindo enquanto encontram seu pior destino possível.",
+      "driveMarks": {
+        "0": "O infortúnio, que por vezes você sente à sua volta, ainda parece distante.",
+        "1": "Você começa a perceber breves oportunidades de falha na vida dos outros, sinais sutis de como eles podem se perder em ruína.",
+        "2": "Você enxerga claramente momentos que levam a um destino cruel; resistir à tentação de direcionar os eventos nessa direção torna-se difícil.",
+        "3": "Você vê fios de um destino terrível amarrando quem está à sua volta, e sente um desejo persistente de puxá-los em direção à ruína.",
+        "4+": "Você é assombrado pela inevitabilidade da ruína alheia. O desejo de ver tudo se destruir o consome."
+      },
+      "gifts": [
+        {
+          "roll": 1,
+          "id": "dark-omen",
+          "name": "Presságio Sombrio",
+          "benefit": "Peça à Escuridão que revele a ameaça mais iminente a um alvo. Ela a mostrará por meio de uma visão breve.",
+          "cost": "A visão pode assustá-lo. Role 1d6: em um resultado 1, sofra medo."
+        },
+        {
+          "roll": 2,
+          "id": "corrupted-fate",
+          "name": "Destino Corrompido",
+          "benefit": "Por um momento, você se torna um com uma versão sua que viveu uma vida melhor. Aumente uma abordagem em um tamanho de dado (até um d10) pela duração da cena.",
+          "cost": "Você arrisca se arrepender da sorte que nunca teve. Role 1d6: em um resultado 1, sofra raiva."
+        },
+        {
+          "roll": 3,
+          "id": "hostile-skies",
+          "name": "Céus Hostis",
+          "benefit": "Sua presença piora o clima em uma área, conjurando névoa, chuva ou vento.",
+          "cost": "Você pode atrair raios. Role 1d6: em um resultado 1, um alvo aleatório (à escolha da Escuridão) sofre uma ferida."
+        },
+        {
+          "roll": 4,
+          "id": "dark-distraction",
+          "name": "Distração Sombria",
+          "benefit": "Depois de ver o resultado, force a Escuridão a jogar novamente um dado da escuridão.",
+          "cost": "Se o novo resultado for mais alto do que o anterior, sofra uma ferida além de quaisquer outros efeitos do dado da escuridão."
+        },
+        {
+          "roll": 5,
+          "id": "echo-of-ruin",
+          "name": "Eco da Ruína",
+          "benefit": "Você atrai infortúnio para um alvo, que sofre pequenos acidentes ao longo da cena. Você ganha vantagem em testes de subterfúgio contra ele.",
+          "cost": "Sua mente é inundada por fatalismo. Você sofre -1 em todos os testes de vontade enquanto este dom estiver marcado."
+        },
+        {
+          "roll": 6,
+          "id": "engraved-memory",
+          "name": "Memória Gravada",
+          "benefit": "Você grava um pensamento em um pequeno objeto, comida ou bebida. A primeira pessoa a tocá-lo ou consumi-lo percebe a memória como você a colocou.",
+          "cost": "Você arrisca perder essa mesma lembrança. Role 1d6: em um resultado 1, a memória passa para o objeto, e você a esquece."
+        },
+        {
+          "roll": 7,
+          "id": "sinister-blessing",
+          "name": "Bênção Sinistra",
+          "benefit": "Aponte para um alvo e cause uma ferida a si mesmo. Ele a sofre em seu lugar.",
+          "cost": "O efeito pode não ser transferido por inteiro. Role 1d6: em um resultado 1, ambos sofrem a ferida."
+        },
+        {
+          "roll": 8,
+          "id": "mirror-of-misfortune",
+          "name": "Espelho do Infortúnio",
+          "benefit": "Redirecione uma ferida, condição ou outro efeito negativo que um aliado tenha acabado de sofrer para um alvo à sua escolha.",
+          "cost": "Role 1d6: em um resultado 1, você falha em redirecionar o efeito e a Escuridão escolhe quem o sofre."
+        },
+        {
+          "roll": 9,
+          "id": "prophetic-dream",
+          "name": "Sonho Profético",
+          "benefit": "Antes de dormir, peça à Escuridão que mostre uma visão sobre um tópico à sua escolha. Ela revelará algo importante por meio de um sonho premonitório.",
+          "cost": "O sonho perturba seu descanso. Sofra exaustão."
+        }
+      ]
+    },
+    {
+      "id": "haunted",
+      "name": "Assombrado",
+      "tagline": "Os mortos nunca se calam. Eles não conhecem a paz.",
+      "summary": "Seu vínculo com o mundo dos Caídos permite que converse com espíritos e atravesse as fronteiras entre a vida e a morte.",
+      "kin": "Caídos",
+      "approachBonuses": [
+        "will",
+        "influence"
+      ],
+      "personality": [
+        "atormentado",
+        "introvertido",
+        "empático",
+        "obcecado",
+        "silencioso",
+        "visionário",
+        "reservado"
+      ],
+      "training": [
+        "exorcismos",
+        "escrituras sagradas",
+        "ritos fúnebres",
+        "ocultismo",
+        "escutar",
+        "interpretar presságios",
+        "pós-vida"
+      ],
+      "drive": "Obedecer à vontade dos espíritos, deixando-se ser consumido por sua sede por vingança e suas exigências infindáveis.",
+      "driveMarks": {
+        "0": "O véu entre os mundos está firme; as vozes estão em silêncio.",
+        "1": "Leves sussurros começam a ecoar em sua mente.",
+        "2": "Os fantasmas chamam mais insistentemente, instigando-o a cumprir seus desejos sombrios, e são mais difíceis de ignorar.",
+        "3": "Os mortos gritam por atenção, inundando sua mente com exigências; resistir a eles requer um esforço imenso.",
+        "4+": "A linha entre a sua vontade e a dos espíritos vingativos começa a embaçar. Seus comandos ecoam em cada um de seus pensamentos."
+      },
+      "gifts": [
+        {
+          "roll": 1,
+          "id": "pale-whispers",
+          "name": "Sussurros Pálidos",
+          "benefit": "Você faz contato com um espírito e pode fazer uma pergunta, à qual ele deve responder de forma verdadeira.",
+          "cost": "Sua aparência torna-se pálida e perturbadora. Você sofre -1 em todos os testes de influência enquanto este dom estiver marcado."
+        },
+        {
+          "roll": 2,
+          "id": "ethereal-presence",
+          "name": "Presença Etérea",
+          "benefit": "Você materializa um espírito que atrapalha um alvo, ou perturba pequenos objetos em uma área à sua escolha até o fim do seu próximo turno.",
+          "cost": "Você se expõe ao tormento do espírito. Role 1d6: em um resultado 1, sofra medo."
+        },
+        {
+          "roll": 3,
+          "id": "spectral-step",
+          "name": "Passo Espectral",
+          "benefit": "Você se torna intangível por um momento e pode reagir a um ataque físico sem fazer uma rolagem, ou atravessar um obstáculo, como uma porta ou uma parede.",
+          "cost": "Você corre o risco de deixar uma parte de si no além. Sublinhe um de seus traços de personalidade: enquanto este dom estiver marcado, você não pode usá-lo."
+        },
+        {
+          "roll": 4,
+          "id": "last-breath",
+          "name": "Último Suspiro",
+          "benefit": "Você revive, com todos os cinco sentidos, os últimos momentos da vida de um alvo, a partir da perspectiva dele.",
+          "cost": "O trauma é tão vívido que você pode sofrê-lo também. Role 1d6: em um resultado 1, sofra uma ferida."
+        },
+        {
+          "roll": 5,
+          "id": "possession",
+          "name": "Possessão",
+          "benefit": "Você chama um espírito do além e abriga-o em seu corpo mortal. Aumente uma abordagem em um tamanho de dado (até um d10) pela duração da cena.",
+          "cost": "O espírito alimenta-se de sua energia. Role 1d6: em um resultado 1, sofra exaustão."
+        },
+        {
+          "roll": 6,
+          "id": "second-chance",
+          "name": "Segunda Chance",
+          "benefit": "Marque este dom para evitar sofrer qualquer efeito (inclusive uma ferida) que o tiraria da jogada.",
+          "cost": "A morte exige um preço. Role 1d6: em um resultado 1, um aliado à escolha da Escuridão sofre o efeito em seu lugar."
+        },
+        {
+          "roll": 7,
+          "id": "death-vision",
+          "name": "Visão da Morte",
+          "benefit": "Você causa uma ferida em um alvo visível instantaneamente, fazendo-o experimentar o tormento do além.",
+          "cost": "Você arrisca ceder à sede de vingança dos espíritos. Role 1d6: em um resultado 1, sofra raiva."
+        },
+        {
+          "roll": 8,
+          "id": "serene-heart",
+          "name": "Coração Sereno",
+          "benefit": "Enquanto este dom estiver marcado, você não precisa comer, beber ou dormir. Você também ignora os efeitos da exaustão, embora ainda deva marcá-la se sofrer esse efeito.",
+          "cost": "Você sente uma profunda desconexão com a vida. Enquanto este dom estiver marcado, você não pode usar sua motivação."
+        },
+        {
+          "roll": 9,
+          "id": "martyrdom",
+          "name": "Martírio",
+          "benefit": "Você instantaneamente cura uma ferida de um aliado. Se ele estiver fora da jogada, remova sua última ferida e traga-o de volta ao jogo.",
+          "cost": "Você sacrifica a sua própria vitalidade: sofra uma ferida imediatamente."
+        }
+      ]
+    },
+    {
+      "id": "predator",
+      "name": "Predador",
+      "tagline": "Eu consigo sentir o cheiro do seu medo daqui.",
+      "summary": "O instinto predador dos Ferozes ruge em seu interior: você herdou sua força e violência selvagem.",
+      "kin": "Ferozes",
+      "approachBonuses": [
+        "strength",
+        "precision"
+      ],
+      "personality": [
+        "indomável",
+        "líder do bando",
+        "violento",
+        "mal-humorado",
+        "protetor",
+        "independente",
+        "revoltado"
+      ],
+      "training": [
+        "ameaça",
+        "rastreamento",
+        "caça",
+        "luta",
+        "exploração",
+        "evasão",
+        "emboscada"
+      ],
+      "drive": "Caçar humanos, um impulso selvagem que o faz vê-los como presas.",
+      "driveMarks": {
+        "0": "Você se sente calmo; o predador interior está em silêncio.",
+        "1": "Seus sentidos aguçam-se e o instinto de caça torna-se um sussurro.",
+        "2": "O desejo de perseguir e caçar assombra-o, e você começa a ver as pessoas como presas potenciais.",
+        "3": "O mundo desaparece, deixando somente seu alvo; seus músculos enrijecem à medida que a necessidade de caçar devora sua mente.",
+        "4+": "Você tem dificuldade de resistir ao impulso primitivo de caçar e matar; todos à sua volta parecem alvos potenciais."
+      },
+      "gifts": [
+        {
+          "roll": 1,
+          "id": "feral-form",
+          "name": "Forma Feroz",
+          "benefit": "Você desenvolve traços animalescos. Você recebe +1 em testes de força e ignora os efeitos de exaustão pela duração da cena.",
+          "cost": "Você arrisca ser oprimido por seu instinto de caça. Role 1d6: em um resultado 1, sofra raiva."
+        },
+        {
+          "roll": 2,
+          "id": "sixth-sense",
+          "name": "Sexto Sentido",
+          "benefit": "Seu instinto alerta-o sobre ameaças à sua volta: a Escuridão lhe dá uma pista sobre a natureza da ameaça, e você sabe caso trate-se de um Detestado.",
+          "cost": "O perigo percebido pode deixá-lo no limite. Role 1d6: em um resultado 1, sofra ansiedade."
+        },
+        {
+          "roll": 3,
+          "id": "predator-sight",
+          "name": "Visão do Predador",
+          "benefit": "Você consegue ver detalhes minúsculos, mesmo no escuro; receba +1 em testes de precisão pela duração da cena.",
+          "cost": "A sobrecarga sensorial o deixa confuso. Você sofre -1 em todos os testes de razão enquanto este dom estiver marcado."
+        },
+        {
+          "roll": 4,
+          "id": "pack-protector",
+          "name": "Protetor do Bando",
+          "benefit": "Você sofre uma ferida no lugar de um aliado. Adicionalmente, você recebe +1 em testes de vontade durante essa cena.",
+          "cost": "Seu foco concentra-se naquele que o machucou. Pela duração da cena, você sofre -1 em testes que não tenham a fonte de dano como alvo. Esse efeito encerra se você matá-lo."
+        },
+        {
+          "roll": 5,
+          "id": "apex-voice",
+          "name": "Voz do Superpredador",
+          "benefit": "Você acalma até mesmo um animal furioso e convence-o a ajudá-lo. Ele o auxiliará como puder, e inclusive o defenderá.",
+          "cost": "Se algo ruim acontecer com o animal, você imediatamente sofre raiva."
+        },
+        {
+          "roll": 6,
+          "id": "accelerated-healing",
+          "name": "Cura Acelerada",
+          "benefit": "Você instantaneamente cura uma ferida usando seu metabolismo excepcional.",
+          "cost": "A velocidade do seu metabolismo pode deixá-lo faminto. Role 1d6: em um resultado 1, sofra exaustão."
+        },
+        {
+          "roll": 7,
+          "id": "exceptional-movement",
+          "name": "Movimento Excepcional",
+          "benefit": "Enquanto este dom estiver marcado, você pode alcançar lugares inacessíveis pulando, deslizando, rastejando ou movendo-se como um predador.",
+          "cost": "Você assume uma aparência mais bestial do que humana. Você tem desvantagem em testes de influência enquanto este dom estiver marcado."
+        },
+        {
+          "roll": 8,
+          "id": "animal-instinct",
+          "name": "Instinto Animal",
+          "benefit": "Você obtém um sucesso automático em uma reação de força, vontade ou precisão.",
+          "cost": "Você se sente tentado a atacar de volta. Você tem desvantagem em testes de razão enquanto este dom estiver marcado."
+        },
+        {
+          "roll": 9,
+          "id": "animal-hide",
+          "name": "Couro Animal",
+          "benefit": "Sua pele torna-se resistente como a de um Feroz. Armas normais não podem causar feridas a você pela duração desta cena.",
+          "cost": "Você se torna vulnerável à prata e ao aço-argento. Você tem desvantagem em todos os testes envolvendo esses materiais pela duração desta cena."
+        }
+      ]
+    },
+    {
+      "id": "sanguine",
+      "name": "Sanguíneo",
+      "tagline": "Mais cedo ou mais tarde, tudo termina em sangue.",
+      "summary": "Você sente a sede de sangue dos Vampiros, e os poderes de sua linhagem amaldiçoada correm por suas veias.",
+      "kin": "Vampiros",
+      "approachBonuses": [
+        "strength",
+        "influence"
+      ],
+      "personality": [
+        "sedutor",
+        "impulsivo",
+        "ardente",
+        "intimidador",
+        "egocêntrico",
+        "atormentado",
+        "manipulador"
+      ],
+      "training": [
+        "dominação",
+        "fingir",
+        "provocar",
+        "proeza física",
+        "resistência",
+        "chamar a atenção",
+        "traquejo social"
+      ],
+      "drive": "Beber sangue humano, um desejo que queima como uma sede insaciável em suas veias.",
+      "driveMarks": {
+        "0": "Você se sente no controle; sua sede está dormente.",
+        "1": "Um leve desejo por sangue desperta em você, mas é fácil ignorá-lo.",
+        "2": "O cheiro de sangue aguça seus sentidos, deixando-o inquieto e distraído.",
+        "3": "Cada batimento cardíaco à sua volta ecoa alto em seus ouvidos, e resistir à sede torna-se um esforço constante.",
+        "4+": "A sede é insuportável, o cheiro de sangue o sobrecarrega e é preciso usar toda a sua força de vontade para evitar atacar alguém."
+      },
+      "gifts": [
+        {
+          "roll": 1,
+          "id": "revealing-pulse",
+          "name": "Pulso Revelador",
+          "benefit": "Você se concentra nos batimentos cardíacos de um alvo. Se ele tiver um, você sabe se está contando a verdade pela duração da cena.",
+          "cost": "O som do pulso dele pode perturbar você. Role 1d6: em um resultado 1, sofra ansiedade."
+        },
+        {
+          "roll": 2,
+          "id": "blood-power",
+          "name": "Poder do Sangue",
+          "benefit": "Você se torna incrivelmente forte por um momento. Use seu turno para obter um sucesso automático de força.",
+          "cost": "Você exaure seu coração e seu corpo. Role 1d6: em um resultado 1, sofra uma ferida."
+        },
+        {
+          "roll": 3,
+          "id": "scarlet-theft",
+          "name": "Roubo Escarlate",
+          "benefit": "Você entra na mente de um alvo e rouba um segredo. Não é possível fazer perguntas específicas, a Escuridão revelará o que você descobre.",
+          "cost": "Seus poderes não têm a maestria de um Vampiro. Role 1d6: em um resultado 1, o alvo percebe que sua mente foi invadida."
+        },
+        {
+          "roll": 4,
+          "id": "crimson-trail",
+          "name": "Rastro Carmesim",
+          "benefit": "Você se concentra no cheiro do sangue de um alvo: enquanto este dom estiver marcado, você pode seguir seu rastro e saber sua localização aproximada sem fazer testes.",
+          "cost": "Rastrear seu sangue torna-se uma obsessão. Você sofre -1 em todos os testes de razão enquanto este dom estiver marcado."
+        },
+        {
+          "roll": 5,
+          "id": "red-mist",
+          "name": "Névoa Vermelha",
+          "benefit": "Você se torna névoa por um instante, permitindo reagir a um único ataque físico sem rolar, ou passar por entre barras ou grades.",
+          "cost": "Mudar de forma é cansativo. Role 1d6: em um resultado 1, sofra exaustão."
+        },
+        {
+          "roll": 6,
+          "id": "dark-seduction",
+          "name": "Sedução Sombria",
+          "benefit": "Você desperta emoções viscerais em um alvo. Você recebe +1 em testes de influência contra ele até o fim da cena.",
+          "cost": "Ele se torna uma distração. Enquanto este dom estiver marcado e o alvo estiver presente, você tem desvantagem em testes de precisão."
+        },
+        {
+          "roll": 7,
+          "id": "blood-sculptor",
+          "name": "Escultor de Sangue",
+          "benefit": "Você derrama o seu próprio sangue e o molda em uma arma à sua escolha. Você tem vantagem em todos os testes em que a usar pela duração desta cena.",
+          "cost": "Você causa uma ferida a si mesmo, pela perda de sangue."
+        },
+        {
+          "roll": 8,
+          "id": "blood-precognition",
+          "name": "Precognição do Sangue",
+          "benefit": "Ao perceber o fluxo de sangue de um alvo, você antecipa seus movimentos: receba +1 em todos os testes físicos contra ele pela duração da cena.",
+          "cost": "Você é tentado pelo sangue do alvo. Você tem desvantagem em testes de vontade contra o alvo até o fim da cena."
+        },
+        {
+          "roll": 9,
+          "id": "arrhythmia",
+          "name": "Arritmia",
+          "benefit": "Você faz com que o coração do alvo erre uma batida: na próxima vez que ele tentar agir, nada acontece. Se o alvo não tiver batimentos cardíacos, o dom não tem efeito.",
+          "cost": "O esforço requer uma concentração intensa. Você sofre exaustão imediatamente."
+        }
+      ]
+    },
+    {
+      "id": "wild",
+      "name": "Selvagem",
+      "tagline": "Esta terra está apodrecida, e a culpa é toda nossa.",
+      "summary": "O chamado da natureza e o poder dos Silvestres residem em você, assim como uma profunda rejeição do domínio que a civilização exerce sobre a terra.",
+      "kin": "Silvestres",
+      "approachBonuses": [
+        "strength",
+        "will"
+      ],
+      "personality": [
+        "primitivo",
+        "irado",
+        "instintivo",
+        "carinhoso",
+        "vulnerável",
+        "esquivo",
+        "sensível"
+      ],
+      "training": [
+        "herbalismo",
+        "defesa",
+        "destruição",
+        "recursos naturais",
+        "dedo verde",
+        "cuidado",
+        "encontrar abrigo"
+      ],
+      "drive": "Devastar símbolos de civilização ou beleza humana, reafirmando sua lealdade a tudo o que é selvagem.",
+      "driveMarks": {
+        "0": "Obras humanas não o incomodam. A natureza parece tolerar a presença delas.",
+        "1": "Você começa a notar como as criações humanas contrastam com a harmonia da natureza.",
+        "2": "Obras humanas parecem ofensas ao equilíbrio natural. O desejo por destruí-las cresce em você.",
+        "3": "Cada estrutura ou símbolo do progresso humano parece uma ferida causada à natureza. A necessidade de destruir é constante e urgente.",
+        "4+": "Obras humanas são um insulto intolerável. Seu corpo urge por erradicar cada traço de civilização."
+      },
+      "gifts": [
+        {
+          "roll": 1,
+          "id": "deep-roots",
+          "name": "Raízes Profundas",
+          "benefit": "Você se conecta à natureza à sua volta. Você ganha vantagem em testes de vontade e está imune aos efeitos de ansiedade pela duração da cena.",
+          "cost": "Sua conexão com a terra o deixa mais lento. Você sofre -1 em testes de força até o fim da cena."
+        },
+        {
+          "roll": 2,
+          "id": "invigorating-winds",
+          "name": "Ventos Revigorantes",
+          "benefit": "Você purifica uma área pequena — uma clareira, um pedaço de floresta ou um riacho pequeno — de toxinas, efeitos venenosos e substâncias prejudiciais.",
+          "cost": "Você corre o risco de absorver parte da contaminação. Role 1d6: em um resultado 1, sofra uma ferida."
+        },
+        {
+          "roll": 3,
+          "id": "tree-skin",
+          "name": "Pele de Árvore",
+          "benefit": "Ignore as próximas 2 feridas que sofrer.",
+          "cost": "Sua aparência torna-se perturbadora. Você tem desvantagem em testes de influência enquanto este dom estiver marcado."
+        },
+        {
+          "roll": 4,
+          "id": "earth-concert",
+          "name": "Concerto da Terra",
+          "benefit": "Você faz crescerem plantas ou vinhas capazes de alterar a estrutura de um prédio, reforçando-o ou enfraquecendo-o (a escolha é sua).",
+          "cost": "Role 1d6: em um resultado 1, você torna a estrutura completamente inutilizável e causa mal a todos dentro dela. Se um Maculado estiver dentro, ele sofre uma ferida."
+        },
+        {
+          "roll": 5,
+          "id": "lush-bloom",
+          "name": "Florescer Exuberante",
+          "benefit": "Você se concentra em um lugar e faz com que ele floresça, mesmo na ausência de luz solar, causando um crescimento de plantas que normalmente levaria meses.",
+          "cost": "Você arrisca perder o controle desse crescimento. Role 1d6: em um resultado 1, a área torna-se tão selvagem que não pode ser habitada por humanos."
+        },
+        {
+          "roll": 6,
+          "id": "sure-step",
+          "name": "Passo Firme",
+          "benefit": "Enquanto este dom estiver marcado, você se move sem esforço por terreno natural, ainda que seja um terreno difícil ou traiçoeiro.",
+          "cost": "Você se isola no abraço da natureza. Enquanto este dom estiver marcado, você não pode usar seus vínculos."
+        },
+        {
+          "roll": 7,
+          "id": "earth-wrath",
+          "name": "Ira da Terra",
+          "benefit": "Use seu turno para atacar usando elementos naturais. Você obtém um sucesso em um teste de força imediatamente.",
+          "cost": "O caos da natureza pode intoxicá-lo. Role 1d6: em um resultado 1, sofra raiva."
+        },
+        {
+          "roll": 8,
+          "id": "mountain-power",
+          "name": "Poder das Montanhas",
+          "benefit": "Sua força aumenta. Você recebe +1 em testes de força e ignora os efeitos de exaustão pela duração da cena.",
+          "cost": "Você pode se assustar com seu próprio poder. Role 1d6: em um resultado 1, sofra medo."
+        },
+        {
+          "roll": 9,
+          "id": "primordial-echo",
+          "name": "Eco Primordial",
+          "benefit": "Você entra em harmonia com um lugar natural, recebendo uma visão e sensações que revelam seu estado e uma dica sobre o que esteja acontecendo ali.",
+          "cost": "Role 1d6: em um resultado 1, sofra uma ferida ou uma condição relacionada com o estado do lugar, à escolha da Escuridão."
+        }
+      ]
+    },
+    {
+      "id": "shadowed",
+      "name": "Sombrio",
+      "tagline": "As sombras tramam, deslizam, sussurram e devoram.",
+      "summary": "As Sombras o escolheram; você sente sua fome por medo e desespero e pode controlá-las e moldá-las.",
+      "kin": "Sombras",
+      "approachBonuses": [
+        "will",
+        "subterfuge"
+      ],
+      "personality": [
+        "insensível",
+        "perturbador",
+        "vingativo",
+        "cauteloso",
+        "cruel",
+        "taciturno",
+        "observador"
+      ],
+      "training": [
+        "intimidação",
+        "camuflagem",
+        "ilusionismo",
+        "espionagem",
+        "autocontrole",
+        "confundir",
+        "aterrorizar"
+      ],
+      "drive": "Aterrorizar humanos, traumatizá-los permanentemente e aplacar momentaneamente a fome das Sombras.",
+      "driveMarks": {
+        "0": "As Sombras estão calmas; sua fome de medo está dormente.",
+        "1": "Você sente um leve desejo de causar pânico e medo, mas esses são pensamentos passageiros que você consegue suprimir.",
+        "2": "As Sombras agitam-se em sua mente, provocadas pela ideia de um banquete. Você sente uma vontade incontrolável de espalhar o terror.",
+        "3": "As Sombras estão com fome e exigem seu tributo. Você precisa concentrar-se para não aproveitar cada chance de aterrorizar os outros.",
+        "4+": "Você sente a fome das Sombras como se fosse sua. A fragilidade, temor e desespero dos outros são como frutas maduras esperando pela colheita."
+      },
+      "gifts": [
+        {
+          "roll": 1,
+          "id": "shadow-hunger",
+          "name": "Fome das Sombras",
+          "benefit": "Sua sombra devora emoções negativas. Remova uma condição sua ou de um aliado; além disso, ganhe +1 em testes de razão pela duração da cena.",
+          "cost": "As sombras podem inundar seu corpo. Role 1d6: em um resultado 1, você chora lágrimas negras como o piche e sofre uma ferida."
+        },
+        {
+          "roll": 2,
+          "id": "deep-chill",
+          "name": "Enregelamento",
+          "benefit": "Você drena uma área de calor ou gela um objeto. Se o objeto estiver em contato com a pele de um alvo, ele deve soltá-lo ou sofrer uma ferida.",
+          "cost": "Você arrisca perder calor corporal. Role 1d6: em um resultado 1, sofra exaustão."
+        },
+        {
+          "roll": 3,
+          "id": "dark-secrets",
+          "name": "Segredos Sombrios",
+          "benefit": "Você se comunica com as sombras, que sussurram as emoções que permeiam a área ao seu redor.",
+          "cost": "Essas emoções prendem-se a você. Role 1d6: em um resultado 1, sofra ansiedade."
+        },
+        {
+          "roll": 4,
+          "id": "shadow-passenger",
+          "name": "Passageiro Sombrio",
+          "benefit": "Um passageiro repousa em sua sombra, feito inteiramente de escuridão. Escolha sua forma na primeira ativação. Marque este dom para receber ajuda em uma ação ou pedir um pequeno favor simples.",
+          "cost": "Enquanto este dom estiver marcado, você não pode usar seus vínculos."
+        },
+        {
+          "roll": 5,
+          "id": "shadow-reflex",
+          "name": "Reflexo das Sombras",
+          "benefit": "Sua sombra reage por você. Seja bem-sucedido em uma reação de vontade, razão ou precisão imediatamente, sem jogar dados.",
+          "cost": "Enquanto este dom estiver marcado, sua sombra move-se com intenção própria, evidenciando sua natureza e lhe dando -1 em testes de influência."
+        },
+        {
+          "roll": 6,
+          "id": "shadow-step",
+          "name": "Passo das Sombras",
+          "benefit": "Você desaparece em sua própria sombra e emerge de outra dentro de sua linha de visão.",
+          "cost": "As sombras podem capturá-lo. Role 1d6: em um resultado 1, a Escuridão escolhe se você reaparece no início do seu próximo turno ou no lugar errado."
+        },
+        {
+          "roll": 7,
+          "id": "tendrils-of-darkness",
+          "name": "Tentáculos da Escuridão",
+          "benefit": "Você anima as Sombras para lutarem por você. Elas agem usando 2d8 e seguem as suas ordens por uma cena. No começo de seu turno, comande-as ou dispense-as. Dar comandos não custa uma ação.",
+          "cost": "Você pode perder o controle. Role 1d6 no final de cada turno em que as Sombras estiverem ativas. Em um resultado 1, a Escuridão toma o controle delas."
+        },
+        {
+          "roll": 8,
+          "id": "night-terrors",
+          "name": "Terrores Noturnos",
+          "benefit": "Você manifesta o medo de um alvo em sua mente, distraindo-o, assustando-o, ou pior (a Escuridão escolhe o efeito).",
+          "cost": "Você pode conjurar os seus próprios medos. Role 1d6: em um resultado 1, sofra medo."
+        },
+        {
+          "roll": 9,
+          "id": "shadow-cloak",
+          "name": "Manto das Sombras",
+          "benefit": "Você esconde um alvo, deixando-o invisível até que atraia a atenção para si.",
+          "cost": "As Sombras são famintas. Role 1d6: em um resultado 1, o alvo sofre uma ferida."
+        }
+      ]
+    },
+    {
+      "id": "fortunate",
+      "name": "Venturoso",
+      "tagline": "O dobro ou nada?",
+      "summary": "Os Feéricos o abençoaram com o poder de dobrar a fortuna e enganar os sentidos, mas também concederam uma vontade perigosa de apostar em tudo.",
+      "kin": "Feéricos",
+      "approachBonuses": [
+        "influence",
+        "subterfuge"
+      ],
+      "personality": [
+        "extravagante",
+        "temerário",
+        "imprevisível",
+        "debochado",
+        "imprudente",
+        "brincalhão",
+        "atrevido"
+      ],
+      "training": [
+        "audácia",
+        "adivinhação",
+        "distrair",
+        "mentir",
+        "oportunismo",
+        "confundir",
+        "apostar"
+      ],
+      "drive": "Apostar o seu destino ou o daqueles que ama, sabendo perfeitamente bem que a aposta trará consequências danosas.",
+      "driveMarks": {
+        "0": "O chamado da aposta não o incomoda.",
+        "1": "A excitação de assumir riscos de forma imprudente cruza sua mente brevemente, mas você consegue ignorá-la facilmente.",
+        "2": "Você começa a perceber oportunidades para decisões precipitadas, e resistir a elas torna-se cada vez mais difícil.",
+        "3": "Cada situação parece uma oportunidade para uma aposta imprudente. O desejo de fazê-lo torna-se uma tentação constante.",
+        "4+": "O desejo por apostar com a vida e morte torna-se insuportável; sua voz e ações parecem criadas para espalhar o caos."
+      },
+      "gifts": [
+        {
+          "roll": 1,
+          "id": "glimpse-of-fate",
+          "name": "Vislumbre do Destino",
+          "benefit": "Você ajusta a fortuna a seu favor. Ganhe vantagem em um teste à sua escolha.",
+          "cost": "O destino pode vingar-se. Role 1d6: se o resultado for ímpar, a Escuridão escolhe secretamente um de seus aliados. Em seu próximo teste, ele sofre desvantagem."
+        },
+        {
+          "roll": 2,
+          "id": "enchanted-paradox",
+          "name": "Paradoxo Encantado",
+          "benefit": "Você subverte brevemente as leis da física: cai mais lentamente do que devia, espreme-se por um espaço apertado demais, ou move um objeto pesado demais para levantar.",
+          "cost": "Sua mente rebela-se contra a falta de lógica do evento. Role 1d6: se o resultado for 1, você sofre confusão."
+        },
+        {
+          "roll": 3,
+          "id": "deceiving-form",
+          "name": "Forma Enganadora",
+          "benefit": "Pela duração da cena, você assume a forma de um animal, como um gato, um corvo ou uma raposa. Você pode voltar à forma humana quando desejar.",
+          "cost": "Ao retornar à forma humana, role 1d6: se o resultado for ímpar, você sofre -1 em testes de razão e mantém um traço comportamental típico daquele animal enquanto este dom estiver marcado."
+        },
+        {
+          "roll": 4,
+          "id": "deceiving-voices",
+          "name": "Vozes Enganadoras",
+          "benefit": "Você cria sons irritantes que distraem um alvo. Você recebe +1 em testes de precisão contra ele até o fim da cena.",
+          "cost": "Manter a ilusão o exaure. Você sofre exaustão no fim da cena."
+        },
+        {
+          "roll": 5,
+          "id": "fae-pact",
+          "name": "Pacto Feérico",
+          "benefit": "Ative este dom quando selar um acordo. Se o alvo romper o pacto, você sabe disso imediatamente e ele sofre uma ferida.",
+          "cost": "Se você romper o pacto, sofre as mesmas consequências."
+        },
+        {
+          "roll": 6,
+          "id": "wicked-dissolution",
+          "name": "Dissolução Perversa",
+          "benefit": "Você ganha vantagem em testes de subterfúgio e está imune à vergonha pelo resto da cena.",
+          "cost": "Sua fortitude moral esmorece. Você sofre -1 em todos os testes de vontade enquanto este dom estiver marcado."
+        },
+        {
+          "roll": 7,
+          "id": "arcane-mirror",
+          "name": "Espelho Arcano",
+          "benefit": "Você assume a aparência de alguém que viu pelo menos uma vez. O efeito dura por toda a cena atual.",
+          "cost": "Role 1d6: se o resultado for 1, você não pode usar sua motivação enquanto este dom estiver marcado."
+        },
+        {
+          "roll": 8,
+          "id": "secrets-and-lies",
+          "name": "Segredos e Mentiras",
+          "benefit": "Os Feéricos sussurram o nome verdadeiro de um alvo em seu ouvido e revelam se estão contando a verdade sobre quem dizem ser.",
+          "cost": "Eles podem enganá-lo. Role 1d6: se o resultado for 1, a Escuridão pode mentir para você e não há como ter certeza da resposta."
+        },
+        {
+          "roll": 9,
+          "id": "fools-gold",
+          "name": "Ouro de Tolo",
+          "benefit": "Você altera a aparência de um objeto por uma cena, fazendo-o parecer muito mais ou muito menos valioso, refinado ou elegante do que realmente é.",
+          "cost": "Role 1d6: se o resultado for 1, a Escuridão pode encerrar a ilusão no momento mais inconveniente."
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-module rpg-nexus/api/dnd
+module rpg-nexus/api/systems
 
 go 1.22.2
 

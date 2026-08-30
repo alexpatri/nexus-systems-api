@@ -1,0 +1,107 @@
+{
+  "advanceTypes": [
+    { "id": "approach",    "label": "Abordagens",   "effect": "aumente 1 abordagem em 1 tamanho de dado", "max": 3 },
+    { "id": "personality", "label": "Personalidade","effect": "escolha 1 novo traço de personalidade",    "max": 3 },
+    { "id": "training",    "label": "Treinamento",  "effect": "escolha 1 novo traço de treinamento",      "max": 3 },
+    { "id": "gift",        "label": "Dom",          "effect": "descubra 1 novo dom de sua herança sombria","max": 3 }
+  ],
+  "totals": {
+    "note": "Os tetos valem para a história inteira, nos dois modos.",
+    "approachUpgrades": { "atCreation": 4, "fromAdvances": 3 },
+    "gifts": { "atCreation": 1, "fromAdvances": 3, "max": 4 },
+    "personality": { "atCreation": 2, "fromAdvances": 3, "max": 5 },
+    "training": { "atCreation": 2, "fromAdvances": 3, "max": 5 }
+  },
+  "modes": [
+    {
+      "id": "acts",
+      "name": "Estrutura de três atos",
+      "default": true,
+      "note": "Cada ato libera um avanço de cada tipo, desbloqueados ao longo da história e marcados na ficha."
+    },
+    {
+      "id": "fast",
+      "name": "Progressão Rápida",
+      "note": "Alternativa sem divisão em atos.",
+      "pace": "no máximo 1 avanço por sessão; é permitido pular avanços",
+      "caps": "os mesmos totais de advanceTypes.max",
+      "sync": "A Escuridão sincroniza o Dom da Experiência e o limiar de dependência do devaneio com o ritmo escolhido."
+    }
+  ],
+  "acts": [
+    {
+      "number": 1,
+      "id": "the-beginning",
+      "name": "O Início",
+      "advances": ["approach", "personality", "training", "gift"],
+      "specialRules": [],
+      "specialRulesNote": "O primeiro ato não introduz regras especiais.",
+      "keptSuccesses": 1,
+      "reverieDependencyOn": [1],
+      "reverieSupply": "A Ordem fornece devaneio regularmente; os Maculados ainda não sabem sintetizá-lo.",
+      "resources": "1 recurso permanente por Maculado durante o treinamento; todos os demais devem ser de uso único.",
+      "growthPrompts": [
+        "Você enfrenta um conflito moral",
+        "Você se conecta com alguém",
+        "Você explora seu poder",
+        "Você desafia uma autoridade",
+        "Você enfrenta a Escuridão"
+      ]
+    },
+    {
+      "number": 2,
+      "id": "the-hunt",
+      "name": "A Caçada",
+      "advances": ["approach", "personality", "training", "gift"],
+      "specialRules": ["experience-gift", "reverie-scarcity"],
+      "keptSuccesses": 2,
+      "reverieDependencyOn": [1, 2],
+      "reverieSupply": "Os Maculados sabem produzir devaneio, mas a Ordem não fornece mais regularmente. Cada um começa cada missão com 1 dose e deve obter as demais sozinho.",
+      "resources": "Máximo de 1 ou 2 recursos por Maculado; use-os para destacar momentos importantes.",
+      "growthPrompts": [
+        "Escolha um lado",
+        "Enfrente as consequências de uma escolha",
+        "Descubra uma verdade inconveniente",
+        "Forje ou quebre uma aliança",
+        "Explore seu poder de outra maneira"
+      ]
+    },
+    {
+      "number": 3,
+      "id": "the-darkness",
+      "name": "A Escuridão",
+      "advances": ["approach", "personality", "training", "gift"],
+      "specialRules": ["experience-gift", "reverie-scarcity"],
+      "keptSuccesses": 3,
+      "reverieDependencyOn": [1, 2, 3],
+      "reverieSupply": "Como no segundo ato, com limiar de dependência ampliado.",
+      "resources": "Recursos deixam de ser recompensa: foque em um único item capaz de mudar o destino do grupo ou de Egas.",
+      "growthPrompts": [
+        "Enfrente seu nêmesis",
+        "Faça uma escolha irreversível",
+        "Sacrifique algo importante",
+        "Descubra a verdade sobre a Escuridão",
+        "Decida o que fazer com sua herança sombria",
+        "Deixe sua marca em Egas"
+      ]
+    }
+  ],
+  "experienceGift": {
+    "name": "Dom da Experiência",
+    "effect": "Eleva quantos dados o Maculado pode manter num teste, gerando múltiplos sucessos.",
+    "byAct": [
+      { "act": 1, "keptSuccesses": 1, "reverieDependencyOn": [1] },
+      { "act": 2, "keptSuccesses": 2, "reverieDependencyOn": [1, 2] },
+      { "act": 3, "keptSuccesses": 3, "reverieDependencyOn": [1, 2, 3] }
+    ],
+    "note": "Quando a Escuridão aplica a mudança, ela vale para todos os Maculados."
+  },
+  "milestones": [
+    { "id": "act-1-to-2", "from": 1, "to": 2,
+      "label": "Emancipação de Monte Aurélie",
+      "note": "Fim do treinamento: iniciação como Guardiões do Crepúsculo, mobilização inesperada, ou rompimento com a Ordem." },
+    { "id": "act-2-to-3", "from": 2, "to": 3,
+      "label": "Momento de acerto de contas",
+      "note": "Confronto final com o antagonista, decisão moral crucial, solução do mistério da Escuridão ou o retorno do Sol a Egas." }
+  ]
+}

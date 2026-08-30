@@ -1,0 +1,67 @@
+{
+  "id": "reverie",
+  "name": "Devaneio",
+  "summary": "Substância alquímica sintetizada a partir do sangue dos Detestados. Sacramento mais sagrado da Ordem Crepuscular.",
+  "effect": {
+    "healsAllWounds": true,
+    "clearsMarks": [
+      "gifts",
+      "heritageMarks"
+    ],
+    "note": "Uma dose cura todas as feridas e apaga todas as marcas de dons e da herança sombria."
+  },
+  "methods": [
+    {
+      "id": "inhalation",
+      "name": "Inalação",
+      "dependencyDie": 12,
+      "usage": "Leva tempo; não pode ser usado durante ações baseadas em turnos.",
+      "target": "self",
+      "timing": "Remove lentamente todas as feridas e marcas.",
+      "note": "Menor risco de dependência; efeitos lentos e graduais."
+    },
+    {
+      "id": "ingestion",
+      "name": "Ingestão",
+      "dependencyDie": 8,
+      "usage": "Pode ser usado em si mesmo; requer uma ação.",
+      "target": "self",
+      "timing": "Usado durante turnos, remove todas as feridas e marcas no fim da cena.",
+      "note": "Efeitos postergados, mas potentes."
+    },
+    {
+      "id": "injection",
+      "name": "Injeção",
+      "dependencyDie": 6,
+      "usage": "Pode ser usado em si mesmo ou em um aliado; requer uma ação.",
+      "target": "self-or-ally",
+      "timing": "Usado durante turnos, remove todas as feridas e marcas imediatamente.",
+      "note": "Método mais rápido e de maior risco de dependência."
+    }
+  ],
+  "dependency": {
+    "track": "pontos anotados ao lado do nome na ficha",
+    "trigger": "Após consumir, role o dado do método: se o resultado estiver dentro do limiar vigente, marque 1 ponto de dependência.",
+    "thresholdBy": "progression.json#experienceGift.byAct",
+    "withdrawal": {
+      "trigger": "A qualquer momento, a Escuridão pode gastar 1 ponto de dependência acumulado.",
+      "effect": "causa 1 revés à escolha dela, imediatamente",
+      "cost": "o ponto é removido depois de usado"
+    },
+    "thresholdNote": "O limiar cresce por ato: ato 1 marca só no 1; ato 2 no 1 ou 2; ato 3 no 1, 2 ou 3."
+  },
+  "crafting": {
+    "requires": "ascensão a Guardião do Crepúsculo; o procedimento não é ensinado a recrutas",
+    "test": {
+      "difficulty": "easy",
+      "approaches": [
+        "precision",
+        "reason"
+      ],
+      "note": "admite personalidade e treinamento relevantes (ex.: Metódico, Alquimia). A Escuridão pode elevar a dificuldade, por exemplo por falta de ferramentas."
+    },
+    "yield": "os restos de um Detestado produzem 1 dose por Maculado no grupo; a Escuridão pode conceder doses extras por um Detestado especialmente perigoso",
+    "extraPerAdditionalSuccess": 1,
+    "onFailure": "o processo falha e o material coletado é desperdiçado"
+  }
+}

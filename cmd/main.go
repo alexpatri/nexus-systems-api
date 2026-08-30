@@ -3,9 +3,9 @@ package main
 import (
 	"log"
 
-	"rpg-nexus/api/dnd/internal/api"
-	"rpg-nexus/api/dnd/internal/config"
-	"rpg-nexus/api/dnd/internal/database"
+	"rpg-nexus/api/systems/internal/api"
+	"rpg-nexus/api/systems/internal/config"
+	"rpg-nexus/api/systems/internal/database"
 )
 
 func main() {
@@ -13,7 +13,7 @@ func main() {
 
 	db, err := database.Connect(cfg.DB)
 	if err != nil {
-		log.Fatalf("falha ao conectar ao banco: %v", err)
+		log.Printf("aviso: mongodb indisponível, catálogos dnd/5e responderão 503: %v", err)
 	}
 
 	app, err := api.NewApp(db)
