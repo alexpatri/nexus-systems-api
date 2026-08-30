@@ -9,3 +9,6 @@ Dockerfile
 # binários locais (caso existam no contexto)
 /api
 *.exe
+
+# validador roda no CI, não no build da imagem
+tools/
