@@ -1,0 +1,1098 @@
+{
+  "classes": [
+    {
+      "id": "barbarian",
+      "name": "Bárbaro",
+      "hitDie": 12,
+      "saving": [
+        "str",
+        "con"
+      ],
+      "proficiencies": {
+        "armor": "Armaduras leves, armaduras médias e escudos",
+        "weapons": "Armas simples, armas marciais",
+        "tools": "Nenhuma"
+      },
+      "proficiency": {
+        "qtd": 2,
+        "skills": [
+          {
+            "id": "animal-handling",
+            "name": "Adestrar Animais",
+            "ability": "wis"
+          },
+          {
+            "id": "athletics",
+            "name": "Atletismo",
+            "ability": "str"
+          },
+          {
+            "id": "intimidation",
+            "name": "Intimidação",
+            "ability": "cha"
+          },
+          {
+            "id": "nature",
+            "name": "Natureza",
+            "ability": "int"
+          },
+          {
+            "id": "perception",
+            "name": "Percepção",
+            "ability": "wis"
+          },
+          {
+            "id": "survival",
+            "name": "Sobrevivência",
+            "ability": "wis"
+          }
+        ]
+      },
+      "startingEquipment": [
+        {
+          "choose": [
+            "um machado grande",
+            "qualquer arma marcial corpo-a-corpo"
+          ]
+        },
+        {
+          "choose": [
+            "dois machados de mão",
+            "qualquer arma simples"
+          ]
+        },
+        {
+          "item": "Um pacote de aventureiro e quatro azagaias"
+        }
+      ],
+      "features": [
+        {
+          "name": "Fúria",
+          "desc": "Em batalha, você luta com uma ferocidade primitiva. No seu turno, você pode entrar em fúria com uma ação bônus. Enquanto estiver em fúria, você recebe os seguintes benefícios se você não estiver vestindo uma armadura pesada:  Você tem vantagem em testes de Força e testes de resistência de Força  Quando você desferir um ataque com arma corpo-a- corpo usando Força, você recebe um bônus nas jogadas de dano que aumenta à medida que você adquire níveis de bárbaro, como mostrado na coluna Dano de Fúria na tabela O Bárbaro.  Você possui resistência contra dano de concussão, cortante e perfurante. Se você for capaz de conjurar magias, você não poderá conjurá-las ou se concentrar nelas enquanto estiver em fúria. Sua fúria dura por 1 minuto. Ela termina prematuramente se você cair inconsciente ou se seu turno acabar e você não tiver atacado nenhuma criatura hostil desde seu último turno ou tiver sofrido dano nesse período. Você também pode terminar sua fúria no seu turno com uma ação bônus. Quando você tiver usado a quantidade de fúrias mostrada para o seu nível de bárbaro na coluna Fúrias da tabela O Bárbaro, você precisará terminar um descanso longo antes de poder entrar em fúria novamente."
+        },
+        {
+          "name": "Defesa sem Armadura",
+          "desc": "Quando você não estiver vestindo qualquer armadura, sua Classe de Armadura será 10 + seu modificador de Destreza + seu modificador de Constituição. Você pode usar um escudo e continuar a receber esse benefício."
+        }
+      ]
+    },
+    {
+      "id": "bard",
+      "name": "Bardo",
+      "hitDie": 8,
+      "saving": [
+        "dex",
+        "cha"
+      ],
+      "proficiencies": {
+        "armor": "Armaduras leves",
+        "weapons": "Armas simples, bestas de mão, espadas longas, rapieiras, espadas curtas",
+        "tools": "Três instrumentos musicais, à sua escolha"
+      },
+      "proficiency": {
+        "qtd": 3,
+        "skills": [
+          {
+            "id": "athletics",
+            "name": "Atletismo",
+            "ability": "str"
+          },
+          {
+            "id": "acrobatics",
+            "name": "Acrobacia",
+            "ability": "dex"
+          },
+          {
+            "id": "sleight-of-hand",
+            "name": "Prestidigitação",
+            "ability": "dex"
+          },
+          {
+            "id": "stealth",
+            "name": "Furtividade",
+            "ability": "dex"
+          },
+          {
+            "id": "arcana",
+            "name": "Arcanismo",
+            "ability": "int"
+          },
+          {
+            "id": "history",
+            "name": "História",
+            "ability": "int"
+          },
+          {
+            "id": "investigation",
+            "name": "Investigação",
+            "ability": "int"
+          },
+          {
+            "id": "nature",
+            "name": "Natureza",
+            "ability": "int"
+          },
+          {
+            "id": "religion",
+            "name": "Religião",
+            "ability": "int"
+          },
+          {
+            "id": "animal-handling",
+            "name": "Adestrar Animais",
+            "ability": "wis"
+          },
+          {
+            "id": "insight",
+            "name": "Intuição",
+            "ability": "wis"
+          },
+          {
+            "id": "medicine",
+            "name": "Medicina",
+            "ability": "wis"
+          },
+          {
+            "id": "perception",
+            "name": "Percepção",
+            "ability": "wis"
+          },
+          {
+            "id": "survival",
+            "name": "Sobrevivência",
+            "ability": "wis"
+          },
+          {
+            "id": "deception",
+            "name": "Enganação",
+            "ability": "cha"
+          },
+          {
+            "id": "intimidation",
+            "name": "Intimidação",
+            "ability": "cha"
+          },
+          {
+            "id": "performance",
+            "name": "Atuação",
+            "ability": "cha"
+          },
+          {
+            "id": "persuasion",
+            "name": "Persuasão",
+            "ability": "cha"
+          }
+        ]
+      },
+      "startingEquipment": [
+        {
+          "choose": [
+            "uma rapieira",
+            "uma espada longa",
+            "qualquer arma simples"
+          ]
+        },
+        {
+          "choose": [
+            "um pacote de diplomata",
+            "um pacote de artista"
+          ]
+        },
+        {
+          "choose": [
+            "um lute",
+            "qualquer outro instrumento musical"
+          ]
+        },
+        {
+          "item": "Armadura de couro e uma adaga"
+        }
+      ],
+      "features": [
+        {
+          "name": "Conjuração",
+          "desc": "Você aprendeu a desembaraçar e remodelar o decido da realidade em harmonia com os seus desejos e música. Suas magias são parte do seu vasto repertório, magia que você pode entoar em diferentes situações. Veja o capítulo 10 para as regras gerais de conjuração e o capítulo 11 para a lista de magias de bardo."
+        },
+        {
+          "name": "Inspiração de Bardo",
+          "desc": "Você pode inspirar os outros através de palavras animadoras ou música. Para tanto, você usa uma ação bônus no seu turno para escolher uma outra criatura, que não seja você mesmo, a até 18 metros de você que possa ouvi-lo. Essa criatura ganha um dado de Inspiração de Bardo, um d6. Uma vez, nos próximos 10 minutos, a criatura poderá rolar o dado e adicionar o valor rolado a um teste de habilidade, jogada de ataque ou teste de resistência que ela fizer. A criatura pode esperar até rolar o d20 antes de decidir usar o dado de Inspiração de Bardo, mas deve decidir antes do Mestre dizer se a rolagem foi bem ou mal sucedida. Quando o dado de Inspiração de Bardo for rolado, ele é gasto. Uma criatura pode ter apenas um dado de Inspiração de Bardo por vez. 54 Você pode usar essa característica um número de vezes igual ao seu modificador de Carisma (no mínimo uma vez). Você recupera todos os usos quando termina um descanso longo. Seu dado de Inspiração de Bardo muda quando você atinge certos níveis na classe. O dado se torna um d8 no 5° nível, um d10 no 10° nível e um d12 no 15° nível."
+        }
+      ]
+    },
+    {
+      "id": "warlock",
+      "name": "Bruxo",
+      "hitDie": 8,
+      "saving": [
+        "wis",
+        "cha"
+      ],
+      "proficiencies": {
+        "armor": "Armaduras leves",
+        "weapons": "Armas simples",
+        "tools": "Nenhuma"
+      },
+      "proficiency": {
+        "qtd": 2,
+        "skills": [
+          {
+            "id": "arcana",
+            "name": "Arcanismo",
+            "ability": "int"
+          },
+          {
+            "id": "deception",
+            "name": "Enganação",
+            "ability": "cha"
+          },
+          {
+            "id": "history",
+            "name": "História",
+            "ability": "int"
+          },
+          {
+            "id": "intimidation",
+            "name": "Intimidação",
+            "ability": "cha"
+          },
+          {
+            "id": "investigation",
+            "name": "Investigação",
+            "ability": "int"
+          },
+          {
+            "id": "nature",
+            "name": "Natureza",
+            "ability": "int"
+          },
+          {
+            "id": "religion",
+            "name": "Religião",
+            "ability": "int"
+          }
+        ]
+      },
+      "startingEquipment": [
+        {
+          "choose": [
+            "uma besta leve e 20 virotes",
+            "qualquer arma simples"
+          ]
+        },
+        {
+          "choose": [
+            "uma bolsa de componentes",
+            "um foco arcano"
+          ]
+        },
+        {
+          "choose": [
+            "um pacote de estudioso",
+            "um pacote de explorador"
+          ]
+        },
+        {
+          "item": "Armadura de couro, qualquer arma simples e duas adagas"
+        }
+      ],
+      "features": [
+        {
+          "name": "Patrono Transcendental",
+          "desc": "No 1° nível, você conclui uma barganha com um ser transcendental, à sua escolha: a Arquifada, o Corruptor ou o Grande Antigo, cada um deles é detalhado no final da descrição da classe. Sua escolha lhe confere traços no 1° nível e novamente no6°, 10° e 14° nível."
+        },
+        {
+          "name": "Magia de Pacto",
+          "desc": "Sua pesquisa arcana e a magia outorgada a você por seu patrono, lhe concedem uma gama de magias. Veja o capítulo 10 para as regras gerais de conjuração e o capítulo 11 para a lista de magias de bruxo."
+        }
+      ]
+    },
+    {
+      "id": "cleric",
+      "name": "Clérigo",
+      "hitDie": 8,
+      "saving": [
+        "wis",
+        "cha"
+      ],
+      "proficiencies": {
+        "armor": "Armaduras leves, armaduras médias, escudos",
+        "weapons": "Todas as armas simples",
+        "tools": "Nenhuma"
+      },
+      "proficiency": {
+        "qtd": 2,
+        "skills": [
+          {
+            "id": "history",
+            "name": "História",
+            "ability": "int"
+          },
+          {
+            "id": "insight",
+            "name": "Intuição",
+            "ability": "wis"
+          },
+          {
+            "id": "medicine",
+            "name": "Medicina",
+            "ability": "wis"
+          },
+          {
+            "id": "persuasion",
+            "name": "Persuasão",
+            "ability": "cha"
+          },
+          {
+            "id": "religion",
+            "name": "Religião",
+            "ability": "int"
+          }
+        ]
+      },
+      "startingEquipment": [
+        {
+          "choose": [
+            "uma maça",
+            "um martelo de guerra (se for proficiente)"
+          ]
+        },
+        {
+          "choose": [
+            "brunea",
+            "armadura de couro",
+            "cota de malha (se for proficiente)"
+          ]
+        },
+        {
+          "choose": [
+            "um besta leve e 20 virotes",
+            "qualquer arma simples"
+          ]
+        },
+        {
+          "choose": [
+            "um pacote de sacerdote",
+            "um pacote de aventureiro"
+          ]
+        },
+        {
+          "item": "Um escudo e um símbolo sagrado"
+        }
+      ],
+      "features": [
+        {
+          "name": "Conjuração",
+          "desc": "Como um canalizador de poder divino, você pode conjurar magias de clérigo. Veja o capítulo 10 para as regras gerais de conjuração e o capítulo 11 para a lista de magias de clérigo."
+        },
+        {
+          "name": "Domínio Divino",
+          "desc": "Escolha um domínio relacionado à sua divindade: Conhecimento, Enganação, Guerra, Luz, Natureza, Tempestade ou Vida. Cada domínio é detalhado ao final da descrição da classe e, cada um, fornece exemplos dos deuses associados a eles. Essa escolha, realizada no 1º nível, concede magias de domínio e outras características. Ela também concede a você outras formas de utilizar seu Canalizar Divindade quando você ganhá-lo no 2º nível, bem como outros benefícios no 6º, 8º e 17º níveis."
+        }
+      ]
+    },
+    {
+      "id": "druid",
+      "name": "Druida",
+      "hitDie": 8,
+      "saving": [
+        "int",
+        "wis"
+      ],
+      "proficiencies": {
+        "armor": "Armaduras leves, armaduras médias, escudos (druidas não irão vestir armaduras ou usar escudos feitos de metal)",
+        "weapons": "Clavas, adagas, dardos, azagaias, maças, bordões, cimitarras, foices, fundas e lanças.",
+        "tools": "Kit de herbalismo"
+      },
+      "proficiency": {
+        "qtd": 2,
+        "skills": [
+          {
+            "id": "arcana",
+            "name": "Arcanismo",
+            "ability": "int"
+          },
+          {
+            "id": "animal-handling",
+            "name": "Adestrar Animais",
+            "ability": "wis"
+          },
+          {
+            "id": "insight",
+            "name": "Intuição",
+            "ability": "wis"
+          },
+          {
+            "id": "medicine",
+            "name": "Medicina",
+            "ability": "wis"
+          },
+          {
+            "id": "nature",
+            "name": "Natureza",
+            "ability": "int"
+          },
+          {
+            "id": "perception",
+            "name": "Percepção",
+            "ability": "wis"
+          },
+          {
+            "id": "religion",
+            "name": "Religião",
+            "ability": "int"
+          },
+          {
+            "id": "survival",
+            "name": "Sobrevivência",
+            "ability": "wis"
+          }
+        ]
+      },
+      "startingEquipment": [
+        {
+          "choose": [
+            "um escudo de madeira",
+            "qualquer arma simples",
+            "uma cimitarra",
+            "qualquer arma corpo-a-corpo simples",
+            "um pacote de estudioso",
+            "um pacote de explorador"
+          ]
+        },
+        {
+          "item": "Armadura de couro, um pacote de aventureiro e um foco druídico"
+        }
+      ],
+      "features": [
+        {
+          "name": "Druídico",
+          "desc": "Você conhece o Druídico, o idioma secreto dos druidas. Você pode falar esse idioma e usá-lo para deixar mensagens escondidas. Você e outros que conheçam esse idioma automaticamente veem tais mensagens. Outros perceberão a presença da mensagem se passarem num teste de Sabedoria (Percepção) CD 15, mas não conseguirão decifrá-lo sem magia."
+        },
+        {
+          "name": "Conjuração",
+          "desc": "Baseado na essência divina da própria natureza, você pode conjurar magias para moldar sua essência a sua vontade. Veja o capítulo 10 para as regras gerais de conjuração e o capítulo 11 para a lista de magias de druida."
+        }
+      ]
+    },
+    {
+      "id": "sorcerer",
+      "name": "Feiticeiro",
+      "hitDie": 6,
+      "saving": [
+        "con",
+        "cha"
+      ],
+      "proficiencies": {
+        "armor": "Nenhuma",
+        "weapons": "Adagas, dardos, fundas, bordões e bestas leves",
+        "tools": "Nenhuma"
+      },
+      "proficiency": {
+        "qtd": 2,
+        "skills": [
+          {
+            "id": "arcana",
+            "name": "Arcanismo",
+            "ability": "int"
+          },
+          {
+            "id": "deception",
+            "name": "Enganação",
+            "ability": "cha"
+          },
+          {
+            "id": "insight",
+            "name": "Intuição",
+            "ability": "wis"
+          },
+          {
+            "id": "intimidation",
+            "name": "Intimidação",
+            "ability": "cha"
+          },
+          {
+            "id": "persuasion",
+            "name": "Persuasão",
+            "ability": "cha"
+          },
+          {
+            "id": "religion",
+            "name": "Religião",
+            "ability": "int"
+          }
+        ]
+      },
+      "startingEquipment": [
+        {
+          "choose": [
+            "uma besta leve e 20 virotes",
+            "qualquer arma simples"
+          ]
+        },
+        {
+          "choose": [
+            "uma bolsa de componentes",
+            "um foco arcano"
+          ]
+        },
+        {
+          "choose": [
+            "um pacote de explorador",
+            "um pacote de aventureiro"
+          ]
+        }
+      ],
+      "features": [
+        {
+          "name": "Conjuração",
+          "desc": "Um evento do seu passado ou na vida de um parente ou ancestral, deixou uma marca indelével em você, infundindo você com magia arcana. A fonte desse poder, independente da sua origem, flui em suas magias. Veja o capítulo 10 para as regras gerais de conjuração e o capítulo 11 para a lista de magias de feiticeiro."
+        },
+        {
+          "name": "Origem de Feitiçaria",
+          "desc": "Escolha uma origem de feitiçaria, que descreve a fonte do seu poder mágico inato: Linhagem Dracônica ou Magia Selvagem, ambos detalhados no final da descrição da classe. Sua escolha lhe confere características quando você a escolhe, no 1° nível e novamente no 6°, 14° e 18° nível."
+        }
+      ]
+    },
+    {
+      "id": "fighter",
+      "name": "Guerreiro",
+      "hitDie": 10,
+      "saving": [
+        "str",
+        "con"
+      ],
+      "proficiencies": {
+        "armor": "Todas as armaduras, escudos",
+        "weapons": "Armas simples, armas marciais",
+        "tools": "nenhum"
+      },
+      "proficiency": {
+        "qtd": 2,
+        "skills": [
+          {
+            "id": "acrobatics",
+            "name": "Acrobacia",
+            "ability": "dex"
+          },
+          {
+            "id": "animal-handling",
+            "name": "Adestrar Animais",
+            "ability": "wis"
+          },
+          {
+            "id": "athletics",
+            "name": "Atletismo",
+            "ability": "str"
+          },
+          {
+            "id": "history",
+            "name": "História",
+            "ability": "int"
+          },
+          {
+            "id": "insight",
+            "name": "Intuição",
+            "ability": "wis"
+          },
+          {
+            "id": "intimidation",
+            "name": "Intimidação",
+            "ability": "cha"
+          },
+          {
+            "id": "perception",
+            "name": "Percepção",
+            "ability": "wis"
+          },
+          {
+            "id": "survival",
+            "name": "Sobrevivência",
+            "ability": "wis"
+          }
+        ]
+      },
+      "startingEquipment": [
+        {
+          "choose": [
+            "cota de malha",
+            "gibão de peles, arco longo e 20 flechas"
+          ]
+        },
+        {
+          "choose": [
+            "uma arma marcial e um escudo",
+            "duas armas marciais"
+          ]
+        },
+        {
+          "choose": [
+            "uma besta leve e 20 virotes",
+            "dois machados de arremesso"
+          ]
+        },
+        {
+          "choose": [
+            "uma pacote de aventureiro",
+            "um pacote de explorador"
+          ]
+        }
+      ],
+      "features": [
+        {
+          "name": "Estilo de Luta",
+          "desc": "Você adota um estilo de combate particular que será sua especialidade. Escolha uma das opções a seguir. Você não pode escolher o mesmo Estilo de Combate mais de uma vez, mesmo se puder escolher de novo."
+        },
+        {
+          "name": "Retomar o Fôlego",
+          "desc": "Você possui uma reserva de estamina e pode usá-la para proteger a si mesmo contra danos. No seu turno, você pode usar uma ação bônus para recuperar pontos de vida igual a 1d10 + seu nível de guerreiro. Uma vez que você use essa característica, você precisa terminar um descanso curto ou longo para usá-la de novo."
+        }
+      ]
+    },
+    {
+      "id": "rogue",
+      "name": "Ladino",
+      "hitDie": 8,
+      "saving": [
+        "dex",
+        "int"
+      ],
+      "proficiencies": {
+        "armor": "Armaduras leves",
+        "weapons": "Armas simples, bestas de mão, espadas longas, rapieiras, espadas curtas",
+        "tools": "Ferramentas de ladrão"
+      },
+      "proficiency": {
+        "qtd": 4,
+        "skills": [
+          {
+            "id": "acrobatics",
+            "name": "Acrobacia",
+            "ability": "dex"
+          },
+          {
+            "id": "athletics",
+            "name": "Atletismo",
+            "ability": "str"
+          },
+          {
+            "id": "performance",
+            "name": "Atuação",
+            "ability": "cha"
+          },
+          {
+            "id": "deception",
+            "name": "Enganação",
+            "ability": "cha"
+          },
+          {
+            "id": "stealth",
+            "name": "Furtividade",
+            "ability": "dex"
+          },
+          {
+            "id": "intimidation",
+            "name": "Intimidação",
+            "ability": "cha"
+          },
+          {
+            "id": "insight",
+            "name": "Intuição",
+            "ability": "wis"
+          },
+          {
+            "id": "investigation",
+            "name": "Investigação",
+            "ability": "int"
+          },
+          {
+            "id": "perception",
+            "name": "Percepção",
+            "ability": "wis"
+          },
+          {
+            "id": "persuasion",
+            "name": "Persuasão",
+            "ability": "cha"
+          },
+          {
+            "id": "sleight-of-hand",
+            "name": "Prestidigitação",
+            "ability": "dex"
+          }
+        ]
+      },
+      "startingEquipment": [
+        {
+          "choose": [
+            "uma rapieira",
+            "uma espada longa"
+          ]
+        },
+        {
+          "choose": [
+            "um arco curto e uma aljava com 20 flechas",
+            "uma espada curta"
+          ]
+        },
+        {
+          "choose": [
+            "um pacote de assaltante",
+            "um pacote de aventureiro",
+            "um pacote de explorador"
+          ]
+        },
+        {
+          "item": "Armadura de couro, duas adagas e ferramentas de ladrão"
+        }
+      ],
+      "features": [
+        {
+          "name": "Especialização",
+          "desc": "No 1º nível, você escolhe duas de suas perícias que seja proficiente, ou uma perícia que seja proficiente e ferramentas de ladrão. Seu bônus de proficiência é dobrado em qualquer teste de habilidade que fizer com elas. No 6º nível, você pode escolher outras duas de suas proficiências (em perícias ou ferramentas de ladrão) para ganhar esse benefício."
+        },
+        {
+          "name": "Ataque Furtivo",
+          "desc": "A partir do 1º nível, você sabe como atacar sutilmente e explorar a distração de seus inimigos. Uma vez por turno, você pode adicionar 1d6 nas jogadas de dano contra qualquer criatura que acertar, desde que tenha vantagem nas jogadas de ataque. O ataque deve ser com uma arma de acuidade ou à distância. Você não precisa ter vantagem nas jogadas de ataque se outro inimigo do seu alvo estiver a 1,5 metro de distância dele, desde que este inimigo não esteja incapacitado e você não tenha desvantagem nas jogadas de ataque. A quantidade de dano extra aumenta conforme você ganha níveis nessa classe, como mostrado na coluna Ataque Furtivo da tabela O Ladino."
+        },
+        {
+          "name": "Gíria de Ladrão",
+          "desc": "Durante seu treinamento você aprendeu as gírias de ladrão, um misto de dialeto, jargão e códigos secretos que permitem você passar mensagens secretas durante uma conversa aparentemente normal. Somente outra criatura que conheça essas gírias de ladrão entende as mensagens. Leva-se quatro vezes mais tempo para transmitir essa mensagem do que falar a mesma ideia claramente. Além disso, você entende um conjunto de sinais secretos e símbolos usados para transmitir mensagens curtas e simples, como saber se uma área é perigosa ou se é território de uma guilda de ladrões, se o saque está próximo, se as pessoas na área são alvos fáceis ou até mesmo indicar lugares seguros para ladinos se esconderem."
+        }
+      ]
+    },
+    {
+      "id": "wizard",
+      "name": "Mago",
+      "hitDie": 6,
+      "saving": [
+        "int",
+        "wis"
+      ],
+      "proficiencies": {
+        "armor": "Nenhuma",
+        "weapons": "Adagas, dardos, fundas, bordões, bestas leves",
+        "tools": "Nenhuma"
+      },
+      "proficiency": {
+        "qtd": 2,
+        "skills": [
+          {
+            "id": "arcana",
+            "name": "Arcanismo",
+            "ability": "int"
+          },
+          {
+            "id": "history",
+            "name": "História",
+            "ability": "int"
+          },
+          {
+            "id": "insight",
+            "name": "Intuição",
+            "ability": "wis"
+          },
+          {
+            "id": "investigation",
+            "name": "Investigação",
+            "ability": "int"
+          },
+          {
+            "id": "medicine",
+            "name": "Medicina",
+            "ability": "wis"
+          },
+          {
+            "id": "religion",
+            "name": "Religião",
+            "ability": "int"
+          }
+        ]
+      },
+      "startingEquipment": [
+        {
+          "choose": [
+            "um bordão",
+            "uma adaga"
+          ]
+        },
+        {
+          "choose": [
+            "uma bolsa de componentes",
+            "um foco arcano"
+          ]
+        },
+        {
+          "choose": [
+            "um pacote de estudioso",
+            "um pacote de explorador Um grimório"
+          ]
+        }
+      ],
+      "features": [
+        {
+          "name": "Conjuração",
+          "desc": "Como um estudante da magia arcana, você possui um livro de magias (ou grimório) que revela os primeiros vislumbres de seu verdadeiro poder. Consulte o capítulo 10 para as regras gerais sobre conjuração de magias e o capítulo 11 para conferir a lista de magias de mago."
+        },
+        {
+          "name": "Recuperação Arcana",
+          "desc": "Você aprendeu como recuperar um pouco de sua energia mágica estudando seu grimório. Uma vez por dia, quando você terminar um descanso curto, você pode escolher espaços de magia gastos para recuperá-los. Os espaços gastos a serem recuperados podem ser de qualquer combinação de níveis de magia, desde que sejam iguais ou inferiores a metade de seu nível de mago (arredondado para cima) e nenhum deles seja de 6º ou superior. Por exemplo, se você é um mago de 4º nível, você pode recuperar até 2 espaços de magia gastos. Você pode recuperar o espaço de uma magia de 2º nível ou os espaços de duas magias de 1º nível."
+        }
+      ]
+    },
+    {
+      "id": "monk",
+      "name": "Monge",
+      "hitDie": 8,
+      "saving": [
+        "str",
+        "dex"
+      ],
+      "proficiencies": {
+        "armor": "Nenhuma",
+        "weapons": "Armas simples, espadas curtas",
+        "tools": "Escolha um tipo de ferramenta de artesão ou um instrumento musical"
+      },
+      "proficiency": {
+        "qtd": 2,
+        "skills": [
+          {
+            "id": "acrobatics",
+            "name": "Acrobacia",
+            "ability": "dex"
+          },
+          {
+            "id": "athletics",
+            "name": "Atletismo",
+            "ability": "str"
+          },
+          {
+            "id": "stealth",
+            "name": "Furtividade",
+            "ability": "dex"
+          },
+          {
+            "id": "history",
+            "name": "História",
+            "ability": "int"
+          },
+          {
+            "id": "insight",
+            "name": "Intuição",
+            "ability": "wis"
+          },
+          {
+            "id": "religion",
+            "name": "Religião",
+            "ability": "int"
+          }
+        ]
+      },
+      "startingEquipment": [
+        {
+          "choose": [
+            "uma espada curta",
+            "qualquer arma simples"
+          ]
+        },
+        {
+          "choose": [
+            "um pacote de explorador",
+            "um pacote de aventureiro"
+          ]
+        },
+        {
+          "item": "10 dardos"
+        }
+      ],
+      "features": [
+        {
+          "name": "Defesa sem Armadura",
+          "desc": "A partir do 1° nível, quando você não estiver vestindo nenhuma armadura nem empunhando um escudo, sua Classe de Armadura será 10 + seu modificador de Destreza + seu modificador de Sabedoria."
+        },
+        {
+          "name": "Artes Marciais",
+          "desc": "No 1° nível, sua pratica nas artes marciais concede a você maestria nos estilos de combate que utilizam golpes desarmados e armas de monge, que são as espadas curtas e quaisquer armas simples corpo-a-corpo que não tenham a propriedade duas mãos ou pesada. Você ganha os seguintes benefícios enquanto estiver desarmado ou empunhando uma arma de monge e não estiver vestindo nenhuma armadura ou empunhando um escudo:  Você pode usar Destreza ao invés de Força para as jogadas de ataque e dano dos seus golpes desarmados e de suas armas de monge.  Você pode rolar um d4 no lugar do dano normal dos seus golpes desarmados e armas de monge. Esse dado muda à medida que você adquire níveis de monge, como mostrado na coluna Artes Marciais na tabela O Monge.  Quando você usa a ação de Ataque com um golpe desarmado ou uma arma de monge no seu turno, você pode realizar um golpe desarmado com uma ação bônus. Por exemplo, se você realizar a ação de Ataque com um bastão, você também poderá realizar um golpe desarmado com uma ação bônus, assumindo que você ainda não realizou uma ação bônus nesse turno. Determinados monastérios usam formas especializadas de armas de monge. Por exemplo, você pode usar uma clava feita por dois pedaços de madeira conectados por uma pequena corrente (chamado de nunchaku) ou uma foice com uma estranha lâmina fina (chamada de kama). Qualquer que seja o nome que você use para uma arma de monge, você pode usar as estatísticas de jogo mostradas para as armas no capítulo 5."
+        }
+      ]
+    },
+    {
+      "id": "paladin",
+      "name": "Paladino",
+      "hitDie": 10,
+      "saving": [
+        "wis",
+        "cha"
+      ],
+      "proficiencies": {
+        "armor": "Todas as armaduras, escudos",
+        "weapons": "Armas simples, armas marciais",
+        "tools": "Nenhum"
+      },
+      "proficiency": {
+        "qtd": 2,
+        "skills": [
+          {
+            "id": "athletics",
+            "name": "Atletismo",
+            "ability": "str"
+          },
+          {
+            "id": "insight",
+            "name": "Intuição",
+            "ability": "wis"
+          },
+          {
+            "id": "intimidation",
+            "name": "Intimidação",
+            "ability": "cha"
+          },
+          {
+            "id": "medicine",
+            "name": "Medicina",
+            "ability": "wis"
+          },
+          {
+            "id": "persuasion",
+            "name": "Persuasão",
+            "ability": "cha"
+          },
+          {
+            "id": "religion",
+            "name": "Religião",
+            "ability": "int"
+          }
+        ]
+      },
+      "startingEquipment": [
+        {
+          "choose": [
+            "uma arma marcial e um escudo",
+            "duas armas marciais"
+          ]
+        },
+        {
+          "choose": [
+            "cinco azagaias",
+            "qualquer arma simples corpo- a-corpo"
+          ]
+        },
+        {
+          "choose": [
+            "um pacote de sacerdote",
+            "um pacote de aventureiro"
+          ]
+        },
+        {
+          "item": "Cota de malha e um símbolo sagrado"
+        }
+      ],
+      "features": [
+        {
+          "name": "Sentido Divino",
+          "desc": "A presença de um mal poderoso é registrada nos seus sentidos como um odor nocivo e o bem poderoso badala como música celestial nos seus ouvidos. Com uma ação, você pode expandir sua consciência para detectar tais forças. Até o final do seu próximo turno, você sabe a localização de qualquer celestial, corruptor ou morto-vivo a 18 metros de você que não esteja com cobertura total. Você sabe o tipo (celestial, corruptor ou morto-vivo) de qualquer ser cuja presença você sentiu, mas não sua identidade (o vampiro Conde Strahd von Zarovish, por exemplo). Dentro do mesmo raio, você também detecta a presença de qualquer lugar ou objeto que tenha sido consagrado ou conspurcado, como pela magia consagrar. Você pode usar essa característica um número de vezes igual a 1 + seu modificador de Carisma. Quando você concluir um descanso longo, você recupera todos os usos gastos."
+        },
+        {
+          "name": "Cura pelas Mãos",
+          "desc": "Seu toque abençoado pode curar ferimentos. Você tem um poço de poder curativo que se enche quando você realiza um descanso longo. Com esse poço, você pode restaurar um número total de pontos de vida igual ao seu nível de paladino x 5. Com uma ação, você pode tocar uma criatura e sugar poder do seu poço para restaurar um número de pontos de vida da criatura, até o máximo de pontos restantes no poço. Alternativamente, você pode gastar 5 pontos de cura do seu poço de cura para curar o alvo de uma doença ou neutralizar um veneno que o esteja afetando. Você pode curar múltiplas doenças e neutralizar múltiplos venenos com um único uso de Cura pelas Mãos, gastando pontos de vida separadamente para cada um. Essa característica não gera nenhum efeito em mortos-vivos e constructos."
+        }
+      ]
+    },
+    {
+      "id": "ranger",
+      "name": "Patrulheiro",
+      "hitDie": 10,
+      "saving": [
+        "str",
+        "dex"
+      ],
+      "proficiencies": {
+        "armor": "Armaduras leves, armaduras médias, escudos",
+        "weapons": "Armas simples, armas marciais",
+        "tools": "Nenhuma"
+      },
+      "proficiency": {
+        "qtd": 3,
+        "skills": [
+          {
+            "id": "acrobatics",
+            "name": "Acrobacia",
+            "ability": "dex"
+          },
+          {
+            "id": "animal-handling",
+            "name": "Adestrar Animais",
+            "ability": "wis"
+          },
+          {
+            "id": "athletics",
+            "name": "Atletismo",
+            "ability": "str"
+          },
+          {
+            "id": "stealth",
+            "name": "Furtividade",
+            "ability": "dex"
+          },
+          {
+            "id": "insight",
+            "name": "Intuição",
+            "ability": "wis"
+          },
+          {
+            "id": "investigation",
+            "name": "Investigação",
+            "ability": "int"
+          },
+          {
+            "id": "nature",
+            "name": "Natureza",
+            "ability": "int"
+          },
+          {
+            "id": "perception",
+            "name": "Percepção",
+            "ability": "wis"
+          },
+          {
+            "id": "survival",
+            "name": "Sobrevivência",
+            "ability": "wis"
+          }
+        ]
+      },
+      "startingEquipment": [
+        {
+          "choose": [
+            "camisão de malha",
+            "armadura de couro"
+          ]
+        },
+        {
+          "choose": [
+            "duas espadas curtas",
+            "duas armas simples corpo-a-corpo"
+          ]
+        },
+        {
+          "choose": [
+            "um pacote de explorador",
+            "um pacote de aventureiro"
+          ]
+        },
+        {
+          "item": "Um arco longo e uma aljava com 20 flechas"
+        }
+      ],
+      "features": [
+        {
+          "name": "Inimigo Favorito",
+          "desc": "A partir do 1° nível, você tem experiência significativa estudando, rastreando, caçando e, até mesmo, falando com certos tipos de inimigos. Escolha um tipo de inimigo favorito: aberrações, bestas, celestiais, constructos, corruptores, dragões, elementais, fadas, gigantes, limos, monstruosidades, mortos-vivos ou plantas. Alternativamente, você pode escolher duas raças de humanoides (como gnolls e orcs) para seus inimigos favoritos. Você tem vantagem em testes de Sabedoria (Sobrevivência) para rastrear seus inimigos favoritos, assim como em testes de Inteligência para lembrar informações sobre eles. Quando você adquire essa característica, você também aprende um idioma, à sua escolha, que seja falado pelos seus inimigos favoritos, se eles falarem algum. Você escolhe um inimigo favorito adicional, assim como um idioma associado, no 6° e 14° nível. A medida que você ganha níveis, suas escolhas deverão refletir os tipos de monstros que você encontrou nas suas aventuras."
+        },
+        {
+          "name": "Explorador Natural",
+          "desc": "Você está particularmente familiarizado com um tipo de ambiente natural e é perito em viajar e sobreviver em tais regiões. Escolha um tipo de terreno favorito: ártico, costa, deserto, floresta, montanha, pântano, planície ou subterrâneo. Quando você fizer um teste de Inteligência ou de Sabedoria relacionado ao seu terreno favorito, seu bônus de proficiência será dobrado se você estiver usando uma perícia na qual seja proficiente. Enquanto viajar por uma hora ou mais em seu terreno favorito, você ganha os seguintes benefícios:  Terreno difícil não retarda a viagem do seu grupo.  Seu grupo não pode se perder, exceto por meios mágicos.  Mesmo quando você estiver engajado em outra atividade enquanto viaja (como forragear, navegar ou rastrear), você se mantem alerta ao perigo.  Se vocês estiver viajando sozinho, você pode se mover furtivamente com seu ritmo de viagem normal.  Quando você forrageia, você encontra o dobro de comida que normalmente encontraria.  Enquanto estiver rastreando outras criaturas, você também descobre a quantidade exata delas, seus tamanhos e a quanto tempo elas passaram pela área. Você escolhe um tipo de terreno favorito adicional no 6° e 10° nível."
+        }
+      ]
+    }
+  ]
+}

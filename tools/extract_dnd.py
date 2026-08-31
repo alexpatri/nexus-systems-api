@@ -77,6 +77,41 @@ RACES = [
     {"id": "tiefling", "name": "Tiefling", "section": "TIEFLINGS", "pages": (43, 44), "subraces": []},
 ]
 
+# O Word exporta o marcador de lista como este glifo da área privada.
+BULLET = "\uf0b7"
+
+NUMBER_WORDS = {"uma": 1, "duas": 2, "dois": 2, "três": 3, "quatro": 4, "cinco": 5}
+
+CLASSES = [
+    {"id": "barbarian", "name": "Bárbaro", "pages": (46, 50),
+     "level1": ["Fúria", "Defesa sem Armadura"]},
+    {"id": "bard", "name": "Bardo", "pages": (51, 55),
+     "level1": ["Conjuração", "Inspiração de Bardo"]},
+    {"id": "warlock", "name": "Bruxo", "pages": (56, 62),
+     "level1": ["Patrono Transcendental", "Magia de Pacto"]},
+    {"id": "cleric", "name": "Clérigo", "pages": (63, 70),
+     "level1": ["Conjuração", "Domínio Divino"]},
+    {"id": "druid", "name": "Druida", "pages": (71, 76),
+     "level1": ["Druídico", "Conjuração"]},
+    {"id": "sorcerer", "name": "Feiticeiro", "pages": (77, 82),
+     "level1": ["Conjuração", "Origem de Feitiçaria"]},
+    {"id": "fighter", "name": "Guerreiro", "pages": (83, 88),
+     "level1": ["Estilo de Luta", "Retomar o Fôlego"]},
+    {"id": "rogue", "name": "Ladino", "pages": (89, 93),
+     "level1": ["Especialização", "Ataque Furtivo", "Gíria de Ladrão"]},
+    {"id": "wizard", "name": "Mago", "pages": (94, 101),
+     "level1": ["Conjuração", "Recuperação Arcana"]},
+    {"id": "monk", "name": "Monge", "pages": (102, 107),
+     "level1": ["Defesa sem Armadura", "Artes Marciais"]},
+    {"id": "paladin", "name": "Paladino", "pages": (108, 114),
+     "level1": ["Sentido Divino", "Cura pelas Mãos"]},
+    {"id": "ranger", "name": "Patrulheiro", "pages": (115, 120),
+     "level1": ["Inimigo Favorito", "Explorador Natural"]},
+]
+
+SKILL_BY_NAME = {name.lower(): (skill_id, name, ability) for skill_id, name, ability in SKILLS}
+
+
 STRUCTURAL_TRAITS = {
     "Aumento no Valor de Habilidade", "Idade", "Tendência", "Tamanho",
     "Deslocamento", "Idiomas", "Sub-raça",
@@ -281,13 +316,120 @@ def build_races(book):
     return {"races": out}
 
 
+
+def field(block, label):
+    m = re.search(rf'{label}:\s*(.+?)(?=\s+[A-ZÀ-Ú][a-zà-ú]+(?: de [A-ZÀ-Ú][a-zà-ú]+)?:|$)', block)
+    # O número de página impresso cai dentro do bloco e gruda no fim do campo.
+    return re.sub(r'\s*\d+\s*$', '', flatten(m.group(1))) if m else None
+
+
+def parse_saving(text):
+    out = []
+    for name in re.split(r',\s*|\s+e\s+', text):
+        name = name.strip()
+        if name not in ABILITY_BY_NAME:
+            raise ExtractionError(f"teste de resistência desconhecido: {name!r}")
+        out.append(ABILITY_BY_NAME[name])
+    return out
+
+
+def parse_skill_choice(text, where):
+    m = re.match(r'Escolha (\w+)\s+(?:d?entre\s+(.+)|quaisquer)', text)
+    if not m:
+        raise ExtractionError(f"{where}: escolha de perícias não reconhecida: {text[:70]!r}")
+    if m.group(1) not in NUMBER_WORDS:
+        raise ExtractionError(f"{where}: quantidade desconhecida: {m.group(1)!r}")
+    qtd = NUMBER_WORDS[m.group(1)]
+
+    if m.group(2) is None:
+        chosen = [(i, n, a) for i, n, a in SKILLS]
+    else:
+        chosen = []
+        for name in re.split(r',\s*|\s+e\s+', m.group(2)):
+            key = name.strip().rstrip(".").lower()
+            if key not in SKILL_BY_NAME:
+                raise ExtractionError(f"{where}: perícia fora do vocabulário: {name!r}")
+            chosen.append(SKILL_BY_NAME[key])
+
+    return {"qtd": qtd,
+            "skills": [{"id": i, "name": n, "ability": a} for i, n, a in chosen]}
+
+
+def cut_section(text, start):
+    """Do cabeçalho até o próximo em caixa alta, que abre a característica seguinte."""
+    rest = text[start:]
+    body = rest[rest.index("\n"):]
+    stop = re.search(r'\n[A-ZÀ-Ú][A-ZÀ-Ú0-9\s\-]{3,40}\n', body)
+    return body[:stop.start()] if stop else body
+
+
+def parse_equipment(block):
+    out = []
+    for chunk in block.split(BULLET)[1:]:
+        text = re.sub(r'\s*\d+\s*$', '', flatten(chunk))
+        if not text:
+            continue
+        options = [o.strip() for o in re.split(r'\s*\([a-z]\)\s*', text) if o.strip()]
+        if len(options) > 1:
+            out.append({"choose": [re.sub(r'(,|\s+ou)$', '', o) for o in options]})
+        else:
+            out.append({"item": text})
+    return out
+
+
+def build_classes(book):
+    out = []
+    for klass in CLASSES:
+        text = book.text(*klass["pages"])
+        flat = flatten(text)
+
+        die = re.search(r'Dado de Vida:\s*1d(\d+)', flat)
+        if not die:
+            raise ExtractionError(f"classe {klass['name']}: dado de vida não encontrado")
+
+        prof_at = text.find("PROFICIÊNCIAS")
+        equip_at = text.find("EQUIPAMENTO", prof_at)
+        if prof_at < 0 or equip_at < 0:
+            raise ExtractionError(f"classe {klass['name']}: bloco de proficiências ou equipamento ausente")
+        prof = flatten(text[prof_at:equip_at])
+
+        entry = {
+            "id": klass["id"],
+            "name": klass["name"],
+            "hitDie": int(die.group(1)),
+            "saving": parse_saving(field(prof, "Testes de Resistência")),
+            "proficiencies": {
+                "armor": field(prof, "Armaduras"),
+                "weapons": field(prof, "Armas"),
+                "tools": field(prof, "Ferramentas"),
+            },
+            "proficiency": parse_skill_choice(field(prof, "Perícias"), klass["name"]),
+            "startingEquipment": parse_equipment(cut_section(text, equip_at)),
+            "features": [],
+        }
+
+        for name in klass["level1"]:
+            at = text.find(f"\n{name.upper()}")
+            if at < 0:
+                raise ExtractionError(f"classe {klass['name']}: característica {name!r} sem seção no texto")
+            rest = text[at + 1 + len(name):]
+            stop = re.search(r'\n[A-ZÀ-Ú][A-ZÀ-Ú0-9\s\-]{3,40}\n', rest)
+            entry["features"].append({
+                "name": name,
+                "desc": flatten(rest[:stop.start()] if stop else rest[:2000]),
+            })
+        out.append(entry)
+    return {"classes": out}
+
+
 CATALOGS = {
     "abilities.json": build_abilities,
     "skills.json": build_skills,
     "races.json": build_races,
+    "classes.json": build_classes,
 }
 
-EXPECTED_COUNTS = {"abilities.json": 6, "skills.json": 18, "races.json": 9}
+EXPECTED_COUNTS = {"abilities.json": 6, "skills.json": 18, "races.json": 9, "classes.json": 12}
 
 
 def write(path, payload):
