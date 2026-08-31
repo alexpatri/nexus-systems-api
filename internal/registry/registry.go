@@ -45,6 +45,16 @@ func (s *System) Catalog(name string) (json.RawMessage, string, bool) {
 	return raw, s.etags[key], true
 }
 
+// CatalogKeys devolve os nomes declarados sem o sufixo .json, na ordem do
+// manifesto — é a forma que aparece na URL.
+func (s *System) CatalogKeys() []string {
+	keys := make([]string, 0, len(s.CatalogNames))
+	for _, name := range s.CatalogNames {
+		keys = append(keys, strings.TrimSuffix(name, ".json"))
+	}
+	return keys
+}
+
 type Registry struct {
 	systems map[string]map[string]*System
 }

@@ -3,23 +3,22 @@ package main
 import (
 	"log"
 
+	"rpg-nexus/api/systems/data"
 	"rpg-nexus/api/systems/internal/api"
 	"rpg-nexus/api/systems/internal/config"
-	"rpg-nexus/api/systems/internal/database"
+	"rpg-nexus/api/systems/internal/handler"
+	"rpg-nexus/api/systems/internal/registry"
 )
 
 func main() {
 	cfg := config.LoadConfig()
 
-	db, err := database.Connect(cfg.DB)
+	reg, err := registry.Load(data.Systems())
 	if err != nil {
-		log.Printf("aviso: mongodb indisponível, catálogos dnd/5e responderão 503: %v", err)
+		log.Fatalf("falha ao carregar os sistemas: %v", err)
 	}
 
-	app, err := api.NewApp(db)
-	if err != nil {
-		log.Fatalf("falha ao iniciar a aplicação: %v", err)
-	}
+	app := api.NewApp(handler.New(reg))
 
 	log.Fatal(app.Listen(":" + cfg.Server.Port))
 }

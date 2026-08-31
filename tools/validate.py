@@ -4,6 +4,13 @@ import json, re, sys, pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent / 'data' / 'systems'
 
+SIZES = {"Miúdo", "Pequeno", "Médio", "Grande", "Enorme", "Imenso"}
+DAMAGE_TYPES = {"cortante", "perfurante", "concussão"}
+WEAPON_PROPERTIES = {"acuidade", "leve", "pesada", "alcance", "arremesso",
+                     "munição", "recarga", "duas mãos", "versátil", "especial"}
+ARMOR_CATEGORIES = {"light", "medium", "heavy", "shield"}
+WEAPON_CATEGORIES = {"simple-melee", "simple-ranged", "martial-melee", "martial-ranged"}
+
 PENDING = set()  # ids que referenciam dados ainda não extraídos: avisam, não quebram
 POINTER = re.compile(r'^[a-z][a-z0-9_-]*\.json(#[A-Za-z0-9_.]+)?$')
 
@@ -157,6 +164,97 @@ def check_vileborn(d, sysj, E, W):
                 E(f"progression.totals: fromAdvances de {a['id']} diverge de advanceTypes.max")
 
 
+def check_dnd(d, sysj, E, W):
+    abilities = load(d, 'abilities.json')
+    skills = load(d, 'skills.json')
+    if abilities is None or skills is None:
+        return
+
+    ability_ids = {a['id'] for a in abilities['abilities']}
+    skill_by_id = {s['id']: s for s in skills['skills']}
+
+    for s in skills['skills']:
+        if s['ability'] not in ability_ids:
+            E(f"perícia {s['id']}: habilidade inexistente {s['ability']}")
+    if len(skill_by_id) != len(skills['skills']):
+        E("skills.json: ids duplicados")
+
+    def cross_skills(items, where):
+        for item in items:
+            known = skill_by_id.get(item['id'])
+            if known is None:
+                E(f"{where}: perícia inexistente {item['id']}")
+            elif (item['name'], item['ability']) != (known['name'], known['ability']):
+                E(f"{where}: perícia {item['id']} diverge de skills.json")
+
+    classes = load(d, 'classes.json')
+    if classes:
+        ids = [c['id'] for c in classes['classes']]
+        if len(ids) != len(set(ids)): E("classes.json: ids duplicados")
+        for c in classes['classes']:
+            if c['hitDie'] not in (6, 8, 10, 12):
+                E(f"classe {c['id']}: dado de vida inválido d{c['hitDie']}")
+            for a in c['saving']:
+                if a not in ability_ids: E(f"classe {c['id']}: salvaguarda inexistente {a}")
+            if len(c['saving']) != 2:
+                E(f"classe {c['id']}: {len(c['saving'])} salvaguardas, esperado 2")
+            prof = c['proficiency']
+            cross_skills(prof['skills'], f"classe {c['id']}")
+            if not 1 <= prof['qtd'] <= len(prof['skills']):
+                E(f"classe {c['id']}: escolhe {prof['qtd']} de {len(prof['skills'])} perícias")
+            if not c['startingEquipment']:
+                E(f"classe {c['id']}: sem equipamento inicial")
+            if not c['features']:
+                E(f"classe {c['id']}: sem características de nível 1")
+
+    races = load(d, 'races.json')
+    if races:
+        def check_race(r, where):
+            for a in r['abilityBonus']:
+                if a not in ability_ids: E(f"{where}: bônus em habilidade inexistente {a}")
+            if 'speed' in r:
+                try:
+                    float(r['speed'])
+                except (TypeError, ValueError):
+                    E(f"{where}: deslocamento não numérico {r.get('speed')!r}")
+            if 'size' in r and r['size'] not in SIZES:
+                E(f"{where}: tamanho fora do vocabulário {r['size']!r}")
+
+        ids = [r['id'] for r in races['races']]
+        if len(ids) != len(set(ids)): E("races.json: ids duplicados")
+        for r in races['races']:
+            check_race(r, f"raça {r['id']}")
+            for sub in r.get('subraces', []):
+                check_race(sub, f"sub-raça {sub['id']}")
+
+    backgrounds = load(d, 'backgrounds.json')
+    if backgrounds:
+        ids = [b['id'] for b in backgrounds['backgrounds']]
+        if len(ids) != len(set(ids)): E("backgrounds.json: ids duplicados")
+        for b in backgrounds['backgrounds']:
+            cross_skills(b['skills'], f"antecedente {b['id']}")
+            if not b['feature'].get('name') or not b['feature'].get('desc'):
+                E(f"antecedente {b['id']}: característica incompleta")
+
+    equipment = load(d, 'equipment.json')
+    if equipment:
+        ids = [x['id'] for group in equipment.values() for x in group]
+        if len(ids) != len(set(ids)): E("equipment.json: ids duplicados entre os grupos")
+        for a in equipment['armor']:
+            if a['category'] not in ARMOR_CATEGORIES:
+                E(f"armadura {a['id']}: categoria inválida {a['category']!r}")
+            if not ({'base', 'dexMod'} <= set(a['ac']) or 'bonus' in a['ac']):
+                E(f"armadura {a['id']}: CA malformada {a['ac']}")
+        for w in equipment['weapons']:
+            if w['category'] not in WEAPON_CATEGORIES:
+                E(f"arma {w['id']}: categoria inválida {w['category']!r}")
+            if w['damage'] and w['damage']['type'] not in DAMAGE_TYPES:
+                E(f"arma {w['id']}: tipo de dano fora do vocabulário {w['damage']['type']!r}")
+            for prop in w['properties']:
+                if prop not in WEAPON_PROPERTIES:
+                    E(f"arma {w['id']}: propriedade fora do vocabulário {prop!r}")
+
+
 def check(d):
     err, warn = [], []
     E, W = err.append, warn.append
@@ -164,19 +262,20 @@ def check(d):
     sysj = load(d, 'system.json')
     if sysj is None: return ["system.json ausente"], []
 
-    # Catálogo servido do Mongo não tem arquivo em disco: fora o manifesto,
-    # não há nada aqui para cruzar.
-    if sysj.get('catalogSource', 'embed') != 'embed':
-        return err, warn
+    # Catálogo servido do Mongo pode não ter arquivo em disco; só as checagens
+    # que dependem de arquivo ficam condicionadas à origem.
+    on_disk = sysj.get('catalogSource', 'embed') == 'embed'
 
-    for f in sysj['catalogs']:
-        if not (d / f).exists(): E(f"catálogo declarado e ausente: {f}")
+    if on_disk:
+        for f in sysj['catalogs']:
+            if not (d / f).exists(): E(f"catálogo declarado e ausente: {f}")
 
-    if sysj['id'] == 'vileborn':
-        check_vileborn(d, sysj, E, W)
+    checker = {'vileborn': check_vileborn, 'dnd': check_dnd}.get(sysj['id'])
+    if checker:
+        checker(d, sysj, E, W)
 
     # --- ponteiros entre arquivos (qualquer string no formato arquivo.json#caminho) ---
-    for fname in sysj['catalogs'] + ['system.json']:
+    for fname in (sysj['catalogs'] + ['system.json']) if on_disk else []:
         obj = load(d, fname)
         if obj is None: continue
         for path, val in walk_strings(obj):
