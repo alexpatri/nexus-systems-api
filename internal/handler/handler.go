@@ -1,19 +1,21 @@
-package registry
+// Package handler expõe o registry de sistemas por HTTP. Ele conhece o
+// registry; o inverso não vale.
+package handler
 
 import (
-	"strings"
+	"rpg-nexus/api/systems/internal/registry"
 
 	"github.com/gofiber/fiber/v3"
 )
 
 const cacheControl = "public, max-age=300, must-revalidate"
 
-type Handlers struct {
-	reg *Registry
+type Handler struct {
+	reg *registry.Registry
 }
 
-func NewHandlers(reg *Registry) *Handlers {
-	return &Handlers{reg: reg}
+func New(reg *registry.Registry) *Handler {
+	return &Handler{reg: reg}
 }
 
 type systemInfo struct {
@@ -25,7 +27,11 @@ type systemInfo struct {
 	Catalogs []string `json:"catalogs"`
 }
 
-func (h *Handlers) Index(c fiber.Ctx) error {
+func (h *Handler) Health(c fiber.Ctx) error {
+	return c.JSON(fiber.Map{"systems": len(h.reg.All())})
+}
+
+func (h *Handler) Index(c fiber.Ctx) error {
 	all := h.reg.All()
 	systems := make([]systemInfo, 0, len(all))
 	for _, s := range all {
@@ -41,7 +47,7 @@ func (h *Handlers) Index(c fiber.Ctx) error {
 	return c.JSON(fiber.Map{"systems": systems})
 }
 
-func (h *Handlers) Manifest(c fiber.Ctx) error {
+func (h *Handler) Manifest(c fiber.Ctx) error {
 	sys, ok := h.reg.System(c.Params("system"), c.Params("version"))
 	if !ok {
 		return fiber.ErrNotFound
@@ -49,7 +55,7 @@ func (h *Handlers) Manifest(c fiber.Ctx) error {
 	return send(c, sys.Manifest, sys.ManifestETag)
 }
 
-func (h *Handlers) Catalog(c fiber.Ctx) error {
+func (h *Handler) Catalog(c fiber.Ctx) error {
 	sys, ok := h.reg.System(c.Params("system"), c.Params("version"))
 	if !ok {
 		return fiber.ErrNotFound
@@ -74,14 +80,4 @@ func send(c fiber.Ctx, raw []byte, etag string) error {
 
 	c.Set(fiber.HeaderContentType, fiber.MIMEApplicationJSON)
 	return c.Send(raw)
-}
-
-// CatalogKeys devolve os nomes declarados sem o sufixo .json, na ordem do
-// manifesto — é a forma que aparece na URL.
-func (s *System) CatalogKeys() []string {
-	keys := make([]string, 0, len(s.CatalogNames))
-	for _, name := range s.CatalogNames {
-		keys = append(keys, strings.TrimSuffix(name, ".json"))
-	}
-	return keys
 }
