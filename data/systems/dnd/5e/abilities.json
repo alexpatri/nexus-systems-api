@@ -1,0 +1,34 @@
+{
+  "abilities": [
+    {
+      "id": "str",
+      "name": "Força",
+      "desc": "Um teste de Força representa qualquer tentativa de levantar, empurrar, puxar ou quebrar alguma coisa, forçar seu corpo através de um espaço ou outra forma de aplicar a força bruta para resolver uma situação."
+    },
+    {
+      "id": "dex",
+      "name": "Destreza",
+      "desc": "Um teste de Destreza representa a tentativa de se mover com agilidade, rapidez ou em silêncio, ou para evitar cair quando você andar por uma estrada traiçoeira."
+    },
+    {
+      "id": "con",
+      "name": "Constituição",
+      "desc": "Testes de Constituição são incomuns e nenhuma perícia se aplica a eles, porque a resistência representada por essa habilidade é, em grande parte, passiva em vez de envolver um esforço específico por parte de um personagem ou monstro."
+    },
+    {
+      "id": "int",
+      "name": "Inteligência",
+      "desc": "Um teste de Inteligência entra em jogo quando você precisa usar a lógica, estudo, memória ou raciocínio dedutivo."
+    },
+    {
+      "id": "wis",
+      "name": "Sabedoria",
+      "desc": "Um teste de Sabedoria pode refletir um esforço para ler a linguagem corporal, entender os sentimentos de alguém, perceber coisas sobre o meio ambiente ou cuidar de uma pessoa ferida."
+    },
+    {
+      "id": "cha",
+      "name": "Carisma",
+      "desc": "Um teste de Carisma pode surgir quando você tenta influenciar ou entreter os outros, quando tenta expor uma opinião ou dizer uma mentira convincente, ou quando estiver em uma situação social complicada."
+    }
+  ]
+}

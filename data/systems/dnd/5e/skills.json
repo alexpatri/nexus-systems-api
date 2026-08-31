@@ -1,0 +1,112 @@
+{
+  "skills": [
+    {
+      "id": "athletics",
+      "name": "Atletismo",
+      "ability": "str",
+      "desc": "Um teste de Força (Atletismo) abrange as situações difíceis que você encontra ao escalar, saltar ou nadar."
+    },
+    {
+      "id": "acrobatics",
+      "name": "Acrobacia",
+      "ability": "dex",
+      "desc": "Um teste de Destreza (Acrobacia) abrange uma tentativa de permanecer de pé em uma situação complicada, como tentar correr sobre uma camada de gelo, equilibrar-se na corda bamba ou ficar de pé no convés de um navio que balança."
+    },
+    {
+      "id": "sleight-of-hand",
+      "name": "Prestidigitação",
+      "ability": "dex",
+      "desc": "Sempre que você tentar realizar um ato de prestidigitação ou de trapaça manual, como plantar alguma coisa em outra pessoa ou esconder um objeto em sua roupa, você deve fazer um teste de Destreza (Prestidigitação)."
+    },
+    {
+      "id": "stealth",
+      "name": "Furtividade",
+      "ability": "dex",
+      "desc": "Um teste de Destreza (Furtividade) é realizado para tentar esconder-se de inimigos, esgueirar- se por guardas, escapar sem ser notado, ou aproximar-se de alguém sem ser visto ou ouvido."
+    },
+    {
+      "id": "arcana",
+      "name": "Arcanismo",
+      "ability": "int",
+      "desc": "Um teste de Inteligência (Arcanismo) mede conhecimento sobre magias, itens mágicos, símbolos sobrenaturais, tradições mágicas, os planos de existência e os habitantes desses planos."
+    },
+    {
+      "id": "history",
+      "name": "História",
+      "ability": "int",
+      "desc": "Um teste de Inteligência (História) mede o conhecimento sobre eventos históricos, pessoas lendárias, 178 reinos antigos, disputas passadas, guerras recentes e civilizações perdidas."
+    },
+    {
+      "id": "investigation",
+      "name": "Investigação",
+      "ability": "int",
+      "desc": "Quando você olha ao redor em busca de pistas e faz deduções com base nesses indícios, você realiza um teste de Inteligência (Investigação)."
+    },
+    {
+      "id": "nature",
+      "name": "Natureza",
+      "ability": "int",
+      "desc": "Um teste de Inteligência (Natureza) mede o conhecimento sobre terreno, plantas e animais, clima e ciclos naturais."
+    },
+    {
+      "id": "religion",
+      "name": "Religião",
+      "ability": "int",
+      "desc": "Um teste de Inteligência (Religião) mede o conhecimento de lendas sobre divindades, rituais e orações, hierarquias religiosas, símbolos sagrados e práticas de cultos secretos."
+    },
+    {
+      "id": "animal-handling",
+      "name": "Adestrar Animais",
+      "ability": "wis",
+      "desc": "Quando houver a necessidade de saber se você pode acalmar um animal domesticado, impedir uma montaria de se assustar, ou intuir as intenções de um animal, o Mestre pode pedir um teste de Sabedoria (Adestrar Animais)."
+    },
+    {
+      "id": "insight",
+      "name": "Intuição",
+      "ability": "wis",
+      "desc": "Um teste de Sabedoria (Intuição) decide se você pode determinar as verdadeiras intenções de uma criatura, perceber uma mentira ou prever o próximo movimento de alguém."
+    },
+    {
+      "id": "medicine",
+      "name": "Medicina",
+      "ability": "wis",
+      "desc": "Um teste de Sabedoria (Medicina) permite tentar estabilizar um companheiro que está morrendo ou diagnosticar uma doença."
+    },
+    {
+      "id": "perception",
+      "name": "Percepção",
+      "ability": "wis",
+      "desc": "Um teste de Sabedoria (Percepção) permite observar, ouvir ou detectar a presença de alguma coisa de outra forma."
+    },
+    {
+      "id": "survival",
+      "name": "Sobrevivência",
+      "ability": "wis",
+      "desc": "Um teste de Sabedoria (Sobrevivência) é feito para seguir rastros, caçar, orientar o grupo através de terras congeladas, identificar sinais de que ursos-coruja vivem nas proximidades, prever o tempo, ou evitar areia movediça e outros perigos naturais."
+    },
+    {
+      "id": "deception",
+      "name": "Enganação",
+      "ability": "cha",
+      "desc": "Um teste de Carisma (Enganação) determina se você pode esconder a verdade de forma convincente, verbalmente ou através de suas ações."
+    },
+    {
+      "id": "intimidation",
+      "name": "Intimidação",
+      "ability": "cha",
+      "desc": "Ao tentar influenciar alguém através de ameaças abertas, ações hostis e violência física, o Mestre pode pedir a realização de um teste de Carisma (Intimidação)."
+    },
+    {
+      "id": "performance",
+      "name": "Atuação",
+      "ability": "cha",
+      "desc": "Um teste de Carisma (Atuação) determina o quão bem você pode entreter uma plateia com música, dança, atuação, contando histórias ou alguma outra forma de entretenimento."
+    },
+    {
+      "id": "persuasion",
+      "name": "Persuasão",
+      "ability": "cha",
+      "desc": "Quando você tenta influenciar alguém ou um grupo de pessoas com tato, delicadeza ou boa índole, o Mestre pode pedir para você fazer de um teste de Carisma (Persuasão)."
+    }
+  ]
+}

@@ -5,9 +5,10 @@
   "locale": "pt-BR",
   "catalogSource": "mongo",
   "catalogs": [
-    "classes.json",
+    "abilities.json",
+    "skills.json",
     "races.json",
-    "backgrounds.json",
-    "skills.json"
+    "classes.json",
+    "backgrounds.json"
   ]
 }
