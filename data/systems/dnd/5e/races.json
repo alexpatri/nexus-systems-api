@@ -1,0 +1,415 @@
+{
+  "races": [
+    {
+      "id": "dwarf",
+      "name": "Anão",
+      "traits": [
+        {
+          "name": "Visão no Escuro",
+          "desc": "Acostumado à vida subterrânea, você tem uma visão superior no escuro e na penumbra. Você enxerga na penumbra a até 18 metros como se fosse luz plena, e no escuro como se fosse na penumbra. Você não pode discernir cores no escuro, apenas tons de cinza."
+        },
+        {
+          "name": "Resiliência Anã",
+          "desc": "Você possui vantagem em testes de resistência contra venenos e resistência contra dano de veneno (explicado no capítulo 9)."
+        },
+        {
+          "name": "Treinamento Anão em Combate",
+          "desc": "Você tem proficiência com machados de batalha, machadinhas, martelos leves e martelos de guerra."
+        },
+        {
+          "name": "Proficiência com Ferramentas",
+          "desc": "Você tem proficiência em uma ferramenta de artesão à sua escolha entre: ferramentas de ferreiro, suprimentos de cervejeiro ou ferramentas de pedreiro."
+        },
+        {
+          "name": "Especialização em Rochas",
+          "desc": "Sempre que você realizar um teste de Inteligência (História) relacionado à origem de um trabalho em pedra, você é considerado proficiente na perícia História e adiciona o dobro do seu bônus de proficiência ao teste, ao invés do seu bônus de proficiência normal."
+        }
+      ],
+      "abilityBonus": {
+        "con": 2
+      },
+      "age": "Anões tornam-se maduros na mesma proporção que os humanos, mas são considerados jovens até atingirem a idade de 50 anos. Em média, eles vivem 350 anos.",
+      "alignment": "A maioria dos anões é leal, pois acreditam firmemente nos benefícios de uma sociedade bem organizada. Eles tendem para o bem, com um forte senso de honestidade e uma crença de que todos merecem compartilhar os benefícios de uma ordem social justa.",
+      "size": "Médio",
+      "sizeDesc": "Anões estão entre 1,20 e 1,50 metro de altura e pesam cerca de 75 kg. Seu tamanho é Médio.",
+      "speed": "7.5",
+      "languages": "Você pode falar, ler e escrever Comum e Anão. O idioma Anão é repleto de consoantes duras e sons guturais, e essa característica influencia, como um sotaque, qualquer outro idioma que o anão falar. Sub-raça. Existem duas sub-raças principais de anões nos mundos de D&D: anões da colina e anões da montanha. Você deve escolher uma dessas sub-raças.",
+      "subraces": [
+        {
+          "id": "hill-dwarf",
+          "name": "Anão da Colina",
+          "traits": [
+            {
+              "name": "Tenacidade Anã",
+              "desc": "Seu máximo de pontos de vida aumentam em 1, e cada vez que o anão da colina sobe um nível, ele recebe 1 ponto de vida adicional."
+            }
+          ],
+          "abilityBonus": {
+            "wis": 1
+          }
+        },
+        {
+          "id": "mountain-dwarf",
+          "name": "Anão da Montanha",
+          "traits": [
+            {
+              "name": "Treinamento Anão com Armaduras",
+              "desc": "Você adquire proficiência em armaduras leves e médias. DUERGAR Nas profundas cidades do Subterrâneo vivem os duergar, ou anões cinzentos. Estes perversos e furtivos comerciantes de escravos invadem o mundo da superfície para fazer prisioneiros, então vendem suas presas para outras raças do Subterrâneo. Eles têm habilidades mágicas inatas para tornarem-se invisíveis e crescerem temporariamente até o tamanho de um gigante. 21 ELFO \"EU NUNCA IMAGINEI QUE TAL BELEZA EXISTISSE,\" LUA Dourada disse suavemente. A marcha do dia havia sido difícil, mas a recompensa no final estava muito além de seus sonhos. Os companheiros estavam em um alto rochedo sobre a lendária cidade de Qualinost. Quatro pináculos delgados erguiam-se dos cantos da cidade como hastes brilhantes, suas pedras brancas reluzentes mescladas com um tom prateado cintilante. Arcos graciosos, ligando um pináculo a outro, se elevavam no ar. Construídos por antigos ferreiros anões, eles eram fortes o suficiente para suportar o peso de um exército, no entanto, eles pareciam tão delicados, que um pássaro pousado sobre eles, poderia lhes tirar o equilíbrio. Estes arcos cintilantes eram as únicas fronteiras da cidade. Não havia nenhuma muralha em volta de Qualinost. A cidade élfica abria seus braços de forma amorosa para a imensidão. – Margaret Weis & Tracy Hickman, Dragões do Crepúsculo do Outono Elfos são um povo mágico de graça sobrenatural, vivendo no mundo sem pertencer inteiramente à ele. Eles vivem em lugares de beleza etérea, no meio de antigas florestas ou em torres prateadas brilhando com luz feérica, onde uma música suave ecoa através do ar e fragrâncias suaves flutuam na brisa. Elfos amam a natureza e a magia, a arte e o estudo, a música e a poesia, e as coisas boas do mundo. ESBELTOS E GRACIOSOS Com a sua graça sobrenatural e seus traços finos, os elfos parecem assustadoramente belos para os humanos e os membros de muitas outras raças. Em média, eles são ligeiramente mais baixos do que os humanos, variando de pouco menos de 1,50 metro até pouco mais de 1,80 metro de altura. Eles são mais delgados que os humanos, pesando entre 50 kg a 72 kg apenas. Os machos e as fêmeas são quase da mesma altura, mas os machos são um pouco mais pesados do que as fêmeas. A coloração da pele dos elfos varia da mesma maneira que os humanos, e também incluem peles em tons de cobre, bronze, até o branco-azulado, os cabelos podem ser de tons verdes ou azuis, e os olhos podem ser como piscinas douradas ou prateadas. Elfos não possuem pelos faciais e poucos pelos no corpo. Eles preferem roupas elegantes em cores brilhantes, e gostam de joias simples, mas belas. UMA PERSPECTIVA ATEMPORAL Elfos podem viver bem mais de 700 anos, isso dá a eles uma ampla perspectiva sobre eventos que possam perturbar profundamente raças que vivem uma vida mais curta. Eles são normalmente mais divertidos do que animados, e provavelmente mais curiosos do que gananciosos. Elfos tendem a permanecer distantes e não se incomodam com uma pequena dose de acaso. No entanto, quando perseguem um objetivo, seja 22 aventurando-se em uma missão ou aprendendo uma nova habilidade ou arte, os elfos podem ser focados e implacáveis. Eles são lentos para fazer amigos e inimigos, e ainda mais lentos para esquecê-los. Eles respondem insultos mesquinhos com desdém e insultos graves com vingança. Assim como os galhos de uma árvore jovem, os elfos são flexíveis em face do perigo. Eles confiam primeiramente na diplomacia para resolver as diferenças antes de partir para a violência. Eles são conhecidos por recuar para suas casas na floresta perante os intrusos, confiantes de que podem simplesmente esperar os invasores irem embora. Mas quando surge a necessidade, os elfos revelam um poderoso lado marcial, demonstrando habilidade com a espada, o arco e a estratégia. REINOS ESCONDIDOS NA FLORESTA A maioria dos elfos habita pequenas aldeias florestais escondidas entre as árvores. Elfos caçam, coletam e cultivam seus alimentos, e sua perícia e magia os permite sustentar-se sem a necessidade de limpar e arar a terra. Eles são artesãos talentosos, criando roupas e objetos de arte finamente adornados. Seu contato com estrangeiros é geralmente limitado, embora alguns elfos levem uma boa vida negociando itens artesanais por metais (pois eles não têm interesse na mineração). Os elfos encontrados fora de suas terras são em geral menestréis viajantes, artistas ou sábios. Humanos nobres costumam contratar elfos para o serviço de tutores, para que possam ensinar esgrima ou magia aos seus filhos. EXPLORAÇÃO E AVENTURA Elfos se aventuram devido a sua fascinação em viajar. Tendo uma vida tão longa, eles podem desfrutar de séculos de exploração e descoberta. Eles não gostam do ritmo da sociedade humana, que é ao mesmo tempo rotineira no dia a dia, mas sempre acaba mudando ao longo das décadas, e por isso, eles procuram carreiras que os permita viajar livremente. Elfos também gostam de exercitar suas habilidades marciais ou ampliar seus poderes mágicos, e aventurar-se os permite fazê-lo. Alguns podem ser rebeldes que lutam contra a repressão injusta, enquanto outros podem ser campeões de causas morais. NOMES ÉLFICOS Elfos são considerados crianças até declararem-se adultos, algum tempo depois do centésimo aniversário, e durante este período eles são chamados por nomes de criança. Ao declarar a idade adulta, um elfo também seleciona um nome de adulto, embora aqueles que o conheciam quando jovem possam continuar a chamá-lo pelo nome de criança. O nome adulto de cada elfo é uma criação única, embora possa refletir os nomes de respeitados indivíduos ou outros membros da família. Há pouca diferença entre nomes masculinos e femininos, os grupos aqui refletem apenas tendências gerais. Além disso, cada elfo tem um nome de família, normalmente uma combinação de outras palavras élficas. Alguns elfos que viajam entre os humanos traduzem seus sobrenomes para o idioma comum, enquanto outros continuam usando a versão élfica. Nomes infantis: Ara, Bryn, Del, Eryn, Faen, Innil, Lael, Mella, Naill, Naeris, Phann, Rael, Rinn, Sai, Syllin, Thia, Vall. Nomes masculinos adultos: Adran, Aelar, Aramil, Arannis, Aust, Beiro, Berrian, Carric, Enialis, Erdan, Erevan, Galinndan, Hadarai, Heian, Himo, Immeral, Ivellios, Laucian, Mindartis, Paelias, Peren, Quarion, Riardon, Rolen, Soveliss, Thamior, Tharivol, Theren, Varis."
+            }
+          ],
+          "abilityBonus": {
+            "str": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "elf",
+      "name": "Elfo",
+      "traits": [
+        {
+          "name": "Visão no Escuro",
+          "desc": "Acostumado às florestas crepusculares e ao céu noturno, você possui uma visão superior em condições de escuridão e na penumbra. Você pode enxergar na penumbra a até 18 metros como se fosse na luz plena, e no escuro como se fosse na penumbra. Você não pode discernir cores no escuro, apenas tons de cinza."
+        },
+        {
+          "name": "Sentidos Aguçados",
+          "desc": "Você tem proficiência na perícia Percepção."
+        },
+        {
+          "name": "Ancestral Feérico",
+          "desc": "Você tem vantagem nos testes de resistência para resistir a ser enfeitiçado e magias não podem colocá-lo para dormir."
+        },
+        {
+          "name": "Transe",
+          "desc": "Elfos não precisam dormir. Ao invés disso, eles meditam profundamente, permanecendo semiconscientes, durante 4 horas por dia. (A palavra em idioma comum para tal meditação é \"transe\".) Enquanto medita, um elfo é capaz de sonhar de certo modo. Esses sonhos na verdade são exercícios mentais que se tornam reflexos através de anos de prática. Depois de descansar dessa forma, você ganha os mesmos benefícios que um humano depois de 8 horas de sono."
+        }
+      ],
+      "abilityBonus": {
+        "dex": 2
+      },
+      "age": "Embora os elfos atinjam a maturidade física com praticamente a mesma idade dos humanos, a compreensão élfica da idade adulta vai além da maturidade física, abrangendo sua experiência sobre o mundo. Um elfo tipicamente assume a idade adulta e um nome adulto com cerca de 100 anos de idade e pode viver 750 anos.",
+      "alignment": "Elfos amam a liberdade, a diversidade e a expressão pessoal, então eles inclinam-se forte e suavemente para aspectos do caos. Eles valorizam e protegem a liberdade dos outros como a sua própria, e são geralmente mais bondosos que o contrário. Os drow são exceção. Seu exílio no Subterrâneo fez deles perversos e perigosos. Drow são geralmente mais maus que o contrário.",
+      "size": "Médio",
+      "sizeDesc": "Elfos medem entre 1,50 a 1,80 metro de altura e possuem constituição delgada. Seu tamanho é Médio.",
+      "speed": "9",
+      "languages": "Você pode falar, ler e escrever Comum e Élfico. O Élfico é um idioma fluido, com entonações sutis e gramática complexa. A literatura élfica é rica e diversa, e suas canções e poemas são famosos entre outras raças. Muitos bardos aprendem essa língua para que possam adicionar canções élficas ao seu repertório. Sub-raça. Antigas divisões entre os povos élficos resultaram em três sub-raças principais: os altos elfos, os elfos da floresta, e os elfos negros, que são comumente chamados de drow. Escolha uma dessas sub-raças. Em alguns mundos, essas sub-raças são ainda mais divididas (como os elfos do sol e elfos da lua nos Reinos Esquecidos), então se você desejar, você pode escolher uma sub-raça ainda mais específica.",
+      "subraces": [
+        {
+          "id": "high-elf",
+          "name": "Alto Elfo",
+          "traits": [
+            {
+              "name": "Treinamento Élfico com Armas",
+              "desc": "Você possui proficiência com espadas longas, espadas curtas, arcos longos e arcos curtos. 24"
+            },
+            {
+              "name": "Truque",
+              "desc": "Você conhece um truque, à sua escolha, da lista de truques do mago. Inteligência é a habilidade usado para conjurar este truque."
+            },
+            {
+              "name": "Idioma Adicional",
+              "desc": "Você pode falar, ler e escrever um idioma adicional à sua escolha."
+            }
+          ],
+          "abilityBonus": {
+            "int": 1
+          }
+        },
+        {
+          "id": "wood-elf",
+          "name": "Elfo da Floresta",
+          "traits": [
+            {
+              "name": "Treinamento Élfico com Armas",
+              "desc": "Você possui proficiência com espadas longas, espadas curtas, arcos longos e arcos curtos."
+            },
+            {
+              "name": "Pés Ligeiros",
+              "desc": "Seu deslocamento base de caminhada aumenta para 10,5 metros."
+            },
+            {
+              "name": "Máscara da Natureza",
+              "desc": "Você pode tentar se esconder mesmo quando você está apenas levemente obscurecido por folhagem, chuva forte, neve caindo, névoa ou outro fenômeno natural."
+            }
+          ],
+          "abilityBonus": {
+            "wis": 1
+          }
+        },
+        {
+          "id": "dark-elf",
+          "name": "Elfo Negro",
+          "traits": [
+            {
+              "name": "Visão no Escuro Superior",
+              "desc": "Sua visão no escuro tem alcance de 36 metros de raio."
+            },
+            {
+              "name": "Sensibilidade à Luz Solar",
+              "desc": "Você possui desvantagem nas jogadas de ataque e testes de Sabedoria (Percepção) relacionados a visão quando você, o alvo do seu ataque, ou qualquer coisa que você está tentando perceber, esteja sob luz solar direta."
+            },
+            {
+              "name": "Magia Drow",
+              "desc": "Você possui o truque globos de luz. Quando você alcança o 3° nível. Quando você alcança o 5° nível, você pode conjurar escuridão. Você precisa terminar um descanso longo para poder conjurar as magias desse traço novamente. Carisma é sua habilidade chave para conjurar essas magias."
+            },
+            {
+              "name": "Treinamento Drow com Armas",
+              "desc": "Você possui proficiência com rapieiras, espadas curtas e bestas de mão. A ESCURIDÃO DOS DROW Se não fosse por uma única exceção conhecida, a raça dos drow seria universalmente ultrajada. Sua sociedade é depravada e preocupada com as graças de Lolth, sua deusa-aranha, quem sanciona o assassinato e o extermínio de famílias inteiras quando casas nobres disputam posições sociais. Os drow crescem acreditando que as raças que habitam superfície são inferiores, exceto como seus escravos. No entanto, pelo menos um drow quebrou esse estereótipo. No mundo dos Reinos Esquecidos, Drizzt Do'Urden, patrulheiro do Norte, provou sua índole de bom coração como um defensor dos fracos e inocentes. Rejeitando sua herança e imergindo num mundo que olha para ele com horror e aversão, Drizzt é um modelo para os poucos drow que seguem seus passos, tentando encontrar uma vida aquém da sociedade maligna da seu lar no Subterrâneo. Drow crescem acreditando que as raças da superfície são inferiores, servindo apenas como escravos. Drow que desenvolvem uma consciência ou acham necessário cooperar com membros de outras raças encontram dificuldade em sobrepujar o preconceito, especialmente quando eles são tão frequentemente recebidos com ódio. 25 26 HALFLING RÉGIS, O HALFLING, O ÚNICO DE SUA ESPÉCIE NUM RAIO DE centenas de quilômetros, prendeu os dedos por trás da cabeça e recostou-se contra a capa musgosa do tronco da árvore. Régis era baixo, mesmo para os padrões de sua diminuta raça, e a lanugem de suas madeixas castanhas e encaracoladas mal ultrapassava a marca de um metro. Mas a barriga alargava-se abundantemente, devido a seu amor por uma boa refeição — ou várias delas, dependendo das oportunidades que se apresentassem. O galho retorcido que lhe servia como vara de pesca erguia-se acima dele, seguro entre dois dos seus peludos dedos do pé, e inclinava-se sobre as águas plácidas do lago, perfeitamente espelhado na superfície vítrea do Maer Dualdon. – R. A. Salvatore, A Estilha de Cristal Os confortos de um lar são os objetivos da maioria dos halflings: um lugar para viver em paz e sossego, longe de monstros saqueadores e embates de exércitos, com um fogo aceso e uma refeição generosa, e também uma bebida fina e boa conversa. Embora alguns halflings vivam seus dias em remotas comunidades agrícolas, outros formam bandos nômades que viajam constantemente, atraídos pela estrada afora e o vasto horizonte para descobrir as maravilhas de novas terras e povos. Mas mesmo esses halflings andarilhos amam a paz, a comida, uma lareira e um lar, mesmo que o lar seja em uma carruagem, empurrada ao longo de uma estrada de terra, ou uma balsa flutuando rio abaixo. PEQUENOS E PRÁTICOS Os pequeninos halflings sobrevivem em um mundo cheio de criaturas maiores ao evitar serem notados, ou evitando o combate direto. Com uns 90 centímetros de altura, eles parecem inofensivos e assim conseguiram sobreviver por séculos às sombras dos impérios e à margem de guerras e conflitos políticos. Eles normalmente são robustos, pesando entre 20 kg e 22,5 kg. A pele dos halflings varia do bronzeado ao pálido com um tom corado, e seu cabelo é geralmente castanho ou castanho claro e ondulado. Eles têm olhos castanhos ou amendoados. Halflings do sexo masculino muitas vezes ostentam costeletas longas, mas barbas são raras entre eles e bigodes são quase inexistentes. Eles gostam de usar roupas simples, confortáveis e práticas, preferindo as cores claras. A praticidade dos halflings se estende para além de suas roupas. Eles se preocupam com as necessidades básicas e os prazeres simples, e não são inclinados à ostentação. Mesmo o mais rico dos halflings mantém seus tesouros trancados em um porão, em vez de expostos à vista de todos. Eles possuem um talento especial para encontrar a solução mais simples para um problema e têm pouca paciência para indecisões. GENEROSOS E CURIOSOS Halflings são um povo afável e alegre. Eles apreciam os laços de família e amizade, bem como o conforto do lar e da casa, nutrindo poucos sonhos de ouro e glória. Mesmo os aventureiros que existem entre eles normalmente aventuram-se no mundo por razões de comunidade, 27 amizade, desejo de viajar ou curiosidade. Eles amam descobrir coisas novas, até mesmo as mais simples, tais como uma comida exótica ou um estilo estranho de vestuário. Halflings são facilmente movidos pela piedade e detestam ver qualquer ser vivo sofrer. Eles são generosos, partilhando alegremente o que eles possuem, mesmo em épocas de vacas magras. MISTURANDO-SE NA MULTIDÃO Halflings são adeptos de viver em comunidades de humanos, anões ou elfos, tornando-se valiosos e bem- vindos. A combinação de sua inerente furtividade e sua natureza modesta ajudam os halflings a evitar uma atenção indesejada. Os halflings trabalham facilmente com os outros, e são leais a seus amigos, sejam eles halflings ou não. Eles podem demonstrar uma notável ferocidade quando seus amigos, familiares, ou comunidades são ameaçadas. JOVIALIDADE PASTORIL A maioria dos halflings vive em comunidades pequenas e pacíficas com grandes fazendas e bosques preservados. Eles nunca construíram um reino próprio, ou mesmo dominaram muitas terras além de seus tranquilos condados. Eles geralmente não reconhecem qualquer tipo de nobreza ou realeza halfling, ao invés disso buscam conselhos com os anciãos de suas famílias para guiá-los. As famílias preservam suas maneiras tradicionais ao despeito da ascensão e queda de impérios. Muitos halflings vivem entre outras raças onde seu trabalho duro e sua lealdade os oferece recompensas abundantes e conforto. Algumas comunidades halflings preferem viajar como forma de vida, dirigindo carruagens ou guiando barcos de lugar em lugar sem manter um lar permanente. AFÁVEIS E POSITIVOS Halflings tentam se dar bem com todo mundo e são relutantes em fazer vastas generalizações – especialmente as negativas. Anões. \"Anões são amigos leais, e você pode confiar em sua palavra. Mas será que machucaria muito sorrir de vez em quando?\" Elfos. \"Eles são tão belos! Seus rostos, sua música, sua graça e tudo mais. É como se estivessem saído de um sonho maravilhoso. Mas não há como dizer o que está se passando por trás de sua face sorridente – certamente muito mais do que eles demonstram.\" Humanos. \"Os humanos são realmente muito parecidos com a gente. Pelo menos alguns deles. Saia de seus castelos e fortalezas, vá conversar com os agricultores e pastores, e você vai encontrar um povo bom e forte. Não que haja algo de errado com os barões e os soldados – é preciso admirar a sua convicção. E protegendo suas próprias terras, eles também nos protegem.\" EXPLORANDO OPORTUNIDADES Halflings geralmente partem para o caminho do aventureiro para defender suas comunidades, apoiar seus amigos, ou explorar um mundo grande e cheio de maravilhas. Para eles, aventurar-se não é apenas uma carreira, é mais uma oportunidade ou às vezes uma necessidade. NOMES HALFLINGS Um halfling tem um nome dado a ele, um nome de família e possivelmente um apelido. Os nomes de família muitas vezes são apelidos que, de tão adequados, foram transmitidos através das gerações. Nomes masculinos: Alton, Ander, Cade, Corrin, Eldon, Errich, Finnan, Garret, Lindal, Lyle, Merric, Milo, Osborn, Perrin, Reed, Roscoe, Wellby. Nomes femininos: Andry, Bree, Callie, Cora, Euphemia, Jillian, Kithri, Lavinia, Lidda, Merla, Nedda, Paela, Portia, Seraphina, Shaena, Trym, Vani, Verna. Nomes de família: Cata-Escovas, Bom-Barril, Garrafa Verde, Alta Colina, Baixa Colina, Prato Cheio, Folha de Chá, Espinhudo, Cinto Frouxo, Galho Caído."
+            }
+          ],
+          "abilityBonus": {
+            "cha": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "halfling",
+      "name": "Halfling",
+      "traits": [
+        {
+          "name": "Sortudo",
+          "desc": "Quando você obtiver um 1 natural em uma jogada de ataque, teste de habilidade ou teste de resistência, você pode jogar de novo o dado e deve utilizar o novo resultado."
+        },
+        {
+          "name": "Bravura",
+          "desc": "Você tem vantagem em testes de resistência contra ficar amedrontado."
+        },
+        {
+          "name": "Agilidade Halfling",
+          "desc": "Você pode mover-se através do espaço de qualquer criatura que for de um tamanho maior que o seu."
+        }
+      ],
+      "abilityBonus": {
+        "dex": 2
+      },
+      "age": "Um halfling atinge a idade adulta aos 20 anos e pode chegar a 150 anos.",
+      "alignment": "A maioria dos halflings é leal e boa. Via de regra, eles possuem um bom coração e são amáveis, odeiam ver o sofrimento dos outros e não toleram a opressão. Eles também são muito ordeiros e tradicionais, fortemente apegados à sua comunidade e ao conforto de suas antigas tradições.",
+      "size": "Pequeno",
+      "sizeDesc": "Halflings medem cerca de 0,90 metro de altura e pesam aproximadamente 20 kg. Seu tamanho é Pequeno.",
+      "speed": "7.5",
+      "languages": "Você pode falar, ler e escrever Comum e Halfling. A linguagem Halfling não é secreta, mas os halflings são relutantes em compartilhá-la com os outros. Eles escrevem muito pouco, por isso eles não possuem uma literatura rica. No entanto, sua tradição oral é muito forte. Quase todos os halflings falam o idioma Comum para conversar com as pessoas das terras que habitam, ou através das quais eles estejam viajando. Sub-raça. Os dois tipos principais de halflings, Pés- Leves e Robustos, são mais como famílias bem próximas do que verdadeiras sub-raças. Escolha uma destas sub- raças.",
+      "subraces": [
+        {
+          "id": "lightfoot",
+          "name": "Pés Leves",
+          "traits": [
+            {
+              "name": "Furtividade Natural",
+              "desc": "Você pode tentar se esconder mesmo quando possuir apenas a cobertura de uma criatura que for no mínimo um tamanho maior que o seu."
+            }
+          ],
+          "abilityBonus": {
+            "cha": 1
+          }
+        },
+        {
+          "id": "stout",
+          "name": "Robusto",
+          "traits": [
+            {
+              "name": "Resiliência dos Robustos",
+              "desc": "Você tem vantagem em testes de resistência contra veneno e tem resistência contra dano de veneno. 29 HUMANO ESTAS SÃO AS HISTÓRIAS DE UM POVO INCANSÁVEL QUE, há muito tempo, saiu aos mares e rios em longos navios, primeiro para saquear e aterrorizar, em seguida para colonizar. No entanto, havia uma energia, um amor pela aventura, que foi cantado em cada página. Noite adentro Liriel leu, iluminada pela luz de velas após velas. Ela nunca tinha dado muita atenção para os humanos, mas essas histórias à fascinavam. Naquelas páginas amareladas estavam os contos de heróis corajosos, animais estranhos e ferozes, primitivos deuses poderosos e uma magia que era parte e dava forma àquela terra distante. – Elaine Cunningham, Filha dos Drow Nos confins da maioria dos mundos, os humanos são a mais jovem das raças comuns, chegando mais tarde no cenário mundial e com uma vida curta, se comparados aos anões, elfos e dragões. Talvez seja por causa de suas vidas mais curtas que eles se esforcem para alcançar o máximo que podem nos anos que têm. Ou talvez eles sintam que têm algo a provar às raças mais antigas, e é por esta razão que eles constroem seus poderosos impérios através da conquista e do comércio. O que quer que os motive, os humanos são os inovadores, os realizadores e os pioneiros dos mundos. UM AMPLO ESPECTRO Com sua propensão para a migração e conquista, os humanos são fisicamente mais diversificados que as outras raças comuns. Não há um humano típico. Um indivíduo pode ter entre 1,65 metro a 1,90 metro de altura e pesar entre 62,5 kg e 125 kg. Os tons de pele podem variar do negro ao muito pálido, e os cabelos podem ir do negro ao loiro (encaracolado, crespo ou liso). Homens podem possuir pelos faciais esparsos ou abundantes. A diversidade dos humanos pode ter uma pitada de sangue não humano, revelando indícios de elfos, orcs ou outras linhagens. Os humanos chegam à idade adulta no fim da adolescência e raramente vivem um século. VARIADOS EM TUDO Os humanos são os mais adaptáveis, flexíveis e ambiciosos entre todas as raças comuns. Eles têm amplos e distintos gostos, moralidades e hábitos nas muitas diferentes regiões onde eles se instalaram. Quando se estabelecem em um lugar, eles permanecem: eles constroem cidades que duram por eras, e grandes reinos que podem persistir por longos séculos. Um único humano pode ter uma vida relativamente curta, mas uma nação ou cultura humana preserva tradições com origens muito além do alcance da memória de qualquer um dos humanos. Eles vivem plenamente o presente – tornando- os bem adaptados a uma vida de aventuras – mas também planejam o futuro, esforçando-se para deixar um legado duradouro. Individualmente e como grupo, os humanos são oportunistas adaptáveis, e permanecem alerta às dinâmicas mudanças políticas e sociais."
+            }
+          ],
+          "abilityBonus": {
+            "con": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "human",
+      "name": "Humano",
+      "traits": [],
+      "abilityBonus": {
+        "str": 1,
+        "dex": 1,
+        "con": 1,
+        "int": 1,
+        "wis": 1,
+        "cha": 1
+      },
+      "age": "Os humanos chegam à idade adulta no final da adolescência e vivem menos de um século.",
+      "alignment": "Os humanos não possuem inclinação a nenhuma tendência em especial. Os melhores e os piores são encontrados entre eles.",
+      "size": "Médio",
+      "sizeDesc": "Os humanos variam muito em altura e peso, podem ter quase 1,50 metro ou mais de 1,80 metro. Independentemente da sua posição entre esses valores, o seu tamanho é Médio.",
+      "speed": "9",
+      "languages": "Você pode falar, ler e escrever Comum e outro idioma adicional, à sua escolha. Os humanos normalmente aprendem os idiomas dos povos que convivem, incluindo dialetos obscuros. Eles gostam de rechear seu discurso com palavras emprestadas de outras línguas: xingamentos orcs, expressões musicais élficas, frases militares anãs e outros."
+    },
+    {
+      "id": "dragonborn",
+      "name": "Draconato",
+      "traits": [
+        {
+          "name": "Ancestral Dracônico",
+          "desc": "Você possui um ancestral dracônico. Escolha um tipo de dragão da tabela Ancestral Dracônico. Sua arma de sopro e resistência a dano são determinadas pelo tipo de dragão, como mostrado na tabela."
+        },
+        {
+          "name": "Arma de Sopro",
+          "desc": "Você pode usar uma ação para exalar energia destrutiva. Seu ancestral dracônico determina o tamanho, formado e tipo de dano que você expele. Quando você usa sua arma de sopro, cada criatura na área exalada deve realizar um teste de resistência, o tipo do teste é determinado pelo seu ancestral dracônico. A CD do teste de resistência é 8 + seu modificador de Constituição + seu bônus de proficiência. Uma criatura sofre 2d6 de dano num fracasso e metade desse dano num sucesso. O dano aumenta para 3d6 no 6° nível, 4d6 no 11° nível e 5d6 no 16° nível. Depois de usar sua arma de sopro, você não poderá utilizá-la novamente até completar um descanso curto ou longo."
+        },
+        {
+          "name": "Resistência a Dano",
+          "desc": "Você possui resistência ao tipo de dano associado ao seu ancestral dracônico."
+        }
+      ],
+      "abilityBonus": {
+        "str": 2,
+        "cha": 1
+      },
+      "age": "Draconatos jovens crescem rapidamente. Eles caminham horas após nascerem, adquirindo o tamanho e desenvolvimento semelhante a de uma criança humana de 10 anos com 3 anos de idade e alcançam a maturidade aos 15. Eles costumam viver até os 80.",
+      "alignment": "Os draconatos tendem aos extremos, realizando uma escolha consciente de um lado ou do outro da guerra cósmica entre o bem e o mal (representada por Bahamut e Tiamat, respectivamente). A maioria dos draconatos é boa, mas os que vão para o lado de Tiamat podem se tornar vilões terríveis.",
+      "size": "Médio",
+      "sizeDesc": "Os draconatos são mais altos e mais pesados que os humanos, geralmente possuindo mais de 1,80 metro e normalmente pesando mais de 125 kg. Seu tamanho é Médio. ANCESTRAL DRACÔNICO Dragão Tipo de Dano Arma de Sopro Azul Elétrico Linha de 1,5m/9m (teste de Des) Branco Frio Cone de 4,5m (teste de Con) Bronze Elétrico Linha de 1,5m/9m (teste de Des) Cobre Acido Linha de 1,5m/9m (teste de Des) Latão Fogo Linha de 1,5m/9m (teste de Des) Negro Acido Linha de 1,5m/9m (teste de Des) Ouro Fogo Cone de 4,5m (teste de Des) Prata Frio Cone de 4,5m (teste de Con) Verde Veneno Cone de 4,5m (teste de Con) Vermelho Fogo Cone de 4,5m (teste de Des) DRACONIANOS No cenário de Dragonlance, os seguidores da deusa maligna Takhisis aprendem um ritual sombrio que permite que eles corrompam ovos de dragões metálicos, produzindo draconatos malignos chamados draconianos. Cinco tipos de draconianos, correspondente aos cinco tipos de dragões metálicos, lutaram por Takhisis na Guerra da Lança: auraks (ouro), baaz (latão), bozak (bronze), kapak (cobre) e silvak (prata). No lugar de suas armas de sopro dracônica, eles possuem habilidades magicas únicas.",
+      "speed": "9",
+      "languages": "Você pode falar, ler e escrever Comum e Dracônico. O idioma Dracônico é conhecido por ser uma das mais antigas línguas e ainda é usado no estudo de magia. A linguagem soa áspera para a maioria das criaturas, incluindo várias consoantes e silabas firmes. 35 GNOMO MAGRELO E DE CABELOS LISOS, SUA PELE TEM UM TOM marron-noz e seus olhos são de um cor turquesa surpreendente, Burgell parece ter metade da altura de Aeron e precisa subir em um caixote para ver através do olho mágico. Como a maioria das residências em Oeble, aquela casa em particular foi construída por humanos e os residentes pequenos lidam com isso sem se constranger da melhor forma que podem. Mas, pelo menos a grandeza relativa do apartamento permitiu que Burgell tivesse espaço para todas as suas bugigangas de tamanho gnomo. A sala principal era sua oficina e ela continha uma variedade inimaginável de ferramentas: martelos, cinzeis, serras, fechaduras, lentes coloridas, lupas de joalheiro, jarros de pólvora e ingredientes picados para conjurar magias. Um gato cinza e gordo, o familiar do arcano, permanece deitado sobre um grimório. Ele abriu seus olhos, deu uma olhada de soslaio desdenhosa para Aeron e depois, aparentemente, voltou a dormir. –Richard Lee Byers, O Buquê Negro Um zumbido constante de atividades permeia a vizinhança onde os gnomos formam suas comunidades privadas. Barulhos estrondosos pontuam o zumbido: um tilintar de engrenagens moendo aqui, uma pequena explosão ali, um grito de surpresa ou comemoração e, principalmente, muitas gargalhadas. Gnomos regozijam a vida, apreciando cada momento de invento, exploração, investigação, criação e brincadeira. EXPRESSÕES VIBRANTES A energia e entusiasmo dos gnomos pela vida brilha em cada pedacinho do seu pequeno corpo. Um gnomo padrão tem aproximadamente 90 centímetros de altura e pesa entre 20 e 23 kg. Seus rostos morenos ou bronzeados são geralmente adornados com largos sorrisos (apesar dos seus prodigiosos narizes) e seus olhos brilhantes vibram de emoção. Seus cabelos claros tendem a ser espichados, como se expressassem o insaciável interesse dos gnomos em tudo a sua volta. A personalidade de um gnomo é muito maior que sua aparência. A barba de um gnomo macho, em contraste com seu cabelo bagunçado, mantem se perfeitamente aparada, mas as vezes, tem um bigode estiloso e pontas curiosas. Apesar da roupa de um gnomo geralmente possuir tons modestos de terra, ele ostenta bordados, estampas ou joias reluzentes. DEDICAÇÃO INCRÍVEL Até onde os gnomos tem conhecimento, estar vivo é uma coisa maravilhosa e eles espremem cada gota dos seus três a cinco séculos de vida aproveitando ao máximo. Humanos devem se perguntar como deve ser entediante o curso de uma vida tão longa, e elfos levam muito tempo para saborear as belezas do mundo em seus longos anos, mas gnomos parecem estar preocupados que, mesmo com tanto tempo, não seja suficiente para fazer ou ver tudo que eles querem. Gnomos falam mais rápido que o pensamento em suas cabeças consegue se formar. Mesmo enquanto eles oferecem uma vasta gama de ideias ou opções, eles ainda tendem a ouvir atentamente os outros, adicionando apropriadamente exclamações e surpresa e apreciação ao longo da conversa. Apesar dos gnomos adorarem piadas de todos os tipos, principalmente trocadilhos e travessuras, eles são igualmente dedicados a tarefas sérias que eles desempenhem. Muitos gnomos são engenheiros,"
+    },
+    {
+      "id": "gnome",
+      "name": "Gnomo",
+      "traits": [
+        {
+          "name": "Visão no Escuro",
+          "desc": "Acostumado à vida subterrânea, você tem uma visão superior no escuro e na penumbra. Você enxerga na penumbra a até 18 metros como se fosse luz plena, e no escuro como se fosse na penumbra. Você não pode discernir cores no escuro, apenas tons de cinza."
+        },
+        {
+          "name": "Esperteza Gnômica",
+          "desc": "Você possui vantagem em todos os testes de resistência de Inteligência, Sabedoria e Carisma contra magia."
+        }
+      ],
+      "abilityBonus": {
+        "int": 2
+      },
+      "age": "Gnomos amadurecem a mesma proporção que os humanos e, a maioria, atinge a idade adulta por volta dos 40 anos. Eles podem viver entre 350 e 500 anos.",
+      "alignment": "Os gnomos geralmente são bons. Os que tendem para a ordem são sábios, engenheiros, pesquisadores, escolásticos, investigadores ou inventores. Os que tendem ao caos são menestréis, engenhoqueiros, andarilhos ou joalheiros caprichosos. Gnomos são bons de coração e, até mesmo os trapaceiros entre eles tendem a ser mais brincalhões que perversos.",
+      "size": "Pequeno",
+      "sizeDesc": "Os gnomos tem entre 0,90 e 1,20 metro e seu peso médio é de 20 kg. Seu tamanho é Pequeno. 37 SEMPRE AMIGÁVEIS É raro para um gnomo ser hostil ou malicioso, a não ser que ele tenha sofrido algum tipo de ofensa grave. Os gnomos sabem que a maioria das raças não compartilham do seu senso de humor, mas eles apreciam a companhia de qualquer um, assim como eles apreciam tudo que que eles se propõem a fazer.",
+      "speed": "7.5",
+      "languages": "Você sabe falar, ler e escrever Comum e Gnômico. A linguagem Gnômica, que usa o alfabeto Anão, é conhecida por suas técnicas de dissertação e por seus catálogos de conhecimento sobre o mundo natural. Sub-raças. Duas sub-raças de gnomos são encontradas ao redor dos mundos de D&D: os gnomos da floresta e os gnomos das rochas. Escolha uma dessas sub- raças.",
+      "subraces": [
+        {
+          "id": "forest-gnome",
+          "name": "Gnomo da Floresta",
+          "traits": [
+            {
+              "name": "Ilusionista Nato",
+              "desc": "Você conhece o truque ilusão menor. Inteligência é a sua habilidade usada para conjurá-la."
+            },
+            {
+              "name": "Falar com Bestas Pequenas",
+              "desc": "Através de sons e gestos, você pode comunicar ideias simples para Bestas pequenas ou menores. Gnomos da floresta amam os animais e normalmente possuem esquilos, doninhas, coelhos, toupeiras, pica-paus e outras criaturas como amados animais de estimação."
+            }
+          ],
+          "abilityBonus": {
+            "dex": 1
+          }
+        },
+        {
+          "id": "rock-gnome",
+          "name": "Gnomo das Rochas",
+          "traits": [
+            {
+              "name": "Conhecimento de Artífice",
+              "desc": "Toda vez que você fizer um teste de Inteligência (História) relacionado a itens mágicos, objetos alquímicos ou mecanismos tecnológicos, você pode adicionar o dobro do seu bônus de proficiência, ao invés de qualquer bônus de proficiência que você normalmente use."
+            },
+            {
+              "name": "Engenhoqueiro",
+              "desc": "Você possui proficiência com ferramentas de artesão (ferramentas de engenhoqueiro). Usando essas ferramentas, você pode gastar 1 hora e 10 po em materiais para construir um mecanismo Miúdo (CA 5, 1 pv). O mecanismo para de funcionar após 24 horas (a não ser que você gaste 1 hora reparando-o para manter o mecanismo funcionando), ou quando você usa sua ação para desmantelá-lo; nesse momento, você pode recuperar o material usado para criá-lo. Você pode ter até três desses mecanismos ativos ao mesmo tempo. Quando você criar um mecanismo, escolha uma das seguintes opções: Brinquedo Mecânico. Esse brinquedo é um animal, monstro ou pessoa mecânica, como um sapo, rato, pássaro, dragão ou soldado. Quando colocado no chão, o brinquedo se move 1,5 metro pelo chão em cada um dos seus turnos em uma direção aleatória. Ele faz barulhos apropriados a criatura que ele representa. Isqueiro Mecânico. O mecanismo produz uma miniatura de chama, que você pode usar para acender uma vela, tocha ou fogueira. Usar o mecanismo requer sua ação. Caixa de Música. Quando aberta, essa caixa de música toca uma canção a um volume moderado. A caixa para de tocar quando alcança o fim da música ou quando é fechada. 38 MEIO-ELFO FLINT OLHAVA PARA O SOL POENTE. ELE IMAGINOU TER VISTO a figura de um homem caminhando ao longo do caminho. Erguendo-se, Flint recuou para a sombra de um alto pinheiro para ver melhor. As passadas do homem eram marcadas por uma graça natural – uma graça élfica, Flint diria; No entanto, o corpo do homem espessura e musculatura de um humano, enquanto que a barba definitivamente era de natureza humana. Todos os anões podiam ver que a face do homem por baixo do capuz verde tinha uma pele bronzeada e uma barba marrom- avermelhada. Um arco longo estava preso em um dos seus ombros e uma espada descansava no seu lado esquerdo. Ele estava vestido em couro macio, finamente tecido em intrincados desenhos amados pelos elfos. Mas, nenhum elfo no mundo de Krynn poderia ter uma barba... nenhum elfo, mas... “Tanis?” disse Flint, hesitantemente, à medida que o homem se aproximava. ‘Eu mesmo.” O recém-chegado de rosto barbudo acompanhado por um largo sorriso. Ele abriu seus braços e, antes que o anão pudesse pará-lo, envolveu Flint em um abraço que levantou-o do chão. O anão apertou forte seu velho amigo por um instante, depois, lembrando-se da sua compostura, se contorceu e se livrou do abraço do meio- elfo. –Margaret Weis e Tracy Hickman, Dragões do Crepúsculo de Outono Vagando entre dois mundos mas, na verdade, não pertencendo a nenhum dos dois, meio-elfos combinam o que alguns dizem ser as melhores qualidades dos seus parentes elfos e humanos: a curiosidade, inventividade e ambição humanas temperadas pelos sensos refinados, amor a natureza e gostos artísticos dos elfos. Alguns meio-elfos vivem entre os humanos, separados por suas diferenças emocionais e físicas, vendo seus amigos e amores envelhecer enquanto o tempo malmente os toca. Outros vivem entre os elfos, crescendo impacientes à medida que atingem a maturidade nos reinos élficos intermináveis, enquanto seus amigos continuam a viver como crianças. Muitos meio-elfos, incapazes de se encaixar em nenhuma dessas sociedades, escolhem uma vida solitária, vagando ou se juntando a outros desafortunados e adentrando uma vida de aventura. DE DOIS MUNDOS Para os humanos, os meio-elfos parecem elfos, e para os elfos, eles parecem humanos. Na aparência, eles estão entre ambos os parentes, já que eles não são nem tão esbeltos quanto os elfos nem tão largos quanto os humanos. Eles medem entre 1,5 metro e 1,8 metro de altura e pesam entre 50 kg e 90 kg, sendo os homens apenas um pouco mais altos e pesados que as mulheres. Meio-elfos possuem pelos faciais e, as vezes, deixam a barba crescer para esconder sua ancestralidade élfica. A cor e características dos meio-elfos reside entre seus parentes humanos e elfos e possui uma variedade maior até que a encontrada entre ambas as raças. Eles tendem a ter os olhos dos seus pais elfos."
+            }
+          ],
+          "abilityBonus": {
+            "con": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "half-elf",
+      "name": "Meio-Elfo",
+      "traits": [
+        {
+          "name": "Visão no Escuro",
+          "desc": "Graças ao seu sangue élfico, você tem uma visão superior no escuro e na penumbra. Você enxerga na penumbra a até 18 metros como se fosse luz plena, e no escuro como se fosse na penumbra. Você não pode discernir cores no escuro, apenas tons de cinza."
+        },
+        {
+          "name": "Ancestral Feérico",
+          "desc": "Você possui vantagem em testes de resistência contra encantamento e magia não pode colocar você pra dormir."
+        },
+        {
+          "name": "Versatilidade em Perícia",
+          "desc": "Você ganha proficiência em duas perícias, à sua escolha."
+        }
+      ],
+      "abilityBonus": {
+        "cha": 2
+      },
+      "age": "Meio-elfos atingem a maturidade ao mesmo tempo que os humanos atingem a idade adulta, por volta dos 20 anos. Eles vivem muito mais que os humanos, no entanto, raramente ultrapassam os 180 anos. EXCELENTES EMBAIXADORES Muitos meio-elfos aprendem a lidar com todos, desde muito jovens, acabando com hostilidade e encontrando interesses em comum. Como raça, eles possuem a graça élfica sem possuir a indiferença élfica, e energia humana sem a grosseria humana. Geralmente, eles se tornam excelentes embaixadores e intermediadores (exceto entre elfos e humanos, já que cada lado tende a suspeitar que o meio-elfo possa estar favorecendo o outro lado).",
+      "alignment": "Meio-elfos compartilham a veia caótica da sua herança élfica. Eles valorizam tanto a sua liberdade quanto sua expressão criativa, não demonstrando qualquer apresso por líderes ou seguidores. Eles se irritam com regras, ressentindo com exigências de outros e, as vezes, se provam incertos, ou pelo menos, imprevisíveis.",
+      "size": "Médio",
+      "sizeDesc": "Meio-elfos tem aproximadamente a mesma altura dos humanos, variando entre 1,50 metro e 1,80 metro. Seu tamanho é Médio.",
+      "speed": "9",
+      "languages": "Você sabe falar, ler e escrever Comum, Élfico e um idioma adicional, à sua escolha. 40 MEIO-ORC O COMANDANTE MHURREN DESPERTOU A SI E A SUA MULHER das sua cama de peles, colocou a curta cota de malha de aço em seu torso grosso e musculoso. Normalmente ele acorda antes da maioria dos guerreiros, já que ele possui uma forte veia de sangue humano e acha a luz do dia menos irritante que a maioria do resto da tribo. Entre os Caveiras Sangrentas, um guerreiro é julgado por sua força, ferocidade e tenacidade. A ancestralidade humana não é motivo para vergonha – desde que ele seja tão forte, resistente e sedento por sangue quanto os de sangue puro. Meio-orcs que sejam mais fracos que seus camaradas orcs não duram muito tempo entre os Caveiras Sangrentas ou em qualquer outra tribo orc que seja. Mas, é considerado verdade que uma pitada de sangue humano concede a um guerreiro a mistura exata de esperteza, ambição e autodisciplina para ir além, como Mhurren fez. Ele era senhor de uma tribo que reuniu duas mil lanças e era o mais forte comandante em Thar. –Richard Baker, Lâmina Arcana Quer estejam unidos sob a liderança de um poderoso bruxo ou estejam lutando por um impasse após anos de conflito, tribos orcs e humanas as vezes formam alianças, unindo forças em uma vasta horda para o pavor das terras civilizadas próximas. Quando essas alianças são seladas através do casamento, os meio-orcs nascem. Alguns meio-orcs crescem e se tornam orgulhosos comandantes de tribos orcs, seu sangue humano concedem a eles um diferencial perante seus rivais orcs de sangue puro. Alguns arriscam sair pelo mundo para provar seu valor entre os humanos e outras raças mais civilizadas. Muitos desses se tornam aventureiros, adquirindo renome pelos seus poderosos feitos e notoriedade por seus costumes bárbaros e fúria selvagem. CICATRIZES E FORÇA A pigmentação acinzentada dos meio-orcs, suas testas avantajadas, mandíbulas salientes, dentes proeminentes e corpos grandes torna sua herança orc notável para todos os observadores. Meio-orcs tem entre 1,80 metro e 2,10 metros e, normalmente pesam entre 90 kg e 125 kg. Orcs ostentam cicatrizes de batalha como peças de orgulho e consideram cicatrizes ornamentais como coisas bonitas. Outras cicatrizes, no entanto, marcam um orc ou meio-orc como um ex-escravo ou um exilado desonrado. Qualquer meio-orc que tenha vivido entre ou próximo dos orcs terá cicatrizes, independentemente de serem marcas de humilhação ou de orgulho, recontando suas façanhas e ferimentos do passado. Até mesmo um meio-orc que viva entre os humanos deverá mostrar essas cicatrizes orgulhosamente ou escondê-las com vergonha. A MARCA DE GRUUMSH Gruumsh, o deus caolho, criou os orcs e, até mesmo os orcs que desistem de adorá-lo não consegue escapar totalmente de sua influência. O mesmo acontece com os meio-orcs, apesar do seu sangue humano tem moderar o impacto da sua herança orc. Alguns meio-orcs ouvem os sussurros de Gruumsh em seus sonhos, influenciando-os a liberar a fúria que fervilha dentro deles. Outros poucos exultam o nome de Gruumsh quando participam de um"
+    },
+    {
+      "id": "half-orc",
+      "name": "Meio-Orc",
+      "traits": [
+        {
+          "name": "Visão no Escuro",
+          "desc": "Graças ao seu sangue orc, você tem uma visão superior no escuro e na penumbra. Você enxerga na penumbra a até 18 metros como se fosse luz plena, e no escuro como se fosse na penumbra. Você não pode discernir cores no escuro, apenas tons de cinza."
+        },
+        {
+          "name": "Ameaçador",
+          "desc": "Você adquire proficiência na perícia Intimidação."
+        },
+        {
+          "name": "Resistência Implacável",
+          "desc": "Quando você é reduzido a 0 pontos de vida mas não é completamente morto, você pode voltar para 1 ponto de vida. Você não pode usar essa característica novamente até completar um descanso longo."
+        },
+        {
+          "name": "Ataques Selvagens",
+          "desc": "Quando você atinge um ataque crítico com uma arma corpo-a-corpo, você pode rolar um dos dados de dano da arma mais uma vez e adicioná-lo ao dano extra causado pelo acerto crítico."
+        }
+      ],
+      "abilityBonus": {
+        "str": 2,
+        "con": 1
+      },
+      "age": "Os meio-orcs amadurecem um pouco antes dos humanos, atingindo a idade adulta aos 14 anos. Eles envelhecem notavelmente mais rápido e, raramente, vivem mais de 75 anos.",
+      "alignment": "Meio-orcs tem uma tendência inata ao caos devido aos seus parentes orcs e não são fortemente inclinados ao bem. Meio-orcs que cresceram entre orcs e desejam viver e estão dispostos a passar sua vida entre eles, tendem a ser malignos.",
+      "size": "Médio",
+      "sizeDesc": "Meio-orcs são de certa forma maiores e mais largos que os humanos, medindo entre 1,80 metro e 2,10 metros. Seu tamanho é Médio.",
+      "speed": "9",
+      "languages": "Você sabe falar, ler e escrever Comum, Orc. O Orc é um idioma ríspido, possuindo uma linguagem de consoantes duras. Ele não possui alfabeto próprio, mas usa o alfabeto Anão. 42 TIEFLING “MAS VOCÊ DEVIA VER O JEITO QUE AS PESSOAS OLHAM PRA você, criança do diabo.” Aqueles olhos negros, frios como uma tempestade de inverno, que fitavam direto em seu coração e a seriedade repentina em sua voz sacudiu-a. “O que é que eles estão falando?” Ele perguntou. “Primeiro a curiosidade, segundo a conspiração–” Terceiro uma maldição,” ela concluiu. “Você acha que eu nunca havia ouvido essa bobagem antes?” “Eu sei que você já ouviu.” Quando ela o fitou, ela concluiu, “Não é como se eu estivesse entrando nas profundezas da sua mente, minha querida. Esse é o fardo de todo tiefling. Alguns conseguem transpô-lo, outros transformam isso no mó em volta de seu pescoço, outros deleitam-se com isso.” Ele inclinou a cabeça novamente, analisando-a, com um brilho depravado em seus olhos. “Você luta contra isso, não é mesmo? Como um pequeno gato do mato, aposto. Cada espetada e comentário apenas afia suas garras.” –Erin M. Evans, Anjos de Enxofre Ser recebido com olhares e cochichos, sofrer violência e insultos nas ruas, ver a desconfiança e medo em cada olhar: esse é o fardo do tiefling. E para completar tudo, os tieflings sabem que isso é graças ao pacto feito gerações atrás que infundiu a essência de Asmodeus – senhor supremo dos Nove Infernos – em sua linhagem. Sua aparência e natureza não é culpa deles, mas é o resultado de um pecado ancestral, pelo qual eles, seus filhos e os filhos de seus filhos serão eternamente responsabilizados. LINHAGEM INFERNAL Os tieflings derivam de linhagens humanas e, no sentido mais amplo possível, eles ainda parecem humanos. No entanto, sua herança infernal deixou traços claros na sua aparência. Tieflings possuem grandes chifres que possuem os mais diversos formatos: alguns possuem chifres curvos, como um carneiro, outros possuem chifres compridos e finos, como uma gazela, e outros chifres espiralados e alongados, como os de um antílope. Eles possuem uma final calda, com uns 1,20 metro a 1,50 metro de comprimento, que chicoteia ou se enrola em suas pernas quando ele fica chateado ou nervoso. Seus dentes caninos são afiados e pontiagudos e seus olhos possuem cores solidas – preto, vermelho, branco, prateado ou dourado – sem esclera ou pupila visíveis. Seus tons de pele abrangem todas as tonalidades da pele humana, mas também incluem variações de tons vermelho. Seus cabelos, escorrem atrás dos seus chifres, geralmente escuro, de preto ou marrom a vermelho, azul ou roxo escuro. AUTOCONFIANÇA E DESCONFIANÇA Os tieflings sobrevivem em pequenas minorias encontradas geralmente em cidades ou vilas humanas, na maioria das vezes em bairros mais barra-pesada desses lugares, onde eles crescem para se tornarem vigaristas, ladrões ou senhores do crime. Às vezes, eles vivem entre outras minorias populacionais em enclaves onde eles são tratados com mais respeito. Sem uma terra natal, os tieflings sabem que eles precisam traçar seus próprios caminhos no mundo e que eles precisam ser fortes para sobreviver. Eles não confiam em qualquer um que seja amistoso com facilidade, mas"
+    },
+    {
+      "id": "tiefling",
+      "name": "Tiefling",
+      "traits": [
+        {
+          "name": "Visão no Escuro",
+          "desc": "Graças a sua herança infernal, você tem uma visão superior no escuro e na penumbra. Você enxerga na penumbra a até 18 metros como se fosse luz plena, e no escuro como se fosse na penumbra. Você não pode discernir cores no escuro, apenas tons de cinza."
+        },
+        {
+          "name": "Resistência Infernal",
+          "desc": "Você possui resistência a dano de fogo."
+        },
+        {
+          "name": "Legado Infernal",
+          "desc": "Você conhece o truque taumaturgia. Quando você atingir o 3° nível, você poderá conjurar a magia repreensão infernal uma vez por dia como uma magia de 2° nível. Quando você atingir o 5° nível, você também poderá conjurar a magia escuridão. Você precisa terminar um descanso longo para poder usar as magias desse traço novamente. Sua habilidade de conjuração para essas magias é Carisma."
+        }
+      ],
+      "abilityBonus": {
+        "int": 1,
+        "cha": 2
+      },
+      "age": "Os tieflings amadurecem ao mesmo tempo que os humanos, mas vivem alguns anos a mais.",
+      "alignment": "Tieflings não possuem uma tendência inata ao mal, mas muitos acabam por abraçá-lo. Maligno ou não, uma natureza independente inclina a maioria dos tieflings ao alinhamento caótico.",
+      "size": "Médio",
+      "sizeDesc": "Os tieflings possuem o mesmo tamanho e compleição dos humanos. Seu tamanho é Médio.",
+      "speed": "9",
+      "languages": "Você sabe falar, ler e escrever Comum e Infernal. 44"
+    }
+  ]
+}
