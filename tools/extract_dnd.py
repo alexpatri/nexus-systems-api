@@ -109,6 +109,23 @@ CLASSES = [
      "level1": ["Inimigo Favorito", "Explorador Natural"]},
 ]
 
+BACKGROUNDS = [
+    {"id": "acolyte", "name": "Acólito", "page": 127},
+    {"id": "guild-artisan", "name": "Artesão de Guilda", "page": 128},
+    {"id": "entertainer", "name": "Artista", "page": 129},
+    {"id": "charlatan", "name": "Charlatão", "page": 131},
+    {"id": "criminal", "name": "Criminoso", "page": 132},
+    {"id": "hermit", "name": "Eremita", "page": 133},
+    {"id": "outlander", "name": "Forasteiro", "page": 134},
+    {"id": "folk-hero", "name": "Herói do Povo", "page": 135},
+    {"id": "sailor", "name": "Marinheiro", "page": 136},
+    {"id": "noble", "name": "Nobre", "page": 137},
+    {"id": "urchin", "name": "Órfão", "page": 138},
+    {"id": "sage", "name": "Sábio", "page": 139},
+    {"id": "soldier", "name": "Soldado", "page": 140},
+]
+
+
 SKILL_BY_NAME = {name.lower(): (skill_id, name, ability) for skill_id, name, ability in SKILLS}
 
 
@@ -318,7 +335,8 @@ def build_races(book):
 
 
 def field(block, label):
-    m = re.search(rf'{label}:\s*(.+?)(?=\s+[A-ZÀ-Ú][a-zà-ú]+(?: de [A-ZÀ-Ú][a-zà-ú]+)?:|$)', block)
+    nxt = r'[A-ZÀ-Ú][a-zà-ú]+(?:\s+(?:de|em|com|a)\s+[A-ZÀ-Ú][a-zà-ú]+)*:'
+    m = re.search(rf'{label}:\s*(.+?)(?=\s+{nxt}|$)', block)
     # O número de página impresso cai dentro do bloco e gruda no fim do campo.
     return re.sub(r'\s*\d+\s*$', '', flatten(m.group(1))) if m else None
 
@@ -356,9 +374,9 @@ def parse_skill_choice(text, where):
 
 
 def cut_section(text, start):
-    """Do cabeçalho até o próximo em caixa alta, que abre a característica seguinte."""
+    """Do cabeçalho até o próximo em caixa alta, que abre a seção seguinte."""
     rest = text[start:]
-    body = rest[rest.index("\n"):]
+    body = rest[rest.index("\n"):] if "\n" in rest else rest
     stop = re.search(r'\n[A-ZÀ-Ú][A-ZÀ-Ú0-9\s\-]{3,40}\n', body)
     return body[:stop.start()] if stop else body
 
@@ -422,14 +440,84 @@ def build_classes(book):
     return {"classes": out}
 
 
+
+CONNECTORS = {"de", "do", "da", "dos", "das", "e", "em", "no", "na", "a", "o", "com", "para"}
+
+
+def title_case(text):
+    words = text.lower().split()
+    return " ".join(w if n and w in CONNECTORS else w.capitalize() for n, w in enumerate(words))
+
+
+def parse_skill_list(text, where):
+    out = []
+    for name in re.split(r',\s*|\s+e\s+', text):
+        key = name.strip().rstrip(".").lower()
+        if not key:
+            continue
+        if key not in SKILL_BY_NAME:
+            raise ExtractionError(f"{where}: perícia fora do vocabulário: {name!r}")
+        skill_id, skill_name, ability = SKILL_BY_NAME[key]
+        out.append({"id": skill_id, "name": skill_name, "ability": ability})
+    return out
+
+
+def build_backgrounds(book):
+    headings = {bg["name"].upper() for bg in BACKGROUNDS}
+    out = []
+    for bg in BACKGROUNDS:
+        text = book.text(bg["page"], bg["page"] + 1)
+        heading = bg["name"].upper()
+        start = text.find(f"\n{heading}")
+        if start < 0:
+            raise ExtractionError(f"antecedente {bg['name']}: cabeçalho não encontrado")
+
+        rest = text[start + 1:]
+        ends = [rest.find(f"\n{h}") for h in headings if h != heading]
+        ends = [e for e in ends if e > 0]
+        body = rest[:min(ends)] if ends else rest
+
+        feature_at = body.find("CARACTERÍSTICA:")
+        if feature_at < 0:
+            raise ExtractionError(f"antecedente {bg['name']}: sem bloco CARACTERÍSTICA")
+        fields_at = body.find("Proficiência em Perícias")
+        if fields_at < 0:
+            raise ExtractionError(f"antecedente {bg['name']}: bloco de campos não encontrado")
+        region = body[fields_at:feature_at]
+        table = re.search(r'\n[A-ZÀ-Ú][A-ZÀ-Ú0-9\s\-]{3,40}\n', region)
+        head = flatten(region[:table.start()] if table else region)
+        feature = body[feature_at:]
+
+        skills = field(head, "Proficiência em Perícias")
+        if not skills:
+            raise ExtractionError(f"antecedente {bg['name']}: sem proficiência em perícias")
+
+        title_end = feature.index("\n")
+        entry = {
+            "id": bg["id"],
+            "name": bg["name"],
+            "skills": parse_skill_list(skills, bg["name"]),
+            "tools": field(head, "Proficiência em Ferramentas"),
+            "languages": field(head, "Idiomas"),
+            "equipment": field(head, "Equipamento"),
+            "feature": {
+                "name": title_case(feature[len("CARACTERÍSTICA:"):title_end]),
+                "desc": flatten(cut_section(feature, 0)),
+            },
+        }
+        out.append(entry)
+    return {"backgrounds": out}
+
+
 CATALOGS = {
     "abilities.json": build_abilities,
     "skills.json": build_skills,
     "races.json": build_races,
     "classes.json": build_classes,
+    "backgrounds.json": build_backgrounds,
 }
 
-EXPECTED_COUNTS = {"abilities.json": 6, "skills.json": 18, "races.json": 9, "classes.json": 12}
+EXPECTED_COUNTS = {"abilities.json": 6, "skills.json": 18, "races.json": 9, "classes.json": 12, "backgrounds.json": 13}
 
 
 def write(path, payload):

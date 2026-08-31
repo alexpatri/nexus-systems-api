@@ -1,0 +1,303 @@
+{
+  "backgrounds": [
+    {
+      "id": "acolyte",
+      "name": "Acólito",
+      "skills": [
+        {
+          "id": "insight",
+          "name": "Intuição",
+          "ability": "wis"
+        },
+        {
+          "id": "religion",
+          "name": "Religião",
+          "ability": "int"
+        }
+      ],
+      "tools": null,
+      "languages": "Dois à sua escolha",
+      "equipment": "Um símbolo sagrado (um presente dado quando você entrou no templo), um livro de preces ou uma conta de orações, 5 varetas de incenso, vestimentas, um conjunto de roupas comuns e uma algibeira contendo 15 po",
+      "feature": {
+        "name": "Abrigo dos Fiéis",
+        "desc": "Como um acólito, você detém o respeito daqueles que compartilham de sua fé, e você pode realizar cerimônias de sua divindade. Você e seus companheiros de aventura podem até receber cura e caridade de um templo, santuário ou outro posto de sua fé, embora devam fornecer quaisquer componentes materiais necessários para as magias. Aqueles que compartilham de sua religião vão garantir a você (mas apenas você), custeando um estilo de vida modesto. Você também pode possuir laços com um templo específico devotado à sua divindade ou panteão, e fixar residência nele. Pode ser o templo que você está acostumado a servir, se ainda tiver boas relações com ele, ou um templo no qual você encontrou um novo lar. Enquanto frequentar as redondezas desse templo, você pode solicitar os sacerdotes para assisti-lo, desde que essa assistência não seja de alguma forma perigosa e que você sempre esteja em uma boa relação com seu templo."
+      }
+    },
+    {
+      "id": "guild-artisan",
+      "name": "Artesão de Guilda",
+      "skills": [
+        {
+          "id": "insight",
+          "name": "Intuição",
+          "ability": "wis"
+        },
+        {
+          "id": "persuasion",
+          "name": "Persuasão",
+          "ability": "cha"
+        }
+      ],
+      "tools": "Um tipo de ferramenta de artesão",
+      "languages": "Uma, à sua escolha",
+      "equipment": "Um conjunto de ferramentas de artesão (à sua escolha), uma carta de apresentação da sua guilda, um conjunto de roupas de viajante e uma algibeira com 15 po",
+      "feature": {
+        "name": "Associados da Guilda",
+        "desc": "Como um membro cativo e respeitado da guilda, você pode contar com certos benefícios que a sociedade garante. Seus camaradas, membros da guilda, irão provê- lo com hospedagem e comida, se necessário, e pagarão pelo seu funeral se preciso for. Em algumas cidades e vilas, um salão da guilda oferece um local central para conhecer outros membros de profissão, podendo ser um bom lugar para se conhecer patrões, aliados e empregados em potencial. Guildas, muitas vezes, detêm tremendos poderes políticos. Se você for acusado de um crime, sua guilda irá ampará-lo se uma boa defesa puder ser apresentada para provar sua inocência ou se o crime for justificável. Você pode, também, ter acesso a figuras políticas poderosas através da guilda, se você for um membro bem posicionado. Tais conexões devem exigir doações de dinheiro ou itens mágicos para os cofres da guilda. Você deve pagar cotas de 5 po por mês a guilda. Se você não pagar, você irá contrair uma dívida para permanecer nas boas graças da guilda."
+      }
+    },
+    {
+      "id": "entertainer",
+      "name": "Artista",
+      "skills": [
+        {
+          "id": "acrobatics",
+          "name": "Acrobacia",
+          "ability": "dex"
+        },
+        {
+          "id": "performance",
+          "name": "Atuação",
+          "ability": "cha"
+        }
+      ],
+      "tools": "Kit de disfarce, um tipo de instrumento musical",
+      "languages": null,
+      "equipment": "Um instrumento musical (à sua escolha), um presente de um admirador (carta de amor, mecha de cabelo ou uma bijuteria), um traje e uma algibeira contendo 15 po",
+      "feature": {
+        "name": "Pela Demanda Popular",
+        "desc": "Você sempre encontra um lugar para atuar, geralmente em tavernas ou estalagens mas, possivelmente em circos, teatros ou até em cortes nobres. Em tais lugares, você recebe alojamento e comida modesta ou de patrões confortáveis, de graça (dependendo da qualidade do estabelecimento), contanto que você atue a cada noite. Além disso, sua atuação torna você um tipo de figura local. Quando estranhos reconhecerem você em uma cidade em que você já tenha atuado, eles geralmente gostaram de você. 130"
+      }
+    },
+    {
+      "id": "charlatan",
+      "name": "Charlatão",
+      "skills": [
+        {
+          "id": "deception",
+          "name": "Enganação",
+          "ability": "cha"
+        },
+        {
+          "id": "sleight-of-hand",
+          "name": "Prestidigitação",
+          "ability": "dex"
+        }
+      ],
+      "tools": "Kit de disfarce, kit de falsificação",
+      "languages": null,
+      "equipment": "Um conjunto de roupas finas, um kit de disfarce, ferramentas de trapaça, à sua escolha (dez garrafas tampadas preenchidas com líquidos coloridos, um conjunto de dados viciados, um baralho de cartas marcadas ou um anel de sinete de um duque imaginário), e uma algibeira contendo 15po",
+      "feature": {
+        "name": "Identidade Falsa",
+        "desc": "Você criou uma segunda identidade que inclui documentos, conhecidos estabelecidos e disfarces que possibilitam que você assuma essa persona. Além disso, você pode forjar documentos, incluindo papeis oficiais e cartas pessoais, contanto que você tenha visto um exemplo desse tipo de documento ou a caligrafia de quem você está tentando copiar."
+      }
+    },
+    {
+      "id": "criminal",
+      "name": "Criminoso",
+      "skills": [
+        {
+          "id": "deception",
+          "name": "Enganação",
+          "ability": "cha"
+        },
+        {
+          "id": "stealth",
+          "name": "Furtividade",
+          "ability": "dex"
+        }
+      ],
+      "tools": "Um tipo de kit de jogo, ferramentas de ladrão",
+      "languages": null,
+      "equipment": "Um pé de cabra, um conjunto de roupas escuras comuns com capuz e uma algibeira contendo 15 po",
+      "feature": {
+        "name": "Contato Criminal",
+        "desc": "Você possui contatos de confiança que agem como seus informantes em uma rede criminosa. Você sabe como se comunicar com eles mesmo em grandes distâncias. Você conhece em especial os mensageiros locais, mestres de caravana corruptos, e marinheiros escusos que podem transmitir seus recados."
+      }
+    },
+    {
+      "id": "hermit",
+      "name": "Eremita",
+      "skills": [
+        {
+          "id": "medicine",
+          "name": "Medicina",
+          "ability": "wis"
+        },
+        {
+          "id": "religion",
+          "name": "Religião",
+          "ability": "int"
+        }
+      ],
+      "tools": "Kit de herbalismo",
+      "languages": "Um à sua escolha",
+      "equipment": "Um estojo de pergaminho cheio de notas dos seus estudos e orações, um cobertor de inverno, um conjunto de roupas comuns, um kit de herbalismo e 5 po.",
+      "feature": {
+        "name": "Descoberta",
+        "desc": "A calma reclusão da seu eremitério prolongado lhe deu acesso a descobertas únicas e poderosas. A natureza exata dessas revelações depende da natureza da sua reclusão. Poderia ser uma grande verdade sobre o cosmos, os deuses, os poderosos seres de outros planos ou as forças da natureza. Poderia ser um local nunca visto por mais ninguém. Você pode ter descoberto um fato que a muito foi esquecido, ou desenterrado uma relíquia do passado que poderia reescrever a história. Poderia ser uma informação que seria prejudicial para as pessoas responsáveis pelo seu exilio, consequentemente, a razão que fez você voltar para a sociedade. Converse com o Mestre para determinar os detalhes da sua descoberta e o impacto na campanha."
+      }
+    },
+    {
+      "id": "outlander",
+      "name": "Forasteiro",
+      "skills": [
+        {
+          "id": "athletics",
+          "name": "Atletismo",
+          "ability": "str"
+        },
+        {
+          "id": "survival",
+          "name": "Sobrevivência",
+          "ability": "wis"
+        }
+      ],
+      "tools": "Um tipo de instrumento musical",
+      "languages": "Um à sua escolha",
+      "equipment": "Um bordão, uma armadilha de caça, um fetiche de um animal que você matou, um conjunto de roupas de viajante e uma algibeira contendo 10 po",
+      "feature": {
+        "name": "Andarilho",
+        "desc": "Você tem uma memória excelente para mapas e geografia, e você sempre pode recobrar o plano geral de terrenos, assentamentos ou outras características ao seu redor. Além disso, você pode encontrar comida e água fresca para você a até cinco outras pessoas a cada dia, considerando que a terra ofereça bagas, pequenas frutas, água e similares. d8 Traço de Personalidade 1 Eu fui guiado por uma sede de viagens que me levou a abandonas meu lar. 2 Eu cuido dos meus amigos como se eles fossem filhotes recém-nascidos. 3 Certa vez, eu corri quarenta quilômetros sem parar alertar meu clã da aproximação de uma horda orc. Eu faria de novo se fosse necessário. 4 Eu tenho uma lição pra cada situação, aprendida observando a natureza. 5 Eu não vejo lugar para o povo rico e educado. Dinheiro e modos não vão salvá-lo de um urso-coruja faminto. 6 Estou sempre pegando coisas, distraidamente brincando com elas e, às vezes, quebrando-as. 7 Eu me sinto muito mais confortável entre animais que entre pessoas. 8 Eu fui, de fato, criado por lobos."
+      }
+    },
+    {
+      "id": "folk-hero",
+      "name": "Herói do Povo",
+      "skills": [
+        {
+          "id": "animal-handling",
+          "name": "Adestrar Animais",
+          "ability": "wis"
+        },
+        {
+          "id": "survival",
+          "name": "Sobrevivência",
+          "ability": "wis"
+        }
+      ],
+      "tools": "Um tipo de ferramenta de artesão, veículos (terrestre)",
+      "languages": null,
+      "equipment": "Um conjunto de ferramentas de artesão (à sua escolha), uma pá, um pote de ferro, um conjunto de roupas comuns e uma algibeira contendo 10 po",
+      "feature": {
+        "name": "Hospitalidade Rústica",
+        "desc": "Já que você ascendeu da categoria de pessoas comuns até onde você está agora, é fácil se misturar a eles. Você pode encontrar lugar entre os camponeses para se esconder, descansar ou se recuperar, a menos que isso ofereça um risco direto a eles. Eles o esconderão da lei e de qualquer um que venha perguntando por você, desde que não tenham que arriscar suas vidas."
+      }
+    },
+    {
+      "id": "sailor",
+      "name": "Marinheiro",
+      "skills": [
+        {
+          "id": "athletics",
+          "name": "Atletismo",
+          "ability": "str"
+        },
+        {
+          "id": "perception",
+          "name": "Percepção",
+          "ability": "wis"
+        }
+      ],
+      "tools": "Ferramentas de navegador, veículo (aquático)",
+      "languages": null,
+      "equipment": "Uma malagueta (clava), 15 metros de corda de seda, uma amuleto da sorte como um pé de coelho ou uma pequena pedra com um furo no centro (ou você pode rolar uma bugiganga da tabela Bugigangas no capítulo 5), um conjunto de trajes comuns e uma algibeira contendo 10 po",
+      "feature": {
+        "name": "Passagem de Navio",
+        "desc": "Quando você precisar, você pode conseguir passagem de graça em um navio para você e seus companheiros de aventura. Você precisa viajar no navio em que você trabalhou ou em outro navio com o qual você teve boas 137 relações (talvez um comandado por um ex-companheiro de tripulação). Por ser um favor, você não pode solicitar uma programação ou rota que atenda à todas as suas necessidades. Seu Mestre determina quanto tempo levará pra chegar aonde você quer ir. Em troca da passagem grátis, espera-se que você e seus companheiros ajudem a tripulação durante a viagem."
+      }
+    },
+    {
+      "id": "noble",
+      "name": "Nobre",
+      "skills": [
+        {
+          "id": "history",
+          "name": "História",
+          "ability": "int"
+        },
+        {
+          "id": "persuasion",
+          "name": "Persuasão",
+          "ability": "cha"
+        }
+      ],
+      "tools": "Um tipo de kit de jogos",
+      "languages": "Um à sua escolha",
+      "equipment": "Um conjunto de trajes finos, um anel de sinete, um pergaminho de linhagem e uma algibeira contendo 25 po",
+      "feature": {
+        "name": "Posição Privilegiada",
+        "desc": "Graças a sua origem nobre, as pessoas tendem a pensar o melhor de você. Você é bem-vindo na alta sociedade e as pessoas assumem que você tem o direito de estar onde está. As pessoas comuns fazem todos os esforços para acomodá-lo e evitar seu desprazer, e outros nobres o tratam como um membro da mesma classe social. Você pode conseguir uma audiência com um nobre local se precisar."
+      }
+    },
+    {
+      "id": "urchin",
+      "name": "Órfão",
+      "skills": [
+        {
+          "id": "stealth",
+          "name": "Furtividade",
+          "ability": "dex"
+        },
+        {
+          "id": "sleight-of-hand",
+          "name": "Prestidigitação",
+          "ability": "dex"
+        }
+      ],
+      "tools": "Kit de disfarce, ferramentas de ladrão",
+      "languages": null,
+      "equipment": "Uma faca pequena, um mapa da cidade em que você cresceu, um rato de estimação, um pequeno objeto para lembrar dos seus pais, um conjunto de roupas comuns e uma algibeira contendo 10 po",
+      "feature": {
+        "name": "Segredos da Cidade",
+        "desc": "Você conhece os padrões secretos e o fluxo das cidades e pode encontrar passagens através da expansão urbana que os outros deixariam passar. Quando você não estiver em combate, você (e os companheiros que você guiar) podem viajar entre dois locais quaisquer na cidade com o dobro da velocidade normalmente permitida."
+      }
+    },
+    {
+      "id": "sage",
+      "name": "Sábio",
+      "skills": [
+        {
+          "id": "arcana",
+          "name": "Arcanismo",
+          "ability": "int"
+        },
+        {
+          "id": "history",
+          "name": "História",
+          "ability": "int"
+        }
+      ],
+      "tools": null,
+      "languages": "Dois à sua escolha",
+      "equipment": "Um vidro de tinta escura, uma pena, uma faca pequena, uma carta de um falecido colega perguntando a você algo que você nunca terá a chance de responder, um conjunto de roupas comuns e uma algibeira contendo 10 po",
+      "feature": {
+        "name": "Pesquisador",
+        "desc": "Quando tentar obter ou recuperar um fragmento de conhecimento que você não saiba, você descobre aonde e com quem pode obter essa informação. Normalmente ela será adquirida em bibliotecas, arquivos de escribas, universidade ou outros sábios e pessoas aptas. Seu Mestre pode decidir que o conhecimento que busca está escondido em algum lugar quase inacessível, ou é simplesmente impossível de se obter. Desvendar os 140 segredos mais profundos do multiverso pode requerer uma campanha inteira."
+      }
+    },
+    {
+      "id": "soldier",
+      "name": "Soldado",
+      "skills": [
+        {
+          "id": "athletics",
+          "name": "Atletismo",
+          "ability": "str"
+        },
+        {
+          "id": "intimidation",
+          "name": "Intimidação",
+          "ability": "cha"
+        }
+      ],
+      "tools": "Um tipo de kit de jogo, veículo (terrestre)",
+      "languages": null,
+      "equipment": "Uma insígnia de patente, um fetiche obtido de um inimigo caído (uma adaga, lâmina partida ou tira de estandarte), um conjunto de dados de osso ou baralho, um conjunto de roupas comuns e uma algibeira contendo 10 po",
+      "feature": {
+        "name": "Patente Militar",
+        "desc": "Você possui uma patente militar da sua época como soldado. Soldados leais à sua antiga organização reconhecem sua autoridade e influência, e o prestam deferência se forem de uma patente mais baixa. Você pode invocar sua patente para exercer influência sobre soldados, e requisitar equipamentos simples ou cavalos para uso temporário. Você também pode ganhar acesso a acampamentos militares aliados, e fortalezas onde usa patente é reconhecida. 141"
+      }
+    }
+  ]
+}
