@@ -3,7 +3,6 @@
   "apiVersion": "5e",
   "name": "D&D 5e",
   "locale": "pt-BR",
-  "catalogSource": "mongo",
   "catalogs": [
     "abilities.json",
     "skills.json",

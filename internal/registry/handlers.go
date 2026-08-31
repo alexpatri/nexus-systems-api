@@ -9,37 +9,33 @@ import (
 const cacheControl = "public, max-age=300, must-revalidate"
 
 type Handlers struct {
-	reg       *Registry
-	available func(*System) bool
+	reg *Registry
 }
 
-func NewHandlers(reg *Registry, available func(*System) bool) *Handlers {
-	return &Handlers{reg: reg, available: available}
+func NewHandlers(reg *Registry) *Handlers {
+	return &Handlers{reg: reg}
 }
 
 type systemInfo struct {
-	ID        string   `json:"id"`
-	Version   string   `json:"version"`
-	Name      string   `json:"name"`
-	Source    string   `json:"source"`
-	Available bool     `json:"available"`
-	Href      string   `json:"href"`
-	Catalogs  []string `json:"catalogs"`
+	ID       string   `json:"id"`
+	Version  string   `json:"version"`
+	Name     string   `json:"name"`
+	Source   string   `json:"source"`
+	Href     string   `json:"href"`
+	Catalogs []string `json:"catalogs"`
 }
 
-// Index reflete a disponibilidade do Mongo, então é dinâmico e não leva ETag.
 func (h *Handlers) Index(c fiber.Ctx) error {
 	all := h.reg.All()
 	systems := make([]systemInfo, 0, len(all))
 	for _, s := range all {
 		systems = append(systems, systemInfo{
-			ID:        s.ID,
-			Version:   s.Version,
-			Name:      s.Name,
-			Source:    s.CatalogSource,
-			Available: h.available(s),
-			Href:      "/api/" + s.ID + "/" + s.Version,
-			Catalogs:  s.CatalogKeys(),
+			ID:       s.ID,
+			Version:  s.Version,
+			Name:     s.Name,
+			Source:   s.CatalogSource,
+			Href:     "/api/" + s.ID + "/" + s.Version,
+			Catalogs: s.CatalogKeys(),
 		})
 	}
 	return c.JSON(fiber.Map{"systems": systems})
