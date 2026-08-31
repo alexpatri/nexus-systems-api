@@ -109,6 +109,59 @@ CLASSES = [
      "level1": ["Inimigo Favorito", "Explorador Natural"]},
 ]
 
+DAMAGE_TYPES = {"cortante", "perfurante", "concussão"}
+
+WEAPON_PROPERTIES = {"acuidade", "leve", "pesada", "alcance", "arremesso",
+                     "munição", "recarga", "duas mãos", "versátil", "especial"}
+
+ARMOR_CATEGORIES = {
+    "Armadura Leve": "light",
+    "Armadura Média": "medium",
+    "Armadura Pesada": "heavy",
+    "Escudo": "shield",
+}
+
+WEAPON_CATEGORIES = {
+    "Armas Simples Corpo-a-Corpo": "simple-melee",
+    "Armas Simples à Distância": "simple-ranged",
+    "Armas Marciais Corpo-a-Corpo": "martial-melee",
+    "Armas Marciais à Distância": "martial-ranged",
+}
+
+ARMOR_IDS = {
+    "Acolchoada": "padded", "Couro": "leather", "Couro Batido": "studded-leather",
+    "Gibão de Peles": "hide", "Camisão de Malha": "chain-shirt", "Brunea": "scale-mail",
+    "Peitoral": "breastplate", "Meia-Armadura": "half-plate", "Cota de anéis": "ring-mail",
+    "Cota de malha": "chain-mail", "Cota de talas": "splint", "Placas": "plate",
+    "Escudo": "shield",
+}
+
+WEAPON_IDS = {
+    "Adaga": "dagger", "Azagaia": "javelin", "Bordão": "quarterstaff",
+    "Clava Grande": "greatclub", "Foice Curta": "sickle", "Lança": "spear",
+    "Maça": "mace", "Machadinha": "handaxe", "Martelo Leve": "light-hammer",
+    "Porrete": "club",
+    "Arco Curto": "shortbow", "Beste Leve": "light-crossbow", "Dardo": "dart",
+    "Funda": "sling",
+    "Alabarda": "halberd", "Cimitarra": "scimitar", "Chicote": "whip",
+    "Espada Curta": "shortsword", "Espada Grande": "greatsword", "Espada Longa": "longsword",
+    "Glaive": "glaive", "Lança de Montaria": "lance", "Lança Longa": "pike",
+    "Maça Estrela": "morningstar", "Machado Grande": "greataxe",
+    "Machado de Batalha": "battleaxe", "Malho": "maul", "Mangual": "flail",
+    "Martelo de Guerra": "warhammer", "Picareta de Guerra": "war-pick",
+    "Rapieira": "rapier", "Tridente": "trident",
+    "Arco Longo": "longbow", "Besta de Mão": "hand-crossbow", "Besta Pesada": "heavy-crossbow",
+    "Rede": "net", "Zarabatana": "blowgun",
+}
+
+PACK_IDS = {
+    "Pacote de Artista": "entertainers-pack", "Pacote de Assaltante": "burglars-pack",
+    "Pacote de Aventureiro": "dungeoneers-pack", "Pacote de Diplomata": "diplomats-pack",
+    "Pacote de Estudioso": "scholars-pack", "Pacote de Explorador": "explorers-pack",
+    "Pacote de Sacerdote": "priests-pack",
+}
+
+
 BACKGROUNDS = [
     {"id": "acolyte", "name": "Acólito", "page": 127},
     {"id": "guild-artisan", "name": "Artesão de Guilda", "page": 128},
@@ -509,15 +562,134 @@ def build_backgrounds(book):
     return {"backgrounds": out}
 
 
+
+def money(amount, coin):
+    return {"amount": int(amount.replace(".", "")), "coin": coin}
+
+
+def kg(text):
+    return None if text.strip() == "–" else float(text.replace("kg", "").strip().replace(",", "."))
+
+
+ARMOR_ROW = re.compile(
+    r'^(.+?)\s+(\d[\d.]*)\s*(po|pp|pc)\s+(.+?)\s+(For \d+|–)\s+(Desvantagem|–)\s+([\d,]+\s*kg|–)\s*$')
+
+WEAPON_ROW = re.compile(
+    r'^(.+?)\s+(\d[\d.]*)\s*(po|pp|pc)\s+(.+?)\s+([\d,]+\s*kg|–)\s+(.*?)\s*$')
+
+
+def parse_armor_class(text):
+    m = re.match(r'^(?:(\+)?(\d+))(.*)$', text.strip())
+    if not m:
+        raise ExtractionError(f"CA de armadura não reconhecida: {text!r}")
+    value, rest = int(m.group(2)), m.group(3)
+    if m.group(1):
+        return {"bonus": value}
+    out = {"base": value, "dexMod": "modificador de Des" in rest}
+    cap = re.search(r'máx\.\s*\+(\d+)', rest)
+    if cap:
+        out["dexMax"] = int(cap.group(1))
+    return out
+
+
+def parse_properties(text, where):
+    if text.strip() in ("–", ""):
+        return []
+    out = []
+    for part in re.split(r',\s*(?![^(]*\))', text):
+        key = re.sub(r'\s*\(.*\)', '', part).strip().lower()
+        if key not in WEAPON_PROPERTIES:
+            raise ExtractionError(f"{where}: propriedade fora do vocabulário: {key!r}")
+        out.append(key)
+    return out
+
+
+def parse_damage(text, where):
+    if text.strip() == "–":
+        return None
+    m = re.match(r'^(\d+(?:d\d+)?)\s+(\S+)$', text.strip())
+    if not m or m.group(2) not in DAMAGE_TYPES:
+        raise ExtractionError(f"{where}: dano fora do vocabulário: {text!r}")
+    return {"dice": m.group(1), "type": m.group(2)}
+
+
+def table_rows(book, page, heading, categories):
+    text = book.text(page, page)
+    start = text.find(heading)
+    if start < 0:
+        raise ExtractionError(f"tabela {heading!r} não encontrada na página {page}")
+    category = None
+    for line in text[start:].split("\n"):
+        line = line.strip()
+        if line in categories:
+            category = categories[line]
+        elif category and re.search(r'\d+\s*(po|pp|pc)\b', line):
+            yield category, line
+
+
+def build_equipment(book):
+    armor = []
+    for category, line in table_rows(book, 145, "ARMADURAS", ARMOR_CATEGORIES):
+        m = ARMOR_ROW.match(line)
+        if not m:
+            raise ExtractionError(f"linha de armadura não reconhecida: {line!r}")
+        name = m.group(1).strip()
+        if name not in ARMOR_IDS:
+            raise ExtractionError(f"armadura fora do inventário esperado: {name!r}")
+        strength = m.group(5)
+        armor.append({
+            "id": ARMOR_IDS[name], "name": name, "category": category,
+            "cost": money(m.group(2), m.group(3)),
+            "ac": parse_armor_class(m.group(4)),
+            "strength": None if strength == "–" else int(strength.split()[1]),
+            "stealthDisadvantage": m.group(6) == "Desvantagem",
+            "weight": kg(m.group(7)),
+        })
+
+    weapons = []
+    for category, line in table_rows(book, 149, "ARMAS", WEAPON_CATEGORIES):
+        m = WEAPON_ROW.match(line)
+        if not m:
+            raise ExtractionError(f"linha de arma não reconhecida: {line!r}")
+        name = m.group(1).strip()
+        if name not in WEAPON_IDS:
+            raise ExtractionError(f"arma fora do inventário esperado: {name!r}")
+        weapons.append({
+            "id": WEAPON_IDS[name], "name": name, "category": category,
+            "cost": money(m.group(2), m.group(3)),
+            "damage": parse_damage(m.group(4), name),
+            "weight": kg(m.group(5)),
+            "properties": parse_properties(m.group(6), name),
+            "propertiesText": m.group(6).strip(),
+        })
+
+    packs = []
+    raw = book.text(151, 152)
+    at = raw.find("PACOTES DE EQUIPAMENTO")
+    if at < 0:
+        raise ExtractionError("seção de pacotes de equipamento não encontrada")
+    text = flatten(cut_section(raw, at))
+    for m in re.finditer(r'(Pacote de \w+)\s*\((\d+)\s*po\)\.\s*(.+?)(?=Pacote de \w+\s*\(|$)', text):
+        name = m.group(1)
+        if name not in PACK_IDS:
+            raise ExtractionError(f"pacote fora do inventário esperado: {name!r}")
+        packs.append({"id": PACK_IDS[name], "name": name,
+                      "cost": money(m.group(2), "po"), "contents": m.group(3).strip()})
+
+    return {"armor": armor, "weapons": weapons, "packs": packs}
+
+
 CATALOGS = {
     "abilities.json": build_abilities,
     "skills.json": build_skills,
     "races.json": build_races,
     "classes.json": build_classes,
     "backgrounds.json": build_backgrounds,
+    "equipment.json": build_equipment,
 }
 
-EXPECTED_COUNTS = {"abilities.json": 6, "skills.json": 18, "races.json": 9, "classes.json": 12, "backgrounds.json": 13}
+EXPECTED_COUNTS = {"abilities.json": 6, "skills.json": 18, "races.json": 9, "classes.json": 12, "backgrounds.json": 13,
+                   "equipment.json": {"armor": 13, "weapons": 37, "packs": 7}}
 
 
 def write(path, payload):
@@ -534,12 +706,14 @@ def main():
 
     for filename, builder in CATALOGS.items():
         payload = builder(book)
-        items = next(v for v in payload.values() if isinstance(v, list))
         expected = EXPECTED_COUNTS[filename]
-        if len(items) != expected:
-            sys.exit(f"{filename}: {len(items)} itens, esperado {expected}")
+        if isinstance(expected, int):
+            expected = {next(k for k, v in payload.items() if isinstance(v, list)): expected}
+        for key, count in expected.items():
+            if len(payload[key]) != count:
+                sys.exit(f"{filename}: {key} tem {len(payload[key])} itens, esperado {count}")
         write(OUT / filename, payload)
-        print(f"  {filename:<20} {len(items):>3} itens")
+        print(f"  {filename:<20} {', '.join(f'{len(payload[k])} {k}' for k in expected)}")
 
 
 if __name__ == "__main__":

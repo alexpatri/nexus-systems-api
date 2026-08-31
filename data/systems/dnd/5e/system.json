@@ -9,6 +9,7 @@
     "skills.json",
     "races.json",
     "classes.json",
-    "backgrounds.json"
+    "backgrounds.json",
+    "equipment.json"
   ]
 }

@@ -1,0 +1,971 @@
+{
+  "armor": [
+    {
+      "id": "padded",
+      "name": "Acolchoada",
+      "category": "light",
+      "cost": {
+        "amount": 5,
+        "coin": "po"
+      },
+      "ac": {
+        "base": 11,
+        "dexMod": true
+      },
+      "strength": null,
+      "stealthDisadvantage": true,
+      "weight": 4.0
+    },
+    {
+      "id": "leather",
+      "name": "Couro",
+      "category": "light",
+      "cost": {
+        "amount": 10,
+        "coin": "po"
+      },
+      "ac": {
+        "base": 11,
+        "dexMod": true
+      },
+      "strength": null,
+      "stealthDisadvantage": false,
+      "weight": 5.0
+    },
+    {
+      "id": "studded-leather",
+      "name": "Couro Batido",
+      "category": "light",
+      "cost": {
+        "amount": 45,
+        "coin": "po"
+      },
+      "ac": {
+        "base": 12,
+        "dexMod": true
+      },
+      "strength": null,
+      "stealthDisadvantage": false,
+      "weight": 6.5
+    },
+    {
+      "id": "hide",
+      "name": "Gibão de Peles",
+      "category": "medium",
+      "cost": {
+        "amount": 10,
+        "coin": "po"
+      },
+      "ac": {
+        "base": 12,
+        "dexMod": true,
+        "dexMax": 2
+      },
+      "strength": null,
+      "stealthDisadvantage": false,
+      "weight": 6.0
+    },
+    {
+      "id": "chain-shirt",
+      "name": "Camisão de Malha",
+      "category": "medium",
+      "cost": {
+        "amount": 30,
+        "coin": "po"
+      },
+      "ac": {
+        "base": 13,
+        "dexMod": true,
+        "dexMax": 2
+      },
+      "strength": null,
+      "stealthDisadvantage": false,
+      "weight": 10.0
+    },
+    {
+      "id": "scale-mail",
+      "name": "Brunea",
+      "category": "medium",
+      "cost": {
+        "amount": 50,
+        "coin": "po"
+      },
+      "ac": {
+        "base": 14,
+        "dexMod": true,
+        "dexMax": 2
+      },
+      "strength": null,
+      "stealthDisadvantage": true,
+      "weight": 22.5
+    },
+    {
+      "id": "breastplate",
+      "name": "Peitoral",
+      "category": "medium",
+      "cost": {
+        "amount": 400,
+        "coin": "po"
+      },
+      "ac": {
+        "base": 14,
+        "dexMod": true,
+        "dexMax": 2
+      },
+      "strength": null,
+      "stealthDisadvantage": false,
+      "weight": 10.0
+    },
+    {
+      "id": "half-plate",
+      "name": "Meia-Armadura",
+      "category": "medium",
+      "cost": {
+        "amount": 750,
+        "coin": "po"
+      },
+      "ac": {
+        "base": 15,
+        "dexMod": true,
+        "dexMax": 2
+      },
+      "strength": null,
+      "stealthDisadvantage": true,
+      "weight": 20.0
+    },
+    {
+      "id": "ring-mail",
+      "name": "Cota de anéis",
+      "category": "heavy",
+      "cost": {
+        "amount": 30,
+        "coin": "po"
+      },
+      "ac": {
+        "base": 15,
+        "dexMod": false
+      },
+      "strength": null,
+      "stealthDisadvantage": true,
+      "weight": 20.0
+    },
+    {
+      "id": "chain-mail",
+      "name": "Cota de malha",
+      "category": "heavy",
+      "cost": {
+        "amount": 75,
+        "coin": "po"
+      },
+      "ac": {
+        "base": 16,
+        "dexMod": false
+      },
+      "strength": 13,
+      "stealthDisadvantage": true,
+      "weight": 27.5
+    },
+    {
+      "id": "splint",
+      "name": "Cota de talas",
+      "category": "heavy",
+      "cost": {
+        "amount": 200,
+        "coin": "po"
+      },
+      "ac": {
+        "base": 17,
+        "dexMod": false
+      },
+      "strength": 15,
+      "stealthDisadvantage": true,
+      "weight": 30.0
+    },
+    {
+      "id": "plate",
+      "name": "Placas",
+      "category": "heavy",
+      "cost": {
+        "amount": 1500,
+        "coin": "po"
+      },
+      "ac": {
+        "base": 18,
+        "dexMod": false
+      },
+      "strength": 15,
+      "stealthDisadvantage": true,
+      "weight": 32.5
+    },
+    {
+      "id": "shield",
+      "name": "Escudo",
+      "category": "shield",
+      "cost": {
+        "amount": 10,
+        "coin": "po"
+      },
+      "ac": {
+        "bonus": 2
+      },
+      "strength": null,
+      "stealthDisadvantage": false,
+      "weight": 3.0
+    }
+  ],
+  "weapons": [
+    {
+      "id": "dagger",
+      "name": "Adaga",
+      "category": "simple-melee",
+      "cost": {
+        "amount": 2,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d4",
+        "type": "perfurante"
+      },
+      "weight": 0.5,
+      "properties": [
+        "acuidade",
+        "leve",
+        "arremesso"
+      ],
+      "propertiesText": "Acuidade, leve, arremesso (distância 6/18)"
+    },
+    {
+      "id": "javelin",
+      "name": "Azagaia",
+      "category": "simple-melee",
+      "cost": {
+        "amount": 5,
+        "coin": "pp"
+      },
+      "damage": {
+        "dice": "1d6",
+        "type": "perfurante"
+      },
+      "weight": 1.0,
+      "properties": [
+        "arremesso"
+      ],
+      "propertiesText": "Arremesso (distância 9/36)"
+    },
+    {
+      "id": "quarterstaff",
+      "name": "Bordão",
+      "category": "simple-melee",
+      "cost": {
+        "amount": 2,
+        "coin": "pp"
+      },
+      "damage": {
+        "dice": "1d6",
+        "type": "concussão"
+      },
+      "weight": 2.0,
+      "properties": [
+        "versátil"
+      ],
+      "propertiesText": "Versátil (1d8)"
+    },
+    {
+      "id": "greatclub",
+      "name": "Clava Grande",
+      "category": "simple-melee",
+      "cost": {
+        "amount": 2,
+        "coin": "pp"
+      },
+      "damage": {
+        "dice": "1d8",
+        "type": "concussão"
+      },
+      "weight": 5.0,
+      "properties": [
+        "pesada",
+        "duas mãos"
+      ],
+      "propertiesText": "Pesada, duas mãos"
+    },
+    {
+      "id": "sickle",
+      "name": "Foice Curta",
+      "category": "simple-melee",
+      "cost": {
+        "amount": 1,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d4",
+        "type": "cortante"
+      },
+      "weight": 1.0,
+      "properties": [
+        "leve"
+      ],
+      "propertiesText": "Leve"
+    },
+    {
+      "id": "spear",
+      "name": "Lança",
+      "category": "simple-melee",
+      "cost": {
+        "amount": 1,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d6",
+        "type": "perfurante"
+      },
+      "weight": 1.5,
+      "properties": [
+        "arremesso",
+        "versátil"
+      ],
+      "propertiesText": "Arremesso (distância 6/18), versátil (1d8)"
+    },
+    {
+      "id": "mace",
+      "name": "Maça",
+      "category": "simple-melee",
+      "cost": {
+        "amount": 5,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d6",
+        "type": "concussão"
+      },
+      "weight": 2.0,
+      "properties": [],
+      "propertiesText": "–"
+    },
+    {
+      "id": "handaxe",
+      "name": "Machadinha",
+      "category": "simple-melee",
+      "cost": {
+        "amount": 5,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d6",
+        "type": "cortante"
+      },
+      "weight": 1.0,
+      "properties": [
+        "leve",
+        "arremesso"
+      ],
+      "propertiesText": "Leve, arremesso (distância 6/18)"
+    },
+    {
+      "id": "light-hammer",
+      "name": "Martelo Leve",
+      "category": "simple-melee",
+      "cost": {
+        "amount": 2,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d4",
+        "type": "concussão"
+      },
+      "weight": 1.0,
+      "properties": [
+        "leve",
+        "arremesso"
+      ],
+      "propertiesText": "Leve, arremesso (distância 6/18)"
+    },
+    {
+      "id": "club",
+      "name": "Porrete",
+      "category": "simple-melee",
+      "cost": {
+        "amount": 1,
+        "coin": "pp"
+      },
+      "damage": {
+        "dice": "1d4",
+        "type": "concussão"
+      },
+      "weight": 1.0,
+      "properties": [
+        "leve"
+      ],
+      "propertiesText": "Leve"
+    },
+    {
+      "id": "shortbow",
+      "name": "Arco Curto",
+      "category": "simple-ranged",
+      "cost": {
+        "amount": 25,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d6",
+        "type": "perfurante"
+      },
+      "weight": 1.0,
+      "properties": [
+        "munição",
+        "duas mãos"
+      ],
+      "propertiesText": "Munição (distância 24/96), duas mãos"
+    },
+    {
+      "id": "light-crossbow",
+      "name": "Beste Leve",
+      "category": "simple-ranged",
+      "cost": {
+        "amount": 25,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d8",
+        "type": "perfurante"
+      },
+      "weight": 2.5,
+      "properties": [
+        "munição",
+        "recarga",
+        "duas mãos"
+      ],
+      "propertiesText": "Munição (distância 24/96), recarga, duas mãos"
+    },
+    {
+      "id": "dart",
+      "name": "Dardo",
+      "category": "simple-ranged",
+      "cost": {
+        "amount": 5,
+        "coin": "pc"
+      },
+      "damage": {
+        "dice": "1d4",
+        "type": "perfurante"
+      },
+      "weight": 0.1,
+      "properties": [
+        "acuidade",
+        "arremesso"
+      ],
+      "propertiesText": "Acuidade, arremesso (distância 6/18)"
+    },
+    {
+      "id": "sling",
+      "name": "Funda",
+      "category": "simple-ranged",
+      "cost": {
+        "amount": 1,
+        "coin": "pp"
+      },
+      "damage": {
+        "dice": "1d4",
+        "type": "concussão"
+      },
+      "weight": null,
+      "properties": [
+        "munição"
+      ],
+      "propertiesText": "Munição (distância 9/36)"
+    },
+    {
+      "id": "halberd",
+      "name": "Alabarda",
+      "category": "martial-melee",
+      "cost": {
+        "amount": 20,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d10",
+        "type": "cortante"
+      },
+      "weight": 3.0,
+      "properties": [
+        "pesada",
+        "alcance",
+        "duas mãos"
+      ],
+      "propertiesText": "Pesada, alcance, duas mãos"
+    },
+    {
+      "id": "scimitar",
+      "name": "Cimitarra",
+      "category": "martial-melee",
+      "cost": {
+        "amount": 25,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d6",
+        "type": "cortante"
+      },
+      "weight": 1.5,
+      "properties": [
+        "acuidade",
+        "leve"
+      ],
+      "propertiesText": "Acuidade, leve"
+    },
+    {
+      "id": "whip",
+      "name": "Chicote",
+      "category": "martial-melee",
+      "cost": {
+        "amount": 2,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d4",
+        "type": "cortante"
+      },
+      "weight": 1.5,
+      "properties": [
+        "acuidade",
+        "alcance"
+      ],
+      "propertiesText": "Acuidade, alcance"
+    },
+    {
+      "id": "shortsword",
+      "name": "Espada Curta",
+      "category": "martial-melee",
+      "cost": {
+        "amount": 10,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d6",
+        "type": "perfurante"
+      },
+      "weight": 1.0,
+      "properties": [
+        "acuidade",
+        "leve"
+      ],
+      "propertiesText": "Acuidade, leve"
+    },
+    {
+      "id": "greatsword",
+      "name": "Espada Grande",
+      "category": "martial-melee",
+      "cost": {
+        "amount": 50,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "2d6",
+        "type": "cortante"
+      },
+      "weight": 3.0,
+      "properties": [
+        "pesada",
+        "duas mãos"
+      ],
+      "propertiesText": "Pesada, duas mãos"
+    },
+    {
+      "id": "longsword",
+      "name": "Espada Longa",
+      "category": "martial-melee",
+      "cost": {
+        "amount": 15,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d8",
+        "type": "cortante"
+      },
+      "weight": 1.5,
+      "properties": [
+        "versátil"
+      ],
+      "propertiesText": "Versátil (1d10)"
+    },
+    {
+      "id": "glaive",
+      "name": "Glaive",
+      "category": "martial-melee",
+      "cost": {
+        "amount": 20,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d10",
+        "type": "cortante"
+      },
+      "weight": 3.0,
+      "properties": [
+        "pesada",
+        "alcance",
+        "duas mãos"
+      ],
+      "propertiesText": "Pesada, alcance, duas mãos"
+    },
+    {
+      "id": "lance",
+      "name": "Lança de Montaria",
+      "category": "martial-melee",
+      "cost": {
+        "amount": 10,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d12",
+        "type": "perfurante"
+      },
+      "weight": 3.0,
+      "properties": [
+        "alcance",
+        "especial"
+      ],
+      "propertiesText": "Alcance, especial"
+    },
+    {
+      "id": "pike",
+      "name": "Lança Longa",
+      "category": "martial-melee",
+      "cost": {
+        "amount": 5,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d10",
+        "type": "perfurante"
+      },
+      "weight": 4.0,
+      "properties": [
+        "pesada",
+        "alcance",
+        "duas mãos"
+      ],
+      "propertiesText": "Pesada, alcance, duas mãos"
+    },
+    {
+      "id": "morningstar",
+      "name": "Maça Estrela",
+      "category": "martial-melee",
+      "cost": {
+        "amount": 15,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d8",
+        "type": "perfurante"
+      },
+      "weight": 2.0,
+      "properties": [],
+      "propertiesText": "–"
+    },
+    {
+      "id": "greataxe",
+      "name": "Machado Grande",
+      "category": "martial-melee",
+      "cost": {
+        "amount": 30,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d12",
+        "type": "cortante"
+      },
+      "weight": 3.5,
+      "properties": [
+        "pesada",
+        "duas mãos"
+      ],
+      "propertiesText": "Pesada, duas mãos"
+    },
+    {
+      "id": "battleaxe",
+      "name": "Machado de Batalha",
+      "category": "martial-melee",
+      "cost": {
+        "amount": 10,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d8",
+        "type": "cortante"
+      },
+      "weight": 2.0,
+      "properties": [
+        "versátil"
+      ],
+      "propertiesText": "Versátil (1d10)"
+    },
+    {
+      "id": "maul",
+      "name": "Malho",
+      "category": "martial-melee",
+      "cost": {
+        "amount": 10,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "2d6",
+        "type": "concussão"
+      },
+      "weight": 5.0,
+      "properties": [
+        "pesada",
+        "duas mãos"
+      ],
+      "propertiesText": "Pesada, duas mãos"
+    },
+    {
+      "id": "flail",
+      "name": "Mangual",
+      "category": "martial-melee",
+      "cost": {
+        "amount": 10,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d8",
+        "type": "concussão"
+      },
+      "weight": 1.0,
+      "properties": [],
+      "propertiesText": "–"
+    },
+    {
+      "id": "warhammer",
+      "name": "Martelo de Guerra",
+      "category": "martial-melee",
+      "cost": {
+        "amount": 15,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d8",
+        "type": "concussão"
+      },
+      "weight": 1.0,
+      "properties": [
+        "versátil"
+      ],
+      "propertiesText": "Versátil (1d10)"
+    },
+    {
+      "id": "war-pick",
+      "name": "Picareta de Guerra",
+      "category": "martial-melee",
+      "cost": {
+        "amount": 5,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d8",
+        "type": "perfurante"
+      },
+      "weight": 1.0,
+      "properties": [],
+      "propertiesText": "–"
+    },
+    {
+      "id": "rapier",
+      "name": "Rapieira",
+      "category": "martial-melee",
+      "cost": {
+        "amount": 25,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d8",
+        "type": "perfurante"
+      },
+      "weight": 1.0,
+      "properties": [
+        "acuidade"
+      ],
+      "propertiesText": "Acuidade"
+    },
+    {
+      "id": "trident",
+      "name": "Tridente",
+      "category": "martial-melee",
+      "cost": {
+        "amount": 5,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d6",
+        "type": "perfurante"
+      },
+      "weight": 2.0,
+      "properties": [
+        "arremesso",
+        "versátil"
+      ],
+      "propertiesText": "Arremesso (6/18), versátil (1d8)"
+    },
+    {
+      "id": "longbow",
+      "name": "Arco Longo",
+      "category": "martial-ranged",
+      "cost": {
+        "amount": 50,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d8",
+        "type": "perfurante"
+      },
+      "weight": 1.0,
+      "properties": [
+        "munição",
+        "pesada",
+        "duas mãos"
+      ],
+      "propertiesText": "Munição (distância 45/180), pesada, duas mãos"
+    },
+    {
+      "id": "hand-crossbow",
+      "name": "Besta de Mão",
+      "category": "martial-ranged",
+      "cost": {
+        "amount": 75,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d6",
+        "type": "perfurante"
+      },
+      "weight": 1.5,
+      "properties": [
+        "munição",
+        "leve",
+        "recarga"
+      ],
+      "propertiesText": "Munição (distância 9/36), leve, recarga"
+    },
+    {
+      "id": "heavy-crossbow",
+      "name": "Besta Pesada",
+      "category": "martial-ranged",
+      "cost": {
+        "amount": 50,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1d10",
+        "type": "perfurante"
+      },
+      "weight": 4.5,
+      "properties": [
+        "munição",
+        "pesada",
+        "recarga",
+        "duas mãos"
+      ],
+      "propertiesText": "Munição (distância 30/120), pesada, recarga, duas mãos"
+    },
+    {
+      "id": "net",
+      "name": "Rede",
+      "category": "martial-ranged",
+      "cost": {
+        "amount": 1,
+        "coin": "po"
+      },
+      "damage": null,
+      "weight": 1.5,
+      "properties": [
+        "especial",
+        "arremesso"
+      ],
+      "propertiesText": "Especial, arremesso (distância 1,5/4,5)"
+    },
+    {
+      "id": "blowgun",
+      "name": "Zarabatana",
+      "category": "martial-ranged",
+      "cost": {
+        "amount": 10,
+        "coin": "po"
+      },
+      "damage": {
+        "dice": "1",
+        "type": "perfurante"
+      },
+      "weight": 0.5,
+      "properties": [
+        "munição",
+        "recarga"
+      ],
+      "propertiesText": "Munição (distância 7,5/30), recarga"
+    }
+  ],
+  "packs": [
+    {
+      "id": "entertainers-pack",
+      "name": "Pacote de Artista",
+      "cost": {
+        "amount": 40,
+        "coin": "po"
+      },
+      "contents": "Inclui uma mochila, um saco de dormir, duas fantasias, 5 velas, 5 dias de rações, um cantil e um kit de disfarce."
+    },
+    {
+      "id": "burglars-pack",
+      "name": "Pacote de Assaltante",
+      "cost": {
+        "amount": 16,
+        "coin": "po"
+      },
+      "contents": "Inclui uma mochila, um saco com 1.000 esferas de metal, 3 metros de linha, um sino, 5 velas, um pé de cabra, um martelo, 10 pítons, uma lanterna coberta, 2 frascos de óleo, 5 dias de rações, uma caixa de fogo e um cantil. O kit também possui 15 metros de corda de cânhamo amarrada ao lado dele."
+    },
+    {
+      "id": "dungeoneers-pack",
+      "name": "Pacote de Aventureiro",
+      "cost": {
+        "amount": 12,
+        "coin": "po"
+      },
+      "contents": "Inclui uma mochila, um pé de cabra, um martelo, 10 pítons, 10 tochas, uma caixa de fogo, 10 dias de rações e um cantil. O kit também tem 15 metros de corda de cânhamo amarrada ao lado dele."
+    },
+    {
+      "id": "diplomats-pack",
+      "name": "Pacote de Diplomata",
+      "cost": {
+        "amount": 39,
+        "coin": "po"
+      },
+      "contents": "Inclui um baú, 2 caixas para mapas ou pergaminhos, um conjunto de roupas finas, um vidro de tinta, uma caneta tinteiro, uma lâmpada, 2 frascos de óleo, 5 folhas de papel, um vidro de perfume, parafina e sabão."
+    },
+    {
+      "id": "scholars-pack",
+      "name": "Pacote de Estudioso",
+      "cost": {
+        "amount": 40,
+        "coin": "po"
+      },
+      "contents": "Inclui uma mochila, um livro de estudo, um vidro de tinta, uma caneta tinteiro, 10 folhas de pergaminho, um saquinho de areia e uma pequena faca."
+    },
+    {
+      "id": "explorers-pack",
+      "name": "Pacote de Explorador",
+      "cost": {
+        "amount": 10,
+        "coin": "po"
+      },
+      "contents": "Inclui uma mochila, um saco de dormir, um kit de refeição, uma caixa de fogo, 10 tochas, 10 dias de rações e um cantil. O kit também tem 15 metros de corda de cânhamo amarrada ao lado dele."
+    },
+    {
+      "id": "priests-pack",
+      "name": "Pacote de Sacerdote",
+      "cost": {
+        "amount": 19,
+        "coin": "po"
+      },
+      "contents": "Inclui uma mochila, um cobertor, 10 velas, uma caixa de fogo, uma caixa de esmolas, 2 blocos de incenso, um incensário, vestes, 2 dias de rações e um cantil. 152 Fogo Alquímico. Esse líquido pegajoso e adesivo inflama em contado com o ar. Usando uma ação, você pode arremessar esse frasco a até 6 metros de distância, quebrando-o com o impacto. Você deve realizar um ataque à distância contra uma criatura ou objeto, tratando o fogo alquímico como uma arma improvisada. Em um sucesso, o alvo sofre 1d4 de dano de fogo no início de cada um de seus turnos. Uma criatura pode terminar esse dano usando sua ação e fazendo um teste de Destreza CD 10 para apagar as chamas. Grimório. Essencial para os magos, um grimório é um volume encadernado em couro com 100 páginas de pergaminhos em branco, adequado para armazenar magias. Foco Arcano. Um foco arcano é um item especial – um orbe, um cristal, um bastão, um cajado especialmente construído, uma varinha de madeira, ou algum item semelhante – projetado para canalizar o poder de magias arcanas. Um feiticeiro, bruxo ou mago podem usá-lo como um foco de conjuração, conforme descrito no capítulo 10. Foco Druídico. Um foco druídico pode ser um ramo de visco ou azevinho, uma varinha ou cetro de teixo ou de outra madeira especial, um cajado esculpido de uma árvore viva, ou um totem adornado com penas, peles, ossos e dentes de animais sagrados. Um druida pode usar tal objeto como um foco de conjuração, conforme descrito no capítulo 10. Kit de Escalada. Um kit de escalada inclui pítons especiais, botas com solas pontiagudas, luvas e um cinto. Você pode usar o kit de escalada como uma ação para \"ancorar-se\". Quando faz isso, você não pode cair mais de 7,5 metros a partir do ponto onde se ancorou, e não pode subir mais de 7,5 metros de distância desse ponto, sem desfazer a âncora. Kit de Primeiros Socorros. Esse kit é uma bolsa de couro contendo ataduras, pomadas e talas. O kit possui material suficiente para dez usos. Usando uma ação, você pode gastar um uso do kit para estabilizar uma criatura que tenha 0 pontos de vida, sem a necessidade de realizar um teste de Sabedoria (Medicina). Kit de Refeição. Essa caixa de metal contém um copo e talheres simples. A caixa se desmonta no meio, um lado pode ser utilizado como uma panela para cozinhar e o outro como um prato ou uma tigela rasa. Lâmpada. Uma lâmpada lança luz plena em um raio de 4,5 metros e penumbra por mais 9 metros. Uma vez acesa, a lâmpada queima por 6 horas usando um frasco de óleo (500 ml). Lanterna Coberta. Uma lanterna coberta lança luz plena em um raio de 9 metros e penumbra por mais 9 metros. Uma vez acesa, ela queima por 6 horas usando um frasco de óleo (500 ml). Usando uma ação, você pode abaixar a cobertura, reduzindo a claridade para penumbra em um raio de 1,5 metro. Lanterna Furta-Fogo. Uma lanterna furta-fogo lança luz plena em um cone de 18 metros e penumbra por mais 18 metros. Uma vez acesa, ela queima por 6 horas usando um frasco de óleo (500 ml). Lente de Aumento. Essa lente permite ver pequenos objetos mais de perto. Ela também é útil como um substituto da pederneira e isqueiro para acender fogo. Usar uma lupa para acender fogo necessita de luz tão brilhante como a luz do sol para focar, um pavio e cerca de 5 minutos. Uma lente de aumento concede vantagem em qualquer teste de habilidade feito para avaliar ou inspecionar um item que é pequeno ou muito detalhado. Luneta. Objetos vistos através de uma luneta são ampliados até o dobro do seu tamanho. Livro. Um livro pode conter poesia, relatos históricos, informações relativas a um campo particular de sabedoria, diagramas e notas sobre engenhocas gnômicas, ou qualquer outra coisa que possa ser representada usando texto ou imagens. Um livro com magias é um grimório, também descrito nessa seção. Óleo. Geralmente vem em um frasco de argila que contém 500 ml. Usando uma ação, você pode espirrar o óleo desse frasco em uma criatura a até 1,5 metro de você"
+    }
+  ]
+}
