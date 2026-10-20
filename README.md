@@ -14,10 +14,11 @@ Serve os catálogos de regras dos sistemas de RPG suportados pelo Nexus.
 ```
 GET /api/vileborn/v1/heritages
 GET /api/dnd/5e/classes
+GET /api/shadowrun/5e/priorities
 ```
 
 A versão é a edição do sistema, não do contrato HTTP — por isso `v1` no Vileborn e
-`5e` no D&D. É string livre: não presuma o prefixo `v`.
+`5e` no D&D e no Shadowrun. É string livre: não presuma o prefixo `v`.
 
 Catálogos embutidos respondem com `ETag` e honram `If-None-Match`.
 
@@ -28,7 +29,24 @@ binário com `go:embed`. O `system.json` é o manifesto e lista os demais catál
 O serviço não depende de banco: tudo que ele serve está no binário.
 
 Os catálogos do D&D são gerados a partir do PDF do Livro do Jogador por
-`tools/extract_dnd.py`.
+`tools/extract_dnd.py`, e os do Shadowrun a partir do PDF do Livro Básico (New
+Order) por `tools/extract_sr5.py`. Os dois extratores fixam ids e estrutura no
+código e abortam se o PDF não trouxer o que esperam.
+
+### Fórmulas (Shadowrun)
+
+Valores que a ficha calcula — limites, monitores, iniciativa, Dreno, custos por
+Nível — vêm como árvores de expressão, não como texto:
+
+```json
+{"op": "ceil", "of": [{"op": "div", "of": [{"ref": "attr.bod"}, 2]}]}
+```
+
+Os operadores são `add`, `sub`, `mul`, `div`, `ceil`, `floor`, `min` e `max`; as
+folhas são números ou `{"ref": …}`, com as referências listadas em
+`mechanics.json#expressions`. O avaliador de referência está em
+`tools/validate.py` (`sr_eval`), que também confere as fórmulas contra os
+personagens de exemplo do livro.
 
 ## Adicionar um sistema
 
