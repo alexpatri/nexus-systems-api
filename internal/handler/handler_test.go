@@ -91,8 +91,8 @@ func TestIndexIsOrderedAndStripsJSONSuffix(t *testing.T) {
 
 	var payload struct {
 		Systems []struct {
-			ID, Version, Name, Source, Href string
-			Catalogs                        []string
+			ID, Version, Name, Href string
+			Catalogs                []string
 		}
 	}
 	if err := json.Unmarshal([]byte(body(t, res)), &payload); err != nil {
@@ -114,9 +114,6 @@ func TestIndexIsOrderedAndStripsJSONSuffix(t *testing.T) {
 	}
 	if strings.Join(last.Catalogs, ",") != "origins" {
 		t.Errorf("catalogs = %v, quer [origins] sem o sufixo .json", last.Catalogs)
-	}
-	if last.Source != registry.SourceEmbed {
-		t.Errorf("source = %q, quer %q", last.Source, registry.SourceEmbed)
 	}
 }
 

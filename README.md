@@ -6,10 +6,10 @@ Serve os catálogos de regras dos sistemas de RPG suportados pelo Nexus.
 
 | Rota | Descrição |
 | --- | --- |
-| `GET /api` | Sistemas e versões disponíveis, com origem e disponibilidade |
+| `GET /api` | Sistemas e versões disponíveis, com os catálogos de cada um |
 | `GET /api/{sistema}/{versao}` | Manifesto do sistema |
 | `GET /api/{sistema}/{versao}/{catalogo}` | Um catálogo; o sufixo `.json` é opcional |
-| `GET /health` | Responde 200 sempre; o corpo diz se o MongoDB está de pé |
+| `GET /health` | Responde 200 sempre; o corpo traz quantos sistemas foram carregados |
 
 ```
 GET /api/vileborn/v1/heritages
@@ -25,10 +25,10 @@ Catálogos embutidos respondem com `ETag` e honram `If-None-Match`.
 
 Cada sistema é um diretório em `data/systems/{sistema}/{versao}/`, embutido no
 binário com `go:embed`. O `system.json` é o manifesto e lista os demais catálogos.
+O serviço não depende de banco: tudo que ele serve está no binário.
 
-O D&D é a exceção: os catálogos ainda vêm do MongoDB, e o manifesto dele traz
-`"catalogSource": "mongo"`. Se o banco não subir, o serviço sobe assim mesmo e só
-as rotas do D&D respondem 503.
+Os catálogos do D&D são gerados a partir do PDF do Livro do Jogador por
+`tools/extract_dnd.py`.
 
 ## Adicionar um sistema
 

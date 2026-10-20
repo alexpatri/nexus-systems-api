@@ -182,22 +182,6 @@ func TestLoadRejectsInconsistentManifest(t *testing.T) {
 	}
 }
 
-func TestMongoBackedSystemSkipsFileCheck(t *testing.T) {
-	body := `{"id":"dnd","apiVersion":"5e","name":"D&D","catalogSource":"mongo","catalogs":["classes.json"]}`
-	reg, err := Load(fsWith(map[string]string{"dnd/5e/system.json": body}))
-	if err != nil {
-		t.Fatalf("catálogos vindos do Mongo não devem exigir arquivo: %v", err)
-	}
-
-	sys, _ := reg.System("dnd", "5e")
-	if sys.CatalogSource != SourceMongo {
-		t.Errorf("CatalogSource = %q, quer %q", sys.CatalogSource, SourceMongo)
-	}
-	if _, _, ok := sys.Catalog("classes"); ok {
-		t.Error("o registry não deve servir catálogo cuja origem é o Mongo")
-	}
-}
-
 func TestEmbeddedVilebornMatchesManifest(t *testing.T) {
 	reg, err := Load(data.Systems())
 	if err != nil {

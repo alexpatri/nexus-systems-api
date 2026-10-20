@@ -262,20 +262,15 @@ def check(d):
     sysj = load(d, 'system.json')
     if sysj is None: return ["system.json ausente"], []
 
-    # Catálogo servido do Mongo pode não ter arquivo em disco; só as checagens
-    # que dependem de arquivo ficam condicionadas à origem.
-    on_disk = sysj.get('catalogSource', 'embed') == 'embed'
-
-    if on_disk:
-        for f in sysj['catalogs']:
-            if not (d / f).exists(): E(f"catálogo declarado e ausente: {f}")
+    for f in sysj['catalogs']:
+        if not (d / f).exists(): E(f"catálogo declarado e ausente: {f}")
 
     checker = {'vileborn': check_vileborn, 'dnd': check_dnd}.get(sysj['id'])
     if checker:
         checker(d, sysj, E, W)
 
     # --- ponteiros entre arquivos (qualquer string no formato arquivo.json#caminho) ---
-    for fname in (sysj['catalogs'] + ['system.json']) if on_disk else []:
+    for fname in sysj['catalogs'] + ['system.json']:
         obj = load(d, fname)
         if obj is None: continue
         for path, val in walk_strings(obj):

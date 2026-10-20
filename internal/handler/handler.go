@@ -22,7 +22,6 @@ type systemInfo struct {
 	ID       string   `json:"id"`
 	Version  string   `json:"version"`
 	Name     string   `json:"name"`
-	Source   string   `json:"source"`
 	Href     string   `json:"href"`
 	Catalogs []string `json:"catalogs"`
 }
@@ -39,7 +38,6 @@ func (h *Handler) Index(c fiber.Ctx) error {
 			ID:       s.ID,
 			Version:  s.Version,
 			Name:     s.Name,
-			Source:   s.CatalogSource,
 			Href:     "/api/" + s.ID + "/" + s.Version,
 			Catalogs: s.CatalogKeys(),
 		})

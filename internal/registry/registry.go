@@ -16,19 +16,15 @@ import (
 const (
 	manifestFile = "system.json"
 	manifestKey  = "system"
-
-	SourceEmbed = "embed"
-	SourceMongo = "mongo"
 )
 
 type System struct {
-	ID            string
-	Version       string
-	Name          string
-	CatalogSource string
-	CatalogNames  []string
-	Manifest      json.RawMessage
-	ManifestETag  string
+	ID           string
+	Version      string
+	Name         string
+	CatalogNames []string
+	Manifest     json.RawMessage
+	ManifestETag string
 
 	catalogs map[string]json.RawMessage
 	etags    map[string]string
@@ -124,11 +120,10 @@ func Load(fsys fs.FS) (*Registry, error) {
 }
 
 type manifest struct {
-	ID            string   `json:"id"`
-	Name          string   `json:"name"`
-	APIVersion    string   `json:"apiVersion"`
-	CatalogSource string   `json:"catalogSource"`
-	Catalogs      []string `json:"catalogs"`
+	ID         string   `json:"id"`
+	Name       string   `json:"name"`
+	APIVersion string   `json:"apiVersion"`
+	Catalogs   []string `json:"catalogs"`
 }
 
 func loadSystem(fsys fs.FS, id, version string) (*System, error) {
@@ -151,21 +146,15 @@ func loadSystem(fsys fs.FS, id, version string) (*System, error) {
 		return nil, fmt.Errorf("registry: %s: manifesto declara apiVersion %q", dir, m.APIVersion)
 	}
 
-	source := m.CatalogSource
-	if source == "" {
-		source = SourceEmbed
-	}
-
 	sys := &System{
-		ID:            strings.ToLower(id),
-		Version:       strings.ToLower(version),
-		Name:          m.Name,
-		CatalogSource: source,
-		CatalogNames:  m.Catalogs,
-		Manifest:      raw,
-		ManifestETag:  etag(raw),
-		catalogs:      map[string]json.RawMessage{manifestKey: raw},
-		etags:         map[string]string{manifestKey: etag(raw)},
+		ID:           strings.ToLower(id),
+		Version:      strings.ToLower(version),
+		Name:         m.Name,
+		CatalogNames: m.Catalogs,
+		Manifest:     raw,
+		ManifestETag: etag(raw),
+		catalogs:     map[string]json.RawMessage{manifestKey: raw},
+		etags:        map[string]string{manifestKey: etag(raw)},
 	}
 
 	declared := make(map[string]bool, len(m.Catalogs))
@@ -199,11 +188,9 @@ func loadSystem(fsys fs.FS, id, version string) (*System, error) {
 		sys.etags[key] = etag(body)
 	}
 
-	if source == SourceEmbed {
-		for _, name := range m.Catalogs {
-			if _, _, ok := sys.Catalog(name); !ok {
-				return nil, fmt.Errorf("registry: %s: catálogo declarado e ausente: %s", dir, name)
-			}
+	for _, name := range m.Catalogs {
+		if _, _, ok := sys.Catalog(name); !ok {
+			return nil, fmt.Errorf("registry: %s: catálogo declarado e ausente: %s", dir, name)
 		}
 	}
 
