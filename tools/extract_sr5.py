@@ -15,6 +15,7 @@ import json
 import pathlib
 import re
 import sys
+import unicodedata
 
 from pypdf import PdfReader
 
@@ -103,6 +104,108 @@ RACIAL_TRAITS = {
 
 SPRINT = {"dwarf": 1, "troll": 1, "elf": 2, "human": 2, "ork": 2}
 
+GROUPS = [
+    ("acting", "Atuação"), ("athletics", "Atletismo"), ("biotech", "Biotecnologia"),
+    ("close-combat", "Combate Corpo a Corpo"), ("conjuring", "Convocação"),
+    ("cracking", "Quebra de Dados"), ("electronics", "Eletrônica"), ("enchanting", "Encantação"),
+    ("engineering", "Engenharia"), ("firearms", "Armas de Fogo"), ("influence", "Influência"),
+    ("outdoors", "Ar Livre"), ("sorcery", "Feitiçaria"), ("stealth", "Furtividade"),
+    ("tasking", "Tarefa"),
+]
+
+# (id, nome, atributo, categoria, grupo, exige especificar a arma/veículo)
+SKILLS = [
+    ("exotic-ranged-weapon", "Arma a Distância Exótica", "agi", "combat", None, True),
+    ("exotic-melee-weapon", "Arma Corpo a Corpo Exótica", "agi", "combat", None, True),
+    ("throwing-weapons", "Armas de Arremesso", "agi", "combat", None, False),
+    ("longarms", "Armas de Cano Longo", "agi", "combat", "firearms", False),
+    ("heavy-weapons", "Armas Pesadas", "agi", "combat", None, False),
+    ("archery", "Arquearia", "agi", "combat", None, False),
+    ("automatics", "Automáticas", "agi", "combat", "firearms", False),
+    ("clubs", "Bastões", "agi", "combat", "close-combat", False),
+    ("unarmed-combat", "Combate Desarmado", "agi", "combat", "close-combat", False),
+    ("blades", "Lâminas", "agi", "combat", "close-combat", False),
+    ("pistols", "Pistolas", "agi", "combat", "firearms", False),
+    ("escape-artist", "Arte da Fuga", "agi", "physical", None, False),
+    ("running", "Corrida", "str", "physical", "athletics", False),
+    ("disguise", "Disfarce", "int", "physical", "stealth", False),
+    ("palming", "Empalmar", "agi", "physical", "stealth", False),
+    ("sneaking", "Esgueirar", "agi", "physical", "stealth", False),
+    ("gymnastics", "Ginástica", "agi", "physical", "athletics", False),
+    ("diving", "Mergulho", "bod", "physical", None, False),
+    ("swimming", "Natação", "str", "physical", "athletics", False),
+    ("perception", "Percepção", "int", "physical", None, False),
+    ("free-fall", "Queda Livre", "bod", "physical", None, False),
+    ("tracking", "Rastrear", "int", "physical", "outdoors", False),
+    ("survival", "Sobrevivência", "wil", "physical", "outdoors", False),
+    ("etiquette", "Etiqueta", "cha", "social", "influence", False),
+    ("instruction", "Instrução", "cha", "social", None, False),
+    ("intimidation", "Intimidação", "cha", "social", None, False),
+    ("leadership", "Liderança", "cha", "social", "influence", False),
+    ("negotiation", "Negociação", "cha", "social", "influence", False),
+    ("performance", "Performance", "cha", "social", "acting", False),
+    ("impersonation", "Personificação", "cha", "social", "acting", False),
+    ("con", "Trapaça", "cha", "social", "acting", False),
+    ("alchemy", "Alquimia", "mag", "magical", "enchanting", False),
+    ("arcana", "Arcana", "log", "magical", None, False),
+    ("artificing", "Artificiaria", "mag", "magical", "enchanting", False),
+    ("banishing", "Banimento", "mag", "magical", "conjuring", False),
+    ("astral-combat", "Combate Astral", "wil", "magical", None, False),
+    ("spellcasting", "Conjuração", "mag", "magical", "sorcery", False),
+    ("ritual-spellcasting", "Conjuração Ritual", "mag", "magical", "sorcery", False),
+    ("counterspelling", "Contramágica", "mag", "magical", "sorcery", False),
+    ("disenchanting", "Desencantação", "mag", "magical", "enchanting", False),
+    ("summoning", "Invocação", "mag", "magical", "conjuring", False),
+    ("assensing", "Sentido Astral", "int", "magical", None, False),
+    ("binding", "Vinculação", "mag", "magical", "conjuring", False),
+    ("compiling", "Compilar", "res", "resonance", "tasking", False),
+    ("decompiling", "Descompilar", "res", "resonance", "tasking", False),
+    ("registering", "Registrar", "res", "resonance", "tasking", False),
+    ("animal-handling", "Adestrar Animais", "cha", "technical", None, False),
+    ("armorer", "Armeiro", "log", "technical", None, False),
+    ("artisan", "Artesão", "int", "technical", None, False),
+    ("biotechnology", "Bioengenharia", "log", "technical", "biotech", False),
+    ("locksmith", "Chaveiro", "agi", "technical", None, False),
+    ("cybercombat", "Cibercombate", "log", "technical", "cracking", False),
+    ("cybertechnology", "Cibertecnologia", "log", "technical", "biotech", False),
+    ("computer", "Computador", "log", "technical", "electronics", False),
+    ("demolitions", "Demolições", "log", "technical", None, False),
+    ("forgery", "Falsificação", "log", "technical", None, False),
+    ("electronic-warfare", "Guerra Eletrônica", "log", "technical", "cracking", False),
+    ("hacking", "Hackear", "log", "technical", "cracking", False),
+    ("hardware", "Hardware", "log", "technical", "electronics", False),
+    ("aeronautics-mechanic", "Mecânica Aeronáutica", "log", "technical", "engineering", False),
+    ("automotive-mechanic", "Mecânica Automotiva", "log", "technical", "engineering", False),
+    ("industrial-mechanic", "Mecânica Industrial", "log", "technical", "engineering", False),
+    ("nautical-mechanic", "Mecânica Náutica", "log", "technical", "engineering", False),
+    ("medicine", "Medicina", "log", "technical", "biotech", False),
+    ("navigation", "Navegação", "int", "technical", "outdoors", False),
+    ("first-aid", "Primeiros Socorros", "log", "technical", "biotech", False),
+    ("chemistry", "Química", "log", "technical", None, False),
+    ("software", "Software", "log", "technical", "electronics", False),
+    ("gunnery", "Artilharia", "agi", "vehicle", None, False),
+    ("pilot-aircraft", "Pilotar Aeronaves", "rea", "vehicle", None, False),
+    ("pilot-walker", "Pilotar Andarilhos", "rea", "vehicle", None, False),
+    ("pilot-watercraft", "Pilotar Embarcações", "rea", "vehicle", None, False),
+    ("pilot-aerospace", "Pilotar Espaçonaves", "rea", "vehicle", None, False),
+    ("pilot-exotic-vehicle", "Pilotar Veículos Exóticos", "rea", "vehicle", None, True),
+    ("pilot-ground-craft", "Pilotar Veículos Terrestres", "rea", "vehicle", None, False),
+]
+
+# A perícia só aparece nas listas (p. 90 e 151): o capítulo de perícias não tem
+# bloco para ela. Teste-padrão e especializações seguem Arma a Distância Exótica.
+NO_BLOCK = {"exotic-melee-weapon"}
+
+# Grafias da lista da p. 151 que divergem do nome canônico.
+P151_NAMES = {"exotic-melee-weapon": "Armas Corpo a Corpo Exótica"}
+
+KNOWLEDGE_CATEGORIES = [
+    ("academic", "Acadêmica", "log"),
+    ("interests", "Interesses", "int"),
+    ("professional", "Profissional", "log"),
+    ("street", "Ruas", "int"),
+]
+
 AWAKENINGS = [
     ("magician", "Mago", "mag", "MAGOS"),
     ("mystic-adept", "Adepto Místico", "mag", "ADEPTOS MÍSTICOS"),
@@ -182,6 +285,15 @@ def section(text, start, stops):
 def require(text, fragment, where):
     if fragment not in text:
         raise ExtractionError(f"{where}: trecho esperado não encontrado: {fragment!r}")
+
+
+def fold(s):
+    return unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower()
+
+
+def is_heading(line):
+    letters = [c for c in line if c.isalpha()]
+    return len(letters) >= 4 and all(c.isupper() for c in letters)
 
 
 def split_list(text):
@@ -405,11 +517,161 @@ AWAKENING_RULES = {
 }
 
 
+# Box "o que os níveis significam", que corta o bloco de Arquearia.
+SKILL_SIDEBARS = {131: ("Esta é uma lista do que os Níveis", "qualidade Aptidão (p. 72).")}
+
+
+def skill_lines(book):
+    lines = []
+    for p in range(130, 151):
+        page = book.page(p).split("\n")
+        if p in SKILL_SIDEBARS:
+            first, last = SKILL_SIDEBARS[p]
+            i = next((k for k, line in enumerate(page) if line.startswith(first)), None)
+            j = next((k for k, line in enumerate(page) if line.endswith(last)), None)
+            if i is None or j is None:
+                raise ExtractionError(f"box lateral da p. {p} não encontrado: {first!r}")
+            page = page[:i] + page[j + 1:]
+        lines += [(p, line) for line in page]
+    return lines
+
+
+def build_skills(book):
+    numbered = skill_lines(book)
+    lines = [line for _, line in numbered]
+    p151 = book.page(151)
+    p153 = book.page(153)
+    p90 = book.prose(book.page(90))
+    out = []
+    for sid, name, attribute, category, group, specific in SKILLS:
+        entry = {"id": sid, "name": name, "attribute": attribute, "category": category, "group": group,
+                 "specific": specific, "restricted": attribute in ("mag", "res")}
+        check_p151(p151, sid, name, attribute)
+        if sid in NO_BLOCK:
+            require(p90, f"{name} (Específica)", f"perícia {name}")
+            entry.update({"default": False, "specializations": [], "desc": None, "page": 90})
+            out.append(entry)
+            continue
+
+        heading = re.compile(rf'^{re.escape(name.upper())}(?: \((\w+)\))?\s*$')
+        starts = [i for i, line in enumerate(lines) if heading.match(line.strip())]
+        if len(starts) != 1:
+            raise ExtractionError(f"perícia {name}: {len(starts)} cabeçalhos encontrados no capítulo")
+        start = starts[0]
+        header_attr = heading.match(lines[start].strip()).group(1)
+
+        i = start + 1
+        # "(ESPECÍFICA)" ou o atributo podem cair na linha de baixo do nome.
+        m = re.match(r'^\((\w+)\)$', lines[i].strip())
+        if m:
+            if m.group(1) not in ("ESPECÍFICA", "ESPECÍFICO"):
+                header_attr = m.group(1)
+            i += 1
+        if header_attr and fold(header_attr) != fold(ATTRIBUTE_NAMES[attribute]):
+            raise ExtractionError(f"perícia {name}: cabeçalho diz {header_attr}, vocabulário diz {attribute}")
+        desc = []
+        while not lines[i].startswith("Teste-Padrão") and not is_heading(lines[i]):
+            desc.append(lines[i])
+            i += 1
+        while not lines[i].startswith("Teste-Padrão"):
+            i += 1
+        default = lines[i].split(":", 1)[1].strip()
+        if not lines[i + 1].startswith("Grupo de Perícias:") or not lines[i + 2].startswith("Especializações:"):
+            raise ExtractionError(f"perícia {name}: bloco Teste-Padrão/Grupo/Especializações fora do formato")
+        block_group = lines[i + 1].split(":", 1)[1].strip().rstrip(".")
+        specs = [lines[i + 2].split(":", 1)[1]]
+        j = i + 3
+        while j < len(lines) and not is_heading(lines[j]) and not re.match(r'(Teste-Padrão|Grupo de)', lines[j]) \
+                and not specs[-1].rstrip().endswith(".") and len(specs) < 4:
+            specs.append(lines[j])
+            j += 1
+
+        expected_group = dict(GROUPS).get(group, "Nenhum")
+        if block_group not in ("Nenhum", "Não") or group:
+            if block_group != expected_group:
+                raise ExtractionError(f"perícia {name}: grupo no livro {block_group!r}, vocabulário {group!r}")
+        if default not in ("Sim", "Não"):
+            raise ExtractionError(f"perícia {name}: teste-padrão ilegível {default!r}")
+        spec_text = book.prose("\n".join(specs))
+        entry.update({
+            "default": default == "Sim",
+            "specializations": [] if spec_text in ("Nenhum", "N/D") else split_list(spec_text),
+            "desc": book.prose("\n".join(desc)),
+            "page": numbered[start][0],
+        })
+        out.append(entry)
+
+    groups = []
+    for gid, gname in GROUPS:
+        members = [s["id"] for s in out if s["group"] == gid]
+        names = [s["name"] for s in out if s["group"] == gid]
+        if gid != "influence":
+            body = section(p153, f"\n{gname.upper()}\n", [r'^[A-ZÁÉÍÓÚÂÊÔÃÕÇ ]{4,}$'])
+            if body is None:
+                raise ExtractionError(f"grupo {gname}: lista da p. 153 não encontrada")
+            listed = {line.strip() for line in body.split("\n") if line.strip()}
+            if listed != set(names):
+                raise ExtractionError(f"grupo {gname}: p. 153 lista {sorted(listed)}, vocabulário {sorted(names)}")
+        else:
+            # A p. 153 omite Influência; a lista da p. 90 é a única fonte.
+            require(book.page(90), "INFLUÊNCIA", "grupo Influência")
+        groups.append({"id": gid, "name": gname, "skills": members})
+
+    knowledge = build_knowledge(book)
+    return {"skills": out, "groups": groups, **knowledge}
+
+
+def check_p151(p151, sid, name, attribute):
+    heading = fold(ATTRIBUTE_NAMES[attribute]).upper()
+    body = section(fold(p151).upper(), f"\n{heading}\n",
+                   [rf'^{fold(n).upper()}$' for _, n, *_ in ATTRIBUTES if fold(n).upper() != heading]
+                   + [r'^LISTA DE PERICIAS ATIVAS, CONT', r'^OBS\.'])
+    listed = P151_NAMES.get(sid, name)
+    if body is None or fold(listed).upper() not in body:
+        raise ExtractionError(f"perícia {name}: não aparece sob {ATTRIBUTE_NAMES[attribute]} na p. 151")
+
+
+def build_knowledge(book):
+    p88 = book.page(88)
+    p89 = book.prose(book.page(89))
+    categories = []
+    for cid, name, attribute in KNOWLEDGE_CATEGORIES:
+        m = re.search(rf'{name} +{ATTRIBUTE_NAMES[attribute]} (.+?)(?= (?:Acadêmica|Interesses|Profissional|Ruas) '
+                      rf'(?:Lógica|Intuição)|$)', p89)
+        if not m:
+            raise ExtractionError(f"conhecimento {name}: linha da tabela de categorias não encontrada")
+        categories.append({"id": cid, "name": name, "attribute": attribute, "examples": split_list(m.group(1))})
+
+    def bullets(title, stop):
+        body = section(p88, title, [stop])
+        if body is None:
+            raise ExtractionError(f"lista {title!r} não encontrada na p. 88")
+        items = [book.prose(b) for b in re.split(r'^•\s*', body, flags=re.M) if b.strip()]
+        return items
+
+    suggestions = bullets("PERÍCIAS DE CONHECIMENTO COMUNS EM 2075", r'^IDIOMAS COMUNS')
+    languages = bullets("IDIOMAS COMUNS EM 2075", r'\Z')
+
+    lang = book.text(150, 150)
+    m = re.search(r'IDIOMA \(INTUIÇÃO\)\n(.+?)\nTeste-Padrão:\s*Sim\nGrupo de Perícias:\s*Nenhum\n'
+                  r'Especializações:\s*(.+?)\n(?=[A-ZÁÉÍÓÚ ]{4,}\n)', lang, re.S)
+    if not m:
+        raise ExtractionError("perícia Idioma: bloco da p. 150 não encontrado")
+    require(p89, "(nível de Intuição + nível de Lógica) x 2", "pontos de conhecimento")
+    return {
+        "knowledge": {"categories": categories, "suggestions": suggestions, "page": 89},
+        "languages": {"attribute": "int", "native": {"free": 1, "rating": "N"},
+                      "default": True, "specializations": split_list(book.prose(m.group(2))),
+                      "desc": book.prose(m.group(1)), "suggestions": languages, "page": 150},
+    }
+
+
 CATALOGS = {
     "attributes.json": build_attributes,
     "metatypes.json": build_metatypes,
     "priorities.json": build_priorities,
     "awakening.json": build_awakening,
+    "skills.json": build_skills,
 }
 
 EXPECTED_COUNTS = {
@@ -417,6 +679,7 @@ EXPECTED_COUNTS = {
     "metatypes.json": {"metatypes": 5},
     "priorities.json": {"rows": 5},
     "awakening.json": {"awakenings": 5},
+    "skills.json": {"skills": 75, "groups": 15},
 }
 
 

@@ -32,6 +32,19 @@
     "edge": {
       "attribute": "edg",
       "note": "A ficha registra o Trunfo e os pontos de Trunfo disponíveis, que são gastos e recuperados em jogo."
+    },
+    "skills": {
+      "source": "skills.json",
+      "fields": [
+        "skill",
+        "rating",
+        "kind"
+      ],
+      "kinds": [
+        "active",
+        "knowledge",
+        "language"
+      ]
     }
   },
   "creation": {
@@ -78,7 +91,8 @@
         "label": "Compre perícias",
         "page": 88,
         "uses": [
-          "priorities.json#columns"
+          "priorities.json#columns",
+          "skills.json"
         ]
       },
       {
@@ -114,6 +128,7 @@
     "attributes.json",
     "metatypes.json",
     "priorities.json",
-    "awakening.json"
+    "awakening.json",
+    "skills.json"
   ]
 }

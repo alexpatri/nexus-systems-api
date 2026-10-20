@@ -1,0 +1,1540 @@
+{
+  "skills": [
+    {
+      "id": "exotic-ranged-weapon",
+      "name": "Arma a Distância Exótica",
+      "attribute": "agi",
+      "category": "combat",
+      "group": null,
+      "specific": true,
+      "restricted": false,
+      "default": false,
+      "specializations": [],
+      "desc": "Às vezes, uma arma de fogo ou lâmina comum não funcionará e você precisará de algo mais diferente. Ou estranho. Esta perícia deve ser escolhida para cada arma à distância incomum que você quiser usar. Alguns exemplos incluem zarabatanas, pistolas gyrojet, lança-chamas e lasers.",
+      "page": 130
+    },
+    {
+      "id": "exotic-melee-weapon",
+      "name": "Arma Corpo a Corpo Exótica",
+      "attribute": "agi",
+      "category": "combat",
+      "group": null,
+      "specific": true,
+      "restricted": false,
+      "default": false,
+      "specializations": [],
+      "desc": null,
+      "page": 90
+    },
+    {
+      "id": "throwing-weapons",
+      "name": "Armas de Arremesso",
+      "attribute": "agi",
+      "category": "combat",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Aerodinâmicas",
+        "Lâminas",
+        "Não Aerodinâmicas"
+      ],
+      "desc": "Armas de Arremesso é uma perícia de ataque ampla que pode ser usada para qualquer item de mão que é arremessado pelo usuário como uma arma.",
+      "page": 130
+    },
+    {
+      "id": "longarms",
+      "name": "Armas de Cano Longo",
+      "attribute": "agi",
+      "category": "combat",
+      "group": "firearms",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Escopetas",
+        "Fuzis de Precisão",
+        "Tiros de Distância Prolongada",
+        "Tiros de Longa Distância"
+      ],
+      "desc": "A perícia Armas de Cano Longo representa armas de cano comprido, como fuzis de caça e de precisão. Este grupo inclui também armas como escopetas que são projetadas para serem apoiadas no ombro.",
+      "page": 130
+    },
+    {
+      "id": "heavy-weapons",
+      "name": "Armas Pesadas",
+      "attribute": "agi",
+      "category": "combat",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Canhões de Assalto",
+        "Lança-Granadas",
+        "Lança-Foguetes",
+        "Metralhadoras",
+        "Mísseis Guiados"
+      ],
+      "desc": "O termo arma pesada é designado para todas as armas de projéteis maiores do que um fuzil de assalto, como lança-granadas, metralhadoras e canhões de assalto. Esta perícia é exclusiva para armas portáteis e não montadas em veículos. Se você tiver uma arma em um suporte ou em um veículo, use Artilharia.",
+      "page": 131
+    },
+    {
+      "id": "archery",
+      "name": "Arquearia",
+      "attribute": "agi",
+      "category": "combat",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Arco",
+        "Besta",
+        "Funda",
+        "Munição Não Padrão"
+      ],
+      "desc": "Arquearia é usada para disparar armas de projéteis carregadas por cordas. Um arqueiro conhece muitos estilos diferentes de arco e várias flechas que podem ser usadas para um efeito máximo.",
+      "page": 131
+    },
+    {
+      "id": "automatics",
+      "name": "Automáticas",
+      "attribute": "agi",
+      "category": "combat",
+      "group": "firearms",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Ciber-Implante",
+        "Fuzis de Assalto",
+        "Pistolas Automáticas",
+        "Submetralhadoras"
+      ],
+      "desc": "A perícia Automáticas cobre um subconjunto específico de armas de fogo maiores do que pistolas de mão, mas menores do que fuzis. Esta categoria inclui submetralhadoras e outras carabinas totalmente automáticas.",
+      "page": 132
+    },
+    {
+      "id": "clubs",
+      "name": "Bastões",
+      "attribute": "agi",
+      "category": "combat",
+      "group": "close-combat",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Aparar",
+        "Cajados",
+        "Cassetetes",
+        "Martelos",
+        "Porretes"
+      ],
+      "desc": "Bastões regula o uso de todos os instrumentos de esmagamento. Com esta perícia, você pode transformar qualquer item de contusão, seja ele taco de beisebol, muleta ou maça, em uma arma.",
+      "page": 132
+    },
+    {
+      "id": "unarmed-combat",
+      "name": "Combate Desarmado",
+      "attribute": "agi",
+      "category": "combat",
+      "group": "close-combat",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Bloqueio",
+        "Ciber-Implantes",
+        "Combate de Submissão ou Arte Marcial específica"
+      ],
+      "desc": "Combate Desarmado cobre as várias manobras de autodefesa e ataque que usam o corpo como uma arma primária. Esta perícia também regula o arsenal de implantes cibernéticos e os estilos de luta que surgiram ao redor desses implantes.",
+      "page": 132
+    },
+    {
+      "id": "blades",
+      "name": "Lâminas",
+      "attribute": "agi",
+      "category": "combat",
+      "group": "close-combat",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Aparar",
+        "Espadas",
+        "Facas",
+        "Machados"
+      ],
+      "desc": "Hora de fatiar! A perícia Lâminas inclui o uso de armas de corte e penetrantes de mão. Você pode usar uma variedade de armas afiadas, incluindo punhais, espadas e machados.",
+      "page": 132
+    },
+    {
+      "id": "pistols",
+      "name": "Pistolas",
+      "attribute": "agi",
+      "category": "combat",
+      "group": "firearms",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Escamoteáveis",
+        "Revólveres",
+        "Semiautomáticas",
+        "Tasers"
+      ],
+      "desc": "Esta categoria de perícia inclui todos os tipos de pistolas de mão, incluindo tasers, de tiro simples, semiautomáticas e revólveres.",
+      "page": 132
+    },
+    {
+      "id": "escape-artist",
+      "name": "Arte da Fuga",
+      "attribute": "agi",
+      "category": "physical",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Conforme contenção (Algemas, Cordas, Braçadeiras etc.)",
+        "Contorcionismo"
+      ],
+      "desc": "Arte da Fuga mede a habilidade do personagem fugir de contenções usando contorção corporal e destreza manual. Veja Usando Arte da Fuga, p. 135.",
+      "page": 133
+    },
+    {
+      "id": "running",
+      "name": "Corrida",
+      "attribute": "str",
+      "category": "physical",
+      "group": "athletics",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Arrancada",
+        "por terreno (Deserto, Urbano, Vastidão etc.)",
+        "Distância"
+      ],
+      "desc": "Corrida, como você pode imaginar, é sobre a distância que você pode cobrir rapidamente. Para mais informações, veja Usando Corrida, p. 136.",
+      "page": 133
+    },
+    {
+      "id": "disguise",
+      "name": "Disfarce",
+      "attribute": "int",
+      "category": "physical",
+      "group": "stealth",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Camuflagem",
+        "Cosmética",
+        "Teatral",
+        "Trídeo e Vídeo"
+      ],
+      "desc": "O Disfarce abrange formas não-mágicas de mascarar sua identidade, incluindo maquiagem e estética. Veja Usando Disfarce e Personificação, p. 136.",
+      "page": 133
+    },
+    {
+      "id": "palming",
+      "name": "Empalmar",
+      "attribute": "agi",
+      "category": "physical",
+      "group": "stealth",
+      "specific": false,
+      "restricted": false,
+      "default": false,
+      "specializations": [
+        "Bater Carteira",
+        "Espalmar",
+        "Roubar"
+      ],
+      "desc": "Empalmar é truque de mão que dá a um personagem a capacidade de pegar, esconder e passar objetos pequenos.",
+      "page": 133
+    },
+    {
+      "id": "sneaking",
+      "name": "Esgueirar",
+      "attribute": "agi",
+      "category": "physical",
+      "group": "stealth",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Tipo do local (Selva, Urbana, Deserto etc.)"
+      ],
+      "desc": "Precisa chegar até onde não deveria estar? Esta perícia permite que você permaneça imperceptível em várias situações. Veja Usando Perícias de Furtividade, p. 136.",
+      "page": 133
+    },
+    {
+      "id": "gymnastics",
+      "name": "Ginástica",
+      "attribute": "agi",
+      "category": "physical",
+      "group": "athletics",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Dança",
+        "Equilíbrio",
+        "Escalada",
+        "Parkour",
+        "Rolamento",
+        "Saltar"
+      ],
+      "desc": "Ginástica mede o seu equilíbrio, capacidade atlética geral e habilidade de usar o seu corpo. Para mais informações sobre como Ginástica pode ser aplicada no jogo, veja Saltando, p. 134.",
+      "page": 133
+    },
+    {
+      "id": "diving",
+      "name": "Mergulho",
+      "attribute": "bod",
+      "category": "physical",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Conforme aparelho de respiração (Aparelho de Respiração Líquido, Gás Misto, Extração de Oxigênio, SCUBA)",
+        "condição (Ártico, Caverna, Comercial, Militar etc.)",
+        "Hiperventilação Controlada"
+      ],
+      "desc": "Mergulho reúne uma ampla variedade de ações realizadas embaixo d’água. Esta perícia pode ser aplicada ao mergulhar, nadar debaixo d’água, usar equipamentos de mergulho complexos e prender o fôlego.",
+      "page": 133
+    },
+    {
+      "id": "swimming",
+      "name": "Natação",
+      "attribute": "str",
+      "category": "physical",
+      "group": "athletics",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Longa Distância",
+        "Rápida"
+      ],
+      "desc": "Esta perícia determina a habilidade do personagem nadar em vários corpos d’água. O nível de perícia afeta a distância e a velocidade na qual um personagem consegue nadar. Veja Usando Natação, p. 137.",
+      "page": 133
+    },
+    {
+      "id": "perception",
+      "name": "Percepção",
+      "attribute": "int",
+      "category": "physical",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Audição",
+        "Olfato",
+        "Paladar",
+        "Procurar",
+        "Tato",
+        "Visão"
+      ],
+      "desc": "A Percepção refere-se à habilidade de perceber anomalias em situações diárias, o que a torna uma das perícias essenciais que um incursor das sombras precisa. Veja Usando Percepção, p. 135.",
+      "page": 133
+    },
+    {
+      "id": "free-fall",
+      "name": "Queda Livre",
+      "attribute": "bod",
+      "category": "physical",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Amortecer Queda",
+        "Baixa Altitude",
+        "BASE Jumping",
+        "Bungee",
+        "Cabo Estático",
+        "HALO",
+        "Paraquedas",
+        "Rapel",
+        "Traje Planador",
+        "Tirolesa"
+      ],
+      "desc": "Esta perícia cobre o salto de qualquer altura, incluindo saltos da janela do terceiro andar até de um avião em uma grande altitude. Se isso envolver uma tentativa de desacelerar ou controlar sua queda, ela também inclui saltar de paraquedas, voar de traje planador ou descer em um cabo, corda de bungee jumping ou tirolesa.",
+      "page": 133
+    },
+    {
+      "id": "tracking",
+      "name": "Rastrear",
+      "attribute": "int",
+      "category": "physical",
+      "group": "outdoors",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Deserto",
+        "Floresta",
+        "Montanha",
+        "Polar",
+        "Selva",
+        "Urbana",
+        "outro tipo de terreno"
+      ],
+      "desc": "Esta perícia concede a habilidade de detectar a passagem de meta-humanos e outras caças através do terreno e o uso dessas pistas para seguir tal indivíduo. Esta perícia também permite que você identifique trilhas não marcadas e rastros de caças comuns em vários ambientes. Veja Usando Rastrear, p. 137.",
+      "page": 133
+    },
+    {
+      "id": "survival",
+      "name": "Sobrevivência",
+      "attribute": "wil",
+      "category": "physical",
+      "group": "outdoors",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Deserto",
+        "Floresta",
+        "Montanha",
+        "Polar",
+        "Selva",
+        "Urbana ou outro terreno"
+      ],
+      "desc": "Em um deserto, sem nada além de uma caneca de estanho, um poncho e um bastão de ferro? Você precisará desta perícia para ajudá-lo a sair vivo. Sobrevivência é a capacidade de ficar vivo em condições ambientais extremas por longos períodos de tempo. A perícia governa a habilidade do personagem executar tarefas externas vitais como fazer uma fogueira, construir um abrigo, procurar comida e etc. em ambientes hostis. Veja Usando Sobrevivência, p. 136.",
+      "page": 134
+    },
+    {
+      "id": "etiquette",
+      "name": "Etiqueta",
+      "attribute": "cha",
+      "category": "social",
+      "group": "influence",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Por cultura ou subcultura (Alta Sociedade, Corporativa, Mercenária, Mídia, Rua, Yakuza, etc.)"
+      ],
+      "desc": "A Etiqueta representa o nível de entendimento e consciência sobre os rituais sociais adequados. A perícia funciona como uma versão social de Esgueirar, permitindo que você se movimente sem impedimento em várias situações sociais. A Etiqueta também serve como uma rede de proteção social caso o jogador estrague uma situação social da forma que um personagem perito não faria. Veja Usando Etiqueta, p. 141.",
+      "page": 138
+    },
+    {
+      "id": "instruction",
+      "name": "Instrução",
+      "attribute": "cha",
+      "category": "social",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Por categoria de perícia Ativa ou Conhecimento (Combate, Conhecimento Acadêmico, Conhecimento de Rua, Idioma, Magia, etc.)"
+      ],
+      "desc": "A Instrução regula a habilidade de ensinar pessoas. O nível da perícia ajuda a determinar com que conforto o instrutor passa o novo material, além da complexidade da perícia que pode ser ensinada. Veja Usando Instrução, p. 141.",
+      "page": 138
+    },
+    {
+      "id": "intimidation",
+      "name": "Intimidação",
+      "attribute": "cha",
+      "category": "social",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Interrogatório",
+        "Física",
+        "Mental",
+        "Tortura"
+      ],
+      "desc": "Intimidação é sobre a criação da impressão que você é mais ameaçador do que outra pessoa, a fim de levá-la a fazer o que você quiser. Esta perícia pode ser aplicada de várias formas, da negociação ao interrogatório. A Intimidação é um Teste de Oposição de Intimidação + Carisma [Social] contra o Carisma + Vontade do alvo, modificado pelas descrições adequadas na Tabela de Modificadores Sociais (p. 140).",
+      "page": 138
+    },
+    {
+      "id": "leadership",
+      "name": "Liderança",
+      "attribute": "cha",
+      "category": "social",
+      "group": "influence",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Comandar",
+        "Direcionar",
+        "Inspirar",
+        "Reagrupar"
+      ],
+      "desc": "A Liderança é a habilidade de direcionar e motivar os outros. É parecido com Trapaça, exceto que, em vez de enganar, você está usando uma posição de autoridade. Esta perícia é especialmente útil em situações onde a vontade de um colega de equipe estiver abalada ou ao pedir a alguém fazer algo desconfortável. A perícia Liderança não deve ser usada para substituir ou compensar um trabalho de equipe ruim. Ao usar Liderança, faça um Teste de Oposição de Carisma + Liderança. Veja Usando Perícias de Influência Social, à direita, para os modificadores do teste.",
+      "page": 139
+    },
+    {
+      "id": "negotiation",
+      "name": "Negociação",
+      "attribute": "cha",
+      "category": "social",
+      "group": "influence",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Barganha",
+        "Contratos",
+        "Diplomacia"
+      ],
+      "desc": "A Negociação governa a habilidade do personagem aplicar seu carisma, tática e conhecimento da psicologia situacional para conseguir uma melhor posição ao fazer acordos.",
+      "page": 139
+    },
+    {
+      "id": "performance",
+      "name": "Performance",
+      "attribute": "cha",
+      "category": "social",
+      "group": "acting",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Por arte de performance (Apresentação, Atuação, Comédia, Instrumento Musical específico, etc.)"
+      ],
+      "desc": "Esta perícia governa a habilidade de executar uma arte cênica. Performance está para a arte assim com Artesão está para os ofícios. O personagem usa sua perícia para entreter ou até mesmo cativar um público. Veja Usando Performance, p. 141.",
+      "page": 139
+    },
+    {
+      "id": "impersonation",
+      "name": "Personificação",
+      "attribute": "cha",
+      "category": "social",
+      "group": "acting",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Por tipo de meta-humano (Anão, Elfo, Humano, Ork, Troll)"
+      ],
+      "desc": "Personificação é a habilidade de assumir a identidade de outra pessoa, incluindo a voz e os maneirismos físicos. A perícia é limitada pelas habilidades físicas do personagem. Um anão pode conseguir personificar um troll através de um com-link, mas a ilusão é desfeita quando ele estiver face-a-face com seu alvo.",
+      "page": 139
+    },
+    {
+      "id": "con",
+      "name": "Trapaça",
+      "attribute": "cha",
+      "category": "social",
+      "group": "acting",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Engabelar",
+        "Sedução"
+      ],
+      "desc": "A Trapaça governa a capacidade de manipular ou enganar um PdM durante um encontro social. Esta perícia abrange uma série de jogos de confiança, bem como os princípios por trás dessas trapaças.",
+      "page": 139
+    },
+    {
+      "id": "alchemy",
+      "name": "Alquimia",
+      "attribute": "mag",
+      "category": "magical",
+      "group": "enchanting",
+      "specific": false,
+      "restricted": true,
+      "default": false,
+      "specializations": [
+        "Por gatilho (Comando, Contato, Tempo)",
+        "por tipo de feitiço (Feitiços de Combate, de Detecção etc.)"
+      ],
+      "desc": "A Alquimia é usada para criar substâncias que armazenam feitiços. A Alquimia é normalmente usada para criar poções, destilar reagentes mágicos e até mesmo criar oricalco.",
+      "page": 142
+    },
+    {
+      "id": "arcana",
+      "name": "Arcana",
+      "attribute": "log",
+      "category": "magical",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": false,
+      "specializations": [
+        "Criação de Feitiços",
+        "Criação de Focos",
+        "Fórmula Espiritual"
+      ],
+      "desc": "Arcana regula a criação de fórmulas mágicas usadas para criar feitiços, focos e outras formas de manipulações mágicas. A perícia é necessária para entender fórmulas que podem ser compradas livremente ou descobertas de outras formas.",
+      "page": 142
+    },
+    {
+      "id": "artificing",
+      "name": "Artificiaria",
+      "attribute": "mag",
+      "category": "magical",
+      "group": "enchanting",
+      "specific": false,
+      "restricted": true,
+      "default": false,
+      "specializations": [
+        "Análise de Foco",
+        "Criação (por tipo de foco)"
+      ],
+      "desc": "Artificiaria é a perícia usada para criar focos mágicos. A perícia também pode ser usada de forma forense, para sentir as qualidades na criação e propósito de um foco existente. Veja Artificiaria, p. 306.",
+      "page": 142
+    },
+    {
+      "id": "banishing",
+      "name": "Banimento",
+      "attribute": "mag",
+      "category": "magical",
+      "group": "conjuring",
+      "specific": false,
+      "restricted": true,
+      "default": false,
+      "specializations": [
+        "Por tipo de espírito (Espíritos do Ar, Espíritos do Homem etc.)"
+      ],
+      "desc": "O Banimento é usado para interromper a ligação entre os espíritos e o mundo físico. Espíritos banidos são forçados a retornar ao seu plano nativo e não precisam mais concluir os serviços inacabados.",
+      "page": 142
+    },
+    {
+      "id": "astral-combat",
+      "name": "Combate Astral",
+      "attribute": "wil",
+      "category": "magical",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": false,
+      "specializations": [
+        "Por tipo de foco de arma específica",
+        "por oponente (Espíritos, Barreiras de Mana, Magos, etc.)"
+      ],
+      "desc": "A luta no Espaço Astral exige a perícia Combate Astral. O combate no Mundo Astral depende de um conjunto de habilidades e atributos bem diferentes do que nos combates físicos. Veja Combate Astral, p. 314.",
+      "page": 142
+    },
+    {
+      "id": "spellcasting",
+      "name": "Conjuração",
+      "attribute": "mag",
+      "category": "magical",
+      "group": "sorcery",
+      "specific": false,
+      "restricted": true,
+      "default": false,
+      "specializations": [
+        "Conforme tipo de feitiço (Feitiços de Combate, de Detecção etc.)"
+      ],
+      "desc": "A perícia Conjuração permite que o personagem canalize a mana em efeitos conhecidos como feitiços. Veja Conjuração, p. 281.",
+      "page": 142
+    },
+    {
+      "id": "ritual-spellcasting",
+      "name": "Conjuração Ritual",
+      "attribute": "mag",
+      "category": "magical",
+      "group": "sorcery",
+      "specific": false,
+      "restricted": true,
+      "default": false,
+      "specializations": [
+        "Por palavra-chave (Ancorado, Feitiço etc.)"
+      ],
+      "desc": "A Conjuração Ritual é a perícia de conjuração usada para fazer feitiços de ritual. Veja Conjuração Ritual, p. 295.",
+      "page": 142
+    },
+    {
+      "id": "counterspelling",
+      "name": "Contramágica",
+      "attribute": "mag",
+      "category": "magical",
+      "group": "sorcery",
+      "specific": false,
+      "restricted": true,
+      "default": false,
+      "specializations": [
+        "Conforme tipo de feitiço (Feitiços de Combate, de Detecção etc.)"
+      ],
+      "desc": "A Contramágica é uma perícia defensiva usada para defender-se de ataques mágicos e dissipar feitiços mágicos sustentados. Veja Contramágica, p. 294",
+      "page": 142
+    },
+    {
+      "id": "disenchanting",
+      "name": "Desencantação",
+      "attribute": "mag",
+      "category": "magical",
+      "group": "enchanting",
+      "specific": false,
+      "restricted": true,
+      "default": false,
+      "specializations": [
+        "Por tipo (Focos de Poder, Preparativos Alquímicos, etc.)"
+      ],
+      "desc": "Esta perícia governa a habilidade de um personagem remover um encantamento de um item. Veja Desencantação, p. 307.",
+      "page": 142
+    },
+    {
+      "id": "summoning",
+      "name": "Invocação",
+      "attribute": "mag",
+      "category": "magical",
+      "group": "conjuring",
+      "specific": false,
+      "restricted": true,
+      "default": false,
+      "specializations": [
+        "Por tipo de espírito (Espíritos do Homem, Espíritos da Terra, etc.)"
+      ],
+      "desc": "Esta perícia é usada para invocar espíritos. Veja Invocação, p. 299.",
+      "page": 143
+    },
+    {
+      "id": "assensing",
+      "name": "Sentido Astral",
+      "attribute": "int",
+      "category": "magical",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": false,
+      "specializations": [
+        "Leitura de Aura",
+        "Assinaturas Astrais",
+        "por tipo de aura (Espíritos, Focos, Meta-humanos, Proteções etc.)"
+      ],
+      "desc": "Sentido Astral é a habilidade do usuário de magia ler e interpretar as flutuações no mundo astral. Esta perícia permite que os praticantes aprendam informações ao ler as auras astrais. Apenas personagens capazes de usar a percepção astral podem pegar esta perícia. Para mais informações, veja Percepção Astral, p. 312.",
+      "page": 143
+    },
+    {
+      "id": "binding",
+      "name": "Vinculação",
+      "attribute": "mag",
+      "category": "magical",
+      "group": "conjuring",
+      "specific": false,
+      "restricted": true,
+      "default": false,
+      "specializations": [
+        "Por tipo de espírito (Espíritos do Fogo, Espíritos da Terra etc.)"
+      ],
+      "desc": "Vinculação é usado para compelir um espírito invocado para executar uma quantidade de serviços adicionais. Veja Vinculação, p. 300.",
+      "page": 143
+    },
+    {
+      "id": "compiling",
+      "name": "Compilar",
+      "attribute": "res",
+      "category": "resonance",
+      "group": "tasking",
+      "specific": false,
+      "restricted": true,
+      "default": false,
+      "specializations": [
+        "Por tipo de sprite (Sprites de Dados, Sprites de Máquinas etc.)"
+      ],
+      "desc": "Compilar envolve a habilidade de traduzir os 0s e 1s complexos da linguagem fonte da máquina e os ritmos da ressonância em sprites. Veja Sprites, p. 254.",
+      "page": 143
+    },
+    {
+      "id": "decompiling",
+      "name": "Descompilar",
+      "attribute": "res",
+      "category": "resonance",
+      "group": "tasking",
+      "specific": false,
+      "restricted": true,
+      "default": false,
+      "specializations": [
+        "Por tipo de sprite (Sprites de Defeito, Sprites Mensageiros, etc.)"
+      ],
+      "desc": "Descompilar é a habilidade do personagem efetivamente apagar sprites compilados anteriormente. Veja Sprites, p. 254.",
+      "page": 143
+    },
+    {
+      "id": "registering",
+      "name": "Registrar",
+      "attribute": "res",
+      "category": "resonance",
+      "group": "tasking",
+      "specific": false,
+      "restricted": true,
+      "default": false,
+      "specializations": [
+        "Por tipo de sprite (Sprites de Dados, Sprites Excelentes, etc.)"
+      ],
+      "desc": "Esta perícia permite que um tecnomante registre sprites na Matriz, convencendo as grades que eles são legítimos. Veja Sprites, p. 254.",
+      "page": 143
+    },
+    {
+      "id": "animal-handling",
+      "name": "Adestrar Animais",
+      "attribute": "cha",
+      "category": "technical",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Por animal (Cão do Inferno, Cavalo, Felino, Golfinho, Pássaro, etc.)",
+        "Montaria",
+        "Rebanho",
+        "Treinamento"
+      ],
+      "desc": "Esta perícia regula o treinamento, cuidado, montaria (se forem grandes suficientes) e controle de animais não conscientes. Treinadores competentes têm a habilidade de adestrar vários animais. É até mesmo possível se aproximar de um animal destreinado e fazê-lo confiar em você, ou pelo menos não devorá-lo.",
+      "page": 143
+    },
+    {
+      "id": "armorer",
+      "name": "Armeiro",
+      "attribute": "log",
+      "category": "technical",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Acessórios de Arma",
+        "Armadura",
+        "Armas Corpo a Corpo",
+        "Armas de Fogo",
+        "Armas Pesadas",
+        "Artilharia",
+        "Explosivos"
+      ],
+      "desc": "Armeiro engloba a ampla variedade de perícias necessárias para construir e manter armas e armaduras. Assim como nas perícias baseadas em mecânica, as ferramentas e equipamentos adequados são necessários para operações de reparos ou construção. Para os limiares e informações sobre a determinação de resultados do sucesso, veja Construir e Consertar, p. 145.",
+      "page": 143
+    },
+    {
+      "id": "artisan",
+      "name": "Artesão",
+      "attribute": "int",
+      "category": "technical",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": false,
+      "specializations": [
+        "Por disciplina (Carpintaria, Cozinha, Desenho, Escultura, etc.)"
+      ],
+      "desc": "Esta perícia inclui várias formas diferentes de impressão artística, assim como a manufatura de objetos delicados que, de outra forma, seriam produzidos em uma linha de montagem. Os principais artistas e criadores do mundo são considerados artesãos.",
+      "page": 143
+    },
+    {
+      "id": "biotechnology",
+      "name": "Bioengenharia",
+      "attribute": "log",
+      "category": "technical",
+      "group": "biotech",
+      "specific": false,
+      "restricted": false,
+      "default": false,
+      "specializations": [
+        "Bioinformática",
+        "Biônicos",
+        "Clonagem",
+        "Manutenção de Tanque",
+        "Terapia Genética"
+      ],
+      "desc": "Bioengenharia é uma perícia ampla, usada principalmente por médicos e cientistas para cultivar partes orgânicas do corpo. A perícia é a base para a clonagem, assim como outras formas de biônicos. Desde que os equipamentos certos estejam disponíveis, a Bioengenharia pode ser usada para consertar biônicos danificados, clonar novos tecidos ou detectar biônicos no corpo de um alvo. Esta perícia não permite que personagens instalem ou removam biônicos.",
+      "page": 143
+    },
+    {
+      "id": "locksmith",
+      "name": "Chaveiro",
+      "attribute": "agi",
+      "category": "technical",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": false,
+      "specializations": [
+        "Por tipo (Combinação, Fecho, Reconhecimento de Voz, Teclado, Trava Magnética, etc.)"
+      ],
+      "desc": "Esta perícia cobre a construção, conserto e abertura de travas mecânicas e eletrônicas. Embora sejam amplamente tratadas como antiguidades, os mecanismos de travamento mecânicos ainda são usados ao redor do mundo, geralmente como lembranças ou reservas. Travas eletrônicas são bem mais comuns e bem suscetíveis aos seus atos. Veja Portas, Janelas e Fechaduras, p. 359.",
+      "page": 144
+    },
+    {
+      "id": "cybercombat",
+      "name": "Cibercombate",
+      "attribute": "log",
+      "category": "technical",
+      "group": "cracking",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Por tipo de alvo (Dispositivos, GELO, Grades, Personas, Sprites etc.)"
+      ],
+      "desc": "O Cibercombate é a perícia usada por hackers para entrar em combate na Matriz. Veja Usando Cibercombate, p. 226.",
+      "page": 144
+    },
+    {
+      "id": "cybertechnology",
+      "name": "Cibertecnologia",
+      "attribute": "log",
+      "category": "technical",
+      "group": "biotech",
+      "specific": false,
+      "restricted": false,
+      "default": false,
+      "specializations": [
+        "Cefalotrônicos",
+        "Cibermembros",
+        "Conserto",
+        "Corpotrônicos"
+      ],
+      "desc": "Cibertecnologia é a habilidade de criar, manter e consertar peças cibernéticas. Um personagem com as ferramentas e peças adequadas pode consertar ou até mesmo construir novas partes cibernéticas. A Cibertecnologia não é uma perícia cirúrgica. Os personagens não podem anexar ou reanexar os cibernéticos a material orgânico com esta perícia. Esta perícia pode ser usada para modificar ou atualizar itens cibernéticos dentro de cibermembros. Veja Construir e Consertar, p. 145.",
+      "page": 144
+    },
+    {
+      "id": "computer",
+      "name": "Computador",
+      "attribute": "log",
+      "category": "technical",
+      "group": "electronics",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Por ação (Busca na Matriz, Editar Arquivo, Percepção da Matriz, etc.)"
+      ],
+      "desc": "Computador é a perícia básica para interagir com a Matriz. Ela representa a habilidade de usar computadores e outros dispositivos conectados à Matriz. A perícia Computador concentra-se em entender vários sistemas operacionais. Ela não permite que o personagem explore o código (Hackear) ou desmonte mainframes (Hardware). Veja Usando Computador, p. 226.",
+      "page": 144
+    },
+    {
+      "id": "demolitions",
+      "name": "Demolições",
+      "attribute": "log",
+      "category": "technical",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Desativar",
+        "Explosivos Comerciais",
+        "Explosivos Improvisados",
+        "Explosivos Plásticos"
+      ],
+      "desc": "Demolições é usada para preparar, plantar, detonar e, geralmente, desativar explosivos de base química. Veja Explosivos, p. 435.",
+      "page": 144
+    },
+    {
+      "id": "forgery",
+      "name": "Falsificação",
+      "attribute": "log",
+      "category": "technical",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Cópia",
+        "Falsificar Credstick",
+        "Falsificar Documentos",
+        "ID Falsa",
+        "Tratamento de Imagens"
+      ],
+      "desc": "Falsificação é usada para produzir itens falsos ou alterar itens existentes para um fim específico. Dependendo do tipo de falsificação, o falsificador pode precisar de ferramentas ou esquemas específicos para completar a tarefa. Veja Usando Falsificação, p. 146.",
+      "page": 144
+    },
+    {
+      "id": "electronic-warfare",
+      "name": "Guerra Eletrônica",
+      "attribute": "log",
+      "category": "technical",
+      "group": "cracking",
+      "specific": false,
+      "restricted": false,
+      "default": false,
+      "specializations": [
+        "Comunicações",
+        "Encriptação",
+        "Interferência",
+        "Operações de Sensores"
+      ],
+      "desc": "A Guerra Eletrônica é a base da inteligência militar de sinais. Ela governa a encriptação, disrupção, engano e decriptação de sistemas de comunicação. Desde que o usuário tenha os equipamentos adequados, a perícia pode ser usada para manipular ou até mesmo assumir o sinal do sistema de comunicação de qualquer item. Veja Usando Guerra Eletrônica, p. 226.",
+      "page": 144
+    },
+    {
+      "id": "hacking",
+      "name": "Hackear",
+      "attribute": "log",
+      "category": "technical",
+      "group": "cracking",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Arquivos",
+        "Centrais",
+        "Dispositivos",
+        "Personas"
+      ],
+      "desc": "Hackear é usada para descobrir e explorar falhas de segurança em computadores e outros eletrônicos. Para mais sobre como Hackear é usada, veja Usando Hackear, p. 226.",
+      "page": 144
+    },
+    {
+      "id": "hardware",
+      "name": "Hardware",
+      "attribute": "log",
+      "category": "technical",
+      "group": "electronics",
+      "specific": false,
+      "restricted": false,
+      "default": false,
+      "specializations": [
+        "Por tipo de hardware (Armas Inteligentes, Ciberdecks, Com-links, etc.)"
+      ],
+      "desc": "Hardware reflete a habilidade de um personagem construir e consertar dispositivos eletrônicos. Uma oficina, materiais adequados e tempo suficiente para a construção são necessários para consertar ou construir um dispositivo novo. Veja Construir e Consertar, à direita.",
+      "page": 144
+    },
+    {
+      "id": "aeronautics-mechanic",
+      "name": "Mecânica Aeronáutica",
+      "attribute": "log",
+      "category": "technical",
+      "group": "engineering",
+      "specific": false,
+      "restricted": false,
+      "default": false,
+      "specializations": [
+        "Aeroespacial",
+        "Asa Fixa",
+        "Asa Inclinada",
+        "Asa Rotativa",
+        "Empuxo Vetorial",
+        "LTA (dirigível)"
+      ],
+      "desc": "Os mecânicos de aeronáutica têm a habilidade de consertar vários veículos aeroespaciais, desde que as ferramentas e peças certas estejam disponíveis. Veja Construir e Consertar, à direita.",
+      "page": 144
+    },
+    {
+      "id": "automotive-mechanic",
+      "name": "Mecânica Automotiva",
+      "attribute": "log",
+      "category": "technical",
+      "group": "engineering",
+      "specific": false,
+      "restricted": false,
+      "default": false,
+      "specializations": [
+        "Andarilho",
+        "De Rodas",
+        "Hovercraft",
+        "Sobre Esteira"
+      ],
+      "desc": "Mecânicos de automóveis têm a tarefa de consertar todos os tipos de veículos terrestres, desde automóveis comerciais até drones de rodas e tanques. Os consertos exigem as ferramentas adequadas e tempo. Veja Construir e Consertar, à direita.",
+      "page": 145
+    },
+    {
+      "id": "industrial-mechanic",
+      "name": "Mecânica Industrial",
+      "attribute": "log",
+      "category": "technical",
+      "group": "engineering",
+      "specific": false,
+      "restricted": false,
+      "default": false,
+      "specializations": [
+        "Ar Condicionado",
+        "Estrutural",
+        "Hidráulica",
+        "Robótica Industrial",
+        "Sistemas de Energia Elétrica",
+        "Soldagem"
+      ],
+      "desc": "Um mecânico industrial tem a missão de consertar ou modificar máquinas de grande escala, como equipamentos de linha de montagem, geradores de energia, unidades de ar condicionado, robôs industriais etc. Veja Construir e Consertar, à direita.",
+      "page": 145
+    },
+    {
+      "id": "nautical-mechanic",
+      "name": "Mecânica Náutica",
+      "attribute": "log",
+      "category": "technical",
+      "group": "engineering",
+      "specific": false,
+      "restricted": false,
+      "default": false,
+      "specializations": [
+        "Barco a Motor",
+        "Navio",
+        "Submarino",
+        "Veleiro"
+      ],
+      "desc": "A Mecânica Náutica lida com a manutenção e conserto de navios. Esta perícia só é eficaz se os equipamentos necessários e o tempo estiverem disponíveis. Veja Construir e Consertar, à direita.",
+      "page": 145
+    },
+    {
+      "id": "medicine",
+      "name": "Medicina",
+      "attribute": "log",
+      "category": "technical",
+      "group": "biotech",
+      "specific": false,
+      "restricted": false,
+      "default": false,
+      "specializations": [
+        "Cirurgia Cosmética",
+        "Tratamento Prolongado",
+        "Cirurgia de Implante",
+        "Saúde Mágica",
+        "Cultivo de Órgãos",
+        "Cirurgia de Trauma"
+      ],
+      "desc": "A Medicina é usada para realizar procedimentos médicos avançados, como cirurgias. Ela inclui o suporte médico de longo prazo para doenças e enfermidades e pode ser usada para diagnosticar a condição médica de um personagem. Esta perícia é usada para implantar ou remover cibernéticos e biônicos, mas não pode ser usada para consertar ou fazer a manutenção de dispositivos implantados. Para mais informações, veja Cura, p. 205.",
+      "page": 145
+    },
+    {
+      "id": "navigation",
+      "name": "Navegação",
+      "attribute": "int",
+      "category": "technical",
+      "group": "outdoors",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Bússola",
+        "Celestial",
+        "Mapas",
+        "Marcadores de Realidade Aumentada"
+      ],
+      "desc": "A Navegação controla o uso da tecnologia e do instinto natural para navegar em um território. Esta perícia permite aos personagens ler mapas, usar GPS, seguir pontos de navegação de RA ou seguir um curso através dos pontos de referência e o sentido geral de direção. A Navegação é aplicada a ambientes melhorados ou não com RA.",
+      "page": 145
+    },
+    {
+      "id": "first-aid",
+      "name": "Primeiros Socorros",
+      "attribute": "log",
+      "category": "technical",
+      "group": "biotech",
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Por tratamento (Ferimentos de Balas, Fraturas, Queimaduras, Ressuscitação, etc.)"
+      ],
+      "desc": "Primeiros Socorros é a habilidade de prestar atendimento médico de emergência, similar a um paramédico. Esta perícia pode ser usada para estabilizar feridas e evitar que personagens morram. Primeiros Socorros não pode ser usada para realizar cirurgias ou consertar implantes danificados. Para mais informações, veja Cura, p. 205.",
+      "page": 145
+    },
+    {
+      "id": "chemistry",
+      "name": "Química",
+      "attribute": "log",
+      "category": "technical",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": false,
+      "specializations": [
+        "Analítica",
+        "Bioquímica",
+        "Física",
+        "Inorgânica",
+        "Orgânica"
+      ],
+      "desc": "A Química permite que o personagem crie reações químicas e desenvolva compostos, desde drogas até perfumes e polímeros, como a NovaPele. Química também pode ser usada para analisar compostos químicos para determinar o que são.",
+      "page": 145
+    },
+    {
+      "id": "software",
+      "name": "Software",
+      "attribute": "log",
+      "category": "technical",
+      "group": "electronics",
+      "specific": false,
+      "restricted": false,
+      "default": false,
+      "specializations": [
+        "Bombas de Dados ou por forma complexa (Editor, Ferrão de Ressonância, Difamador etc.)"
+      ],
+      "desc": "Software é a perícia usada para criar e manipular a programação na Matriz. Veja Usando Software, p. 226. Também é o que os Tecnomantes usam quando criam suas formas complexas (Engendrando, p. 251).",
+      "page": 145
+    },
+    {
+      "id": "gunnery",
+      "name": "Artilharia",
+      "attribute": "agi",
+      "category": "vehicle",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Balístico",
+        "Canhão",
+        "Energia",
+        "Foguete",
+        "Míssil Guiado"
+      ],
+      "desc": "A Artilharia é usada ao disparar uma arma montada em um veículo, independentemente de como ou onde a arma está montada. Esta perícia se estende a armas manuais ou melhoradas por sensores.",
+      "page": 146
+    },
+    {
+      "id": "pilot-aircraft",
+      "name": "Pilotar Aeronaves",
+      "attribute": "rea",
+      "category": "vehicle",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": false,
+      "specializations": [
+        "Asa Fixa",
+        "Asa Inclinada",
+        "Asa Rotativa",
+        "Empuxo Vetorial",
+        "Dirigível",
+        "Operação Remota"
+      ],
+      "desc": "Esta perícia é usada para pilotar qualquer aeronave tripulada ou não, operando somente dentro da atmosfera planetária.",
+      "page": 146
+    },
+    {
+      "id": "pilot-walker",
+      "name": "Pilotar Andarilhos",
+      "attribute": "rea",
+      "category": "vehicle",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": false,
+      "specializations": [
+        "Bípede",
+        "Multípede",
+        "Quadrúpede",
+        "Remoto"
+      ],
+      "desc": "Qualquer veículo que ande em duas ou mais pernas é pilotado com esta perícia. Os personagens podem controlar o andarilho física ou remotamente.",
+      "page": 147
+    },
+    {
+      "id": "pilot-watercraft",
+      "name": "Pilotar Embarcações",
+      "attribute": "rea",
+      "category": "vehicle",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "Aerobarco",
+        "Barco a Motor",
+        "Navio",
+        "Operação Remota",
+        "Submarino",
+        "Veleiro"
+      ],
+      "desc": "Esta perícia é usada para pilotar qualquer veículo aquático, seja de dentro dele ou por controle remoto.",
+      "page": 147
+    },
+    {
+      "id": "pilot-aerospace",
+      "name": "Pilotar Espaçonaves",
+      "attribute": "rea",
+      "category": "vehicle",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": false,
+      "specializations": [
+        "Espaço Sideral",
+        "Nave de Lançamento",
+        "Operação Remota",
+        "Semibalística",
+        "Sub-orbital"
+      ],
+      "desc": "Espaçonaves incluem todas as aeronaves de gravidade reduzida ou zero capazes de voo sub-orbital ou extraorbital.",
+      "page": 147
+    },
+    {
+      "id": "pilot-exotic-vehicle",
+      "name": "Pilotar Veículos Exóticos",
+      "attribute": "rea",
+      "category": "vehicle",
+      "group": null,
+      "specific": true,
+      "restricted": false,
+      "default": false,
+      "specializations": [],
+      "desc": "Os personagens devem escolher esta perícia uma vez para cada veículo exótico específico. Os personagens podem controlar o veículo remotamente com esta perícia, quando possível.",
+      "page": 147
+    },
+    {
+      "id": "pilot-ground-craft",
+      "name": "Pilotar Veículos Terrestres",
+      "attribute": "rea",
+      "category": "vehicle",
+      "group": null,
+      "specific": false,
+      "restricted": false,
+      "default": true,
+      "specializations": [
+        "De Rodas",
+        "Hovercraft",
+        "Moto",
+        "Operação Remota",
+        "Sobre Esteira"
+      ],
+      "desc": "Esta perícia é usada para pilotar qualquer veículo terrestre, excluindo veículos com pernas. Esta perícia é usada estando o piloto no veículo ou o controlando através de controle remoto.",
+      "page": 147
+    }
+  ],
+  "groups": [
+    {
+      "id": "acting",
+      "name": "Atuação",
+      "skills": [
+        "performance",
+        "impersonation",
+        "con"
+      ]
+    },
+    {
+      "id": "athletics",
+      "name": "Atletismo",
+      "skills": [
+        "running",
+        "gymnastics",
+        "swimming"
+      ]
+    },
+    {
+      "id": "biotech",
+      "name": "Biotecnologia",
+      "skills": [
+        "biotechnology",
+        "cybertechnology",
+        "medicine",
+        "first-aid"
+      ]
+    },
+    {
+      "id": "close-combat",
+      "name": "Combate Corpo a Corpo",
+      "skills": [
+        "clubs",
+        "unarmed-combat",
+        "blades"
+      ]
+    },
+    {
+      "id": "conjuring",
+      "name": "Convocação",
+      "skills": [
+        "banishing",
+        "summoning",
+        "binding"
+      ]
+    },
+    {
+      "id": "cracking",
+      "name": "Quebra de Dados",
+      "skills": [
+        "cybercombat",
+        "electronic-warfare",
+        "hacking"
+      ]
+    },
+    {
+      "id": "electronics",
+      "name": "Eletrônica",
+      "skills": [
+        "computer",
+        "hardware",
+        "software"
+      ]
+    },
+    {
+      "id": "enchanting",
+      "name": "Encantação",
+      "skills": [
+        "alchemy",
+        "artificing",
+        "disenchanting"
+      ]
+    },
+    {
+      "id": "engineering",
+      "name": "Engenharia",
+      "skills": [
+        "aeronautics-mechanic",
+        "automotive-mechanic",
+        "industrial-mechanic",
+        "nautical-mechanic"
+      ]
+    },
+    {
+      "id": "firearms",
+      "name": "Armas de Fogo",
+      "skills": [
+        "longarms",
+        "automatics",
+        "pistols"
+      ]
+    },
+    {
+      "id": "influence",
+      "name": "Influência",
+      "skills": [
+        "etiquette",
+        "leadership",
+        "negotiation"
+      ]
+    },
+    {
+      "id": "outdoors",
+      "name": "Ar Livre",
+      "skills": [
+        "tracking",
+        "survival",
+        "navigation"
+      ]
+    },
+    {
+      "id": "sorcery",
+      "name": "Feitiçaria",
+      "skills": [
+        "spellcasting",
+        "ritual-spellcasting",
+        "counterspelling"
+      ]
+    },
+    {
+      "id": "stealth",
+      "name": "Furtividade",
+      "skills": [
+        "disguise",
+        "palming",
+        "sneaking"
+      ]
+    },
+    {
+      "id": "tasking",
+      "name": "Tarefa",
+      "skills": [
+        "compiling",
+        "decompiling",
+        "registering"
+      ]
+    }
+  ],
+  "knowledge": {
+    "categories": [
+      {
+        "id": "academic",
+        "name": "Acadêmica",
+        "attribute": "log",
+        "examples": [
+          "Biologia",
+          "Medicina",
+          "Teoria Mágica",
+          "Política",
+          "Filosofia",
+          "Literatura",
+          "História",
+          "Música",
+          "Parabotânica",
+          "Parazoologia"
+        ]
+      },
+      {
+        "id": "interests",
+        "name": "Interesses",
+        "attribute": "int",
+        "examples": [
+          "Filmes atuais de Sensorama",
+          "programas populares de trídeo",
+          "Trívia do Século XX",
+          "Vinho Élfico",
+          "Briga Urbana",
+          "Motos de Combate",
+          "Música pop"
+        ]
+      },
+      {
+        "id": "professional",
+        "name": "Profissional",
+        "attribute": "log",
+        "examples": [
+          "Jornalismo",
+          "Negócios",
+          "Direito",
+          "Serviço Militar"
+        ]
+      },
+      {
+        "id": "street",
+        "name": "Ruas",
+        "attribute": "int",
+        "examples": [
+          "Identificação de Gangues",
+          "Organizações Criminosas",
+          "Rotas de Contrabando",
+          "Receptadores"
+        ]
+      }
+    ],
+    "suggestions": [
+      "Oleodutos do Mercado Negro",
+      "Contrabandistas",
+      "Redutos de Incursores",
+      "Srs. Johnsons",
+      "Segurança Corporativa",
+      "Atravessadores",
+      "Fusores",
+      "Crime Organizado",
+      "Conhecimento [de Cidade]",
+      "Identificação de Gangues de Rua",
+      "Política Corporativa",
+      "Política Nacional",
+      "Teoria Mágica",
+      "Ameaças Mágicas",
+      "Química",
+      "Grupos Mágicos",
+      "Dragões",
+      "Parazoologia",
+      "Vícios",
+      "Sobrevivência na Vastidão"
+    ],
+    "page": 89
+  },
+  "languages": {
+    "attribute": "int",
+    "native": {
+      "free": 1,
+      "rating": "N"
+    },
+    "default": true,
+    "specializations": [
+      "Falar",
+      "Ler/Escrever",
+      "por dialeto",
+      "por lingo"
+    ],
+    "desc": "Idioma é a habilidade de conversar em um idioma específico através de formas escritas e verbais. Personagens que falam vários idiomas devem comprar uma perícia de idioma separada para cada idioma.",
+    "suggestions": [
+      "Sperethiel (idioma élfico)",
+      "Or’zet (idioma ork)",
+      "Inglês",
+      "Japonês",
+      "Mandarim",
+      "Russo",
+      "Francês",
+      "Italiano",
+      "Alemão",
+      "Espanhol Aztlanês",
+      "Espanhol",
+      "Lakota",
+      "Dakota",
+      "Diné (Navajo)"
+    ],
+    "page": 150
+  }
+}
