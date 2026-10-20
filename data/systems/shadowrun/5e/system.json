@@ -33,6 +33,14 @@
       "attribute": "edg",
       "note": "A ficha registra o Trunfo e os pontos de Trunfo disponíveis, que são gastos e recuperados em jogo."
     },
+    "qualities": {
+      "source": "qualities.json",
+      "fields": [
+        "quality",
+        "notes",
+        "kind"
+      ]
+    },
     "skills": {
       "source": "skills.json",
       "fields": [
@@ -83,7 +91,10 @@
         "order": 4,
         "id": "qualities",
         "label": "Compre qualidades",
-        "page": 71
+        "page": 71,
+        "uses": [
+          "qualities.json"
+        ]
       },
       {
         "order": 5,
@@ -129,6 +140,7 @@
     "metatypes.json",
     "priorities.json",
     "awakening.json",
-    "skills.json"
+    "skills.json",
+    "qualities.json"
   ]
 }
