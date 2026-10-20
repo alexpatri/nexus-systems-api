@@ -276,6 +276,7 @@ SR_TARGETS = {
     'reputation.notoriety', 'essence.cyberwareLoss', 'lifestyle.cost', 'language.native',
     'matrix.biofeedbackFilter', 'progression.trainingTime', 'reach', 'armor',
     'attr', 'initiative.dice', 'skill.rating', 'weapon.accuracy', 'weapon.damage',
+    'matrix.attack', 'matrix.sleaze', 'matrix.dataProcessing', 'matrix.firewall',
 }
 # O que cada alvo seleciona com "of".
 SR_SELECTS = {'attr': 'attribute', 'attr.max': 'attribute', 'skill.max': 'skill', 'skill.rating': 'skill',
@@ -667,6 +668,23 @@ def check_shadowrun(d, sysj, E, W):
             E("exemplo Beto: Melhorias de Reação 2 deveriam custar 26.000¥")
         if next(v for v in A['bone-lacing']['variants'] if v['id'] == 'plastic')['cost'] != 8000:
             E("exemplo Beto: revestimento ósseo de plástico deveria custar 8.000¥")
+
+    matrix = load(d, 'matrix.json')
+    if matrix:
+        for kind in ('commlinks', 'cyberdecks', 'commlinkOptions', 'programs'):
+            if len({x['id'] for x in matrix[kind]}) != len(matrix[kind]): E(f"matrix.json: ids duplicados em {kind}")
+            for x in matrix[kind]:
+                where = f"{kind} {x['id']}"
+                sr_check_availability(x['availability'], where, E, mech['legality'])
+                sr_check_cost(x['cost'], where, E)
+        for c in matrix['commlinks'] + matrix['cyberdecks']:
+            if not 1 <= c['deviceRating'] <= 7: E(f"dispositivo {c['id']}: Nível de Dispositivo fora de 1–7")
+        for c in matrix['cyberdecks']:
+            if len(c['attributeArray']) != 4 or sorted(c['attributeArray'], reverse=True) != c['attributeArray']:
+                E(f"ciberdeck {c['id']}: faixa de atributos deve ter 4 valores em ordem decrescente")
+        for p in matrix['programs']:
+            if p['category'] not in ('common', 'hacking'): E(f"programa {p['id']}: categoria inválida")
+            for i, m in enumerate(p.get('modifiers', [])): sr_check_modifier(m, f"programa {p['id']}[{i}]", E, skill_ids)
 
     for l in lifestyles['identities']:
         if l['availability']['legality'] not in mech['legality']:

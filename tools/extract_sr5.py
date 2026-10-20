@@ -908,6 +908,29 @@ AUGMENTATION_DESC = {
 }
 
 
+PROGRAMS = [
+    ("common", "toolbox", "Caixa de Ferramentas"), ("common", "configurator", "Configurador"),
+    ("common", "edit", "Edição"), ("common", "encryption", "Encriptação"), ("common", "signal-scrub", "Limpeza de Sinal"),
+    ("common", "virtual-machine", "Máquina Virtual"), ("common", "browse", "Navegador"),
+    ("hacking", "armor", "Armadura"), ("hacking", "baby-monitor", "Babá Eletrônica"),
+    ("hacking", "biofeedback", "Biorretroalimentação"), ("hacking", "blackout", "Blecaute"),
+    ("hacking", "lockdown", "Confinamento"), ("hacking", "decryption", "Decriptação"),
+    ("hacking", "demolition", "Demolição"), ("hacking", "defuse", "Desarme"), ("hacking", "sneak", "Despistador"),
+    ("hacking", "fork", "Divisão"), ("hacking", "wrapper", "Empacotador"),
+    ("hacking", "biofeedback-filter", "Filtro de Biorretroalimentação"), ("hacking", "stealth", "Furtividade"),
+    ("hacking", "guard", "Guarda"), ("hacking", "exploit", "Intrusão"), ("hacking", "shell", "Isolação"),
+    ("hacking", "hammer", "Martelo"), ("hacking", "track", "Rastreador"), ("hacking", "mugger", "Salteador"),
+]
+# Bônus fixos a atributos da Matriz enquanto o programa roda; os demais
+# efeitos são situacionais e ficam na descrição.
+PROGRAM_MODIFIERS = {
+    "toolbox": [{"target": "matrix.dataProcessing", "add": 1}],
+    "encryption": [{"target": "matrix.firewall", "add": 1}],
+    "decryption": [{"target": "matrix.attack", "add": 1}],
+    "stealth": [{"target": "matrix.sleaze", "add": 1}],
+}
+
+
 # Qualidades cuja compra exige escolher um item de outro catálogo.
 QUALITY_CHOICES = {"spirit-affinity": "traditions.json#spiritTypes",
                    "mentor-spirit": "mentors.json#mentors"}
@@ -2344,7 +2367,7 @@ def gear_lines(book, first, last):
 def read_table(lines, title, row, used, labels=(), subrow=None):
     """Lê as linhas de uma tabela a partir do título (com as colunas) e marca as linhas usadas.
 
-    row é a regex de uma linha; labels são linhas de grupo (sem valores) que
+    row é a regex de uma linha (ou uma lista delas, tentadas em ordem); labels são linhas de grupo (sem valores) que
     podem aparecer no meio da tabela e ficam junto das linhas seguintes;
     subrow é a regex de uma linha que complementa a anterior (variante ou
     acessório embutido), devolvida na lista da linha-mãe.
@@ -2362,7 +2385,7 @@ def read_table(lines, title, row, used, labels=(), subrow=None):
             text = f"{text} {lines[i + 1][1].strip()}"
             used.add(i)
             i += 1
-        m = row.match(text)
+        m = next(filter(None, (x.match(text) for x in (row if isinstance(row, (list, tuple)) else [row]))), None)
         sub = subrow.match(text) if subrow and rows else None
         if m:
             rows.append((group, m, lines[i][0], []))
@@ -2885,6 +2908,119 @@ def build_augmentations(book):
     }
 
 
+COMMLINK_ROW = re.compile(r'^(?P<name>.+?) (?P<dr>\d+) (?P<avail>\d+[RP]?) (?P<cost>[\d.]+¥)$')
+SIM_MODULE_ROW = re.compile(r'^(?P<name>Módulo Simulador|c/sim aberto) — (?P<avail>—|\+\d+[RPF]) (?P<cost>\+[\d.]+¥)$')
+CYBERDECK_ROW = re.compile(r'^(?P<name>.+?) (?P<dr>\d) (?P<attrs>\d \d \d \d) (?P<prog>\d) (?P<avail>\d+[RP]?) '
+                           r'(?P<cost>[\d.]+¥)$')
+PROGRAM_PRICE_ROW = re.compile(r'^Ciberprograma, (?P<kind>hackear|uso comum) (?P<avail>—|\d+[RP]?) (?P<cost>[\d.]+¥)$')
+
+
+def build_matrix(book):
+    lines = gear_lines(book, 438, 441)
+    used = set()
+    commlink_rows = read_table(lines, ["COM-LINKS", "MODELO", "NÍVEL DE", "DISPOSITIVO DISP . CUSTO"],
+                               [SIM_MODULE_ROW, COMMLINK_ROW], used)
+    commlinks, options = [], []
+    for _, m, page, _ in commlink_rows:
+        if m.re is COMMLINK_ROW:
+            commlinks.append({"id": slug(m.group("name")), "name": m.group("name"),
+                              "deviceRating": int(m.group("dr")), "availability": availability(m.group("avail")),
+                              "cost": cost(m.group("cost")), "page": page})
+            continue
+        o = m
+        # O livro grafa "+4F" para o sim aberto; a legalidade proibida em PT é P.
+        avail = o.group("avail").replace("F", "P")
+        name = "Módulo Simulador" if o.group("name") == "Módulo Simulador" else "Módulo Simulador (sim aberto)"
+        options.append({"id": "sim-module" if "aberto" not in name else "hot-sim-module", "name": name,
+                        "availability": availability(avail), "cost": cost(o.group("cost")), "page": page})
+
+    decks = []
+    for _, m, page, _ in read_table(lines, ["CIBERDECKS", "DECK", "NÍVEL DE", "DISPOSITIVO", "FAIXA DE",
+                                            "ATRIBUTOS PROGRAMAS DISP . CUSTO"], CYBERDECK_ROW, used):
+        decks.append({"id": slug(m.group("name")), "name": m.group("name"), "deviceRating": int(m.group("dr")),
+                      "attributeArray": [int(x) for x in m.group("attrs").split()],
+                      "programs": int(m.group("prog")), "availability": availability(m.group("avail")),
+                      "cost": cost(m.group("cost")), "page": page})
+
+    prices = {}
+    for _, m, _, _ in read_table(lines, ["PROGRAMA/SOFTWARE DISP . CUSTO"],
+                                 re.compile(r'^(?:Ciberprograma, (?:hackear|uso comum)|Agente|Autosoft|Comprasoft|'
+                                            r'Dadossoft|Mapasoft|Tutorsoft).*¥$'), used):
+        p = PROGRAM_PRICE_ROW.match(m.group(0))
+        if p:
+            prices["hacking" if p.group("kind") == "hackear" else "common"] = p
+    if set(prices) != {"common", "hacking"}:
+        raise ExtractionError("software: preços de ciberprograma não encontrados na p. 441")
+    # A tabela da p. 246 dá 4R para programa de hackear; vale a lista de
+    # compras da p. 441 (6R), como no resto do equipamento.
+    require(book.page(246), "Programa de Hackear 4R 250¥", "tabela de programas (p. 246)")
+
+    prose = book.prose("\n".join(t for i, (_, t) in enumerate(lines) if i not in used))
+    commlink_desc = section(prose, "COM-LINKS Com-links são", [r' Módulo Simulador:'])
+    sim_desc = section(prose, "Módulo Simulador: ", [r' CIBERDECKS '])
+    deck_desc = section(prose, "CIBERDECKS Se você fosse", [r' ACESSÓRIOS ELETRÔNICOS '])
+    if not (commlink_desc and sim_desc and deck_desc):
+        raise ExtractionError("com-links/ciberdecks: descrições não encontradas na p. 438")
+    commlink_desc = "Com-links são" + commlink_desc
+    deck_desc = "Se você fosse" + deck_desc
+    require(deck_desc, "Todos os ciberdecks possuem módulos ilegais de sim aberto de fábrica", "ciberdecks")
+    for o in options:
+        o["desc"] = sim_desc
+
+    plines, _ = flow(book, 243, 246, {244: ("", None), 245: ("CENTRAL: STUFFER SHACK", None)})
+    texts = [t.strip() for _, t in plines]
+    texts = texts[texts.index("PROGRAMAS COMUNS"):texts.index("AGENTES")]
+    pages = [p for p, _ in plines][[t.strip() for _, t in plines].index("PROGRAMAS COMUNS"):]
+    names = [name for _, _, name in PROGRAMS]
+    starts = []
+    for kind, pid, name in PROGRAMS:
+        found = [i for i, t in enumerate(texts) if t.startswith(name + ":")]
+        if len(found) != 1:
+            raise ExtractionError(f"programa {name}: {len(found)} parágrafos encontrados")
+        starts.append(found[0])
+    if starts != sorted(starts):
+        raise ExtractionError("programas fora da ordem do livro")
+    headed = [i for i, t in enumerate(texts) if re.match(r'^[A-ZÁÉÍÓÚ][\wÀ-ú ]{2,40}: ', t) and i not in starts]
+    if headed:
+        raise ExtractionError(f"programas fora do vocabulário: {[texts[i].split(':')[0] for i in headed]}")
+    hacking_at = texts.index("PROGRAMAS DE HACKEAR")
+    programs = []
+    for (kind, pid, name), i, j in zip(PROGRAMS, starts, starts[1:] + [len(texts)]):
+        if (kind == "hacking") != (i > hacking_at):
+            raise ExtractionError(f"programa {name}: categoria diverge da seção do livro")
+        body = [t for t in texts[i:j] if t != "PROGRAMAS DE HACKEAR"]
+        price = prices[kind]
+        entry = {"id": pid, "name": name, "category": kind, "availability": availability(price.group("avail")),
+                 "cost": cost(price.group("cost"))}
+        if pid in PROGRAM_MODIFIERS:
+            entry["modifiers"] = PROGRAM_MODIFIERS[pid]
+        entry.update({"desc": book.prose("\n".join(body))[len(name) + 2:], "page": pages[i]})
+        programs.append(entry)
+    by_pid = {p["id"]: p for p in programs}
+    for pid, fragment in (("toolbox", "+1 ao seu atributo Datagrama"),
+                          ("encryption", "+1 de bônus para o seu atributo Firewall"),
+                          ("decryption", "+1 de bônus no seu atributo Ataque"),
+                          ("stealth", "+1 de bônus no seu atributo Subversão")):
+        require(by_pid[pid]["desc"], fragment, f"programa {by_pid[pid]['name']}")
+
+    p228 = book.prose(book.page(228))
+    require(p228, "O Monitor de Condição da Matriz de cada dispositivo tem 8 + (Nível de Dispositivo/2) caixas",
+            "monitor da Matriz")
+    require(book.prose(book.page(234)), "Para a maioria dos dispositivos, os atributos da Matriz são iguais ao Nível "
+                                        "de Dispositivo", "atributos de dispositivo")
+    return {
+        "rules": {
+            "deviceAttributes": {"dataProcessing": ref("rating"), "firewall": ref("rating"), "page": 234},
+            # O livro não diz o arredondamento; segue o dos demais monitores (p. 101).
+            "conditionMonitor": {"boxes": add(8, ceil(div(ref("rating"), 2))), "page": 228},
+            "matrixAttributes": [{"id": mid, "name": name} for mid, name in MATRIX_ATTRIBUTES],
+        },
+        "commlinkDesc": commlink_desc, "commlinks": commlinks, "commlinkOptions": options,
+        "cyberdeckDesc": deck_desc, "cyberdecks": decks,
+        "programs": programs,
+    }
+
+
 CATALOGS = {
     "attributes.json": build_attributes,
     "metatypes.json": build_metatypes,
@@ -2902,6 +3038,7 @@ CATALOGS = {
     "weapons.json": build_weapons,
     "armor.json": build_armor,
     "augmentations.json": build_augmentations,
+    "matrix.json": build_matrix,
 }
 
 EXPECTED_COUNTS = {
@@ -2921,6 +3058,7 @@ EXPECTED_COUNTS = {
     "weapons.json": {"weapons": WEAPON_COUNT, "categories": len(WEAPON_CATEGORIES)},
     "armor.json": {"armor": 12, "modifications": 7},
     "augmentations.json": {"grades": 5},
+    "matrix.json": {"commlinks": 7, "cyberdecks": 9, "programs": 26},
 }
 
 
