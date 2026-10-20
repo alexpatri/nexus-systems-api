@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Valida os catálogos de um sistema. Sem dependências: python3 validate.py [dir...]"""
-import json, re, sys, pathlib
+import json, math, re, sys, pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent / 'data' / 'systems'
 
@@ -255,6 +255,243 @@ def check_dnd(d, sysj, E, W):
                     E(f"arma {w['id']}: propriedade fora do vocabulário {prop!r}")
 
 
+# --- shadowrun ---
+
+SR_ATTRS = ('bod', 'agi', 'rea', 'str', 'wil', 'log', 'int', 'cha', 'ess', 'edg', 'mag', 'res')
+SR_OPS = {
+    'add': lambda xs: sum(xs),
+    'sub': lambda xs: xs[0] - sum(xs[1:]),
+    'mul': lambda xs: math.prod(xs),
+    'div': lambda xs: xs[0] / xs[1],
+    'ceil': lambda xs: math.ceil(xs[0]),
+    'floor': lambda xs: math.floor(xs[0]),
+    'min': min,
+    'max': max,
+}
+SR_UNARY = {'ceil', 'floor'}
+SR_REF = re.compile(r'^(attr\.(' + '|'.join(SR_ATTRS) + r')|rating|grade|karma\.total|quality\.karma'
+                    r'|matrix\.dataProcessing)$')
+SR_TARGETS = {
+    'attr.max', 'skill.max', 'limit', 'monitor.overflow', 'wound.ignoredBoxes', 'wound.boxesPerPenalty',
+    'reputation.notoriety', 'essence.cyberwareLoss', 'lifestyle.cost', 'language.native',
+    'matrix.biofeedbackFilter', 'progression.trainingTime', 'reach', 'armor',
+}
+SR_SKILL_CATEGORIES = {'combat', 'physical', 'social', 'magical', 'resonance', 'technical', 'vehicle'}
+
+# Personagens de exemplo do livro: atributos das p. 67 e 70, resultados da p. 102.
+SR_EXAMPLES = [
+    ('Clara', {'bod': 3, 'agi': 6, 'rea': 3, 'str': 2, 'wil': 4, 'log': 3, 'int': 4, 'cha': 6, 'ess': 6},
+     {'initiative': 7, 'physical': 4, 'mental': 5, 'social': 8, 'physicalBoxes': 10, 'stunBoxes': 10,
+      'overflow': 3, 'contacts': 18, 'knowledge': 14}),
+    # O livro calcula o limite Social do Beto com Essência 6, antes das ampliações.
+    ('Beto', {'bod': 9, 'agi': 4, 'rea': 3, 'str': 11, 'wil': 4, 'log': 3, 'int': 3, 'cha': 3, 'ess': 6},
+     {'initiative': 6, 'physical': 12, 'mental': 5, 'social': 6, 'physicalBoxes': 13, 'stunBoxes': 10,
+      'overflow': 9, 'contacts': 9, 'knowledge': 12}),
+    # A Persona Viva e a Iniciativa da Matriz do exemplo não batem com os
+    # atributos do Jefferson (Ataque 5 com Carisma 3), então ficam de fora.
+    ('Jefferson', {'bod': 3, 'agi': 2, 'rea': 2, 'str': 3, 'wil': 3, 'log': 4, 'int': 4, 'cha': 3, 'ess': 6},
+     {'initiative': 6, 'physical': 4, 'mental': 5, 'social': 5, 'physicalBoxes': 10, 'stunBoxes': 10,
+      'overflow': 3, 'contacts': 9, 'knowledge': 16}),
+]
+
+
+def sr_eval(expr, env):
+    if isinstance(expr, (int, float)) and not isinstance(expr, bool): return expr
+    if 'ref' in expr: return env[expr['ref']]
+    return SR_OPS[expr['op']]([sr_eval(a, env) for a in expr['of']])
+
+
+def is_expr(o):
+    return isinstance(o, dict) and ('op' in o or 'ref' in o)
+
+
+def sr_check_expr(expr, where, E):
+    if isinstance(expr, (int, float)) and not isinstance(expr, bool): return
+    if not is_expr(expr): E(f"{where}: fórmula malformada {expr!r}"); return
+    if 'ref' in expr:
+        if set(expr) != {'ref'} or not SR_REF.match(expr['ref']): E(f"{where}: referência inválida {expr!r}")
+        return
+    if set(expr) != {'op', 'of'} or expr['op'] not in SR_OPS or not isinstance(expr['of'], list):
+        E(f"{where}: operação inválida {expr!r}"); return
+    if expr['op'] in SR_UNARY and len(expr['of']) != 1: E(f"{where}: {expr['op']} recebe um operando")
+    if expr['op'] in ('sub', 'div') and len(expr['of']) != 2: E(f"{where}: {expr['op']} recebe dois operandos")
+    for i, a in enumerate(expr['of']): sr_check_expr(a, f"{where}.{expr['op']}[{i}]", E)
+
+
+def sr_walk_exprs(o, path=""):
+    if is_expr(o): yield path, o; return
+    if isinstance(o, dict):
+        for k, v in o.items(): yield from sr_walk_exprs(v, f"{path}.{k}")
+    elif isinstance(o, list):
+        for i, v in enumerate(o): yield from sr_walk_exprs(v, f"{path}[{i}]")
+
+
+def sr_check_modifier(m, where, E, skill_ids):
+    ops = [k for k in ('add', 'mul', 'set') if k in m]
+    if len(ops) != 1: E(f"{where}: modificador precisa de exatamente um entre add/mul/set"); return
+    sr_check_expr(m[ops[0]], where, E)
+    if m.get('target') not in SR_TARGETS: E(f"{where}: alvo fora do vocabulário {m.get('target')!r}")
+    sel = m.get('of')
+    if sel is None: pass
+    elif m['target'] == 'attr.max' and isinstance(sel, str):
+        if sel not in SR_ATTRS: E(f"{where}: atributo inexistente {sel}")
+    elif m['target'] == 'limit' and isinstance(sel, str):
+        if sel not in ('physical', 'mental', 'social'): E(f"{where}: limite inexistente {sel}")
+    elif isinstance(sel, dict):
+        expected = {'attr.max': 'attribute', 'skill.max': 'skill', 'limit': 'limit'}.get(m['target'])
+        if sel.get('choose') != expected: E(f"{where}: escolha {sel.get('choose')!r} incompatível com {m['target']}")
+        for a in sel.get('except', []):
+            if a not in SR_ATTRS: E(f"{where}: atributo inexistente em except: {a}")
+    else:
+        E(f"{where}: seletor 'of' inválido {sel!r}")
+    if 'times' in m: sr_check_expr(m['times'], f"{where}.times", E)
+
+
+def check_shadowrun(d, sysj, E, W):
+    attributes = load(d, 'attributes.json')
+    metatypes = load(d, 'metatypes.json')
+    priorities = load(d, 'priorities.json')
+    awakening = load(d, 'awakening.json')
+    skills = load(d, 'skills.json')
+    qualities = load(d, 'qualities.json')
+    mech = load(d, 'mechanics.json')
+    lifestyles = load(d, 'lifestyles.json')
+
+    # --- fórmulas, em qualquer catálogo ---
+    for fname in sysj['catalogs']:
+        obj = load(d, fname)
+        for path, expr in sr_walk_exprs(obj or {}):
+            sr_check_expr(expr, f"{fname}{path}", E)
+
+    if [a['id'] for a in attributes['attributes']] != list(SR_ATTRS):
+        E("attributes.json: ids ou ordem divergem do vocabulário")
+
+    meta_ids = set()
+    for m in metatypes['metatypes']:
+        meta_ids.add(m['id'])
+        attrs = m['attributes']
+        if set(attrs) != set(SR_ATTRS) - {'mag', 'res'}:
+            E(f"metatipo {m['id']}: atributos devem ser os físicos, mentais, Trunfo e Essência")
+        for a, r in attrs.items():
+            if a == 'ess':
+                if r != {'start': 6}: E(f"metatipo {m['id']}: Essência deve começar em 6")
+            elif not 1 <= r['min'] <= r['max']: E(f"metatipo {m['id']}: faixa inválida de {a} {r}")
+        for t in m['traits']:
+            for i, mod in enumerate(t.get('modifiers', [])):
+                sr_check_modifier(mod, f"metatipo {m['id']} traço {t['id']}[{i}]", E, set())
+
+    skill_ids = {s['id'] for s in skills['skills']}
+    group_ids = {g['id'] for g in skills['groups']}
+    if len(skill_ids) != len(skills['skills']): E("skills.json: ids duplicados")
+    for s in skills['skills']:
+        if s['attribute'] not in SR_ATTRS: E(f"perícia {s['id']}: atributo inexistente {s['attribute']}")
+        if s['category'] not in SR_SKILL_CATEGORIES: E(f"perícia {s['id']}: categoria inválida {s['category']}")
+        if s['group'] is not None and s['group'] not in group_ids: E(f"perícia {s['id']}: grupo inexistente {s['group']}")
+        if s['restricted'] != (s['attribute'] in ('mag', 'res')): E(f"perícia {s['id']}: restricted incoerente com o atributo")
+        if not isinstance(s['default'], bool): E(f"perícia {s['id']}: default deve ser booleano")
+    for g in skills['groups']:
+        members = {s['id'] for s in skills['skills'] if s['group'] == g['id']}
+        if set(g['skills']) != members: E(f"grupo {g['id']}: membros divergem do campo group das perícias")
+    for c in skills['knowledge']['categories']:
+        if c['attribute'] not in SR_ATTRS: E(f"conhecimento {c['id']}: atributo inexistente")
+
+    awakening_by_id = {a['id']: a for a in awakening['awakenings']}
+    for a in awakening['awakenings']:
+        if a['attribute'] not in ('mag', 'res'): E(f"despertar {a['id']}: atributo deve ser mag ou res")
+        if a.get('magicSkillGroups', 'none') not in ('all', 'one', 'none'):
+            E(f"despertar {a['id']}: magicSkillGroups inválido")
+
+    rows = priorities['rows']
+    if [r['priority'] for r in rows] != list('ABCDE'): E("priorities.json: linhas devem ser A–E, nessa ordem")
+    columns = [c['id'] for c in priorities['columns']]
+    for r in rows:
+        for c in columns:
+            if c not in r: E(f"prioridade {r['priority']}: coluna ausente {c}")
+        for m in r['metatype']:
+            if m['metatype'] not in meta_ids: E(f"prioridade {r['priority']}: metatipo inexistente {m['metatype']}")
+            if m['specialPoints'] < 0: E(f"prioridade {r['priority']}: pontos especiais negativos")
+        for g in r['magic']:
+            aw = awakening_by_id.get(g['awakening'])
+            if aw is None: E(f"prioridade {r['priority']}: despertar inexistente {g['awakening']}"); continue
+            if g['attribute']['id'] != aw['attribute']:
+                E(f"prioridade {r['priority']}: {g['awakening']} recebe {g['attribute']['id']}, despertar usa {aw['attribute']}")
+            for key in ('skills', 'skillGroups'):
+                src = g.get(key, {}).get('from', {})
+                for gid in src.get('groups', []):
+                    if gid not in group_ids: E(f"prioridade {r['priority']}: grupo inexistente {gid}")
+                if src.get('attribute') and src['attribute'] not in SR_ATTRS:
+                    E(f"prioridade {r['priority']}: atributo inexistente {src['attribute']}")
+    for c in ('attributes', 'resources'):
+        values = [r[c] for r in rows]
+        if values != sorted(values, reverse=True) or len(set(values)) != len(values):
+            E(f"priorities.json: coluna {c} deve decrescer de A para E")
+    if {m['metatype'] for m in rows[0]['metatype']} != meta_ids: E("prioridade A deve oferecer todos os metatipos")
+
+    qs = qualities['qualities']
+    if len({q['id'] for q in qs}) != len(qs): E("qualities.json: ids duplicados")
+    kinds = [q['kind'] for q in qs]
+    if (kinds.count('positive'), kinds.count('negative')) != (31, 28):
+        E(f"qualities.json: esperado 31 positivas e 28 negativas, há {kinds.count('positive')}/{kinds.count('negative')}")
+    for q in qs:
+        k = q['karma']
+        if isinstance(k, dict) and 'perLevel' in k and not q.get('levels', {}).get('max'):
+            E(f"qualidade {q['id']}: custo por nível sem levels.max")
+        if not isinstance(k, int) and not (isinstance(k, dict) and len(k) == 1 and set(k) <= {'perLevel', 'options', 'sum'}):
+            E(f"qualidade {q['id']}: forma de custo inválida {k!r}")
+        opts = k.get('options', []) if isinstance(k, dict) else []
+        if len({o['id'] for o in opts}) != len(opts): E(f"qualidade {q['id']}: opções com id duplicado")
+        mods = q.get('modifiers', []) + [m for o in opts for m in o.get('modifiers', [])]
+        for i, m in enumerate(mods):
+            sr_check_modifier(m, f"qualidade {q['id']}[{i}]", E, skill_ids)
+            if m.get('target') == 'reputation.notoriety' and (m['add'] < 0) != (q['kind'] == 'positive'):
+                E(f"qualidade {q['id']}: sinal da notoriedade incoerente com o tipo")
+        if not q.get('desc'): E(f"qualidade {q['id']}: desc vazia")
+
+    for l in lifestyles['identities']:
+        if l['availability']['legality'] not in mech['legality']:
+            E(f"identidade {l['id']}: legalidade fora do vocabulário")
+    costs = [l['cost'] for l in lifestyles['lifestyles'] if 'cost' in l]
+    if costs != sorted(costs): E("lifestyles.json: estilos de vida devem vir em ordem crescente de custo")
+
+    # --- exemplos do livro ---
+    derived = mech['derived']
+    for name, attrs, want in SR_EXAMPLES:
+        env = {f'attr.{a}': v for a, v in attrs.items()}
+        got = {
+            'initiative': sr_eval(derived['initiative']['physical']['base'], env),
+            'physical': sr_eval(derived['limits']['physical']['value'], env),
+            'mental': sr_eval(derived['limits']['mental']['value'], env),
+            'social': sr_eval(derived['limits']['social']['value'], env),
+            'physicalBoxes': sr_eval(derived['monitors']['physical']['boxes'], env),
+            'stunBoxes': sr_eval(derived['monitors']['stun']['boxes'], env),
+            'overflow': sr_eval(derived['monitors']['overflow']['boxes'], env),
+            'contacts': sr_eval(mech['creation']['contacts']['karma'], env),
+            'knowledge': sr_eval(mech['creation']['skills']['knowledgePoints'], env),
+        }
+        for k, v in want.items():
+            if got[k] != v: E(f"exemplo {name}: {k} dá {got[k]}, o livro diz {v}")
+
+    # Beto tem Desejo de Viver 1: Excesso 9 (10), p. 102.
+    wtl = next(q for q in qs if q['id'] == 'will-to-live')['modifiers'][0]
+    if 9 + sr_eval(wtl['add'], {'rating': 1}) != 10: E("exemplo Beto: Desejo de Viver não leva o Excesso a 10")
+
+    # Compras dos exemplos, p. 97: SIN falso 4 = 10.000¥, licença 3 = 600¥;
+    # Estilo de Vida Baixo por 3 meses para troll = 12.000¥.
+    ids = {i['id']: i for i in lifestyles['identities']}
+    for iid, rating, price in (('fake-sin', 4, 10000), ('fake-sin', 3, 7500), ('fake-license', 4, 800),
+                               ('fake-license', 3, 600)):
+        if sr_eval(ids[iid]['cost'], {'rating': rating}) != price: E(f"{iid} nível {rating}: preço diverge da p. 97")
+    low = next(l for l in lifestyles['lifestyles'] if l['id'] == 'low')['cost']
+    troll = next(m for m in metatypes['metatypes'] if m['id'] == 'troll')
+    mult = next(mod['mul'] for t in troll['traits'] for mod in t.get('modifiers', []) if mod['target'] == 'lifestyle.cost')
+    if low * mult * 3 != 12000: E("exemplo Beto: Estilo de Vida Baixo de troll por 3 meses deveria custar 12.000¥")
+
+    # Progressão, p. 106: Reação 2→3 custa 15; perícia 1→2 custa 4; 5→6 custa 12.
+    prog = mech['progression']['costs']
+    for key, rating, cost in (('attribute', 3, 15), ('activeSkill', 2, 4), ('activeSkill', 6, 12)):
+        if sr_eval(prog[key], {'rating': rating}) != cost: E(f"progressão {key} nível {rating}: esperado {cost}")
+
+
 def check(d):
     err, warn = [], []
     E, W = err.append, warn.append
@@ -265,9 +502,15 @@ def check(d):
     for f in sysj['catalogs']:
         if not (d / f).exists(): E(f"catálogo declarado e ausente: {f}")
 
-    checker = {'vileborn': check_vileborn, 'dnd': check_dnd}.get(sysj['id'])
+    checker = {'vileborn': check_vileborn, 'dnd': check_dnd, 'shadowrun': check_shadowrun}.get(sysj['id'])
     if checker:
         checker(d, sysj, E, W)
+
+    # --- marca d'água dos PDFs: nome e e-mail do licenciado não podem vazar ---
+    for fname in sysj['catalogs'] + ['system.json']:
+        p = d / fname
+        if p.exists() and ('Licenciado' in p.read_text() or '@' in p.read_text()):
+            E(f"{fname}: contém marca d'água do PDF ('Licenciado' ou '@')")
 
     # --- ponteiros entre arquivos (qualquer string no formato arquivo.json#caminho) ---
     for fname in sysj['catalogs'] + ['system.json']:
