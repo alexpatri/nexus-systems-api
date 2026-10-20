@@ -1,0 +1,119 @@
+{
+  "id": "shadowrun",
+  "apiVersion": "5e",
+  "name": "Shadowrun 5e",
+  "locale": "pt-BR",
+  "publisher": "New Order Editora",
+  "bookVersion": "Shadowrun Livro Básico, Quinta Edição (New Order, 2018)",
+  "schemaVersion": 1,
+  "characterTerm": "Incursor das Sombras",
+  "gmTerm": "Mestre",
+  "sheet": {
+    "personal": {
+      "fields": [
+        "name",
+        "metatype",
+        "ethnicity",
+        "age",
+        "sex",
+        "height",
+        "weight",
+        "karma",
+        "totalKarma",
+        "misc"
+      ],
+      "metatype": "metatypes.json#metatypes"
+    },
+    "attributes": {
+      "source": "attributes.json",
+      "ranges": "metatypes.json#metatypes",
+      "note": "Atributos ampliados são anotados entre parênteses, depois do valor natural."
+    },
+    "edge": {
+      "attribute": "edg",
+      "note": "A ficha registra o Trunfo e os pontos de Trunfo disponíveis, que são gastos e recuperados em jogo."
+    }
+  },
+  "creation": {
+    "priorities": {
+      "source": "priorities.json",
+      "rule": "Cada prioridade (A–E) é usada exatamente uma vez entre as cinco colunas."
+    },
+    "steps": [
+      {
+        "order": 1,
+        "id": "concept",
+        "label": "Escolha o conceito",
+        "page": 62
+      },
+      {
+        "order": 2,
+        "id": "metatype",
+        "label": "Escolha o metatipo e distribua os atributos",
+        "page": 65,
+        "uses": [
+          "priorities.json#columns",
+          "metatypes.json"
+        ]
+      },
+      {
+        "order": 3,
+        "id": "magic",
+        "label": "Escolha magia ou ressonância",
+        "page": 68,
+        "uses": [
+          "priorities.json#columns",
+          "awakening.json"
+        ]
+      },
+      {
+        "order": 4,
+        "id": "qualities",
+        "label": "Compre qualidades",
+        "page": 71
+      },
+      {
+        "order": 5,
+        "id": "skills",
+        "label": "Compre perícias",
+        "page": 88,
+        "uses": [
+          "priorities.json#columns"
+        ]
+      },
+      {
+        "order": 6,
+        "id": "resources",
+        "label": "Gaste seus recursos",
+        "page": 94,
+        "uses": [
+          "priorities.json#columns"
+        ]
+      },
+      {
+        "order": 7,
+        "id": "karma",
+        "label": "Gaste o carma restante",
+        "page": 98
+      },
+      {
+        "order": 8,
+        "id": "final-calculations",
+        "label": "Cálculos finais",
+        "page": 100
+      },
+      {
+        "order": 9,
+        "id": "finishing",
+        "label": "Toques finais",
+        "page": 102
+      }
+    ]
+  },
+  "catalogs": [
+    "attributes.json",
+    "metatypes.json",
+    "priorities.json",
+    "awakening.json"
+  ]
+}

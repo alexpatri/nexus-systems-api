@@ -1,0 +1,100 @@
+{
+  "attributes": [
+    {
+      "id": "bod",
+      "name": "Corpo",
+      "abbr": "COR",
+      "category": "physical",
+      "desc": "O Corpo mede a sua saúde física e resiliência. Ele afeta quanto dano você pode tomar e permanecer em pé, o quanto você resiste bem ao dano que sofre, sua capacidade de recuperar-se de venenos e doenças e coisas dessa natureza.",
+      "page": 51
+    },
+    {
+      "id": "agi",
+      "name": "Agilidade",
+      "abbr": "AGI",
+      "category": "physical",
+      "desc": "A Agilidade mede coisas como coordenação, flexibilidade, rapidez e equilíbrio. A Agilidade é o atributo mais importante quando se trata de obter sucessos durante o combate, pois você precisa ser coordenado para atingir seus golpes, seja acertando uma espadada ou mirando cuidadosamente um rifle. Ele também é crítico em situações fora de combate, como ao esgueirar tranquilamente através de guardas de segurança ou tirar suavemente um cartão-chave da sua posição protegida.",
+      "page": 51
+    },
+    {
+      "id": "rea",
+      "name": "Reação",
+      "abbr": "REA",
+      "category": "physical",
+      "desc": "A Reação trata dos reflexos, consciência e capacidade do seu personagem responder aos eventos que acontecem ao seu redor. A Reação tem um papel importante ao decidir quando os personagens agem no combate e qual sua habilidade de evitar ataques dos outros. Ela também ajuda a virar rapidamente em um beco estreito em sua moto para evitar os membros de gangue na sua cola.",
+      "page": 51
+    },
+    {
+      "id": "str",
+      "name": "Força",
+      "abbr": "FOR",
+      "category": "physical",
+      "desc": "A Força é um indicador, hã, da força do seu personagem. Quanto maior a sua Força, mais dano que você causará quando estiver dando golpes em um adversário e mais poderá mover ou carregar quando houver coisas que precisam ser movidas. Ou carregadas. A Força também é importante com tarefas esportivas, como escalar, correr e nadar.",
+      "page": 51
+    },
+    {
+      "id": "wil",
+      "name": "Vontade",
+      "abbr": "VON",
+      "category": "mental",
+      "desc": "A Vontade é o desejo do seu personagem vencer uma adversidade, resistir ao cansaço da conjuração e para ficar em pé após tomar uma pancada na cabeça. Se estiver enfrentando um deserto tóxico ou um grupo de orks vestidos de couro com pés de cabra, a Vontade ajudará você a passar por isso.",
+      "page": 51
+    },
+    {
+      "id": "log",
+      "name": "Lógica",
+      "abbr": "LÓG",
+      "category": "mental",
+      "desc": "O atributo Lógica mede o poder frio e calculista da sua mente racional. Esteja você tentando consertar máquinas complicadas ou curar um companheiro ferido, a Lógica ajuda a fazer as coisas certas. A Lógica também é o atributo que magos herméticos usam para resistir ao dreno dos feitiços que jogam sobre seus inimigos infelizes.Tecnautas também consideram a Lógica extremamente útil, pois ela os ajuda a desenvolver ataques e contra-ataques que fazem parte de suas batalhas online.",
+      "page": 51
+    },
+    {
+      "id": "int",
+      "name": "Intuição",
+      "abbr": "INT",
+      "category": "mental",
+      "desc": "A Intuição é a voz interior, o instinto que lhe diz coisas antes do seu cérebro lógico poder entendê-las. A Intuição ajuda a antecipar emboscadas, perceber que algo está errado ou fora do lugar e ficar na trilha de alguém que esteja perseguindo.",
+      "page": 51
+    },
+    {
+      "id": "cha",
+      "name": "Carisma",
+      "abbr": "CAR",
+      "category": "mental",
+      "desc": "O Carisma é a sua força de personalidade, o poder de persuasão e o charme que poderá usar para levar as pessoas a fazerem o que você quiser sem ter o trabalho de puxar uma arma para elas. Não é totalmente sobre sua aparência, mas também não é totalmente não relacionado a ela. É mais sobre como você usa o que tem, sua voz, seu rosto, suas palavras e todas as ferramentas ao seu dispor, para encantar e/ou intimidar as pessoas que encontrar. Além disso, o Carisma é um atributo importante para magos xamãs, pois isso os ajuda a resistir ao Dreno prejudicial dos feitiços que conjuram.",
+      "page": 52
+    },
+    {
+      "id": "ess",
+      "name": "Essência",
+      "abbr": "ESS",
+      "category": "special",
+      "desc": "A Essência é sua meta-humanidade condensada em um número. Em Shadowrun, você tem amplas oportunidades de alterar o seu corpo e forçá-lo além dos limites normais. Tais ações geralmente têm um custo e podem resultar em uma perda da sua meta-humanidade, o que significa uma perda de pontos de Essência. Cada personagem começa com um nível de Essência 6 e ele age como um limite na quantidade de alterações que pode fazer. Quando acaba, ela não volta. Ela também afeta os atributos Magia e Ressonância, pois as perdas na Essência são refletidas pelas perdas na Magia e na Ressonância. Embora os habitantes do Sexto Mundo estejam acostumados a verem muitas ampliações e alterações da forma meta- -humana, o “vale da estranheza” ainda existe. O vale da estranheza é o efeito desconcertante que ocorre quando pessoas veem algo que é quase, mas não exatamente, meta-humano. Um desenho animado com características exageradas é normal para os olhos meta-humanos, mas um programa de computador que reproduza detalhadamente, mas não exatamente, a aparência humana é uma visão perturbadora e desagradável para a maioria. Isso é o que acontece quando pessoas veem outras com ampliações. Em algum nível, as pessoas percebem que há algo menos (ou mais) humano sobre isso e têm uma reação negativa. A mudança pode não ser exatamente visível, mas é perceptível alguma forma. De um jeito ou de outro, a pessoa se tornou menos humana e as pessoas percebem isso em algum nível. É por isso que a Essência do personagem está incluída no cálculo do seu limite Social.",
+      "page": 52
+    },
+    {
+      "id": "edg",
+      "name": "Trunfo",
+      "abbr": "TRU",
+      "category": "special",
+      "desc": "O Trunfo é o intangível supremo, aquela coisa que te dá um impulso quando você precisa, que tira você de uma situação difícil quando as cartas estão na mesa. Ele não é usado para calcular as pilhas de dados: você gasta um ponto de Trunfo para adquirir um efeito específico. Cada personagem tem pelo menos um ponto de Trunfo, ou mais pontos se quiserem tirar vantagem do bônus que ele fornece. Efeitos possíveis e mais detalhes sobre o Trunfo estão na p. 56.",
+      "page": 52
+    },
+    {
+      "id": "mag",
+      "name": "Magia",
+      "abbr": "MAG",
+      "category": "special",
+      "desc": "Se você pretende conjurar feitiços ou usar magia de alguma forma, seu personagem precisa ter o atributo Magia. A maioria dos indivíduos não possui este atributo, o que significa que seu nível é zero. Magos, que conjuram feitiços, e adeptos, que canalizam magia em habilidades físicas e mentais, precisam desta qualidade. Seu nível de Magia mede sua capacidade nas artes arcanas e quanto poder podem usar para ajudá-los em seus esforços.",
+      "page": 52
+    },
+    {
+      "id": "res",
+      "name": "Ressonância",
+      "abbr": "RES",
+      "category": "special",
+      "desc": "Similar à Magia para magos e adeptos, a Ressonância é o atributo especial para os tecnomantes. Tecnomantes fazem a interface com a Matriz usando o poder da sua mente e a Ressonância mede a força da sua habilidade de interagir com e moldar tal ambiente (veja Tecnomantes, p. 249). Não tecnomantes têm nível zero de Ressonância.",
+      "page": 52
+    }
+  ]
+}

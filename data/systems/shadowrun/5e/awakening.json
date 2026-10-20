@@ -1,0 +1,134 @@
+{
+  "awakenings": [
+    {
+      "id": "magician",
+      "name": "Mago",
+      "attribute": "mag",
+      "rules": [
+        "Magos podem perceber astralmente.",
+        "Magos podem seguir espíritos mentores.",
+        "Magos podem se projetar astralmente.",
+        "Magos podem escolher livremente das perícias ou grupos de perícia mágicos (Feitiçaria, Convocação, Encantação).",
+        "Magos podem lançar feitiços, convocar espíritos ou encantação de itens mágicos.",
+        "Na criação de personagem, magos que conjurem feitiços, realizem rituais ou criem preparativos alquímicos podem saber uma quantidade máxima de fórmulas de cada grupo igual ao seu Nível de Magia x 2 (ou seja, o Nível de Magia 4 permite 8 feitiços, 8 rituais, 8 preparativos alquímicos)."
+      ],
+      "page": 69,
+      "astralPerception": true,
+      "astralProjection": true,
+      "magicSkillGroups": "all",
+      "mentorSpirit": true,
+      "formulasMax": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "attr.mag"
+          },
+          2
+        ]
+      }
+    },
+    {
+      "id": "mystic-adept",
+      "name": "Adepto Místico",
+      "attribute": "mag",
+      "rules": [
+        "Adeptos místicos são uma combinação de magos e adeptos.",
+        "Adeptos místicos nunca se projetam astralmente.",
+        "Adeptos místicos podem perceber astralmente se comprarem o poder de adepto Percepção Astral.",
+        "Adeptos místicos podem seguir espíritos mentores.",
+        "Adeptos místicos compram seus feitiços/rituais/preparativos da mesma forma que os magos.",
+        "Adeptos místicos devem comprar seus Pontos de Poder com Carma (na criação de personagem, 5 de Carma para cada Pontos de Poder completo, com um número máximo de pontos igual ao nível de atributo Magia).",
+        "Adeptos místicos podem ter qualquer perícia dos grupos de Encantação, Feitiçaria ou Convocação."
+      ],
+      "page": 69,
+      "astralPerception": "adept-power",
+      "astralProjection": false,
+      "magicSkillGroups": "all",
+      "mentorSpirit": true,
+      "formulasMax": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "attr.mag"
+          },
+          2
+        ]
+      },
+      "powerPoints": {
+        "karmaPerPoint": 5,
+        "max": {
+          "ref": "attr.mag"
+        }
+      }
+    },
+    {
+      "id": "adept",
+      "name": "Adepto",
+      "attribute": "mag",
+      "rules": [
+        "Adeptos canalizam mana em seus corpos para melhorar suas habilidades naturais, deixando seus talentos e perícias muito mais poderosas.",
+        "Adeptos nunca se projetam astralmente (p. 313).",
+        "Adeptos só percebem o espaço astral se comprarem o poder Percepção Astral (p. 312).",
+        "Adeptos podem aprender a perícia Sentido Astral apenas se tiverem o poder Percepção Astral.",
+        "Adeptos não podem usar perícias de grupos relacionados à magia (Feitiçaria, Convocação ou Encantação).",
+        "Adeptos podem seguir espíritos mentores (p. 320).",
+        "Adeptos ganham Poderes de Adepto que são comprados com Pontos de Poder. Adeptos recebem um número de pontos de poder igual ao seu nível de Magia."
+      ],
+      "page": 69,
+      "astralPerception": "adept-power",
+      "astralProjection": false,
+      "magicSkillGroups": "none",
+      "mentorSpirit": true,
+      "powerPoints": {
+        "free": {
+          "ref": "attr.mag"
+        }
+      }
+    },
+    {
+      "id": "aspected-magician",
+      "name": "Mago Aspectado",
+      "attribute": "mag",
+      "rules": [
+        "Magos aspectados são uma forma limitada dos magos.",
+        "Magos aspectados não se projetam astralmente.",
+        "Magos aspectados podem perceber astralmente.",
+        "Magos aspectados devem escolher uma, e somente uma, das três Perícias/Grupos de Perícia abaixo: Feitiçaria (Conjuração e perícias relacionadas); Convocação (Invocação e perícias relacionadas); Encantação (Alquimia e perícias relacionadas)",
+        "Magos aspectados não podem executar as perícias mágicas associadas com os outros dois grupos que não selecionaram.",
+        "Magos aspectados podem aprender apenas Contramágica se pegarem as perícias para serem um conjurador.",
+        "Magos aspectados podem seguir espíritos mentores.",
+        "Na criação de personagem, magos aspectados que conjurem feitiços, realizem rituais ou criem preparativos alquímicos podem saber uma quantidade máxima de fórmulas de cada grupo igual ao seu Nível de Magia x 2 (ou seja, o Nível de Magia 4 permite 8 feitiços, 8 rituais, 8 preparativos alquímicos)."
+      ],
+      "page": 69,
+      "astralPerception": true,
+      "astralProjection": false,
+      "magicSkillGroups": "one",
+      "mentorSpirit": true,
+      "formulasMax": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "attr.mag"
+          },
+          2
+        ]
+      }
+    },
+    {
+      "id": "technomancer",
+      "name": "Tecnomante",
+      "attribute": "res",
+      "rules": [],
+      "page": 249,
+      "complexFormsMax": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "attr.res"
+          },
+          2
+        ]
+      }
+    }
+  ]
+}
