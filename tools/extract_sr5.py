@@ -389,6 +389,27 @@ IDENTITIES = [
 ]
 
 
+SPIRIT_TYPES = [("air", "Ar"), ("beasts", "Feras"), ("earth", "Terra"), ("fire", "Fogo"), ("man", "Homem"),
+                ("water", "Água")]
+
+SPELL_CATEGORIES = [
+    ("combat", "Combate"),
+    ("detection", "Detecção"),
+    ("health", "Saúde"),
+    ("illusion", "Ilusão"),
+    ("manipulation", "Manipulação"),
+]
+
+# (id, nome, box com os espíritos e o dreno, título da seção, seguidores, dreno)
+TRADITIONS = [
+    ("hermetic", "Hermética", "TRADIÇÃO HERMÉTICA", "O MAGO HERMÉTICO", "Magos", ("log", "wil")),
+    ("shamanic", "Xamânica", "TRADIÇÃO XAMÂNICA", "O XAMÃ", "Xamãs", ("cha", "wil")),
+]
+
+# Qualidades cuja compra exige escolher um item de outro catálogo.
+QUALITY_CHOICES = {"spirit-affinity": "traditions.json#spiritTypes"}
+
+
 # --- leitura do livro ---
 
 WATERMARK = re.compile(r'^Licenciado para .*$', re.M)
@@ -459,6 +480,28 @@ def section(text, start, stops):
 def require(text, fragment, where):
     if fragment not in text:
         raise ExtractionError(f"{where}: trecho esperado não encontrado: {fragment!r}")
+
+
+def flow(book, first, last, sidebars):
+    """Linhas (página, texto) das páginas first..last sem os boxes laterais.
+
+    sidebars mapeia página -> (primeira linha, última linha ou None para ir até
+    o fim da página); o texto de cada box volta à parte, por página.
+    """
+    lines, boxes = [], {}
+    for p in range(first, last + 1):
+        page = book.page(p).split("\n")
+        if p in sidebars:
+            start, end = sidebars[p]
+            i = next((k for k, line in enumerate(page) if line.strip().startswith(start)), None)
+            j = len(page) - 1 if end is None else next(
+                (k for k, line in enumerate(page) if line.strip().startswith(end)), None)
+            if i is None or j is None:
+                raise ExtractionError(f"box lateral da p. {p} não encontrado: {start!r}")
+            boxes[p] = "\n".join(page[i:j + 1])
+            page = page[:i] + page[j + 1:]
+        lines += [(p, line) for line in page]
+    return lines, boxes
 
 
 def fold(s):
@@ -700,23 +743,8 @@ AWAKENING_RULES = {
 SKILL_SIDEBARS = {131: ("Esta é uma lista do que os Níveis", "qualidade Aptidão (p. 72).")}
 
 
-def skill_lines(book):
-    lines = []
-    for p in range(130, 151):
-        page = book.page(p).split("\n")
-        if p in SKILL_SIDEBARS:
-            first, last = SKILL_SIDEBARS[p]
-            i = next((k for k, line in enumerate(page) if line.startswith(first)), None)
-            j = next((k for k, line in enumerate(page) if line.endswith(last)), None)
-            if i is None or j is None:
-                raise ExtractionError(f"box lateral da p. {p} não encontrado: {first!r}")
-            page = page[:i] + page[j + 1:]
-        lines += [(p, line) for line in page]
-    return lines
-
-
 def build_skills(book):
-    numbered = skill_lines(book)
+    numbered, _ = flow(book, 130, 150, SKILL_SIDEBARS)
     lines = [line for _, line in numbered]
     p151 = book.page(151)
     p153 = book.page(153)
@@ -875,38 +903,20 @@ def expected_numbers(spec):
     return [min(totals), max(totals)]
 
 
-def quality_flow(book):
-    """Linhas das p. 71–87 sem os boxes laterais, que voltam à parte."""
-    flow, boxes = [], {}
-    for p in range(71, 88):
-        lines = book.page(p).split("\n")
-        if p in QUALITY_SIDEBARS:
-            first, last = QUALITY_SIDEBARS[p]
-            i = next((k for k, line in enumerate(lines) if line.strip().startswith(first)), None)
-            j = len(lines) - 1 if last is None else next(
-                (k for k, line in enumerate(lines) if line.strip().startswith(last)), None)
-            if i is None or j is None:
-                raise ExtractionError(f"box lateral da p. {p} não encontrado: {first!r}")
-            boxes[p] = "\n".join(lines[i:j + 1])
-            lines = lines[:i] + lines[j + 1:]
-        flow += [(p, line) for line in lines]
-    return flow, boxes
-
-
-def quality_blocks(flow):
+def quality_blocks(lines):
     """{cabeçalho: (linha de custo, página, linhas do corpo)}."""
-    costs = [k for k, (_, line) in enumerate(flow) if QUALITY_COST.match(line)]
+    costs = [k for k, (_, line) in enumerate(lines) if QUALITY_COST.match(line)]
     heads = []
     for k in costs:
-        n = 2 if flow[k - 2][1].endswith("/") else 1
-        heads.append((k - n, " ".join(flow[i][1].strip() for i in range(k - n, k)).replace("/ ", "/")))
+        n = 2 if lines[k - 2][1].endswith("/") else 1
+        heads.append((k - n, " ".join(lines[i][1].strip() for i in range(k - n, k)).replace("/ ", "/")))
     blocks = {}
     for n, k in enumerate(costs):
-        end = heads[n + 1][0] if n + 1 < len(costs) else len(flow)
-        body = [line for _, line in flow[k + 1:end]]
+        end = heads[n + 1][0] if n + 1 < len(costs) else len(lines)
+        body = [line for _, line in lines[k + 1:end]]
         while body and is_heading(body[-1]):  # "QUALIDADES NEGATIVAS" no fim da última positiva
             body.pop()
-        blocks[fold(heads[n][1]).upper()] = (flow[k][1], flow[heads[n][0]][0], body)
+        blocks[fold(heads[n][1]).upper()] = (lines[k][1], lines[heads[n][0]][0], body)
     return blocks
 
 
@@ -958,8 +968,8 @@ def enrich_quality(book, entry, boxes):
 
 
 def build_qualities(book):
-    flow, boxes = quality_flow(book)
-    blocks = quality_blocks(flow)
+    lines, boxes = flow(book, 71, 87, QUALITY_SIDEBARS)
+    blocks = quality_blocks(lines)
     summary = book.prose(boxes[73])
     out = []
     for kind, vocab in (("positive", POSITIVE_QUALITIES), ("negative", NEGATIVE_QUALITIES)):
@@ -990,6 +1000,8 @@ def build_qualities(book):
             entry = json.loads(json.dumps({"id": qid, "name": name, "kind": kind, **cost}))
             if modifiers:
                 entry["modifiers"] = modifiers
+            if qid in QUALITY_CHOICES:
+                entry["choice"] = QUALITY_CHOICES[qid]
             enrich_quality(book, entry, boxes)
             entry.update({"desc": desc, "page": page})
             out.append(entry)
@@ -1268,6 +1280,46 @@ def check_progression(book, costs):
                 raise ExtractionError(f"progressão {label} nível {rating}: livro {cell}, fórmula {total}")
 
 
+def build_traditions(book):
+    sidebars = {279: ("TRADIÇÃO HERMÉTICA", None), 280: ("TRADIÇÃO XAMÂNICA", None)}
+    lines, boxes = flow(book, 279, 280, sidebars)
+    text = "\n".join(line for _, line in lines)
+    intro = section(text, "\nTRADIÇÕES\n", [r'^O MAGO HERMÉTICO$'])
+    if intro is None:
+        raise ExtractionError("tradições: introdução não encontrada na p. 279")
+    require(book.prose(intro), "Seguidores da tradição hermética são chamados de magos, enquanto seguidores da "
+            "tradição xamânica são chamados de xamãs", "tradições")
+
+    spirit_by_name = {name: sid for sid, name in SPIRIT_TYPES}
+    headings = [h for *_, h, _, _ in TRADITIONS]
+    out = []
+    for (tid, name, box_title, heading, followers, drain), box in zip(TRADITIONS, boxes.values()):
+        box = book.prose(box)
+        if not box.startswith(box_title):
+            raise ExtractionError(f"tradição {name}: box {box_title!r} fora do lugar")
+        spirits = {}
+        for cid, cname in SPELL_CATEGORIES:
+            m = re.search(rf'{cname}: (\w+)', box)
+            if not m or m.group(1) not in spirit_by_name:
+                raise ExtractionError(f"tradição {name}: espírito de {cname} ilegível")
+            spirits[cid] = spirit_by_name[m.group(1)]
+        m = re.search(r'Dreno: (\w+) \+ (\w+)', box)
+        if not m or [fold(a) for a in m.groups()] != [fold(ATTRIBUTE_NAMES[a]) for a in drain]:
+            raise ExtractionError(f"tradição {name}: dreno no livro {m and m.group(0)!r}, vocabulário {drain}")
+
+        body = section(text, f"\n{heading}\n", [rf'^{h}$' for h in headings if h != heading]
+                       + [r'^ESTÂNCIAS$'])
+        if body is None:
+            raise ExtractionError(f"tradição {name}: seção {heading!r} não encontrada")
+        out.append({"id": tid, "name": name, "followers": followers,
+                    "drain": add(attr(drain[0]), attr(drain[1])), "spirits": spirits,
+                    "desc": book.prose(body), "page": 279})
+
+    return {"desc": book.prose(intro),
+            "spiritTypes": [{"id": sid, "name": name} for sid, name in SPIRIT_TYPES],
+            "traditions": out}
+
+
 CATALOGS = {
     "attributes.json": build_attributes,
     "metatypes.json": build_metatypes,
@@ -1277,6 +1329,7 @@ CATALOGS = {
     "qualities.json": build_qualities,
     "mechanics.json": build_mechanics,
     "lifestyles.json": build_lifestyles,
+    "traditions.json": build_traditions,
 }
 
 EXPECTED_COUNTS = {
@@ -1288,6 +1341,7 @@ EXPECTED_COUNTS = {
     "qualities.json": {"qualities": 59},
     "mechanics.json": {},
     "lifestyles.json": {"lifestyles": 7, "options": 5, "identities": 2},
+    "traditions.json": {"traditions": 2, "spiritTypes": 6},
 }
 
 

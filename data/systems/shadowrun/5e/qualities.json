@@ -5,6 +5,7 @@
       "name": "Afinidade Espiritual",
       "kind": "positive",
       "karma": 7,
+      "choice": "traditions.json#spiritTypes",
       "desc": "Disponível apenas para usuários de magia, a qualidade Afinidade Espiritual permite que um personagem esteja sintonizado a um tipo de espírito (veja Espíritos, p. 303). Esses espíritos acham o personagem interessante, são atraídos por ele e mais inclinados a ajudá-lo. Eles podem relutar para atacar o personagem e, se forçados, provavelmente não usarão força letal. Observadores e servos não contam para esta qualidade, pois são construídos e não são invocados como espíritos normais. A Afinidade Espiritual fornece aos magos 1 serviço adicional de espírito para cada espírito daquele tipo e também +1 de modificador na pilha de dados para os Testes de Vinculação. Usuários de Magia podem possuir esta qualidade para um tipo de espírito que não seja parte da sua tradição mágica.",
       "page": 71
     },

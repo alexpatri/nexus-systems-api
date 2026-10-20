@@ -41,6 +41,10 @@
       "attribute": "edg",
       "note": "A ficha registra o Trunfo e os pontos de Trunfo disponíveis, que são gastos e recuperados em jogo."
     },
+    "tradition": {
+      "source": "traditions.json",
+      "note": "Define os atributos de Resistência ao Dreno e o espírito de cada categoria de feitiço."
+    },
     "initiative": {
       "rules": "mechanics.json#derived.initiative"
     },
@@ -133,7 +137,8 @@
         "page": 68,
         "uses": [
           "priorities.json#columns",
-          "awakening.json"
+          "awakening.json",
+          "traditions.json"
         ]
       },
       {
@@ -204,6 +209,7 @@
     "skills.json",
     "qualities.json",
     "mechanics.json",
-    "lifestyles.json"
+    "lifestyles.json",
+    "traditions.json"
   ]
 }
