@@ -18,7 +18,8 @@
       "quality.karma": "Custo ou bônus de carma da qualidade",
       "matrix.dataProcessing": "Datagrama da persona em uso (ciberdeck, com-link ou persona viva)",
       "force": "Potência do feitiço, ritual ou preparação",
-      "netHits": "Sucessos restantes do teste"
+      "netHits": "Sucessos restantes do teste",
+      "limit.physical": "Limite Físico do personagem (precisão de armas que usam o limite)"
     }
   },
   "derived": {

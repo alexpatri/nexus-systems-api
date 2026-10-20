@@ -270,7 +270,7 @@ SR_OPS = {
 }
 SR_UNARY = {'ceil', 'floor'}
 SR_REF = re.compile(r'^(attr\.(' + '|'.join(SR_ATTRS) + r')|rating|grade|karma\.total|quality\.karma'
-                    r'|matrix\.dataProcessing|force|netHits)$')
+                    r'|matrix\.dataProcessing|force|netHits|limit\.physical)$')
 SR_TARGETS = {
     'attr.max', 'skill.max', 'limit', 'monitor.overflow', 'wound.ignoredBoxes', 'wound.boxesPerPenalty',
     'reputation.notoriety', 'essence.cyberwareLoss', 'lifestyle.cost', 'language.native',
@@ -363,6 +363,32 @@ def sr_check_parameter(param, where, E, skill_ids, skill_categories):
         if o not in valid: E(f"{where}: opção de parâmetro inexistente {o}")
     for c in param.get('categories', []):
         if c not in skill_categories: E(f"{where}: categoria de perícia inexistente {c}")
+
+
+def sr_check_availability(av, where, E, legality):
+    if av is None: return
+    if set(av) - {'value', 'add', 'legality'} or ('value' in av) == ('add' in av):
+        E(f"{where}: disponibilidade malformada {av!r}"); return
+    if av['legality'] not in (None, *legality): E(f"{where}: legalidade fora do vocabulário {av['legality']!r}")
+
+
+def sr_check_cost(c, where, E):
+    if isinstance(c, dict) and set(c) <= {'add', 'plus', 'min', 'max'} and not is_expr(c): return
+    if isinstance(c, (int, float)) or is_expr(c): return
+    E(f"{where}: custo malformado {c!r}")
+
+
+def sr_check_damage(dmg, where, E, elements, specials):
+    for d in dmg if isinstance(dmg, list) else [dmg]:
+        if 'special' in d:
+            if d['special'] not in specials: E(f"{where}: dano especial fora do vocabulário {d['special']!r}")
+            continue
+        if d.get('type') not in ('physical', 'stun'): E(f"{where}: tipo de dano inválido {d.get('type')!r}")
+        if 'element' in d and d['element'] not in elements: E(f"{where}: elemento fora do vocabulário {d['element']!r}")
+
+
+SR_GEAR_ELEMENTS = {'electricity', 'flechette'}
+SR_GEAR_SPECIALS = {'grenade', 'missile', 'chemical', 'special', 'toxin'}
 
 
 def check_shadowrun(d, sysj, E, W):
@@ -556,6 +582,29 @@ def check_shadowrun(d, sysj, E, W):
             if not (isinstance(pp, (int, float)) or (isinstance(pp, dict) and len(pp) == 1
                                                       and set(pp) <= {'perLevel', 'each', 'byLevel'})):
                 E(f"poder {p['id']}: forma de custo inválida {pp!r}")
+
+    weapons = load(d, 'weapons.json')
+    if weapons:
+        cats = {c['id']: c for c in weapons['categories']}
+        modes = {m['id'] for m in weapons['firingModes']}
+        feeds = {f['id'] for f in weapons['ammoFeeds']}
+        if len({w['id'] for w in weapons['weapons']}) != len(weapons['weapons']): E("weapons.json: ids duplicados")
+        for c in cats.values():
+            if c['skill'] is not None and c['skill'] not in skill_ids: E(f"categoria de arma {c['id']}: perícia inexistente")
+        for w in weapons['weapons']:
+            where = f"arma {w['id']}"
+            if w['category'] not in cats: E(f"{where}: categoria inexistente"); continue
+            if (w.get('skill') or cats[w['category']]['skill']) not in skill_ids: E(f"{where}: sem perícia válida")
+            sr_check_damage(w['damage'], where, E, SR_GEAR_ELEMENTS, SR_GEAR_SPECIALS)
+            for v in w.get('variants', []):
+                if 'damage' in v: sr_check_damage(v['damage'], f"{where} variante {v['name']}", E, SR_GEAR_ELEMENTS, SR_GEAR_SPECIALS)
+            for m in w.get('modes', []) + [m for v in w.get('variants', []) for m in v.get('modes', [])]:
+                if m not in modes: E(f"{where}: modo de disparo inexistente {m}")
+            for a in (w.get('ammo') or []) + [a for v in w.get('variants', []) for a in v.get('ammo', [])]:
+                if a['feed'] not in feeds: E(f"{where}: tipo de munição inexistente {a['feed']}")
+            sr_check_availability(w['availability'], where, E, mech['legality'])
+            sr_check_cost(w['cost'], where, E)
+            if not w.get('desc'): E(f"{where}: desc vazia")
 
     for l in lifestyles['identities']:
         if l['availability']['legality'] not in mech['legality']:

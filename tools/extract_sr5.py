@@ -639,6 +639,71 @@ MATRIX_ATTRIBUTES = [("attack", "Ataque"), ("sleaze", "Subversão"), ("dataProce
                      ("firewall", "Firewall")]
 
 
+FIRING_MODES = [("ss", "TS", "Tiro Simples"), ("sa", "SA", "Semiautomático"), ("bf", "RJ", "Rajada"),
+                ("fa", "RC", "Rajada Completa")]
+MODE_BY_ABBR = {abbr: mid for mid, abbr, _ in FIRING_MODES}
+
+AMMO_FEEDS = [("p", "Pente Removível"), ("b", "Basculante"), ("cinto", "Alimentado por Cinta"),
+              ("t", "Tambor"), ("ai", "Armazenamento Interno"), ("cf", "Carregador Frontal"), ("ci", "Cilindro")]
+
+DAMAGE_ELEMENTS = {"e": "electricity", "f": "flechette"}
+DAMAGE_SPECIALS = {"Granada": "grenade", "como Granada": "grenade", "Míssil": "missile", "Químico": "chemical",
+                   "Especial": "special", "conforme Droga/Toxina": "toxin"}
+
+# (id, nome, título da tabela, seção onde está "Use a perícia…", perícia quando o livro não diz)
+WEAPON_CATEGORIES = [
+    ("blades", "Lâminas", "LÂMINAS PRECISÃO ALCANCE DANO PA DISP CUSTO", "LÂMINAS", None),
+    ("clubs", "Bastões", "BASTÕES PRECISÃO ALCANCE DANO PA DISP CUSTO", "BASTÕES", None),
+    ("other-melee", "Outras Armas Corpo a Corpo", "OUTROS PRECISÃO ALCANCE DANO PA DISP CUSTO", None, None),
+    # Arcos, bestas e armas de arremesso não dizem a perícia; o nome dela coincide.
+    ("bows", "Arcos", "ARCOS PRECISÃO DANO PA DISP CUSTO", None, "archery"),
+    ("crossbows", "Bestas", "BESTAS PRECISÃO DANO PA DISP CUSTO", None, "archery"),
+    ("throwing", "Armas de Arremesso", "ARMAS DE ARREMESSO PRECISÃO DANO PA DISP CUSTO", None, "throwing-weapons"),
+    ("tasers", "Tasers", "TASERS PRE DANO PA MODO CR MUN. DISP CUSTO", "TASERS", None),
+    ("holdouts", "Escamoteáveis", "ESCAMOTEÁVEIS PRE DANO PA MODO CR MUN. DISP CUSTO", "ESCAMOTEÁVEIS", None),
+    ("light-pistols", "Pistolas Leves", "PISTOLAS LEVES PRE DANO PA MODO CR MUN. DISP CUSTO", "PISTOLAS LEVES", None),
+    ("heavy-pistols", "Pistolas Pesadas", "PISTOLAS PESADAS PRE DANO PA MODO CR MUN. DISP CUSTO", "PISTOLAS PESADAS",
+     None),
+    ("machine-pistols", "Pistolas Automáticas", "PISTOLAS AUTOMÁTICAS PRE DANO PA MODO CR MUN. DISP CUSTO",
+     "PISTOLAS AUTOMÁTICAS", None),
+    ("smgs", "Submetralhadoras", "SUBMETRALHADORAS PRE DANO PA MODO CR MUN. DISP CUSTO", "SUBMETRALHADORAS", None),
+    ("assault-rifles", "Fuzis de Assalto", "FUZIS DE ASSALTO PRE DANO PA MODO CR MUN. DISP CUSTO", "FUZIS DE ASSALTO",
+     None),
+    ("sniper-rifles", "Fuzis de Precisão", "FUZIS DE PRECISÃO PRE DANO PA MODO CR MUN DISP CUSTO",
+     "RIFLES DE PRECISÃO", None),
+    ("shotguns", "Escopetas", "ESCOPETAS PRE DANO PA MODO CR MUN. DISP CUSTO", "ESCOPETAS", None),
+    ("special", "Armas Especiais", "ARMAS ESPECIAIS PRE DANO PA MODO CR MUN. DISP CUSTO", "ARMAS ESPECIAIS", None),
+    ("machine-guns", "Metralhadoras", "METRALHADORAS PRE DANO PA MODO CR MUN DISP CUSTO", "METRALHADORAS", None),
+    ("launchers", "Canhões e Lançadores", "CANHÕES/LANÇADORES PRE DANO PA MODO CR MUN. DISP CUSTO",
+     "CANHÕES E LANÇADORES", None),
+]
+
+# Ids de armas genéricas; armas de fabricante usam o próprio nome como id.
+WEAPON_IDS = {
+    "Arma de haste": "polearm", "Espada": "sword", "Faca de combate": "combat-knife",
+    "Faca de sobrevivência": "survival-knife", "Faca": "knife", "Katana": "katana",
+    "Lâminas retráteis de antebraço": "forearm-snap-blades", "Machado de combate": "combat-axe",
+    "Bastão de choque": "stun-baton", "Bastão retrátil": "extendable-baton", "Bastão": "club",
+    "Cajado retrátil": "telescoping-staff", "Cajado": "staff", "Porrete": "sap",
+    "Chicote de monofilamento": "monofilament-whip", "Luvas de choque": "shock-gloves", "Soco-inglês": "knucks",
+    "Arco": "bow", "Leve": "light-crossbow", "Média": "medium-crossbow", "Pesada": "heavy-crossbow",
+    "Facas de arremesso/shuriken": "throwing-knife",
+    "Indutor de Dor Fichetti": "fichetti-pain-inducer", "Pistola de Dardos Parashield": "parashield-dart-pistol",
+    "Rifle de Dardos Parashield": "parashield-dart-rifle", "Canhão Krime": "krime-cannon",
+}
+# Linhas das tabelas de projéteis que são munição, fora do escopo.
+WEAPON_AMMO_ROWS = {"Flecha", "Flecha de injeção", "Virote", "Virote de injeção"}
+# As bestas aparecem só pelo tamanho na tabela.
+WEAPON_NAMES = {"Leve": "Besta Leve", "Média": "Besta Média", "Pesada": "Besta Pesada"}
+# Parágrafo de descrição quando o nome dele difere da linha da tabela.
+WEAPON_DESC = {"bow": "Arcos", "light-crossbow": "Bestas", "medium-crossbow": "Bestas", "heavy-crossbow": "Bestas"}
+# Perícia por arma quando difere da categoria (o livro diz na descrição).
+WEAPON_SKILLS = {"monofilament-whip": "exotic-melee-weapon", "shock-gloves": "unarmed-combat",
+                 "knucks": "unarmed-combat"}
+
+WEAPON_COUNT = 74
+
+
 # Qualidades cuja compra exige escolher um item de outro catálogo.
 QUALITY_CHOICES = {"spirit-affinity": "traditions.json#spiritTypes",
                    "mentor-spirit": "mentors.json#mentors"}
@@ -739,6 +804,7 @@ def flow(book, first, last, sidebars):
 
 
 def fold(s):
+    s = s.replace("–", "-")
     return unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower()
 
 
@@ -1377,6 +1443,7 @@ def build_mechanics(book):
                 "matrix.dataProcessing": "Datagrama da persona em uso (ciberdeck, com-link ou persona viva)",
                 "force": "Potência do feitiço, ritual ou preparação",
                 "netHits": "Sucessos restantes do teste",
+                "limit.physical": "Limite Físico do personagem (precisão de armas que usam o limite)",
             },
         },
         "derived": {
@@ -1959,6 +2026,297 @@ def build_complex_forms(book):
     }
 
 
+# --- equipamento ---
+
+RATING_IN_NAME = re.compile(r'\s*\((?:Nível )?(\d+)\s*[–-]\s*(\d+)\)\s*')
+
+
+def slug(name):
+    return re.sub(r'[^a-z0-9]+', '-', fold(name)).strip("-")
+
+
+def number(text):
+    """'1.000' → 1000, '0,45' → 0.45 (o livro às vezes troca os separadores)."""
+    text = text.strip().replace(" ", "")
+    if re.fullmatch(r'\d{1,3}(?:[.,]\d{3})+', text):
+        return int(re.sub(r'[.,]', "", text))
+    value = float(text.replace(",", "."))
+    return int(value) if value.is_integer() else value
+
+
+def rating_value(text, unit="Nível"):
+    """'Nível x 3' / 'Nível' / '(Nível x 4)' / '5' → número ou fórmula sobre rating."""
+    text = text.strip().strip("()").strip()
+    if text == unit:
+        return ref("rating")
+    m = re.fullmatch(rf'{unit} x ([\d.,]+)', text)
+    if m:
+        return mul(ref("rating"), number(m.group(1)))
+    m = re.fullmatch(rf'{unit} \+ (\d+)', text)
+    if m:
+        return add(ref("rating"), int(m.group(1)))
+    return number(text)
+
+
+def availability(text):
+    text = text.strip()
+    if text in ("—", "-", ""):
+        return None
+    m = re.fullmatch(r'(\+?)(.+?)([RPF]?)', text)
+    value = rating_value(m.group(2))
+    entry = {"add": value} if m.group(1) else {"value": value}
+    entry["legality"] = m.group(3) or None
+    return entry
+
+
+def cost(text):
+    text = text.strip().replace(" ¥", "¥")
+    m = re.fullmatch(r'(\+?)(.+?)¥', text)
+    if not m:
+        raise ExtractionError(f"custo fora do formato: {text!r}")
+    value = rating_value(m.group(2))
+    return {"add": value} if m.group(1) else value
+
+
+def damage(text):
+    text = text.strip()
+    if "/" in text and "Droga" not in text:
+        return [damage(part) for part in text.split("/")]
+    if text in DAMAGE_SPECIALS:
+        return {"special": DAMAGE_SPECIALS[text]}
+    m = re.fullmatch(r'\((FOR|Nível)(?: \+ (\d+))?\)([FA])(?:\s*\((\w)\))?', text) or \
+        re.fullmatch(r'()(\d+)([FA])(?:\s*\((\w)\))?', text)
+    if not m:
+        raise ExtractionError(f"dano fora do formato: {text!r}")
+    base = {"FOR": attr("str"), "Nível": ref("rating"), "": 0}[m.group(1)]
+    bonus = int(m.group(2)) if m.group(2) else 0
+    value = bonus if m.group(1) == "" else (add(base, bonus) if bonus else base)
+    out = {"value": value, "type": "physical" if m.group(3) == "F" else "stun"}
+    if m.group(4):
+        out["element"] = DAMAGE_ELEMENTS[m.group(4)]
+    return out
+
+
+def armor_penetration(text):
+    text = text.strip()
+    if text == "–(Nível / 4)":
+        return mul(div(ref("rating"), 4), -1)
+    if "/" in text:
+        return [armor_penetration(part) for part in text.split("/")]
+    if text in ("—", "-"):
+        return 0
+    return int(text.replace("–", "-").replace(" ", ""))
+
+
+def enhanced(text):
+    """'5 (7)' → (5, 7); '(1)' → (0, 1); '—' → (0, None); 'Físico' → limite Físico."""
+    text = text.strip()
+    if text == "Físico":
+        return ref("limit.physical"), None
+    if text in ("—", "-"):
+        return 0, None
+    m = re.fullmatch(r'(\d+)?\s*(?:\((\d+)\))?', text)
+    return int(m.group(1) or 0), int(m.group(2)) if m.group(2) else None
+
+
+def ammo(text):
+    text = text.strip()
+    if text == "Especial":
+        return None
+    out = []
+    for part in re.split(r'\s+(?:ou|/)\s+', text):
+        # O livro grafa "24b (t)" para o tambor da Enfield AS-7.
+        m = re.fullmatch(r'(\d+)b?\s*\((\w+)\)', part.strip())
+        if not m or m.group(2) not in dict(AMMO_FEEDS):
+            raise ExtractionError(f"munição fora do formato: {text!r}")
+        out.append({"count": int(m.group(1)), "feed": m.group(2)})
+    return out
+
+
+def gear_lines(book, first, last):
+    return [(p, line.strip()) for p in range(first, last + 1) for line in book.page(p).split("\n")]
+
+
+def read_table(lines, title, row, used, labels=(), subrow=None):
+    """Lê as linhas de uma tabela a partir do título (com as colunas) e marca as linhas usadas.
+
+    row é a regex de uma linha; labels são linhas de grupo (sem valores) que
+    podem aparecer no meio da tabela e ficam junto das linhas seguintes;
+    subrow é a regex de uma linha que complementa a anterior (variante ou
+    acessório embutido), devolvida na lista da linha-mãe.
+    """
+    norm = " ".join(title.split())
+    starts = [i for i, (_, t) in enumerate(lines) if " ".join(t.split()) == norm]
+    if len(starts) != 1:
+        raise ExtractionError(f"tabela {title!r}: {len(starts)} títulos encontrados")
+    i, rows, group = starts[0] + 1, [], None
+    used.add(starts[0])
+    while i < len(lines):
+        text = " ".join(lines[i][1].split())
+        if text.endswith(" ou") and i + 1 < len(lines):  # linha quebrada: "50 (p) ou / 100 (cinto) …"
+            text = f"{text} {lines[i + 1][1].strip()}"
+            used.add(i)
+            i += 1
+        m = row.match(text)
+        sub = subrow.match(text) if subrow and rows else None
+        if m:
+            rows.append((group, m, lines[i][0], []))
+        elif sub:
+            rows[-1][3].append(sub)
+        elif text in labels:
+            group = text
+        else:
+            break
+        used.add(i)
+        i += 1
+    return rows
+
+
+def item_texts(lines, used, names, stops):
+    """{nome: (descrição, sem fio)} a partir dos parágrafos "Nome: …" fora das tabelas."""
+    prose = [t for i, (_, t) in enumerate(lines) if i not in used]
+    key = lambda s: fold(s).replace("–", "-")
+    starts = {}
+    for i, t in enumerate(prose):
+        for name in names:
+            if key(t).startswith(key(name) + ":"):
+                starts.setdefault(name, i)
+    boundaries = sorted(set(starts.values()) | {i for i, t in enumerate(prose) if t in stops
+                                                 or t.startswith("Sem fio:")} | {len(prose)})
+    out = {}
+    for name, i in starts.items():
+        end = min(b for b in boundaries if b > i)
+        desc = "\n".join(prose[i:end])[len(name) + 1:]
+        wireless = None
+        if end < len(prose) and prose[end].startswith("Sem fio:"):
+            nxt = min(b for b in boundaries if b > end)
+            wireless = "\n".join(prose[end:nxt])[len("Sem fio:"):]
+        out[name] = (desc, wireless)
+    return out
+
+
+MELEE_ROW = re.compile(r'^(?P<name>.+?) (?P<acc>\d+(?: \(\d+\))?|Físico) (?P<reach>—|\d+) (?P<dmg>\S.*?) '
+                       r'(?P<ap>—|[–-]\d+) (?P<avail>—|\d+[RP]?) (?P<cost>[\d.]+¥)$')
+PROJECTILE_ROW = re.compile(r'^(?P<name>.+?) (?P<acc>\d+|Físico|—) (?P<dmg>\S.*?|—) (?P<ap>—|[–-]\d+|–\(Nível / 4\)) '
+                            r'(?P<avail>—|\d+[RP]?|Nível|\(Nível \+ \d+\)[RP]?) (?P<cost>(?:Nível x )?[\d.]+¥)$')
+FIREARM_ROW = re.compile(
+    r'^(?P<name>.+?) (?P<acc>\d+(?: \(\d+\))?) '
+    r'(?P<dmg>\d+[FA](?: ?\(\w\))?(?: / \d+[FA])?|Granada|Míssil|Químico|Especial|conforme Droga/Toxina) '
+    r'(?P<ap>—|[–+-]?\d+(?: / [–+-]?\d+)?) (?P<mode>(?:TS|SA|RJ|RC)(?: ?/ ?(?:TS|SA|RJ|RC))*) '
+    r'(?P<rc>—|\d+ \(\d+\)|\(\d+\)|\d+) (?P<ammo>.+?) (?P<avail>—|\d+[RP]?) (?P<cost>[\d.]+¥)$')
+
+
+# Linha que complementa a arma de cima: munição alternativa ("c/ flechetes") ou
+# arma embutida ("Lançador de Granada"); colunas vazias vêm como "—".
+FIREARM_SUBROW = re.compile(
+    r'^(?P<name>[^\d—]+?) (?P<acc>—|\d+(?: \(\d+\))?) (?P<dmg>—|\d+[FA](?: ?\(\w\))?) (?P<ap>—|[–+-]?\d+) '
+    r'(?P<mode>—|(?:TS|SA|RJ|RC)(?: ?/ ?(?:TS|SA|RJ|RC))*) (?P<rc>—|\d+) (?P<ammo>—|\d+ \(\w+\)) — —$')
+
+
+def weapon_variant(m):
+    out = {"name": m.group("name")}
+    if m.group("acc") != "—":
+        out["accuracy"], plus = enhanced(m.group("acc"))
+        if plus is not None:
+            out["accuracyEnhanced"] = plus
+    if m.group("dmg") != "—":
+        out["damage"] = damage(m.group("dmg"))
+    if m.group("ap") != "—":
+        out["ap"] = armor_penetration(m.group("ap"))
+    if m.group("mode") != "—":
+        out["modes"] = [MODE_BY_ABBR[x.strip()] for x in m.group("mode").split("/")]
+    if m.group("ammo") != "—":
+        out["ammo"] = ammo(m.group("ammo"))
+    return out
+
+
+def skill_by_name(name):
+    for sid, sname, *_ in SKILLS:
+        if fold(sname) == fold(name):
+            return sid
+    raise ExtractionError(f"perícia desconhecida: {name!r}")
+
+
+def build_weapons(book):
+    lines = gear_lines(book, 422, 431)
+    used, rows = set(), []
+    for cid, cname, title, _, _ in WEAPON_CATEGORIES:
+        pattern = MELEE_ROW if cid in ("blades", "clubs", "other-melee") else \
+            PROJECTILE_ROW if cid in ("bows", "crossbows", "throwing") else FIREARM_ROW
+        found = read_table(lines, title, pattern, used, subrow=FIREARM_SUBROW if pattern is FIREARM_ROW else None)
+        if not found:
+            raise ExtractionError(f"tabela de {cname}: nenhuma linha reconhecida")
+        rows += [(cid, m, page, subs) for _, m, page, subs in found if m.group("name") not in WEAPON_AMMO_ROWS]
+
+    headings = {h for *_, h, _ in WEAPON_CATEGORIES if h} | {"OUTRAS ARMAS CORPO A CORPO", "ARMAS DE FOGO",
+                                                               "ARMAS DE PROJÉTEIS", "ACESSÓRIOS"}
+    names = [m.group("name") for _, m, _, _ in rows] + sorted(set(WEAPON_DESC.values()))
+    texts = item_texts(lines, used, names, headings)
+    prose = book.prose("\n".join(t for i, (_, t) in enumerate(lines) if i not in used))
+
+    categories = []
+    for cid, cname, title, heading, skill in WEAPON_CATEGORIES:
+        if heading:
+            at = prose.find(f" {heading} ")
+            m = re.search(r'[Uu]se a perícia ([A-ZÀ-Ú][\wÀ-ú ]+?)(?: (?:para|ao)\b|[.,])',
+                                    prose[at:at + 800]) if at >= 0 else None
+            if not m:
+                raise ExtractionError(f"categoria {cname}: frase 'Use a perícia' não encontrada")
+            skill = skill_by_name(m.group(1))
+        categories.append({"id": cid, "name": cname, "skill": skill})
+
+    weapons = []
+    for cid, m, page, subs in rows:
+        name = m.group("name")
+        wid = WEAPON_IDS.get(name, slug(name))
+        entry = {"id": wid, "name": WEAPON_NAMES.get(name, name), "category": cid}
+        if wid in WEAPON_SKILLS:
+            require(texts.get(name, ("",))[0], "perícia", f"arma {name}")
+            entry["skill"] = WEAPON_SKILLS[wid]
+        if "(Nível" in m.group(0) or m.group("avail") == "Nível":
+            entry["rating"] = {"min": 1, "max": 10}
+        acc, acc_plus = enhanced(m.group("acc"))
+        entry["accuracy"] = acc
+        if acc_plus is not None:
+            entry["accuracyEnhanced"] = acc_plus
+        if "reach" in m.groupdict():
+            entry["reach"] = enhanced(m.group("reach"))[0]
+        entry["damage"] = damage(m.group("dmg"))
+        entry["ap"] = armor_penetration(m.group("ap"))
+        if "mode" in m.groupdict():
+            entry["modes"] = [MODE_BY_ABBR[x.strip()] for x in m.group("mode").split("/")]
+            rc, rc_plus = enhanced(m.group("rc"))
+            entry["recoil"] = rc
+            if rc_plus is not None:
+                entry["recoilEnhanced"] = rc_plus
+            entry["ammo"] = ammo(m.group("ammo"))
+        if subs:
+            entry["variants"] = [weapon_variant(sub) for sub in subs]
+        entry["availability"] = availability(m.group("avail"))
+        entry["cost"] = cost(m.group("cost"))
+        desc_name = WEAPON_DESC.get(wid, name)
+        if desc_name not in texts:
+            raise ExtractionError(f"arma {name}: parágrafo de descrição não encontrado")
+        desc, wireless = texts[desc_name]
+        entry["desc"] = book.prose(desc)
+        if wireless:
+            entry["wireless"] = book.prose(wireless)
+        entry["page"] = page
+        weapons.append(entry)
+
+    firearms = section(prose, "ARMAS DE FOGO Aço frio", [r' TASERS '])
+    m = re.search(r'Sem fio: (A arma exibe um ORA.+)$', firearms or "")
+    if not m:
+        raise ExtractionError("armas de fogo: bônus sem fio geral não encontrado")
+    return {
+        "firingModes": [{"id": mid, "abbr": abbr, "name": name} for mid, abbr, name in FIRING_MODES],
+        "ammoFeeds": [{"id": fid, "name": name} for fid, name in AMMO_FEEDS],
+        "categories": categories,
+        "rules": {"firearmsWireless": m.group(1), "page": 424},
+        "weapons": weapons,
+    }
+
+
 CATALOGS = {
     "attributes.json": build_attributes,
     "metatypes.json": build_metatypes,
@@ -1973,6 +2331,7 @@ CATALOGS = {
     "adept-powers.json": build_adept_powers,
     "mentors.json": build_mentors,
     "complex-forms.json": build_complex_forms,
+    "weapons.json": build_weapons,
 }
 
 EXPECTED_COUNTS = {
@@ -1989,6 +2348,7 @@ EXPECTED_COUNTS = {
     "adept-powers.json": {"powers": 25},
     "mentors.json": {"mentors": 16},
     "complex-forms.json": {"complexForms": 14},
+    "weapons.json": {"weapons": WEAPON_COUNT, "categories": len(WEAPON_CATEGORIES)},
 }
 
 

@@ -65,6 +65,29 @@
     "conditionMonitor": {
       "rules": "mechanics.json#derived.monitors"
     },
+    "weapons": {
+      "source": "weapons.json",
+      "ranged": {
+        "fields": [
+          "name",
+          "damage",
+          "accuracy",
+          "ap",
+          "modes",
+          "recoil",
+          "ammo"
+        ]
+      },
+      "melee": {
+        "fields": [
+          "name",
+          "reach",
+          "damage",
+          "accuracy",
+          "ap"
+        ]
+      }
+    },
     "qualities": {
       "source": "qualities.json",
       "fields": [
@@ -209,7 +232,8 @@
         "uses": [
           "priorities.json#columns",
           "lifestyles.json",
-          "mechanics.json#creation.resources"
+          "mechanics.json#creation.resources",
+          "weapons.json"
         ]
       },
       {
@@ -253,6 +277,7 @@
     "spells.json",
     "adept-powers.json",
     "mentors.json",
-    "complex-forms.json"
+    "complex-forms.json",
+    "weapons.json"
   ]
 }
