@@ -3,3 +3,6 @@
 
 /api
 *.exe
+
+# extratores rodam só localmente, a partir dos PDFs
+/tools/extract_*.py

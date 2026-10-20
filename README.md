@@ -28,11 +28,6 @@ Cada sistema é um diretório em `data/systems/{sistema}/{versao}/`, embutido no
 binário com `go:embed`. O `system.json` é o manifesto e lista os demais catálogos.
 O serviço não depende de banco: tudo que ele serve está no binário.
 
-Os catálogos do D&D são gerados a partir do PDF do Livro do Jogador por
-`tools/extract_dnd.py`, e os do Shadowrun a partir do PDF do Livro Básico (New
-Order) por `tools/extract_sr5.py`. Os dois extratores fixam ids e estrutura no
-código e abortam se o PDF não trouxer o que esperam.
-
 ### Fórmulas (Shadowrun)
 
 Valores que a ficha calcula — limites, monitores, iniciativa, Dreno, custos por
