@@ -373,7 +373,7 @@ def sr_check_availability(av, where, E, legality):
 
 
 def sr_check_cost(c, where, E):
-    if isinstance(c, dict) and set(c) <= {'add', 'plus', 'min', 'max'} and not is_expr(c): return
+    if isinstance(c, dict) and set(c) <= {'value', 'add', 'plus', 'min', 'max'} and not is_expr(c): return
     if isinstance(c, (int, float)) or is_expr(c): return
     E(f"{where}: custo malformado {c!r}")
 
@@ -629,6 +629,44 @@ def check_shadowrun(d, sysj, E, W):
             if is_expr(m['capacity']['cost']) != ('rating' in m): E(f"{where}: capacidade por nível exige rating")
             sr_check_availability(m['availability'], where, E, mech['legality'])
             sr_check_cost(m['cost'], where, E)
+
+    augs = load(d, 'augmentations.json')
+    if augs:
+        categories = {'headware', 'eyeware', 'earware', 'bodyware', 'cyberlimb', 'cyberlimb-enhancement',
+                      'cyberlimb-accessory', 'cyber-implant-weapon', 'bioware', 'cultured-bioware'}
+        if [g['id'] for g in augs['grades']][0] != 'standard' or augs['grades'][0]['essence'] != 1:
+            E("augmentations.json: o primeiro grau deve ser o padrão, com Essência x 1")
+        if len({a['id'] for a in augs['augmentations']}) != len(augs['augmentations']): E("augmentations.json: ids duplicados")
+        for a in augs['augmentations']:
+            where = f"ampliação {a['id']}"
+            if a['category'] not in categories: E(f"{where}: categoria inválida")
+            if a['type'] not in ('cyberware', 'bioware'): E(f"{where}: tipo inválido")
+            uses_rating = '"rating"' in json.dumps({k: v for k, v in a.items() if k not in ('desc', 'wireless')})
+            if uses_rating and 'rating' not in a: E(f"{where}: fórmula com Nível sem faixa de rating")
+            if 'levels' in a and [l['rating'] for l in a['levels']] != list(range(1, a['rating']['max'] + 1)):
+                E(f"{where}: levels devem cobrir 1..rating.max")
+            for part in [a] + a.get('levels', []) + a.get('variants', []):
+                cap = part.get('capacity')
+                if a['type'] == 'bioware' and cap is not None: E(f"{where}: biônico não tem capacidade")
+                if cap not in (None, 'included') and not (isinstance(cap, dict) and len(cap) == 1
+                                                          and set(cap) <= {'cost', 'provides'}):
+                    E(f"{where}: capacidade malformada {cap!r}")
+                if 'availability' in part: sr_check_availability(part['availability'], where, E, mech['legality'])
+                if 'cost' in part: sr_check_cost(part['cost'], where, E)
+                for i, m in enumerate(part.get('modifiers', [])):
+                    sr_check_modifier(m, f"{where}[{i}]", E, skill_ids, a.get('parameter'))
+            if 'weapon' in a:
+                if a['weapon']['skill'] not in skill_ids: E(f"{where}: perícia de arma inexistente")
+                sr_check_damage(a['weapon']['damage'], where, E, SR_GEAR_ELEMENTS, SR_GEAR_SPECIALS)
+            if not a.get('desc'): E(f"{where}: desc vazia")
+
+        # Compras do Beto, p. 97: Melhorias de Reação 2 por 26.000¥ e
+        # revestimento ósseo de plástico por 8.000¥.
+        A = {a['id']: a for a in augs['augmentations']}
+        if sr_eval(A['reaction-enhancers']['cost'], {'rating': 2}) != 26000:
+            E("exemplo Beto: Melhorias de Reação 2 deveriam custar 26.000¥")
+        if next(v for v in A['bone-lacing']['variants'] if v['id'] == 'plastic')['cost'] != 8000:
+            E("exemplo Beto: revestimento ósseo de plástico deveria custar 8.000¥")
 
     for l in lifestyles['identities']:
         if l['availability']['legality'] not in mech['legality']:

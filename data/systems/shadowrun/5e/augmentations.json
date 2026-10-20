@@ -1,0 +1,3144 @@
+{
+  "grades": [
+    {
+      "id": "standard",
+      "name": "Padrão",
+      "essence": 1.0,
+      "availability": 0,
+      "cost": 1.0
+    },
+    {
+      "id": "alphaware",
+      "name": "Alphaware",
+      "essence": 0.8,
+      "availability": 2,
+      "cost": 1.2
+    },
+    {
+      "id": "betaware",
+      "name": "Betaware",
+      "essence": 0.7,
+      "availability": 4,
+      "cost": 1.5
+    },
+    {
+      "id": "deltaware",
+      "name": "Deltaware",
+      "essence": 0.5,
+      "availability": 8,
+      "cost": 2.5
+    },
+    {
+      "id": "used",
+      "name": "Usado",
+      "essence": 1.25,
+      "availability": -4,
+      "cost": 0.75
+    }
+  ],
+  "rules": {
+    "cyberlimbs": {
+      "baseAttributes": 3,
+      "customization": {
+        "attributes": [
+          "str",
+          "agi"
+        ],
+        "availability": 1,
+        "cost": 5000,
+        "desc": "Você pode ter seu cibermembro adaptado e personalizado para a sua estrutura e musculatura. A personalização permite que você aumente os níveis básicos de Força e/ou Agilidade do seu membro. Cada aumento de um dos atributos aumenta o custo e Disponibilidade do membro. Se um dos atributos do seu membro for aumentado além do seu máximo natural para tal atributo, você não pode usar o cibermembro (por isso, não exagere), mas ainda poderá adicionar melhorias ao cibermembro. Você personaliza o seu cibermembro ao comprá-lo: não é possível personalizá-lo após a compra, mas você pode adicionar melhorias. Cibermembros podem ser óbvios ou sintéticos."
+      },
+      "page": 456
+    },
+    "page": 451
+  },
+  "augmentations": [
+    {
+      "id": "taste-booster",
+      "name": "Amplificador de Paladar",
+      "category": "headware",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 6
+      },
+      "essence": 0.2,
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            3
+          ]
+        },
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          3000
+        ]
+      },
+      "desc": "O amplificador de paladar realiza a mesma função que o amplificador olfativo, mas aprimorando as suas papilas gustativas. O amplificador de paladar também permite que você sinta os dados gustativos em ambientes de RA e RV com uma “faixa de gosto” — caveat emptor nessa, chapa. Aplique o nível do amplificador de paladar como bônus na pilha de dados em qualquer Teste de Percepção que envolva paladar.",
+      "page": 452
+    },
+    {
+      "id": "olfactory-booster",
+      "name": "Amplificador Olfativo",
+      "category": "headware",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 6
+      },
+      "essence": 0.2,
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            3
+          ]
+        },
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          4000
+        ]
+      },
+      "desc": "Esse ciberfocinho melhora, identifica, e registra aromas, e pode reproduzi-los posteriormente. As capacidades olfativas absurdamente aprimoradas de um farejador abrem todo um novo mundo de dados sensoriais para você — você será capaz de sentir coisas que normalmente apenas um cão farejador poderia. Você pode farejar as emoções de uma pessoa no suor dela (e se aplicável, a marca do criador dos seus feromônios adaptados), traços de propulsor de munição, explosivos, ou compostos de armas biológicas e químicas — a lista não acaba. Uma função de corte permite que você ignore completamente odores intensos, sendo provavelmente a função mais conveniente para uso no seu dia a dia. O amplificador olfativo pode até ser usado em RV para criar uma experiência ainda mais imersiva. Adicione o nível do amplificador olfativo como modificador na pilha de dados nos seus Testes de Percepção por olfato.",
+      "page": 452
+    },
+    {
+      "id": "cortex-bomb",
+      "name": "Bomba De Córtex",
+      "category": "headware",
+      "type": "cyberware",
+      "variants": [
+        {
+          "id": "kink-bomb",
+          "name": "Bombinha",
+          "essence": 0,
+          "capacity": {
+            "cost": 1
+          },
+          "availability": {
+            "value": 12,
+            "legality": "P"
+          },
+          "cost": 10000
+        },
+        {
+          "id": "microbomb",
+          "name": "Microbomba",
+          "essence": 0,
+          "capacity": {
+            "cost": 2
+          },
+          "availability": {
+            "value": 16,
+            "legality": "P"
+          },
+          "cost": 25000
+        },
+        {
+          "id": "area-bomb",
+          "name": "Bomba de área",
+          "essence": 0,
+          "capacity": {
+            "cost": 3
+          },
+          "availability": {
+            "value": 20,
+            "legality": "P"
+          },
+          "cost": 40000
+        }
+      ],
+      "desc": "Um método ilegal de coerção, bombas cranianas vêm em três versões: bombinha, microbomba, e bomba de área. Bombinhas são projetadas para danificar apenas parte da cabeça da vítima, inutilizando um cefalotrônico específico ou danificando o cérebro para causar cegueira, gagueira, perda de audição, ou outro trauma. É óbvio que, em certos momentos quando alguma coisa explode na sua cabeça, as coisas não saem como planejado e o resultado é meio... demais. A versão microbomba é poderosa o suficiente para matar o pobre portador dela. Bombas cranianas de área matam a vítima e ainda afetam uma área de explosão como uma granada de fragmentação (p. 434). As bombas podem ser detonadas de forma remota ou temporizadas, ou mesmo explodir por reconhecimento sonoro. Se instaladas em cibermembros, essas bombas são projetadas para destruir componentes específicos (bombinha), o membro inteiro (regular), ou explodir a área e danificar o portador (microbomba).",
+      "page": 452
+    },
+    {
+      "id": "implanted-cyberdeck",
+      "name": "Ciberdeck",
+      "category": "headware",
+      "type": "cyberware",
+      "essence": 0.4,
+      "capacity": {
+        "cost": 4
+      },
+      "availability": {
+        "value": 5,
+        "legality": "R"
+      },
+      "cost": {
+        "value": 5000,
+        "plus": "cyberdeck"
+      },
+      "desc": "De forma direta, você tem um deck no seu corpo. Isso é muito conveniente para o hacker móvel e costuma ser usado por Srs. G e tecnautas militares.",
+      "page": 452
+    },
+    {
+      "id": "implanted-commlink",
+      "name": "Com-link",
+      "category": "headware",
+      "type": "cyberware",
+      "essence": 0.2,
+      "capacity": {
+        "cost": 2
+      },
+      "availability": null,
+      "cost": {
+        "value": 2000,
+        "plus": "commlink"
+      },
+      "desc": "A versão implantada do com-link (p. 438) vem com um módulo simulador, sem nenhum custo adicional. Um com-link cefalotrônico integrado é popular entre os agentes corporativos, engravatados e assarariados ocupados. De forma geral, com-links com um Nível de Dispositivo abaixo de 5 não são instalados dentro do seu crânio, por motivos de segurança.",
+      "page": 452
+    },
+    {
+      "id": "tooth-compartment",
+      "name": "Compartimento Dentário",
+      "category": "headware",
+      "type": "cyberware",
+      "essence": null,
+      "availability": {
+        "value": 8,
+        "legality": null
+      },
+      "cost": 800,
+      "desc": "O cibernético mais antigo no mercado, esses dentes ocos vêm em modelos de armazenamento e quebráveis. O modelo de armazenamento é usado para contrabandear coisas muito, muito pequenas, do tamanho de um chip de dados ou uma etiqueta IDRA bem pequena. Itens podem ser removidos com um sinal sem fio ou ativação oculta. O modelo quebrável dispara um efeito linkado (como iniciar um sinal rastreável, ou liberar um veneno mortal na sua boca — é bom lembrar qual é qual!) com um sinal sem fio, ou você pode ativá-lo ao morder o dente com força.",
+      "page": 452
+    },
+    {
+      "id": "datajack",
+      "name": "Conector de dados",
+      "category": "headware",
+      "type": "cyberware",
+      "essence": 0.1,
+      "availability": {
+        "value": 2,
+        "legality": null
+      },
+      "cost": 1000,
+      "desc": "Um conector de dados concede uma interface neural direta (p. 222), que pode ser útil em muitas situações. Ele também vem com um carretel retrátil de microcabo (aproximadamente um metro de comprimento) que permite interagir diretamente com qualquer dispositivo eletrônico através de um cabo de acesso universal. Conectores de dados são equipados com o seu próprio cache de memória de armazenamento para baixar ou salvar arquivos. Dois usuários de conectores de dados podem passar um cabo de fibra óptica entre si para realizar uma comunicação mental privada, imune à intercepção de rádio ou de espionagem.",
+      "wireless": "O conector de dados fornece redução de ruído de Nível 1.",
+      "page": 452
+    },
+    {
+      "id": "skilljack",
+      "name": "Conector de perícia",
+      "category": "headware",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 6
+      },
+      "essence": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          0.1
+        ]
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            2
+          ]
+        },
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          20000
+        ]
+      },
+      "desc": "Este cefalotrônico interpreta os conhecisofts e linguasofts para seu cérebro para que você possa usá-los como se fossem seus próprios. Ele também pode executar ativosofts, mas eles só agem como habilidades de Conhecimento, a menos que você tenha habilitrônicos (p. 455). O total de todas as perícias em execução em um conector de perícia não pode superar seu Nível x 2, e o Nível máximo para uma perícia é o Nível do conector de perícia. Iniciar perícias do armazenamento e parar perícias é uma Ação Livre. Você não pode usar Trunfo com perícias que tiver através de um conector de perícia. Se tiver mais do que um conector de perícia, apenas um deles pode funcionar de cada vez.",
+      "wireless": "A melhoria extra da Matriz aumenta o limite de Nível total para o Nível do conector de perícia x 3.",
+      "page": 452
+    },
+    {
+      "id": "control-rig",
+      "name": "Fuso de Controle",
+      "category": "headware",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 3
+      },
+      "levels": [
+        {
+          "rating": 1,
+          "essence": 1,
+          "availability": {
+            "value": 5,
+            "legality": "R"
+          },
+          "cost": 43000
+        },
+        {
+          "rating": 2,
+          "essence": 2,
+          "availability": {
+            "value": 10,
+            "legality": "R"
+          },
+          "cost": 97000
+        },
+        {
+          "rating": 3,
+          "essence": 3,
+          "availability": {
+            "value": 15,
+            "legality": "R"
+          },
+          "cost": 208000
+        }
+      ],
+      "desc": "Este implante aproveita o poder bruto de coordenação e sincronização de dados do cérebro médio com o objetivo específico de manipular diretamente veículos e drones fuseados (e outros dispositivos com interface do fusor, como torres). Ele tem um módulo sensorama embutido para que você possa usá-lo para IND com outros dispositivos. Também vem com um conector de dados universal e quase um metro de cabo retrátil (é como ter um conector de dados de graça). Ao saltar para um veículo ou drone, o fuso de controle fornece seu nível como um bônus na pilha de dados para todos os testes de perícia do Veículo. Além disso, o nível do seu fuso de controle é adicionado ao Manejo e Velocidade de qualquer veículo no qual tenha saltado. Como se isso não fosse suficiente, os Limiares do Teste de Veículo são reduzidos pelo nível do seu fuso de controle (até um mínimo de 1), novamente quando você tiver saltado.",
+      "page": 452
+    },
+    {
+      "id": "simrig",
+      "name": "Fuso-simulador",
+      "category": "headware",
+      "type": "cyberware",
+      "essence": 0.2,
+      "availability": {
+        "value": 12,
+        "legality": "R"
+      },
+      "cost": 4000,
+      "desc": "Uma versão implantada do fuso-simulador descrito na p. 439, esse implante cefalotrônico permite que você grave dados sensoriais para reprodução posterior (ou vender, se for alguém realmente interessante).",
+      "page": 452
+    },
+    {
+      "id": "voice-modulator",
+      "name": "Modulador De Voz",
+      "category": "headware",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 6
+      },
+      "essence": 0.2,
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            3
+          ]
+        },
+        "legality": "P"
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          5000
+        ]
+      },
+      "desc": "Esse implante dá a você uma afinação perfeita, e uma enorme flexibilidade vocal e capacidade de distorção. Você pode falar com um volume aumentado (até 100 decibéis) sem problemas, alterar sua afinação para cantar perfeitamente como um passarinho ou de forma suave, e mais importante, imitações vocais inigualáveis. O modulador também pode reproduzir (e imitar mais ou menos perfeitamente) uma voz gravada ou capturada. Adicione o Nível do modulador na sua pilha de dados para testes de perícia de Personificação.",
+      "page": 452
+    },
+    {
+      "id": "ultrasound-sensor",
+      "name": "Sensor de Ultrassom",
+      "category": "headware",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 6
+      },
+      "essence": 0.25,
+      "capacity": {
+        "cost": 2
+      },
+      "availability": {
+        "value": 10,
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          12000
+        ]
+      },
+      "desc": "Esse cibernético é exatamente igual ao sensor de ultrassom. Quando ativado, ele substitui a sua visão normal. Ele pode alternar entre sonar ativo, sonar passivo, e desligado com uma Ação Livre.",
+      "page": 452
+    },
+    {
+      "id": "data-lock",
+      "name": "Trava de Dados",
+      "category": "headware",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 12
+      },
+      "essence": 0.1,
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            2
+          ]
+        },
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          1000
+        ]
+      },
+      "desc": "Esse conector de dados especial é popular entre os mensageiros, espiões, auxiliares diplomáticos e contatos executivos. Efetivamente, ele transforma o personagem no qual está instalado em um banco de dados ambulante. A trava de dados tem um Nível de Dispositivo igual o seu próprio nível e protege os dados de qualquer pessoa não autorizada a acessá-los (possivelmente incluindo você). Travas de dados não têm a conexão sem fio habilitada, só podem ser acessados pelo conector de dados universal. Na verdade, o portador do implante não tem acesso mental aos dados: ele é apenas o portador. Provavelmente a peça cibernética mais comum de disponível em 2075 são os ciber-olhos. Originalmente projetados para dar uma visão normal para cegos, ciber-olhos permitem muito mais do que a visão humana normal. Embora ainda carreguem um estigma social em alguns lugares, e a ideia continuar tendo um nível de escrúpulos sobre isso, não é totalmente incomum que pessoas com olhos naturais perfeitamente bons os troque por substituições cibernéticas. Ciber-olhos estão disponíveis em qualquer formato ou cor, de “quase natural” ao todo cromado e até o roxo sólido brilhante. Alguns modelos têm a sua cor e padrão facilmente alterados ao baixar uma nova cobertura. A maioria das modificações de ciber-olhos também é oferecida como modificações de retina do olho natural. Melhorias de visão ocupam a Capacidade nos ciber-olhos ou a Essência nos olhos naturais, não em ambos. Como regra geral, melhorias são aplicadas nos dois olhos para que a visão do usuário não fique desbalanceada.",
+      "page": 452
+    },
+    {
+      "id": "vision-magnification",
+      "name": "Ampliação de visão",
+      "category": "eyeware",
+      "type": "cyberware",
+      "essence": 0.1,
+      "capacity": {
+        "cost": 2
+      },
+      "availability": {
+        "value": 4,
+        "legality": null
+      },
+      "cost": 2000,
+      "desc": "Uma versão implantada da melhoria ampliação de visão (p. 444).",
+      "page": 453
+    },
+    {
+      "id": "flare-compensation",
+      "name": "Compensação de ofuscamento",
+      "category": "eyeware",
+      "type": "cyberware",
+      "essence": 0.1,
+      "capacity": {
+        "cost": 1
+      },
+      "availability": {
+        "value": 4,
+        "legality": null
+      },
+      "cost": 1000,
+      "desc": "Uma versão implantada da melhoria compensação de ofuscamento (p. 444).",
+      "page": 453
+    },
+    {
+      "id": "image-link",
+      "name": "Conexão de imagens",
+      "category": "eyeware",
+      "type": "cyberware",
+      "essence": 0.1,
+      "capacity": "included",
+      "availability": {
+        "value": 4,
+        "legality": null
+      },
+      "cost": 1000,
+      "desc": "Uma versão implantada da melhoria de conexão de imagens (p. 444).",
+      "page": 453
+    },
+    {
+      "id": "ocular-drone",
+      "name": "Drone ocular",
+      "category": "eyeware",
+      "type": "cyberware",
+      "essence": null,
+      "capacity": {
+        "cost": 6
+      },
+      "availability": {
+        "value": 6,
+        "legality": null
+      },
+      "cost": 6000,
+      "desc": "Essa melhoria só afeta um olho por vez. Uma pequena bola espiã drone é inserida na sua cavidade ocular. A bola espiã funciona como um ciber-olho normal (com todas as melhorias relevantes) até que você a remova e a controle como se fosse um Horizon Flying Eye (p. 465). Quando ele sai e você fica só com um olho, você sofre –3 de penalidade na pilha de dados em todas as tarefas. Se substituir seus dois olhos com drones, você fica efetivamente cego enquanto esses drones operam separadamente de você. Um drone ocular obviamente não está disponível como modificação de retina.",
+      "page": 453
+    },
+    {
+      "id": "retinal-duplication",
+      "name": "Duplicação de retina",
+      "category": "eyeware",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 6
+      },
+      "essence": 0.1,
+      "capacity": {
+        "cost": 1
+      },
+      "availability": {
+        "value": 16,
+        "legality": "P"
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          20000
+        ]
+      },
+      "desc": "Esta modificação altamente ilegal pode ser carregada com uma gravação da retina de outra pessoa, criando uma reprodução quase perfeita. Faça um Teste de Oposição entre o Nível da duplicação de retina e o Nível do leitor de retina (Dispositivos de Segurança, p. 358).",
+      "page": 453
+    },
+    {
+      "id": "vision-enhancement",
+      "name": "Melhoria de visão",
+      "category": "eyeware",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 3
+      },
+      "essence": 0.1,
+      "capacity": {
+        "cost": {
+          "ref": "rating"
+        }
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            3
+          ]
+        },
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          4000
+        ]
+      },
+      "desc": "Uma versão implantada da melhoria de visão (p. 444).",
+      "page": 453
+    },
+    {
+      "id": "smartlink",
+      "name": "Neuroconexão",
+      "category": "eyeware",
+      "type": "cyberware",
+      "essence": 0.2,
+      "capacity": {
+        "cost": 3
+      },
+      "availability": {
+        "value": 8,
+        "legality": "R"
+      },
+      "cost": 4000,
+      "desc": "Uma versão implantada da melhoria neuroconexão (p. 444). Perceba que uma neuroconexão instalada no olho natural ou par de ciber-olhos é mais eficaz do que uma neuroconexão instalada em um dispositivo externo: veja o Sistema de Arma Inteligente, p. 432.",
+      "page": 453
+    },
+    {
+      "id": "cybereyes",
+      "name": "Sistema básico de ciber-olhos",
+      "category": "eyeware",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 4
+      },
+      "levels": [
+        {
+          "rating": 1,
+          "essence": 0.2,
+          "capacity": {
+            "provides": 4
+          },
+          "availability": {
+            "value": 3,
+            "legality": null
+          },
+          "cost": 4000
+        },
+        {
+          "rating": 2,
+          "essence": 0.3,
+          "capacity": {
+            "provides": 8
+          },
+          "availability": {
+            "value": 6,
+            "legality": null
+          },
+          "cost": 6000
+        },
+        {
+          "rating": 3,
+          "essence": 0.4,
+          "capacity": {
+            "provides": 12
+          },
+          "availability": {
+            "value": 9,
+            "legality": null
+          },
+          "cost": 10000
+        },
+        {
+          "rating": 4,
+          "essence": 0.5,
+          "capacity": {
+            "provides": 16
+          },
+          "availability": {
+            "value": 12,
+            "legality": null
+          },
+          "cost": 14000
+        }
+      ],
+      "desc": "O sistema de ciber-olhos básicos apresenta uma visão normal para os dois olhos, uma conexão de imagens e uma câmera embutida sem custo adicional, assim como a capacidade para melhorias de visão.",
+      "page": 453
+    },
+    {
+      "id": "low-light-vision",
+      "name": "Visão na penumbra",
+      "category": "eyeware",
+      "type": "cyberware",
+      "essence": 0.1,
+      "capacity": {
+        "cost": 2
+      },
+      "availability": {
+        "value": 4,
+        "legality": null
+      },
+      "cost": 1500,
+      "desc": "Uma versão implantada da melhoria visão na penumbra (p. 444).",
+      "page": 453
+    },
+    {
+      "id": "thermographic-vision",
+      "name": "Visão termográfica",
+      "category": "eyeware",
+      "type": "cyberware",
+      "essence": 0.1,
+      "capacity": {
+        "cost": 2
+      },
+      "availability": {
+        "value": 4,
+        "legality": null
+      },
+      "cost": 1500,
+      "desc": "Uma versão implantada da melhoria visão termográfica (p. 444).",
+      "page": 453
+    },
+    {
+      "id": "damper",
+      "name": "Abafador",
+      "category": "earware",
+      "type": "cyberware",
+      "essence": 0.1,
+      "capacity": {
+        "cost": 1
+      },
+      "availability": {
+        "value": 6,
+        "legality": null
+      },
+      "cost": 2250,
+      "desc": "Este implante protege o usuário contra aumentos repentinos de som, bem como os níveis de ruído prejudiciais. O abafador adiciona um +2 de bônus na pilha de dados para resistir aos ataques sonoros, incluindo granadas sonoras.",
+      "page": 453
+    },
+    {
+      "id": "balance-augmenter",
+      "name": "Amplificador de Equilíbrio",
+      "category": "earware",
+      "type": "cyberware",
+      "essence": 0.1,
+      "capacity": {
+        "cost": 4
+      },
+      "availability": {
+        "value": 8,
+        "legality": null
+      },
+      "cost": 8000,
+      "desc": "O amplificador de equilíbrio melhora o mecanismo de equilíbrio natural do ouvido interno. Você recebe um dado de bônus em todos os testes que envolvam equilíbrio, tais como escalar, andar através de uma plataforma estreita, pousar depois de um salto e assim por diante.",
+      "page": 453
+    },
+    {
+      "id": "cyberears",
+      "name": "Ciber-orelhas",
+      "category": "earware",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 4
+      },
+      "levels": [
+        {
+          "rating": 1,
+          "essence": 0.2,
+          "capacity": {
+            "provides": 4
+          },
+          "availability": {
+            "value": 3,
+            "legality": null
+          },
+          "cost": 3000
+        },
+        {
+          "rating": 2,
+          "essence": 0.3,
+          "capacity": {
+            "provides": 8
+          },
+          "availability": {
+            "value": 6,
+            "legality": null
+          },
+          "cost": 4500
+        },
+        {
+          "rating": 3,
+          "essence": 0.4,
+          "capacity": {
+            "provides": 12
+          },
+          "availability": {
+            "value": 9,
+            "legality": null
+          },
+          "cost": 7500
+        },
+        {
+          "rating": 4,
+          "essence": 0.5,
+          "capacity": {
+            "provides": 16
+          },
+          "availability": {
+            "value": 12,
+            "legality": null
+          },
+          "cost": 11000
+        }
+      ],
+      "desc": "Normalmente, ciber-orelhas substituem apenas o ouvido interno, embora a coisa toda possa ser substituída, se você quiser. Ciber-orelhas oferecem uma audição no alcance normal (como um microfone omnidirecional), uma conexão de som e Capacidade para modificações e melhorias.",
+      "page": 453
+    },
+    {
+      "id": "sound-link",
+      "name": "Conexão de Som",
+      "category": "earware",
+      "type": "cyberware",
+      "essence": 0.1,
+      "capacity": "included",
+      "availability": {
+        "value": 4,
+        "legality": null
+      },
+      "cost": 1000,
+      "desc": "O equivalente de áudio da conexão de imagens, a conexão de som pode reproduzir áudio (gravações, trilhas sonoras de filmes, música etc.) a partir de fontes conectadas na RAP do usuário (ou memória cefalotrônica ou conector de dados) diretamente para as ciber-orelhas do usuário. Uma conexão de som é um componente comum dos ambientes imersos de RA, adicionando um componente sonoro.",
+      "page": 453
+    },
+    {
+      "id": "select-sound-filter",
+      "name": "Filtro de Som Selecionável",
+      "category": "earware",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 6
+      },
+      "essence": 0.1,
+      "capacity": {
+        "cost": {
+          "ref": "rating"
+        }
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            3
+          ]
+        },
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          3500
+        ]
+      },
+      "desc": "Uma versão implantada da melhoria filtro de som selecionável, com a diferença de que o Nível máximo disponível é 6 em vez de 3.",
+      "page": 453
+    },
+    {
+      "id": "audio-enhancement",
+      "name": "Melhoria de Áudio",
+      "category": "earware",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 3
+      },
+      "essence": 0.1,
+      "capacity": {
+        "cost": {
+          "ref": "rating"
+        }
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            3
+          ]
+        },
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          4000
+        ]
+      },
+      "desc": "Uma versão implantada da melhoria de áudio (p. 445).",
+      "page": 453
+    },
+    {
+      "id": "spatial-recognizer",
+      "name": "Reconhecedor Espacial",
+      "category": "earware",
+      "type": "cyberware",
+      "essence": 0.1,
+      "capacity": {
+        "cost": 2
+      },
+      "availability": {
+        "value": 8,
+        "legality": null
+      },
+      "cost": 4000,
+      "desc": "Uma versão implantada da melhoria reconhecedor espacial.",
+      "page": 453
+    },
+    {
+      "id": "grapple-gun",
+      "name": "Arma de Gancho",
+      "category": "bodyware",
+      "type": "cyberware",
+      "essence": 0.5,
+      "capacity": {
+        "cost": 4
+      },
+      "availability": {
+        "value": 8,
+        "legality": null
+      },
+      "cost": 5000,
+      "desc": "Essa é uma versão implantada da arma de gancho descrita na p. 449. Não há armazenamento de corda dentro dela, mas você pode prender uma corda externa antes de disparar o gancho.",
+      "page": 454
+    },
+    {
+      "id": "smuggling-compartment",
+      "name": "Compartimento de Contrabando",
+      "category": "bodyware",
+      "type": "cyberware",
+      "essence": 0.2,
+      "capacity": {
+        "cost": 2
+      },
+      "availability": {
+        "value": 6,
+        "legality": null
+      },
+      "cost": 7500,
+      "desc": "Para itens que não cabem num dedo mas que ninguém pode ver, compartimentos de contrabando podem ser posicionados em partes do corpo que possam ser facilmente ocas/substituídas. Isso inclui costelas e o espaço entre elas, bacias, escápulas, e assim por diante. Esses compartimentos permitem o armazenamento de itens de tamanho pequeno e mini (nada maior que uma pistola leve, geralmente; seu mestre dirá se algo for grande demais). O compartimento possui Ocultação –10. Inserir ou remover um objeto exige uma Ação Complexa.",
+      "wireless": "Inserir ou remover um objeto é uma Ação Simples.",
+      "page": 454
+    },
+    {
+      "id": "fingertip-compartment",
+      "name": "Compartimento de Dedo",
+      "category": "bodyware",
+      "type": "cyberware",
+      "essence": 0.1,
+      "capacity": {
+        "cost": 1
+      },
+      "availability": {
+        "value": 4,
+        "legality": null
+      },
+      "cost": 3000,
+      "desc": "Esse compartimento fica oculto na última falange oca de um dedo, com um segredo que permite que a unha seja levantada como um painel de acesso, ou a ponta do dedo inteira removida. Um compartimento de dedo permite o armazenamento de itens de tamanho micro, como um micro-drone, etiqueta IDRA, ou chip de dados. Inserir ou remover um objeto leva uma Ação Complexa. Itens dentro do compartimento estão completamente ocultos, e o compartimento em si possui Ocultação –10. Um truque popular é usar um compartimento de dedo para guardar um chicote de monofilamento (p. 423), com a ponta agindo como o peso de controle. Estender um chicote de monofilamento de um compartimento de dedo é uma Ação Simples, enquanto enrola-lo de volta exige uma Ação Complexa. É impossível dizer quantas ações são necessárias para as pessoas pararem de se impressionar com a coisa louca que acabou de sair do seu dedo.",
+      "wireless": "Inserir ou remover um item num compartimento de dedo exige uma Ação Simples.",
+      "page": 454
+    },
+    {
+      "id": "dermal-plating",
+      "name": "Couraça Dérmica",
+      "category": "bodyware",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 6
+      },
+      "essence": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          0.5
+        ]
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            4
+          ]
+        },
+        "legality": "R"
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          3000
+        ]
+      },
+      "modifiers": [
+        {
+          "target": "armor",
+          "add": {
+            "ref": "rating"
+          }
+        }
+      ],
+      "desc": "Placas de plástico endurecido e fibra de cerâmica são ligadas à pele do usuário. As placas são claramente visíveis, e são ainda mais óbvias ao toque, mas podem ser cosmeticamente estilizadas para cor e textura superficial. Couraça dérmica fornece Armadura bônus igual ao seu Nível (cumulativo com outras Armaduras, sem aumentar a Sobrecarga). Couraça dérmica não pode ser combinada com outras ampliações à pele que fornecem armadura, incluindo ortopele.",
+      "page": 454
+    },
+    {
+      "id": "skillwires",
+      "name": "Habilitrônicos",
+      "category": "bodyware",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 6
+      },
+      "essence": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          0.1
+        ]
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            4
+          ]
+        },
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          20000
+        ]
+      },
+      "desc": "Habilitrônicos são um sistema de controladores neuromusculares que se sobrepõem ao sistema nervoso natural do corpo. Eles podem ajudar ou assumir completamente o movimento muscular, controlado pela “memória muscular” ativada através de um conector de perícia (p. 452). Este sistema permitirá que você use ativosofts com um nível máximo igual ao nível do seu habilitrônico, mas apenas se tal ativosoft estiver em execução no conector de perícia implantado. Habilitrônicos são incompatíveis com o gravador de reflexo biônico.",
+      "wireless": "Com cachê de memória do habilitrônico expandido, todas as perícias que usar com ele recebem +1 ao Limite Inerente relevante (Físico, Mental, ou Social).",
+      "page": 454
+    },
+    {
+      "id": "reaction-enhancers",
+      "name": "Melhorias de Reação",
+      "category": "bodyware",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 3
+      },
+      "essence": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          0.3
+        ]
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            5
+          ]
+        },
+        "legality": "R"
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          13000
+        ]
+      },
+      "modifiers": [
+        {
+          "target": "attr",
+          "of": "rea",
+          "add": {
+            "ref": "rating"
+          }
+        }
+      ],
+      "desc": "Ao substituir vértebras específicas isoladas de sua coluna por segmentos de material supercondutor, suas reações a eventos tornam-se mais rápidas. Adicione o Nível das melhorias de reação ao seu atributo Reação (e lembre-se de ajustar Iniciativa e limite Físico adequadamente). Melhorias de reação são incompatíveis com as outras melhorias para a Reação, incluindo reflexos cabeados.",
+      "wireless": "Melhorias de reação são compatíveis com um sistema de reflexos cabeados sem fio, e o bônus total de Reação das duas melhorias pode ser acima de +4 se ambos os sistemas tiverem a parte sem fio ativada.",
+      "page": 454
+    },
+    {
+      "id": "wired-reflexes",
+      "name": "Reflexos Cabeados",
+      "category": "bodyware",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 3
+      },
+      "levels": [
+        {
+          "rating": 1,
+          "essence": 2,
+          "availability": {
+            "value": 8,
+            "legality": "R"
+          },
+          "cost": 39000
+        },
+        {
+          "rating": 2,
+          "essence": 3,
+          "availability": {
+            "value": 12,
+            "legality": "R"
+          },
+          "cost": 149000
+        },
+        {
+          "rating": 3,
+          "essence": 5,
+          "availability": {
+            "value": 20,
+            "legality": "R"
+          },
+          "cost": 217000
+        }
+      ],
+      "modifiers": [
+        {
+          "target": "attr",
+          "of": "rea",
+          "add": {
+            "ref": "rating"
+          }
+        },
+        {
+          "target": "initiative.dice",
+          "add": {
+            "ref": "rating"
+          }
+        }
+      ],
+      "desc": "Esta operação altamente invasiva e dolorosa, com consequências para toda a vida, adiciona uma multiplicidade de amplificadores neurais e estimuladores de adrenalina em locais estratégicos em todo o corpo para catapultá-lo em um novo mundo, onde tudo ao seu redor parece se mover em câmera lenta. O sistema inclui gatilhos manuais e sem fio para ligar e desligar os reflexos cabeados. Ativar ou desativar o gatilho manualmente exige uma Ação Complexa, fazê-lo sem fio é uma Ação Simples. Quando ativado, cada Nível de reflexos cabeados concede +1 de Reação (e o bônus correspondente na Iniciativa) e +1D6 de Dado de Iniciativa. Reflexos cabeados são incompatíveis com aumentos que afetam a Reação ou a Iniciativa.",
+      "wireless": "O sistema é compatível com melhorias de reação sem fio, e o bônus total de Reação dos dois sistemas pode ser acima de +4 se ambos os sistemas tiverem a parte sem fio ativada.",
+      "page": 454
+    },
+    {
+      "id": "bone-lacing",
+      "name": "Revestimento Ósseo",
+      "category": "bodyware",
+      "type": "cyberware",
+      "variants": [
+        {
+          "id": "plastic",
+          "name": "Plástico",
+          "essence": 0.5,
+          "availability": {
+            "value": 8,
+            "legality": "R"
+          },
+          "cost": 8000,
+          "bodyBonus": 1,
+          "unarmedDamage": {
+            "value": {
+              "op": "add",
+              "of": [
+                {
+                  "ref": "attr.str"
+                },
+                1
+              ]
+            },
+            "type": "physical"
+          },
+          "modifiers": [
+            {
+              "target": "armor",
+              "add": 1
+            }
+          ]
+        },
+        {
+          "id": "aluminum",
+          "name": "Alumínio",
+          "essence": 1,
+          "availability": {
+            "value": 12,
+            "legality": "R"
+          },
+          "cost": 18000,
+          "bodyBonus": 2,
+          "unarmedDamage": {
+            "value": {
+              "op": "add",
+              "of": [
+                {
+                  "ref": "attr.str"
+                },
+                2
+              ]
+            },
+            "type": "physical"
+          },
+          "modifiers": [
+            {
+              "target": "armor",
+              "add": 2
+            }
+          ]
+        },
+        {
+          "id": "titanium",
+          "name": "Titânio",
+          "essence": 1.5,
+          "availability": {
+            "value": 16,
+            "legality": "R"
+          },
+          "cost": 30000,
+          "bodyBonus": 3,
+          "unarmedDamage": {
+            "value": {
+              "op": "add",
+              "of": [
+                {
+                  "ref": "attr.str"
+                },
+                3
+              ]
+            },
+            "type": "physical"
+          },
+          "modifiers": [
+            {
+              "target": "armor",
+              "add": 3
+            }
+          ]
+        }
+      ],
+      "desc": "Seus ossos são revestidos com correntes de malha de reforço de plástico ou metal, melhorando a sua integridade e resistência à tração (e somando- -se ao peso total do seu corpo). Revestimento ósseo vem em três tipos: plástico, alumínio, e titânio — você só pode ter um instalado no seu corpo por vez. Isso fornece Corpo adicional para resistir a danos físicos, um pouco de Armadura (cumulativa com outras Armaduras, sem aumentar a Carga), e muda o seu dano de combate desarmado, tudo isso listado na Tabela de Revestimento Ósseo. O revestimento ósseo é incompatível com outras ampliações que adicionam ou alteram seus ossos (como a ampliação de densidade óssea).",
+      "page": 454
+    },
+    {
+      "id": "muscle-replacement",
+      "name": "Substituição Muscular",
+      "category": "bodyware",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 4
+      },
+      "essence": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          1
+        ]
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            5
+          ]
+        },
+        "legality": "R"
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          25000
+        ]
+      },
+      "modifiers": [
+        {
+          "target": "attr",
+          "of": "str",
+          "add": {
+            "ref": "rating"
+          }
+        },
+        {
+          "target": "attr",
+          "of": "agi",
+          "add": {
+            "ref": "rating"
+          }
+        }
+      ],
+      "desc": "Por que perder o tempo exercitando quando você pode simplesmente instalar uma musculatura? Músculos sintéticos criados em tanques substituem ou aumentam os seus próprios e tratamentos de cálcio e de reforço do esqueleto contribuem para a sua força total. Ela aumenta seus atributos Força e Agilidade com o seu Nível. Não pode ser combinada com outras ampliações para os músculos, incluindo o aumento muscular ou tonificante muscular biônico.",
+      "page": 454
+    },
+    {
+      "id": "internal-air-tank",
+      "name": "Tanque de Ar Interno",
+      "category": "bodyware",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 3
+      },
+      "essence": 0.25,
+      "capacity": {
+        "cost": 3
+      },
+      "availability": {
+        "value": {
+          "ref": "rating"
+        },
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          4500
+        ]
+      },
+      "desc": "O tanque de ar interno substitui parte de um pulmão com uma reserva de ar interno pressurizado que permite que você segure sua respiração por (Nível) horas. Isso permite operações subaquáticas estendidas e proteção completa de ataques de toxina de vetor por inalação desde que esteja segurando sua respiração. Ativar ou desativar o tanque é uma Ação Simples. Reabastecer o tanque de ar com ar pressurizado através de uma válvula de entrada (localizada sob suas costelas) leva cinco minutos, ou você pode fazer isso com seis horas de respiração normal.",
+      "wireless": "Ativar ou desativar o tanque é uma Ação Livre. Você está sempre ciente do nível e pureza exatos do ar do tanque. No mundo de transplantes biônicos amistosos de hoje, o uso de cibermembros às vezes é visto como bruto e ultrapassado. Por outro lado, eles são baratos e de fácil manutenção e atualização, o que, no fim das contas, os tornaram ainda mais populares para os menos afortunados. Uma vez que cibermembros são mais capazes do que a maioria dos membros naturais e você pode carregá-los com todos os tipos de magi tecnologia, este tipo de cibernético se manteve em alta demanda. Cibercrânios e cibertroncos estão inclusos na categoria “cibermembros”, apesar de serem na verdade cascas em vez de substitutos completos (ou membros de verdade). Cibermembros têm seus próprios níveis de Força e Agilidade. Quando um membro específico é usado para um teste (tal como fazer um ataque com seu ciberbraço), use o atributo desse membro (natural ou cibernético). Em qualquer outro caso, use o valor médio de todos os membros envolvidos na tarefa. Se uma tarefa requer a coordenação cuidadosa de vários membros, utilize o valor do membro mais fraco. Os atributos dos membros parciais (incluindo cibermãos e pés) podem ser melhorados, mas seus atributos se aplicam somente para testes envolvendo diretamente esses membros (como um Teste de Força ao agarrar algo com uma cibermão melhorada). Cibermembros não podem receber biônicos, nem ciber-implantes que consumam Essência em vez de Capacidade. Custo de Essência, Capacidade e outras estatísticas podem ser encontradas na tabela de Cibermembro. Cibermembros têm outros recursos úteis. Eles concedem 1 caixa de dano extra em seu Monitor de Condição Física para cada cibermembro que você possuir (ignore mãos e pés e membros parciais contam como metade de um membro). Eles têm Capacidade, permitindo que você adicione armas cibernéticas e outros sistemas cibernéticos que tenham um custo de Capacidade [entre colchetes]. Podem executar feitos sobre-humanos com as melhorias certas. Cibermembros podem ser perigosos, mesmo se não tiverem armas cibernéticas instaladas: seu Valor de Dano desarmado é (FOR)F.",
+      "page": 454
+    },
+    {
+      "id": "lower-arm",
+      "name": "Antebraço",
+      "category": "cyberlimb",
+      "type": "cyberware",
+      "variants": [
+        {
+          "id": "obvious",
+          "name": "Óbvios",
+          "essence": 0.45,
+          "capacity": {
+            "provides": 10
+          },
+          "availability": {
+            "value": 4,
+            "legality": null
+          },
+          "cost": 10000,
+          "desc": "Esses implantes são imediatamente reconhecíveis como membros artificiais, a menos que estejam cobertos com roupa. Eles são muitas vezes cromados ou com cores foscas, mas visivelmente de natureza mecânica. Algumas pessoas gostam deles bem óbvios e bizarros, enquanto outras consideram-nos artificialmente repulsivos e perturbadores. Isso pode afetar suas relações sociais em alguns círculos, especialmente com a nata da sociedade e a multidão purista."
+        },
+        {
+          "id": "synthetic",
+          "name": "Sintéticos",
+          "essence": 0.45,
+          "capacity": {
+            "provides": 5
+          },
+          "availability": {
+            "value": 4,
+            "legality": null
+          },
+          "cost": 12000,
+          "desc": "Membros sintéticos são disfarçados como membros naturais. O fato de serem cibernéticos lhes dá –8 de Ocultação (a perícia Cibertecnologia pode substituir Percepção para esse teste) quando alguém só olha, mas membros sintéticos são obviamente artificiais ao toque."
+        }
+      ],
+      "physicalMonitorBoxes": 0.5,
+      "desc": "Essas próteses são modelos básicos com pronta-entrega. Todos os cibermembros padrão vêm com atributos de Força e Agilidade 3. Esses valores só podem ser ampliados por melhorias de cibermembros, não por outras ampliações.",
+      "page": 456
+    },
+    {
+      "id": "full-arm",
+      "name": "Braço completo",
+      "category": "cyberlimb",
+      "type": "cyberware",
+      "variants": [
+        {
+          "id": "obvious",
+          "name": "Óbvios",
+          "essence": 1,
+          "capacity": {
+            "provides": 15
+          },
+          "availability": {
+            "value": 4,
+            "legality": null
+          },
+          "cost": 15000,
+          "desc": "Esses implantes são imediatamente reconhecíveis como membros artificiais, a menos que estejam cobertos com roupa. Eles são muitas vezes cromados ou com cores foscas, mas visivelmente de natureza mecânica. Algumas pessoas gostam deles bem óbvios e bizarros, enquanto outras consideram-nos artificialmente repulsivos e perturbadores. Isso pode afetar suas relações sociais em alguns círculos, especialmente com a nata da sociedade e a multidão purista."
+        },
+        {
+          "id": "synthetic",
+          "name": "Sintéticos",
+          "essence": 1,
+          "capacity": {
+            "provides": 8
+          },
+          "availability": {
+            "value": 4,
+            "legality": null
+          },
+          "cost": 20000,
+          "desc": "Membros sintéticos são disfarçados como membros naturais. O fato de serem cibernéticos lhes dá –8 de Ocultação (a perícia Cibertecnologia pode substituir Percepção para esse teste) quando alguém só olha, mas membros sintéticos são obviamente artificiais ao toque."
+        }
+      ],
+      "physicalMonitorBoxes": 1,
+      "desc": "Essas próteses são modelos básicos com pronta-entrega. Todos os cibermembros padrão vêm com atributos de Força e Agilidade 3. Esses valores só podem ser ampliados por melhorias de cibermembros, não por outras ampliações.",
+      "page": 456
+    },
+    {
+      "id": "lower-leg",
+      "name": "Canela",
+      "category": "cyberlimb",
+      "type": "cyberware",
+      "variants": [
+        {
+          "id": "obvious",
+          "name": "Óbvios",
+          "essence": 0.45,
+          "capacity": {
+            "provides": 12
+          },
+          "availability": {
+            "value": 4,
+            "legality": null
+          },
+          "cost": 10000,
+          "desc": "Esses implantes são imediatamente reconhecíveis como membros artificiais, a menos que estejam cobertos com roupa. Eles são muitas vezes cromados ou com cores foscas, mas visivelmente de natureza mecânica. Algumas pessoas gostam deles bem óbvios e bizarros, enquanto outras consideram-nos artificialmente repulsivos e perturbadores. Isso pode afetar suas relações sociais em alguns círculos, especialmente com a nata da sociedade e a multidão purista."
+        },
+        {
+          "id": "synthetic",
+          "name": "Sintéticos",
+          "essence": 0.45,
+          "capacity": {
+            "provides": 6
+          },
+          "availability": {
+            "value": 4,
+            "legality": null
+          },
+          "cost": 12000,
+          "desc": "Membros sintéticos são disfarçados como membros naturais. O fato de serem cibernéticos lhes dá –8 de Ocultação (a perícia Cibertecnologia pode substituir Percepção para esse teste) quando alguém só olha, mas membros sintéticos são obviamente artificiais ao toque."
+        }
+      ],
+      "physicalMonitorBoxes": 0.5,
+      "desc": "Essas próteses são modelos básicos com pronta-entrega. Todos os cibermembros padrão vêm com atributos de Força e Agilidade 3. Esses valores só podem ser ampliados por melhorias de cibermembros, não por outras ampliações.",
+      "page": 456
+    },
+    {
+      "id": "skull",
+      "name": "Crânio",
+      "category": "cyberlimb",
+      "type": "cyberware",
+      "variants": [
+        {
+          "id": "obvious",
+          "name": "Óbvios",
+          "essence": 0.75,
+          "capacity": {
+            "provides": 4
+          },
+          "availability": {
+            "value": 16,
+            "legality": null
+          },
+          "cost": 10000,
+          "desc": "Esses implantes são imediatamente reconhecíveis como membros artificiais, a menos que estejam cobertos com roupa. Eles são muitas vezes cromados ou com cores foscas, mas visivelmente de natureza mecânica. Algumas pessoas gostam deles bem óbvios e bizarros, enquanto outras consideram-nos artificialmente repulsivos e perturbadores. Isso pode afetar suas relações sociais em alguns círculos, especialmente com a nata da sociedade e a multidão purista."
+        },
+        {
+          "id": "synthetic",
+          "name": "Sintéticos",
+          "essence": 0.75,
+          "capacity": {
+            "provides": 2
+          },
+          "availability": {
+            "value": 16,
+            "legality": null
+          },
+          "cost": 15000,
+          "desc": "Membros sintéticos são disfarçados como membros naturais. O fato de serem cibernéticos lhes dá –8 de Ocultação (a perícia Cibertecnologia pode substituir Percepção para esse teste) quando alguém só olha, mas membros sintéticos são obviamente artificiais ao toque."
+        }
+      ],
+      "desc": "Essas próteses são modelos básicos com pronta-entrega. Todos os cibermembros padrão vêm com atributos de Força e Agilidade 3. Esses valores só podem ser ampliados por melhorias de cibermembros, não por outras ampliações.",
+      "page": 456
+    },
+    {
+      "id": "hand-foot",
+      "name": "Mão/pé",
+      "category": "cyberlimb",
+      "type": "cyberware",
+      "variants": [
+        {
+          "id": "obvious",
+          "name": "Óbvios",
+          "essence": 0.25,
+          "capacity": {
+            "provides": 4
+          },
+          "availability": {
+            "value": 2,
+            "legality": null
+          },
+          "cost": 5000,
+          "desc": "Esses implantes são imediatamente reconhecíveis como membros artificiais, a menos que estejam cobertos com roupa. Eles são muitas vezes cromados ou com cores foscas, mas visivelmente de natureza mecânica. Algumas pessoas gostam deles bem óbvios e bizarros, enquanto outras consideram-nos artificialmente repulsivos e perturbadores. Isso pode afetar suas relações sociais em alguns círculos, especialmente com a nata da sociedade e a multidão purista."
+        },
+        {
+          "id": "synthetic",
+          "name": "Sintéticos",
+          "essence": 0.25,
+          "capacity": {
+            "provides": 2
+          },
+          "availability": {
+            "value": 2,
+            "legality": null
+          },
+          "cost": 6000,
+          "desc": "Membros sintéticos são disfarçados como membros naturais. O fato de serem cibernéticos lhes dá –8 de Ocultação (a perícia Cibertecnologia pode substituir Percepção para esse teste) quando alguém só olha, mas membros sintéticos são obviamente artificiais ao toque."
+        }
+      ],
+      "physicalMonitorBoxes": 0,
+      "desc": "Essas próteses são modelos básicos com pronta-entrega. Todos os cibermembros padrão vêm com atributos de Força e Agilidade 3. Esses valores só podem ser ampliados por melhorias de cibermembros, não por outras ampliações.",
+      "page": 456
+    },
+    {
+      "id": "full-leg",
+      "name": "Perna completa",
+      "category": "cyberlimb",
+      "type": "cyberware",
+      "variants": [
+        {
+          "id": "obvious",
+          "name": "Óbvios",
+          "essence": 1,
+          "capacity": {
+            "provides": 20
+          },
+          "availability": {
+            "value": 4,
+            "legality": null
+          },
+          "cost": 15000,
+          "desc": "Esses implantes são imediatamente reconhecíveis como membros artificiais, a menos que estejam cobertos com roupa. Eles são muitas vezes cromados ou com cores foscas, mas visivelmente de natureza mecânica. Algumas pessoas gostam deles bem óbvios e bizarros, enquanto outras consideram-nos artificialmente repulsivos e perturbadores. Isso pode afetar suas relações sociais em alguns círculos, especialmente com a nata da sociedade e a multidão purista."
+        },
+        {
+          "id": "synthetic",
+          "name": "Sintéticos",
+          "essence": 1,
+          "capacity": {
+            "provides": 10
+          },
+          "availability": {
+            "value": 4,
+            "legality": null
+          },
+          "cost": 20000,
+          "desc": "Membros sintéticos são disfarçados como membros naturais. O fato de serem cibernéticos lhes dá –8 de Ocultação (a perícia Cibertecnologia pode substituir Percepção para esse teste) quando alguém só olha, mas membros sintéticos são obviamente artificiais ao toque."
+        }
+      ],
+      "physicalMonitorBoxes": 1,
+      "desc": "Essas próteses são modelos básicos com pronta-entrega. Todos os cibermembros padrão vêm com atributos de Força e Agilidade 3. Esses valores só podem ser ampliados por melhorias de cibermembros, não por outras ampliações.",
+      "page": 456
+    },
+    {
+      "id": "torso",
+      "name": "Tronco",
+      "category": "cyberlimb",
+      "type": "cyberware",
+      "variants": [
+        {
+          "id": "obvious",
+          "name": "Óbvios",
+          "essence": 1.5,
+          "capacity": {
+            "provides": 10
+          },
+          "availability": {
+            "value": 12,
+            "legality": null
+          },
+          "cost": 20000,
+          "desc": "Esses implantes são imediatamente reconhecíveis como membros artificiais, a menos que estejam cobertos com roupa. Eles são muitas vezes cromados ou com cores foscas, mas visivelmente de natureza mecânica. Algumas pessoas gostam deles bem óbvios e bizarros, enquanto outras consideram-nos artificialmente repulsivos e perturbadores. Isso pode afetar suas relações sociais em alguns círculos, especialmente com a nata da sociedade e a multidão purista."
+        },
+        {
+          "id": "synthetic",
+          "name": "Sintéticos",
+          "essence": 1.5,
+          "capacity": {
+            "provides": 5
+          },
+          "availability": {
+            "value": 12,
+            "legality": null
+          },
+          "cost": 25000,
+          "desc": "Membros sintéticos são disfarçados como membros naturais. O fato de serem cibernéticos lhes dá –8 de Ocultação (a perícia Cibertecnologia pode substituir Percepção para esse teste) quando alguém só olha, mas membros sintéticos são obviamente artificiais ao toque."
+        }
+      ],
+      "desc": "Essas próteses são modelos básicos com pronta-entrega. Todos os cibermembros padrão vêm com atributos de Força e Agilidade 3. Esses valores só podem ser ampliados por melhorias de cibermembros, não por outras ampliações.",
+      "page": 456
+    },
+    {
+      "id": "cyberlimb-agility",
+      "name": "Agilidade",
+      "category": "cyberlimb-enhancement",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 3
+      },
+      "essence": null,
+      "capacity": {
+        "cost": {
+          "ref": "rating"
+        }
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            3
+          ]
+        },
+        "legality": "R"
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          6500
+        ]
+      },
+      "desc": "Melhorias de cibermembros usam a Capacidade do cibermembro que aprimoram. Existem três tipos de melhorias: Agilidade, Armadura e Força. Melhorias de atributo Físico adicionam seu Nível ao atributo adequado do membro. Melhorias de Armadura fornecem um bônus de Armadura igual ao seu nível, cumulativo com outras armaduras, sem acrescentar à Sobrecarga. Cada membro pode ter apenas uma melhoria de cada tipo (você não pode colocar duas melhorias de Força 3 no mesmo ciberbraço), mas você pode substituir uma que tenha por outra que deseje.",
+      "page": 456
+    },
+    {
+      "id": "cyberlimb-armor",
+      "name": "Armadura",
+      "category": "cyberlimb-enhancement",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 3
+      },
+      "essence": null,
+      "capacity": {
+        "cost": {
+          "ref": "rating"
+        }
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            5
+          ]
+        },
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          3000
+        ]
+      },
+      "desc": "Melhorias de cibermembros usam a Capacidade do cibermembro que aprimoram. Existem três tipos de melhorias: Agilidade, Armadura e Força. Melhorias de atributo Físico adicionam seu Nível ao atributo adequado do membro. Melhorias de Armadura fornecem um bônus de Armadura igual ao seu nível, cumulativo com outras armaduras, sem acrescentar à Sobrecarga. Cada membro pode ter apenas uma melhoria de cada tipo (você não pode colocar duas melhorias de Força 3 no mesmo ciberbraço), mas você pode substituir uma que tenha por outra que deseje.",
+      "modifiers": [
+        {
+          "target": "armor",
+          "add": {
+            "ref": "rating"
+          }
+        }
+      ],
+      "page": 456
+    },
+    {
+      "id": "cyberlimb-strength",
+      "name": "Força",
+      "category": "cyberlimb-enhancement",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 3
+      },
+      "essence": null,
+      "capacity": {
+        "cost": {
+          "ref": "rating"
+        }
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            3
+          ]
+        },
+        "legality": "R"
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          6500
+        ]
+      },
+      "desc": "Melhorias de cibermembros usam a Capacidade do cibermembro que aprimoram. Existem três tipos de melhorias: Agilidade, Armadura e Força. Melhorias de atributo Físico adicionam seu Nível ao atributo adequado do membro. Melhorias de Armadura fornecem um bônus de Armadura igual ao seu nível, cumulativo com outras armaduras, sem acrescentar à Sobrecarga. Cada membro pode ter apenas uma melhoria de cada tipo (você não pode colocar duas melhorias de Força 3 no mesmo ciberbraço), mas você pode substituir uma que tenha por outra que deseje.",
+      "page": 456
+    },
+    {
+      "id": "cyber-holster",
+      "name": "Ciber coldre",
+      "category": "cyberlimb-accessory",
+      "type": "cyberware",
+      "essence": null,
+      "capacity": {
+        "cost": 5
+      },
+      "availability": {
+        "value": 8,
+        "legality": "R"
+      },
+      "cost": 2000,
+      "desc": "Você pode guardar um taser, pistola ou arma de menor porte dentro do coldre, completamente fechado até você ativá-lo. Inserir ou recuperar uma arma usa uma Ação Simples. Um ciber coldre também pode ser usado como compartimento de contrabando para armazenar itens que não sejam maiores do que uma pistola (o mestre tem a palavra final).",
+      "wireless": "Preparar uma arma do coldre é uma Ação Livre.",
+      "page": 456
+    },
+    {
+      "id": "large-smuggling-compartment",
+      "name": "Compartimento de contrabando grande",
+      "category": "cyberlimb-accessory",
+      "type": "cyberware",
+      "essence": null,
+      "capacity": {
+        "cost": 5
+      },
+      "availability": {
+        "value": 6,
+        "legality": null
+      },
+      "cost": 8000,
+      "desc": "Essa é uma versão maior do compartimento de contrabando (p. 454). É possível armazenar algo do tamanho de uma pistola pesada ou uma pequena submetralhadora (a critério do mestre — pense no tamanho de uma caixa de pão). Tirar ou colocar alguma coisa no compartimento leva uma Ação Complexa.",
+      "wireless": "Tirar ou colocar alguma coisa no compartimento leva uma Ação Simples.",
+      "page": 456
+    },
+    {
+      "id": "cyberarm-slide",
+      "name": "Deslizante de ciberbraço",
+      "category": "cyberlimb-accessory",
+      "type": "cyberware",
+      "essence": null,
+      "capacity": {
+        "cost": 3
+      },
+      "availability": {
+        "value": 12,
+        "legality": "R"
+      },
+      "cost": 3000,
+      "desc": "Uma versão integral da deslizante oculta de braço, a deslizante de ciberbraço pode ocultar uma pistola escamoteável, leve, ou taser no seu ciberbraço, escondendo-a da visão normal. Como uma Ação Livre, você pode preparar a arma na deslizante.",
+      "page": 456
+    },
+    {
+      "id": "hydraulic-jacks",
+      "name": "Macacos hidráulicos",
+      "category": "cyberlimb-accessory",
+      "type": "cyberware",
+      "rating": {
+        "min": 1,
+        "max": 6
+      },
+      "essence": null,
+      "capacity": {
+        "cost": {
+          "ref": "rating"
+        }
+      },
+      "availability": {
+        "value": 9,
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          2500
+        ]
+      },
+      "desc": "Esse implante exige que você tenha duas ciberpernas com um macaco hidráulico de Níveis idênticos em cada perna. Cada ponto de Nível adiciona +1 no seu limite Físico para saltar e arrancar, adiciona vinte por cento na sua distância máxima de salto, e reduz a sua distância de queda em dois metros para calcular dano de queda.",
+      "wireless": "Os macacos adicionam +1 bônus na pilha de dados em testes que envolvam saltar, arrancar, ou erguer com suas pernas.",
+      "page": 456
+    },
+    {
+      "id": "cyberarm-gyromount",
+      "name": "Suporte de giroscópio de ciberbraço",
+      "category": "cyberlimb-accessory",
+      "type": "cyberware",
+      "essence": null,
+      "capacity": {
+        "cost": 8
+      },
+      "availability": {
+        "value": 12,
+        "legality": "P"
+      },
+      "cost": 6000,
+      "desc": "Esse acessório deve ser instalado num ciberbraço completo ou parcial. Quando ativado, contrapesos saem do seu pulso e um pequeno giroscópio gira para fornecer melhor equilíbrio e recuo reduzido para aprimorar a capacidade de tiro. Enquanto isso, a criançada fica só de olho. Os efeitos são idênticos aos do sistema de estabilização por giroscópio (p. 433), mas com Nível 3 (esse efeito não é cumulativo com um sistema de estabilização por giroscópio vestido). Ativar ou desativar o sistema é uma Ação Simples.",
+      "wireless": "Ativar ou desativar o sistema é uma Ação Livre.",
+      "page": 456
+    },
+    {
+      "id": "external-clip-port",
+      "name": "Acesso de pente externo",
+      "category": "cyber-implant-weapon",
+      "type": "cyberware",
+      "essence": 0.1,
+      "capacity": {
+        "cost": 1
+      },
+      "availability": null,
+      "cost": {
+        "add": 1000
+      },
+      "desc": "De forma geral, elas são montadas num ciberbraço ou diretamente num braço natural, mas é possível instalar numa perna ou até no seu tronco. Ciber-armas são diferentes de ciber coldres, já que a própria arma pode ser controlada e disparada diretamente como uma extensão do seu corpo. Dependendo do tamanho da arma, ciber-armas tomam parte do seu antebraço ou substituem todo o seu braço, com as partes funcionais da arma construídas em torno da arma. Ciber-armas menores atiram através de uma abertura oculta na palma ou no punho, enquanto ciber-armas maiores dobram a mão do usuário para trás na altura do pulso. Para ocultação extra, ciber-armas são construídas principalmente usando compostos não-metálicos, e quaisquer partes metálicas são incorporadas na estrutura do (ciber) braço. Todas as ciber-armas possuem armazenamento interno (ai) e podem ser equipadas com um acesso de munição externa oculto. Entretanto, ao prender um pente na lateral do seu antebraço ou atrás do seu cotovelo, a ciber-arma se torna meio óbvia. Miras laser e silenciadores/supressores de som também estão disponíveis; outros acessórios de arma não podem ser instalados em ciber-armas. Todas as ciber-armas são pré-equipadas com sistemas de arma inteligente (p. 432).",
+      "page": 457
+    },
+    {
+      "id": "cyber-shotgun",
+      "name": "Escopeta",
+      "category": "cyber-implant-weapon",
+      "type": "cyberware",
+      "essence": 1.25,
+      "capacity": {
+        "cost": 10
+      },
+      "availability": {
+        "value": 12,
+        "legality": "R"
+      },
+      "cost": 8500,
+      "weapon": {
+        "skill": "longarms",
+        "accuracy": 4,
+        "accuracyEnhanced": 6,
+        "damage": {
+          "value": 10,
+          "type": "physical"
+        },
+        "ap": -1,
+        "modes": [
+          "ss"
+        ],
+        "recoil": 0,
+        "ammo": [
+          {
+            "count": 4,
+            "feed": "ai"
+          },
+          {
+            "count": 10,
+            "feed": "p"
+          }
+        ]
+      },
+      "desc": "De forma geral, elas são montadas num ciberbraço ou diretamente num braço natural, mas é possível instalar numa perna ou até no seu tronco. Ciber-armas são diferentes de ciber coldres, já que a própria arma pode ser controlada e disparada diretamente como uma extensão do seu corpo. Dependendo do tamanho da arma, ciber-armas tomam parte do seu antebraço ou substituem todo o seu braço, com as partes funcionais da arma construídas em torno da arma. Ciber-armas menores atiram através de uma abertura oculta na palma ou no punho, enquanto ciber-armas maiores dobram a mão do usuário para trás na altura do pulso. Para ocultação extra, ciber-armas são construídas principalmente usando compostos não-metálicos, e quaisquer partes metálicas são incorporadas na estrutura do (ciber) braço. Todas as ciber-armas possuem armazenamento interno (ai) e podem ser equipadas com um acesso de munição externa oculto. Entretanto, ao prender um pente na lateral do seu antebraço ou atrás do seu cotovelo, a ciber-arma se torna meio óbvia. Miras laser e silenciadores/supressores de som também estão disponíveis; outros acessórios de arma não podem ser instalados em ciber-armas. Todas as ciber-armas são pré-equipadas com sistemas de arma inteligente (p. 432).",
+      "page": 457
+    },
+    {
+      "id": "cyber-microgrenade-launcher",
+      "name": "Lançador de granada",
+      "category": "cyber-implant-weapon",
+      "type": "cyberware",
+      "essence": 1.5,
+      "capacity": {
+        "cost": 15
+      },
+      "availability": {
+        "value": 20,
+        "legality": "P"
+      },
+      "cost": 30000,
+      "weapon": {
+        "skill": "heavy-weapons",
+        "accuracy": 4,
+        "accuracyEnhanced": 6,
+        "damage": {
+          "special": "grenade"
+        },
+        "modes": [
+          "ss"
+        ],
+        "recoil": 0,
+        "ammo": [
+          {
+            "count": 2,
+            "feed": "ai"
+          },
+          {
+            "count": 6,
+            "feed": "p"
+          }
+        ]
+      },
+      "desc": "De forma geral, elas são montadas num ciberbraço ou diretamente num braço natural, mas é possível instalar numa perna ou até no seu tronco. Ciber-armas são diferentes de ciber coldres, já que a própria arma pode ser controlada e disparada diretamente como uma extensão do seu corpo. Dependendo do tamanho da arma, ciber-armas tomam parte do seu antebraço ou substituem todo o seu braço, com as partes funcionais da arma construídas em torno da arma. Ciber-armas menores atiram através de uma abertura oculta na palma ou no punho, enquanto ciber-armas maiores dobram a mão do usuário para trás na altura do pulso. Para ocultação extra, ciber-armas são construídas principalmente usando compostos não-metálicos, e quaisquer partes metálicas são incorporadas na estrutura do (ciber) braço. Todas as ciber-armas possuem armazenamento interno (ai) e podem ser equipadas com um acesso de munição externa oculto. Entretanto, ao prender um pente na lateral do seu antebraço ou atrás do seu cotovelo, a ciber-arma se torna meio óbvia. Miras laser e silenciadores/supressores de som também estão disponíveis; outros acessórios de arma não podem ser instalados em ciber-armas. Todas as ciber-armas são pré-equipadas com sistemas de arma inteligente (p. 432).",
+      "page": 457
+    },
+    {
+      "id": "cyber-laser-sight",
+      "name": "Mira laser",
+      "category": "cyber-implant-weapon",
+      "type": "cyberware",
+      "essence": null,
+      "capacity": {
+        "cost": 1
+      },
+      "availability": null,
+      "cost": {
+        "add": 1000
+      },
+      "desc": "De forma geral, elas são montadas num ciberbraço ou diretamente num braço natural, mas é possível instalar numa perna ou até no seu tronco. Ciber-armas são diferentes de ciber coldres, já que a própria arma pode ser controlada e disparada diretamente como uma extensão do seu corpo. Dependendo do tamanho da arma, ciber-armas tomam parte do seu antebraço ou substituem todo o seu braço, com as partes funcionais da arma construídas em torno da arma. Ciber-armas menores atiram através de uma abertura oculta na palma ou no punho, enquanto ciber-armas maiores dobram a mão do usuário para trás na altura do pulso. Para ocultação extra, ciber-armas são construídas principalmente usando compostos não-metálicos, e quaisquer partes metálicas são incorporadas na estrutura do (ciber) braço. Todas as ciber-armas possuem armazenamento interno (ai) e podem ser equipadas com um acesso de munição externa oculto. Entretanto, ao prender um pente na lateral do seu antebraço ou atrás do seu cotovelo, a ciber-arma se torna meio óbvia. Miras laser e silenciadores/supressores de som também estão disponíveis; outros acessórios de arma não podem ser instalados em ciber-armas. Todas as ciber-armas são pré-equipadas com sistemas de arma inteligente (p. 432).",
+      "page": 457
+    },
+    {
+      "id": "cyber-machine-pistol",
+      "name": "Pistola automática",
+      "category": "cyber-implant-weapon",
+      "type": "cyberware",
+      "essence": 0.5,
+      "capacity": {
+        "cost": 6
+      },
+      "availability": {
+        "value": 12,
+        "legality": "R"
+      },
+      "cost": 3500,
+      "weapon": {
+        "skill": "automatics",
+        "accuracy": 4,
+        "accuracyEnhanced": 6,
+        "damage": {
+          "value": 6,
+          "type": "physical"
+        },
+        "ap": 0,
+        "modes": [
+          "sa",
+          "bf"
+        ],
+        "recoil": 1,
+        "ammo": [
+          {
+            "count": 18,
+            "feed": "ai"
+          },
+          {
+            "count": 32,
+            "feed": "p"
+          }
+        ]
+      },
+      "desc": "De forma geral, elas são montadas num ciberbraço ou diretamente num braço natural, mas é possível instalar numa perna ou até no seu tronco. Ciber-armas são diferentes de ciber coldres, já que a própria arma pode ser controlada e disparada diretamente como uma extensão do seu corpo. Dependendo do tamanho da arma, ciber-armas tomam parte do seu antebraço ou substituem todo o seu braço, com as partes funcionais da arma construídas em torno da arma. Ciber-armas menores atiram através de uma abertura oculta na palma ou no punho, enquanto ciber-armas maiores dobram a mão do usuário para trás na altura do pulso. Para ocultação extra, ciber-armas são construídas principalmente usando compostos não-metálicos, e quaisquer partes metálicas são incorporadas na estrutura do (ciber) braço. Todas as ciber-armas possuem armazenamento interno (ai) e podem ser equipadas com um acesso de munição externa oculto. Entretanto, ao prender um pente na lateral do seu antebraço ou atrás do seu cotovelo, a ciber-arma se torna meio óbvia. Miras laser e silenciadores/supressores de som também estão disponíveis; outros acessórios de arma não podem ser instalados em ciber-armas. Todas as ciber-armas são pré-equipadas com sistemas de arma inteligente (p. 432).",
+      "page": 457
+    },
+    {
+      "id": "cyber-holdout",
+      "name": "Pistola escamoteável",
+      "category": "cyber-implant-weapon",
+      "type": "cyberware",
+      "essence": 0.1,
+      "capacity": {
+        "cost": 2
+      },
+      "availability": {
+        "value": 8,
+        "legality": "R"
+      },
+      "cost": 2000,
+      "weapon": {
+        "skill": "pistols",
+        "accuracy": 4,
+        "accuracyEnhanced": 6,
+        "damage": {
+          "value": 6,
+          "type": "physical"
+        },
+        "ap": 0,
+        "modes": [
+          "sa"
+        ],
+        "recoil": 0,
+        "ammo": [
+          {
+            "count": 2,
+            "feed": "ai"
+          },
+          {
+            "count": 6,
+            "feed": "p"
+          }
+        ]
+      },
+      "desc": "De forma geral, elas são montadas num ciberbraço ou diretamente num braço natural, mas é possível instalar numa perna ou até no seu tronco. Ciber-armas são diferentes de ciber coldres, já que a própria arma pode ser controlada e disparada diretamente como uma extensão do seu corpo. Dependendo do tamanho da arma, ciber-armas tomam parte do seu antebraço ou substituem todo o seu braço, com as partes funcionais da arma construídas em torno da arma. Ciber-armas menores atiram através de uma abertura oculta na palma ou no punho, enquanto ciber-armas maiores dobram a mão do usuário para trás na altura do pulso. Para ocultação extra, ciber-armas são construídas principalmente usando compostos não-metálicos, e quaisquer partes metálicas são incorporadas na estrutura do (ciber) braço. Todas as ciber-armas possuem armazenamento interno (ai) e podem ser equipadas com um acesso de munição externa oculto. Entretanto, ao prender um pente na lateral do seu antebraço ou atrás do seu cotovelo, a ciber-arma se torna meio óbvia. Miras laser e silenciadores/supressores de som também estão disponíveis; outros acessórios de arma não podem ser instalados em ciber-armas. Todas as ciber-armas são pré-equipadas com sistemas de arma inteligente (p. 432).",
+      "page": 457
+    },
+    {
+      "id": "cyber-light-pistol",
+      "name": "Pistola leve",
+      "category": "cyber-implant-weapon",
+      "type": "cyberware",
+      "essence": 0.25,
+      "capacity": {
+        "cost": 4
+      },
+      "availability": {
+        "value": 10,
+        "legality": "R"
+      },
+      "cost": 3900,
+      "weapon": {
+        "skill": "pistols",
+        "accuracy": 6,
+        "accuracyEnhanced": 8,
+        "damage": {
+          "value": 7,
+          "type": "physical"
+        },
+        "ap": 0,
+        "modes": [
+          "sa"
+        ],
+        "recoil": 0,
+        "ammo": [
+          {
+            "count": 10,
+            "feed": "ai"
+          },
+          {
+            "count": 15,
+            "feed": "p"
+          }
+        ]
+      },
+      "desc": "De forma geral, elas são montadas num ciberbraço ou diretamente num braço natural, mas é possível instalar numa perna ou até no seu tronco. Ciber-armas são diferentes de ciber coldres, já que a própria arma pode ser controlada e disparada diretamente como uma extensão do seu corpo. Dependendo do tamanho da arma, ciber-armas tomam parte do seu antebraço ou substituem todo o seu braço, com as partes funcionais da arma construídas em torno da arma. Ciber-armas menores atiram através de uma abertura oculta na palma ou no punho, enquanto ciber-armas maiores dobram a mão do usuário para trás na altura do pulso. Para ocultação extra, ciber-armas são construídas principalmente usando compostos não-metálicos, e quaisquer partes metálicas são incorporadas na estrutura do (ciber) braço. Todas as ciber-armas possuem armazenamento interno (ai) e podem ser equipadas com um acesso de munição externa oculto. Entretanto, ao prender um pente na lateral do seu antebraço ou atrás do seu cotovelo, a ciber-arma se torna meio óbvia. Miras laser e silenciadores/supressores de som também estão disponíveis; outros acessórios de arma não podem ser instalados em ciber-armas. Todas as ciber-armas são pré-equipadas com sistemas de arma inteligente (p. 432).",
+      "page": 457
+    },
+    {
+      "id": "cyber-heavy-pistol",
+      "name": "Pistola pesada",
+      "category": "cyber-implant-weapon",
+      "type": "cyberware",
+      "essence": 0.5,
+      "capacity": {
+        "cost": 6
+      },
+      "availability": {
+        "value": 12,
+        "legality": "R"
+      },
+      "cost": 4300,
+      "weapon": {
+        "skill": "pistols",
+        "accuracy": 4,
+        "accuracyEnhanced": 6,
+        "damage": {
+          "value": 7,
+          "type": "physical"
+        },
+        "ap": -1,
+        "modes": [
+          "sa"
+        ],
+        "recoil": 0,
+        "ammo": [
+          {
+            "count": 8,
+            "feed": "ai"
+          },
+          {
+            "count": 12,
+            "feed": "p"
+          }
+        ]
+      },
+      "desc": "De forma geral, elas são montadas num ciberbraço ou diretamente num braço natural, mas é possível instalar numa perna ou até no seu tronco. Ciber-armas são diferentes de ciber coldres, já que a própria arma pode ser controlada e disparada diretamente como uma extensão do seu corpo. Dependendo do tamanho da arma, ciber-armas tomam parte do seu antebraço ou substituem todo o seu braço, com as partes funcionais da arma construídas em torno da arma. Ciber-armas menores atiram através de uma abertura oculta na palma ou no punho, enquanto ciber-armas maiores dobram a mão do usuário para trás na altura do pulso. Para ocultação extra, ciber-armas são construídas principalmente usando compostos não-metálicos, e quaisquer partes metálicas são incorporadas na estrutura do (ciber) braço. Todas as ciber-armas possuem armazenamento interno (ai) e podem ser equipadas com um acesso de munição externa oculto. Entretanto, ao prender um pente na lateral do seu antebraço ou atrás do seu cotovelo, a ciber-arma se torna meio óbvia. Miras laser e silenciadores/supressores de som também estão disponíveis; outros acessórios de arma não podem ser instalados em ciber-armas. Todas as ciber-armas são pré-equipadas com sistemas de arma inteligente (p. 432).",
+      "page": 457
+    },
+    {
+      "id": "cyber-silencer",
+      "name": "Silenciador/supressor",
+      "category": "cyber-implant-weapon",
+      "type": "cyberware",
+      "essence": null,
+      "capacity": {
+        "cost": 2
+      },
+      "availability": null,
+      "cost": {
+        "add": 1000
+      },
+      "desc": "De forma geral, elas são montadas num ciberbraço ou diretamente num braço natural, mas é possível instalar numa perna ou até no seu tronco. Ciber-armas são diferentes de ciber coldres, já que a própria arma pode ser controlada e disparada diretamente como uma extensão do seu corpo. Dependendo do tamanho da arma, ciber-armas tomam parte do seu antebraço ou substituem todo o seu braço, com as partes funcionais da arma construídas em torno da arma. Ciber-armas menores atiram através de uma abertura oculta na palma ou no punho, enquanto ciber-armas maiores dobram a mão do usuário para trás na altura do pulso. Para ocultação extra, ciber-armas são construídas principalmente usando compostos não-metálicos, e quaisquer partes metálicas são incorporadas na estrutura do (ciber) braço. Todas as ciber-armas possuem armazenamento interno (ai) e podem ser equipadas com um acesso de munição externa oculto. Entretanto, ao prender um pente na lateral do seu antebraço ou atrás do seu cotovelo, a ciber-arma se torna meio óbvia. Miras laser e silenciadores/supressores de som também estão disponíveis; outros acessórios de arma não podem ser instalados em ciber-armas. Todas as ciber-armas são pré-equipadas com sistemas de arma inteligente (p. 432).",
+      "page": 457
+    },
+    {
+      "id": "cyber-smg",
+      "name": "Submetralhadora",
+      "category": "cyber-implant-weapon",
+      "type": "cyberware",
+      "essence": 1,
+      "capacity": {
+        "cost": 8
+      },
+      "availability": {
+        "value": 12,
+        "legality": "R"
+      },
+      "cost": 4800,
+      "weapon": {
+        "skill": "automatics",
+        "accuracy": 4,
+        "accuracyEnhanced": 6,
+        "damage": {
+          "value": 7,
+          "type": "physical"
+        },
+        "ap": 0,
+        "modes": [
+          "sa",
+          "bf"
+        ],
+        "recoil": 2,
+        "ammo": [
+          {
+            "count": 18,
+            "feed": "ai"
+          },
+          {
+            "count": 32,
+            "feed": "p"
+          }
+        ]
+      },
+      "desc": "De forma geral, elas são montadas num ciberbraço ou diretamente num braço natural, mas é possível instalar numa perna ou até no seu tronco. Ciber-armas são diferentes de ciber coldres, já que a própria arma pode ser controlada e disparada diretamente como uma extensão do seu corpo. Dependendo do tamanho da arma, ciber-armas tomam parte do seu antebraço ou substituem todo o seu braço, com as partes funcionais da arma construídas em torno da arma. Ciber-armas menores atiram através de uma abertura oculta na palma ou no punho, enquanto ciber-armas maiores dobram a mão do usuário para trás na altura do pulso. Para ocultação extra, ciber-armas são construídas principalmente usando compostos não-metálicos, e quaisquer partes metálicas são incorporadas na estrutura do (ciber) braço. Todas as ciber-armas possuem armazenamento interno (ai) e podem ser equipadas com um acesso de munição externa oculto. Entretanto, ao prender um pente na lateral do seu antebraço ou atrás do seu cotovelo, a ciber-arma se torna meio óbvia. Miras laser e silenciadores/supressores de som também estão disponíveis; outros acessórios de arma não podem ser instalados em ciber-armas. Todas as ciber-armas são pré-equipadas com sistemas de arma inteligente (p. 432).",
+      "page": 457
+    },
+    {
+      "id": "spurs",
+      "name": "Esporões (retráteis)",
+      "category": "cyber-implant-weapon",
+      "type": "cyberware",
+      "essence": 0.3,
+      "capacity": {
+        "cost": 3
+      },
+      "availability": {
+        "value": 12,
+        "legality": "P"
+      },
+      "cost": 5000,
+      "weapon": {
+        "skill": "unarmed-combat",
+        "accuracy": {
+          "ref": "limit.physical"
+        },
+        "reach": 0,
+        "damage": {
+          "value": {
+            "op": "add",
+            "of": [
+              {
+                "ref": "attr.str"
+              },
+              3
+            ]
+          },
+          "type": "physical"
+        },
+        "ap": -2
+      },
+      "desc": "Por um quarto de século, ciber-implantes de armas brancas têm sido os brinquedos favoritos clássicos dos retalhadores, desde os capangas de rua até os samurai urbanos profissionais. Estão disponíveis como melhoramentos de ciberbraços, mas também podem ser instaladas diretamente na carne. Ciber-armas podem ser preparadas através da flexão muscular, impulso neural ou sinal sem fio. Ataques com ciber armas corpo a corpo usam a perícia Combate Desarmado e o limite Físico. Navalhas de mão são lâminas de dois a três centímetros de comprimento, feitas de aço cromado ou fibra de carbono. Elas ou saem debaixo das suas unhas ou as substituem por completo. Lâminas de mão deslizam da lateral da mão oposta ao polegar, paralela à mão, e apesar de serem universalmente finas e afiadas, vêm em diversos formatos e estilos. Esporões são de uma a três lâminas ou pontas que saem da parte de trás do seu pulso ou articulações dos dedos, saindo até trinta centímetros do seu punho. A mão elétrica é como uma luva de choque embutida na palma da sua mão, perfeita para dar um choque desagradável em qualquer coisa que tocar. Mãos elétricas causam dano de Eletricidade (p. 170) e têm dez cargas em cada mão. Quando conectadas, elas recarregam uma carga a cada dez segundos.",
+      "page": 457
+    },
+    {
+      "id": "hand-blade",
+      "name": "Lâmina de mão (retrátil)",
+      "category": "cyber-implant-weapon",
+      "type": "cyberware",
+      "essence": 0.25,
+      "capacity": {
+        "cost": 2
+      },
+      "availability": {
+        "value": 10,
+        "legality": "P"
+      },
+      "cost": 2500,
+      "weapon": {
+        "skill": "unarmed-combat",
+        "accuracy": {
+          "ref": "limit.physical"
+        },
+        "reach": 0,
+        "damage": {
+          "value": {
+            "op": "add",
+            "of": [
+              {
+                "ref": "attr.str"
+              },
+              2
+            ]
+          },
+          "type": "physical"
+        },
+        "ap": -2
+      },
+      "desc": "Por um quarto de século, ciber-implantes de armas brancas têm sido os brinquedos favoritos clássicos dos retalhadores, desde os capangas de rua até os samurai urbanos profissionais. Estão disponíveis como melhoramentos de ciberbraços, mas também podem ser instaladas diretamente na carne. Ciber-armas podem ser preparadas através da flexão muscular, impulso neural ou sinal sem fio. Ataques com ciber armas corpo a corpo usam a perícia Combate Desarmado e o limite Físico. Navalhas de mão são lâminas de dois a três centímetros de comprimento, feitas de aço cromado ou fibra de carbono. Elas ou saem debaixo das suas unhas ou as substituem por completo. Lâminas de mão deslizam da lateral da mão oposta ao polegar, paralela à mão, e apesar de serem universalmente finas e afiadas, vêm em diversos formatos e estilos. Esporões são de uma a três lâminas ou pontas que saem da parte de trás do seu pulso ou articulações dos dedos, saindo até trinta centímetros do seu punho. A mão elétrica é como uma luva de choque embutida na palma da sua mão, perfeita para dar um choque desagradável em qualquer coisa que tocar. Mãos elétricas causam dano de Eletricidade (p. 170) e têm dez cargas em cada mão. Quando conectadas, elas recarregam uma carga a cada dez segundos.",
+      "page": 457
+    },
+    {
+      "id": "shock-hand",
+      "name": "Mão elétrica",
+      "category": "cyber-implant-weapon",
+      "type": "cyberware",
+      "essence": 0.25,
+      "capacity": {
+        "cost": 4
+      },
+      "availability": {
+        "value": 8,
+        "legality": "R"
+      },
+      "cost": 5000,
+      "weapon": {
+        "skill": "unarmed-combat",
+        "accuracy": {
+          "ref": "limit.physical"
+        },
+        "reach": 0,
+        "damage": {
+          "value": 9,
+          "type": "stun",
+          "element": "electricity"
+        },
+        "ap": -5
+      },
+      "desc": "Por um quarto de século, ciber-implantes de armas brancas têm sido os brinquedos favoritos clássicos dos retalhadores, desde os capangas de rua até os samurai urbanos profissionais. Estão disponíveis como melhoramentos de ciberbraços, mas também podem ser instaladas diretamente na carne. Ciber-armas podem ser preparadas através da flexão muscular, impulso neural ou sinal sem fio. Ataques com ciber armas corpo a corpo usam a perícia Combate Desarmado e o limite Físico. Navalhas de mão são lâminas de dois a três centímetros de comprimento, feitas de aço cromado ou fibra de carbono. Elas ou saem debaixo das suas unhas ou as substituem por completo. Lâminas de mão deslizam da lateral da mão oposta ao polegar, paralela à mão, e apesar de serem universalmente finas e afiadas, vêm em diversos formatos e estilos. Esporões são de uma a três lâminas ou pontas que saem da parte de trás do seu pulso ou articulações dos dedos, saindo até trinta centímetros do seu punho. A mão elétrica é como uma luva de choque embutida na palma da sua mão, perfeita para dar um choque desagradável em qualquer coisa que tocar. Mãos elétricas causam dano de Eletricidade (p. 170) e têm dez cargas em cada mão. Quando conectadas, elas recarregam uma carga a cada dez segundos.",
+      "page": 457
+    },
+    {
+      "id": "hand-razors",
+      "name": "Navalhas de mão (retráteis)",
+      "category": "cyber-implant-weapon",
+      "type": "cyberware",
+      "essence": 0.2,
+      "capacity": {
+        "cost": 2
+      },
+      "availability": {
+        "value": 8,
+        "legality": "P"
+      },
+      "cost": 1250,
+      "weapon": {
+        "skill": "unarmed-combat",
+        "accuracy": {
+          "ref": "limit.physical"
+        },
+        "reach": 0,
+        "damage": {
+          "value": {
+            "op": "add",
+            "of": [
+              {
+                "ref": "attr.str"
+              },
+              1
+            ]
+          },
+          "type": "physical"
+        },
+        "ap": -3
+      },
+      "desc": "Por um quarto de século, ciber-implantes de armas brancas têm sido os brinquedos favoritos clássicos dos retalhadores, desde os capangas de rua até os samurai urbanos profissionais. Estão disponíveis como melhoramentos de ciberbraços, mas também podem ser instaladas diretamente na carne. Ciber-armas podem ser preparadas através da flexão muscular, impulso neural ou sinal sem fio. Ataques com ciber armas corpo a corpo usam a perícia Combate Desarmado e o limite Físico. Navalhas de mão são lâminas de dois a três centímetros de comprimento, feitas de aço cromado ou fibra de carbono. Elas ou saem debaixo das suas unhas ou as substituem por completo. Lâminas de mão deslizam da lateral da mão oposta ao polegar, paralela à mão, e apesar de serem universalmente finas e afiadas, vêm em diversos formatos e estilos. Esporões são de uma a três lâminas ou pontas que saem da parte de trás do seu pulso ou articulações dos dedos, saindo até trinta centímetros do seu punho. A mão elétrica é como uma luva de choque embutida na palma da sua mão, perfeita para dar um choque desagradável em qualquer coisa que tocar. Mãos elétricas causam dano de Eletricidade (p. 170) e têm dez cargas em cada mão. Quando conectadas, elas recarregam uma carga a cada dez segundos.",
+      "page": 457
+    },
+    {
+      "id": "bone-density-augmentation",
+      "name": "Ampliação de densidade óssea",
+      "category": "bioware",
+      "type": "bioware",
+      "rating": {
+        "min": 1,
+        "max": 4
+      },
+      "essence": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          0.3
+        ]
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            4
+          ]
+        },
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          5000
+        ]
+      },
+      "unarmedDamage": {
+        "value": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.str"
+            },
+            {
+              "op": "sub",
+              "of": [
+                {
+                  "ref": "rating"
+                },
+                1
+              ]
+            }
+          ]
+        },
+        "type": "physical"
+      },
+      "desc": "A estrutura molecular dos seus ossos é alterada para aumentar a densidade e a resistência à tração. Os ligamentos são fortalecidos, e a densidade óssea aprimorada aumenta um pouco o seu peso. Seu atributo Corpo aumenta pelo Nível da densidade de osso para os propósitos de testes de resistência a dano. Você também causa dano Físico em combate desarmado, baseado no Nível da ampliação (veja a tabela de Ampliação de Densidade Óssea). A ampliação de densidade óssea é incompatível com outras ampliações nos ossos, incluindo cibernético de revestimento ósseo.",
+      "page": 458
+    },
+    {
+      "id": "muscle-augmentation",
+      "name": "Ampliação muscular",
+      "category": "bioware",
+      "type": "bioware",
+      "rating": {
+        "min": 1,
+        "max": 4
+      },
+      "essence": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          0.2
+        ]
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            5
+          ]
+        },
+        "legality": "R"
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          31000
+        ]
+      },
+      "modifiers": [
+        {
+          "target": "attr",
+          "of": "str",
+          "add": {
+            "ref": "rating"
+          }
+        }
+      ],
+      "desc": "Este tratamento de fiação biológica aprimora o tecido muscular existente, em vez de substituí-lo com músculos cultivados em tanques. Cabos musculares cultivados especialmente são tecidos nas fibras musculares existentes, aumentando a massa muscular e a força bruta, proporcionando uma aparência mais volumosa. A ampliação muscular adiciona seu Nível à sua Força. Este biônico é incompatível com ampliações que aumentem a Força, incluindo os cibernéticos de substituição muscular.",
+      "page": 458
+    },
+    {
+      "id": "enhanced-articulation",
+      "name": "Articulação melhorada",
+      "category": "bioware",
+      "type": "bioware",
+      "essence": 0.3,
+      "availability": {
+        "value": 12,
+        "legality": null
+      },
+      "cost": 24000,
+      "modifiers": [
+        {
+          "target": "limit",
+          "of": "physical",
+          "add": 1
+        }
+      ],
+      "desc": "Uma série de procedimentos como revestimento da superfície das juntas, relubrificação e ampliação de tendões e ligamentos levam a uma ação mais fluida dos músculos e das juntas. A articulação melhorada fornece +1 de modificador na pilha de dados na perícia Arte da Fuga e +1 de aumento no seu limite Físico (cumulativo com outros modificadores de limites).",
+      "page": 458
+    },
+    {
+      "id": "skin-pocket",
+      "name": "Bolso de pele",
+      "category": "bioware",
+      "type": "bioware",
+      "essence": 0.1,
+      "availability": {
+        "value": 4,
+        "legality": null
+      },
+      "cost": 12000,
+      "desc": "Esse pedaço de pele pode ser localizado em qualquer parte do seu corpo. Uma “camada” sem nervos de carne escondida pelo pedaço é perfeita para esconder um objeto pequeno — é a versão biônica de um compartimento de contrabando (p.454). O bolso de pele possui Ocultação –10. Leva uma Ação Complexa para adicionar ou remover um item de um bolso de pele.",
+      "page": 458
+    },
+    {
+      "id": "adrenaline-pump",
+      "name": "Bomba de adrenalina",
+      "category": "bioware",
+      "type": "bioware",
+      "rating": {
+        "min": 1,
+        "max": 3
+      },
+      "essence": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          0.75
+        ]
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            6
+          ]
+        },
+        "legality": "P"
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          55000
+        ]
+      },
+      "desc": "Essa glândula melhorada é implantada no abdômen inferior, conectada às duas glândulas supradrenais. Quando dormente, a bomba serve meramente como um reservatório de adrenalina. Quando ativa, um pequeno saco muscular se contrai, enviando um surto de adrenalina concentrada na corrente sanguínea. Estresse físico e emocional pode forçar a ativação da sua bomba se falhar num Teste de Compostura (p. 152); caso contrário, você pode ativá-la como uma Ação Livre. Enquanto a bomba estiver ativa, você ignora modificadores de ferimento e não cai inconsciente, mesmo se o seu Monitor de Condição de Atordoamento estiver cheio. Você não pode descansar, mas o Nível da bomba de adrenalina é adicionado aos seus atributos de Força, Agilidade, Reação, e Vontade. A bomba funciona por Nível x 1D6 Turnos de Combate (a bomba não pode ser desligada antes disso). Quando o tempo acabar, você entra em choque e sofre dano de Atordoamento igual ao número de Turnos de Combate que a bomba esteve ativa (use seu Corpo + Vontade natural para resistir ao dano). Após o término dos efeitos, seus valores de atributo voltam ao normal e você para de ignorar modificadores de ferimento ou inconsciência por dano de Atordoamento. Após o uso, a bomba requer 1 hora para regenerar seu suprimento. Ela não pode ser ativada durante esse tempo.",
+      "page": 458
+    },
+    {
+      "id": "pathogenic-defense",
+      "name": "Defesa Patogênica",
+      "category": "bioware",
+      "type": "bioware",
+      "rating": {
+        "min": 1,
+        "max": 6
+      },
+      "essence": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          0.1
+        ]
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            2
+          ]
+        },
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          4500
+        ]
+      },
+      "desc": "Esse baço aprimorado pode produzir glóbulos brancos mais efetivos e agressivos para combater patogênicos. A defesa patogênica adiciona seu Nível em Testes de Resistência a Doenças.",
+      "page": 458
+    },
+    {
+      "id": "toxin-extractor",
+      "name": "Extrator de toxinas",
+      "category": "bioware",
+      "type": "bioware",
+      "rating": {
+        "min": 1,
+        "max": 6
+      },
+      "essence": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          0.2
+        ]
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            3
+          ]
+        },
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          4800
+        ]
+      },
+      "desc": "Um grupo de células especialmente cultivadas no seu fígado aumenta suas capacidades de filtragem. O extrator de toxinas adiciona seu Nível como modificador na pilha de dados em todos os seus Testes de Resistência a Toxinas (Toxinas, Drogas, e MQTs, p. 408).",
+      "page": 458
+    },
+    {
+      "id": "platelet-factories",
+      "name": "Fábricas de plaquetas",
+      "category": "bioware",
+      "type": "bioware",
+      "essence": 0.2,
+      "availability": {
+        "value": 12,
+        "legality": null
+      },
+      "cost": 17000,
+      "desc": "Fábricas de plaquetas aumentam a capacidade do seu corpo de lidar com dano Físico acelerando a produção de plaquetas dentro da medula óssea e sua concentração no sangue, o que ajuda a parar o sangramento mais rapidamente. Sempre que sofrer 2 ou mais caixas de dano no seu Monitor de Condição Física, reduza o dano em uma caixa.",
+      "page": 458
+    },
+    {
+      "id": "tailored-pheromones",
+      "name": "Feromônios adaptados",
+      "category": "bioware",
+      "type": "bioware",
+      "rating": {
+        "min": 1,
+        "max": 3
+      },
+      "essence": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          0.2
+        ]
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            4
+          ]
+        },
+        "legality": "R"
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          31000
+        ]
+      },
+      "modifiers": [
+        {
+          "target": "limit",
+          "of": "social",
+          "add": {
+            "ref": "rating"
+          }
+        }
+      ],
+      "desc": "Esses feromônios são especialmente adaptados para influenciar sutilmente outros e podem ser liberados à vontade. Feromônios adaptados adicionam seu Nível como modificador na pilha de dados nos seus testes de perícia para perícias nos grupos de perícia de Atuação e Influência, mas só quando a pessoa em quem estiver usando estiver dentro de um alcance confortável de conversa — se não puderem sentir o seu cheiro, os feromônios não funcionam. Feromônios adaptados também funcionam em você para que se sinta melhor consigo mesmo; aumente seu limite Social pelo seu Nível. Feromônios adaptados não têm efeito em habilidades e testes mágicos.",
+      "page": 458
+    },
+    {
+      "id": "tracheal-filter",
+      "name": "Filtro traqueal",
+      "category": "bioware",
+      "type": "bioware",
+      "rating": {
+        "min": 1,
+        "max": 6
+      },
+      "essence": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          0.1
+        ]
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            3
+          ]
+        },
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          4500
+        ]
+      },
+      "desc": "Implantado no topo da sua traqueia, esse órgão pode absorver impurezas aéreas e impedi-las de chegar aos seus pulmões. O filtro adiciona seu Nível como modificador na pilha de dados nos Testes de Resistência a Toxinas contra toxinas de vetor por inalação (Toxinas, Drogas, e MQTs, p. 408).",
+      "page": 458
+    },
+    {
+      "id": "suprathyroid-gland",
+      "name": "Glândula supratiróide",
+      "category": "bioware",
+      "type": "bioware",
+      "essence": 0.7,
+      "availability": {
+        "value": 20,
+        "legality": "R"
+      },
+      "cost": 140000,
+      "desc": "Posicionada sobre a sua glândula tiroide existente, a glândula supratiroide suplanta as funções metabólicas da sua tiroide. O metabolismo melhorado produz mais energia, sobrecarregando você. Enquanto estiver em sobrecarga, é bom pedir o tamanho maior — para alimentar o seu metabolismo otimizado, você precisará comer o dobro do normal. Você recebe +1 em Agilidade, Corpo, Reação, e Força, junto com 25% de aumento em custos de estilo de vida. E talvez fique meio hiperativo.",
+      "page": 458
+    },
+    {
+      "id": "cats-eye",
+      "name": "Olho de gato",
+      "category": "bioware",
+      "type": "bioware",
+      "essence": 0.1,
+      "availability": {
+        "value": 4,
+        "legality": null
+      },
+      "cost": 4000,
+      "desc": "Esses implantes transgênicos de proveta são literalmente olhos de gato com um perfil de DNA modificado e estruturas de conexão occipital. A estrutura dos olhos de gato amplifica a luz e aprimora a visão na penumbra, fornecendo visão na penumbra. Olhos de gato são fendidos e refletivos, que nem os de um gato. Esse biônico obviamente não é compatível com cibernéticos de melhorias ou substituições de olho.",
+      "page": 458
+    },
+    {
+      "id": "orthoskin",
+      "name": "Ortopele",
+      "category": "bioware",
+      "type": "bioware",
+      "rating": {
+        "min": 1,
+        "max": 4
+      },
+      "essence": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          0.25
+        ]
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            4
+          ]
+        },
+        "legality": "R"
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          6000
+        ]
+      },
+      "modifiers": [
+        {
+          "target": "armor",
+          "add": {
+            "ref": "rating"
+          }
+        }
+      ],
+      "desc": "Uma teia de biofibras na pele fornece o equivalente a armadura pessoal, sendo virtualmente indistinguível de pele natural. A ortopele adiciona seu Nível ao seu Nível de Armadura e é cumulativa com outras Armaduras. A ortopele não pode ser combinada com ampliações de pele que deem Armadura, incluindo a couraça dérmica.",
+      "page": 458
+    },
+    {
+      "id": "symbiotes",
+      "name": "Simbiontes",
+      "category": "bioware",
+      "type": "bioware",
+      "rating": {
+        "min": 1,
+        "max": 4
+      },
+      "essence": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          0.2
+        ]
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            5
+          ]
+        },
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          3500
+        ]
+      },
+      "desc": "Microrganismos adaptados na sua corrente sanguínea que aumentam em muito a sua recuperação. Adicione o Nível dos simbiontes como modificador na pilha de dados em testes de cura (Físico e Atordoamento). Entretanto, os simbiontes possuem dietas necessárias incomuns que devem ser cumpridas para mantê-los vivos. Você deve pagar (Nível x 200) neoienes por mês para comida especial de simbionte, apesar de esse preço já estar coberto caso você tenha um Estilo de vida Alto ou superior.",
+      "page": 458
+    },
+    {
+      "id": "synthacardium",
+      "name": "Sintacárdio",
+      "category": "bioware",
+      "type": "bioware",
+      "rating": {
+        "min": 1,
+        "max": 3
+      },
+      "essence": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          0.1
+        ]
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            4
+          ]
+        },
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          30000
+        ]
+      },
+      "desc": "O miocárdio artificialmente aumentado deixa que as funções cardiovasculares sejam realizadas de forma mais eficiente, permitindo que o coração mantenha o sangue melhor oxigenado. O sintacárdio adiciona seu Nível como um bônus na pilha de dados para seus testes ao usar perícias no grupo de perícias de Atletismo.",
+      "page": 458
+    },
+    {
+      "id": "muscle-toner",
+      "name": "Tonificante muscular",
+      "category": "bioware",
+      "type": "bioware",
+      "rating": {
+        "min": 1,
+        "max": 4
+      },
+      "essence": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          0.2
+        ]
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            5
+          ]
+        },
+        "legality": "R"
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          32000
+        ]
+      },
+      "modifiers": [
+        {
+          "target": "attr",
+          "of": "agi",
+          "add": {
+            "ref": "rating"
+          }
+        }
+      ],
+      "desc": "Este tratamento aumenta a elasticidade da fibra muscular na tensão muscular existente, resultando no aumento da tensão e flexibilidade, proporcionando um corpo suave e esguio. O tonificante muscular adiciona seu Nível à sua Agilidade. Este biônico é incompatível com ampliações que aumentem a Agilidade, incluindo os cibernéticos de substituição muscular.",
+      "page": 458
+    },
+    {
+      "id": "cerebral-booster",
+      "name": "Amplificador cerebral",
+      "category": "cultured-bioware",
+      "type": "bioware",
+      "rating": {
+        "min": 1,
+        "max": 3
+      },
+      "essence": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          0.2
+        ]
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            6
+          ]
+        },
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          31500
+        ]
+      },
+      "modifiers": [
+        {
+          "target": "attr",
+          "of": "log",
+          "add": {
+            "ref": "rating"
+          }
+        }
+      ],
+      "desc": "As circunvoluções e giros do seu cérebro são aumentados e amplificados com mais tecido nervoso, melhorando o funcionamento geral do cérebro. Seu amplificador cerebral aumenta seu atributo Lógica com seu Nível.",
+      "page": 460
+    },
+    {
+      "id": "synaptic-booster",
+      "name": "Amplificador de sinapses",
+      "category": "cultured-bioware",
+      "type": "bioware",
+      "rating": {
+        "min": 1,
+        "max": 3
+      },
+      "essence": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          0.5
+        ]
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            6
+          ]
+        },
+        "legality": "R"
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          95000
+        ]
+      },
+      "modifiers": [
+        {
+          "target": "attr",
+          "of": "rea",
+          "add": {
+            "ref": "rating"
+          }
+        },
+        {
+          "target": "initiative.dice",
+          "add": {
+            "ref": "rating"
+          }
+        }
+      ],
+      "desc": "As células nervosas que constituem a medula espinhal são ampliadas e replicadas com este biônico, aumentando a largura da frequência neural. O resultado é um tempo de reação muito mais rápido. O amplificador concede um bônus de +1 de Reação (e o ajuste correspondente na Iniciativa) e +1D6 de Dado de Iniciativa por ponto do Nível. O amplificador de sinapses não pode ser combinado com outras formas de melhoria de Reação ou Iniciativa.",
+      "page": 460
+    },
+    {
+      "id": "damage-compensators",
+      "name": "Compensadores de dano",
+      "category": "cultured-bioware",
+      "type": "bioware",
+      "rating": {
+        "min": 1,
+        "max": 12
+      },
+      "essence": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          0.1
+        ]
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            3
+          ]
+        },
+        "legality": "P"
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          2000
+        ]
+      },
+      "modifiers": [
+        {
+          "target": "wound.ignoredBoxes",
+          "add": {
+            "ref": "rating"
+          }
+        }
+      ],
+      "desc": "Compensadores de dano são essencialmente cortes armazenados nas vias nervosas que informam a dor do seu corpo para o seu cérebro. Você ignora um número de caixas de dano (a sua escolha: Física, de Atordoamento ou uma combinação dos dois) igual ao Nível do compensador antes de determinar seus modificadores de ferimento.",
+      "page": 460
+    },
+    {
+      "id": "pain-editor",
+      "name": "Editor de dor",
+      "category": "cultured-bioware",
+      "type": "bioware",
+      "essence": 0.3,
+      "availability": {
+        "value": 18,
+        "legality": "P"
+      },
+      "cost": 48000,
+      "desc": "Esse aglomerado de tecido nervoso especializado é projetado para filtrar estímulos sensoriais. Se o editor de dor estiver ativo, isso permite que você ignore todos os modificadores de ferimento, e você ainda permanece consciente quando seu Monitor de Condição de Atordoamento está cheio. Você não sente dor — está deliciosamente, perigosamente e imprudentemente alheio ao nível de dano que sofreu sem nem realizar um autoexame (ação Observar Detalhadamente) ou ser informada por um biomonitor (p. 449). Enquanto ativo, o editor de dor aumenta sua Vontade em 1 e reduz sua Intuição em 1. Além disso, todos os Testes de Percepção táteis que fizer recebem –4 de modificador na pilha de dados.",
+      "page": 460
+    },
+    {
+      "id": "reflex-recorder",
+      "name": "Gravador de reflexos",
+      "category": "cultured-bioware",
+      "type": "bioware",
+      "essence": 0.1,
+      "availability": {
+        "value": 10,
+        "legality": null
+      },
+      "cost": 14000,
+      "parameter": {
+        "kind": "skill"
+      },
+      "desc": "O primeiro passo para esta receita especial é cultivar um pouco de material neural adicional em um grupo pequeno. Quando isso é completamente preparado, você o joga no crânio e anexa nos nervos para os reflexos motores. E então, você tem um meta-humano com uma memória muscular melhor. O gravador de reflexos adiciona 1 ao Nível de uma perícia específica ligada a um atributo Físico. Vários gravadores podem ser usados para perícias diferentes, mas você não pode implantar dois gravadores de reflexos para a mesma perícia. O gravador de reflexos biônico é incompatível com o habilitrônico.",
+      "page": 460
+    },
+    {
+      "id": "mnemonic-enhancer",
+      "name": "Melhoria mnemônica",
+      "category": "cultured-bioware",
+      "type": "bioware",
+      "rating": {
+        "min": 1,
+        "max": 3
+      },
+      "essence": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          0.1
+        ]
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            5
+          ]
+        },
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          9000
+        ]
+      },
+      "desc": "Esse crescimento altamente concentrado de massa cinzenta se anexa aos centros de memória do cérebro, melhorando memória de curto e lon-go prazo. Adicione o Nível da melhoria como bônus na pilha de dados para seus testes de Conhecimento, Idioma, e relacionados a memória, assim como seu limite Mental.",
+      "page": 460
+    },
+    {
+      "id": "sleep-regulator",
+      "name": "Regulador de sono",
+      "category": "cultured-bioware",
+      "type": "bioware",
+      "essence": 0.1,
+      "availability": {
+        "value": 6,
+        "legality": null
+      },
+      "cost": 12000,
+      "desc": "O regulador de sono é uma modificação do hipotálamo, permitindo períodos mais longos de despertar, e extremamente útil para qualquer um em qualquer profissão, não só Incursores das Sombras. Você precisa dormir menos por dia e o sono que recebe é profundo e sereno (e mais difícil de acordar você). O regulador de sono permite que você só precise dormir três horas por noite e permanecer acordado por duas vezes o tempo normal antes de ter que resistir à fadiga por privação de sono (p. 172). As horas de repouso que cobrem cura não são afetadas.",
+      "page": 460
+    }
+  ]
+}

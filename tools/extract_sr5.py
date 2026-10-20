@@ -735,6 +735,179 @@ ARMOR_DESC = {"synth-leather": "Jaqueta/sobretudo de couro", "electrochromic-mod
               "clothing": "Roupas", "thermal-damping": "Abafamento térmico"}
 
 
+def levels(n):
+    return {"levels": n}
+
+
+def variants(*pairs):
+    return {"variants": list(pairs)}
+
+
+def mods(*m):
+    return {"modifiers": list(m)}
+
+
+def plus_rating(target, of=None):
+    return {"target": target, **({"of": of} if of else {}), "add": ref("rating")}
+
+
+GRADES = [("standard", "Padrão"), ("alphaware", "Alphaware"), ("betaware", "Betaware"), ("deltaware", "Deltaware"),
+          ("used", "Usado")]
+
+# Cada tabela de ampliações na ordem do livro: (id, linha impressa, extras).
+# Linhas impressas terminadas em "(Nível a–b)" ou "(a–b)" dão a faixa de nível.
+AUGMENTATION_TABLES = [
+    ("headware", "cyberware", ["CEFALOTRÔNICOS", "DISPOSITIVO ESSÊNCIA CAPACIDADE DISP . CUSTO"],
+     ["Bomba De Córtex", "Fuso de Controle"], [
+         ("taste-booster", "Amplificador de Paladar (1–6)", {}),
+         ("olfactory-booster", "Amplificador Olfativo (1–6)", {}),
+         ("cortex-bomb", "Bomba De Córtex", variants(("kink-bomb", "Bombinha"), ("microbomb", "Microbomba"),
+                                                     ("area-bomb", "Bomba de área"))),
+         ("implanted-cyberdeck", "Ciberdeck", {}),
+         ("implanted-commlink", "Com-link", {}),
+         ("tooth-compartment", "Compartimento Dentário", {}),
+         ("datajack", "Conector de dados", {}),
+         ("skilljack", "Conector de perícia (Nível 1–6)", {}),
+         ("control-rig", "Fuso de Controle", levels(3)),
+         ("simrig", "Fuso-simulador", {}),
+         ("voice-modulator", "Modulador De Voz (Nível 1–6)", {}),
+         ("ultrasound-sensor", "Sensor de Ultrassom (Nível 1–6)", {}),
+         ("data-lock", "Trava de Dados (Nível 1–12)", {}),
+     ]),
+    ("eyeware", "cyberware", ["CIBER-OLHOS", "DISPOSITIVO ESSÊNCIA CAPACIDADE DISP . CUSTO"],
+     ["Sistema básico de ciber-olhos"], [
+         ("vision-magnification", "Ampliação de visão", {}),
+         ("flare-compensation", "Compensação de ofuscamento", {}),
+         ("image-link", "Conexão de imagens", {}),
+         ("ocular-drone", "Drone ocular", {}),
+         ("retinal-duplication", "Duplicação de retina (Nível 1–6)", {}),
+         ("vision-enhancement", "Melhoria de visão (Nível 1–3)", {}),
+         ("smartlink", "Neuroconexão", {}),
+         ("cybereyes", "Sistema básico de ciber-olhos", levels(4)),
+         ("low-light-vision", "Visão na penumbra", {}),
+         ("thermographic-vision", "Visão termográfica", {}),
+     ]),
+    ("earware", "cyberware", ["CIBER-OUVIDOS", "DISPOSITIVO ESSÊNCIA CAPACIDADE DISP . CUSTO"],
+     ["Ciber-orelhas"], [
+         ("damper", "Abafador", {}),
+         ("balance-augmenter", "Amplificador de Equilíbrio", {}),
+         ("cyberears", "Ciber-orelhas", levels(4)),
+         ("sound-link", "Conexão de Som", {}),
+         ("select-sound-filter", "Filtro de Som Selecionável (Nível 1-6)", {}),
+         ("audio-enhancement", "Melhoria de Áudio (Nível 1-3)", {}),
+         ("spatial-recognizer", "Reconhecedor Espacial", {}),
+     ]),
+    ("bodyware", "cyberware", ["CORPOTRÔNICOS", "DISPOSITIVOS ESSÊNCIA CAPACIDADE DISP . CUSTO"],
+     ["Reflexos Cabeados (Nível 1-3)", "Revestimento Ósseo"], [
+         ("grapple-gun", "Arma de Gancho", {}),
+         ("smuggling-compartment", "Compartimento de Contrabando", {}),
+         ("fingertip-compartment", "Compartimento de Dedo", {}),
+         ("dermal-plating", "Couraça Dérmica (Nível 1-6)", mods(plus_rating("armor"))),
+         ("skillwires", "Habilitrônicos (Nível 1-6)", {}),
+         ("reaction-enhancers", "Melhorias de Reação (Nível 1-3)", mods(plus_rating("attr", "rea"))),
+         ("wired-reflexes", "Reflexos Cabeados (Nível 1-3)",
+          {**levels(3), **mods(plus_rating("attr", "rea"), plus_rating("initiative.dice"))}),
+         ("bone-lacing", "Revestimento Ósseo", variants(("plastic", "Plástico"), ("aluminum", "Alumínio"),
+                                                       ("titanium", "Titânio"))),
+         ("muscle-replacement", "Substituição Muscular (Nível 1-4)",
+          mods(plus_rating("attr", "str"), plus_rating("attr", "agi"))),
+         ("internal-air-tank", "Tanque de Ar Interno (Nível 1-3)", {}),
+     ]),
+    ("cyberlimb-enhancement", "cyberware", ["MELHORIA ESSÊNCIA CAPACIDADE DISP . CUSTO"], [], [
+        ("cyberlimb-agility", "Agilidade (Nível 1-3)", {}),
+        ("cyberlimb-armor", "Armadura (Nível 1-3)", {}),
+        ("cyberlimb-strength", "Força (Nível 1-3)", {}),
+    ]),
+    ("cyberlimb-accessory", "cyberware", ["ACESSÓRIO ESSÊNCIA CAPACIDADE DISP . CUSTO"], [], [
+        ("cyber-holster", "Ciber coldre", {}),
+        ("large-smuggling-compartment", "Compartimento de contrabando grande", {}),
+        ("cyberarm-slide", "Deslizante de ciberbraço", {}),
+        ("hydraulic-jacks", "Macacos hidráulicos (Nível 1-6)", {}),
+        ("cyberarm-gyromount", "Suporte de giroscópio de ciberbraço", {}),
+    ]),
+    ("cyber-implant-weapon", "cyberware", ["CIBER-ARMAS ESS CAP DISP CUSTO"], [], [
+        ("external-clip-port", "Acesso de pente externo", {}),
+        ("cyber-shotgun", "Escopeta", {}),
+        ("cyber-microgrenade-launcher", "Lançador de granada", {}),
+        ("cyber-laser-sight", "Mira laser", {}),
+        ("cyber-machine-pistol", "Pistola automática", {}),
+        ("cyber-holdout", "Pistola escamoteável", {}),
+        ("cyber-light-pistol", "Pistola leve", {}),
+        ("cyber-heavy-pistol", "Pistola pesada", {}),
+        ("cyber-silencer", "Silenciador/supressor", {}),
+        ("cyber-smg", "Submetralhadora", {}),
+    ]),
+    ("cyber-implant-weapon", "cyberware", ["CORPO A CORPO ESS CAP DISP CUSTO"], [], [
+        ("spurs", "Esporões (retráteis)", {}),
+        ("hand-blade", "Lâmina de mão (retrátil)", {}),
+        ("shock-hand", "Mão elétrica", {}),
+        ("hand-razors", "Navalhas de mão (retráteis)", {}),
+    ]),
+    ("bioware", "bioware", ["BIÔNICOS BÁSICOS ESSÊNCIA DISP CUSTO"], [], [
+        ("bone-density-augmentation", "Ampliação de densidade óssea (Nível 1–4)", {}),
+        ("muscle-augmentation", "Ampliação muscular (Nível 1–4)", mods(plus_rating("attr", "str"))),
+        ("enhanced-articulation", "Articulação melhorada", mods({"target": "limit", "of": "physical", "add": 1})),
+        ("skin-pocket", "Bolso de pele", {}),
+        ("adrenaline-pump", "Bomba de adrenalina (Nível 1–3)", {}),
+        ("pathogenic-defense", "Defesa Patogênica (Nível 1–6)", {}),
+        ("toxin-extractor", "Extrator de toxinas (Nível 1–6)", {}),
+        ("platelet-factories", "Fábricas de plaquetas", {}),
+        ("tailored-pheromones", "Feromônios adaptados (Nível 1–3)", mods(plus_rating("limit", "social"))),
+        ("tracheal-filter", "Filtro traqueal (Nível 1–6)", {}),
+        ("suprathyroid-gland", "Glândula supratiróide", {}),
+        ("cats-eye", "Olho de gato", {}),
+        ("orthoskin", "Ortopele (Nível 1–4)", mods(plus_rating("armor"))),
+        ("symbiotes", "Simbiontes (Nível 1–4)", {}),
+        ("synthacardium", "Sintacárdio (Nível 1-3)", {}),
+        ("muscle-toner", "Tonificante muscular (Nível 1-4)", mods(plus_rating("attr", "agi"))),
+    ]),
+    ("cultured-bioware", "bioware", ["BIÔNICO ESS DISP CUSTO"], ["Amplificador de sinapses", "Compensadores de dano"], [
+        ("cerebral-booster", "Amplificador cerebral (Nível 1-3)", mods(plus_rating("attr", "log"))),
+        ("synaptic-booster", "Amplificador de sinapses (Nível 1-3)",
+         mods(plus_rating("attr", "rea"), plus_rating("initiative.dice"))),
+        ("damage-compensators", "Compensadores de dano (Nível 1-12)", mods(plus_rating("wound.ignoredBoxes"))),
+        ("pain-editor", "Editor de dor", {}),
+        ("reflex-recorder", "Gravador de reflexos (Perícia)", {"parameter": {"kind": "skill"}}),
+        ("mnemonic-enhancer", "Melhoria mnemônica (Nível 1-3)", {}),
+        ("sleep-regulator", "Regulador de sono", {}),
+    ]),
+]
+
+# (id, nome, caixas extras no Monitor de Condição Física: 1 por membro, metade
+# para membros parciais, nenhuma para mão/pé; o livro não diz para crânio e tronco)
+CYBERLIMBS = [("lower-arm", "Antebraço", 0.5), ("full-arm", "Braço completo", 1), ("lower-leg", "Canela", 0.5),
+              ("skull", "Crânio", None), ("hand-foot", "Mão/pé", 0), ("full-leg", "Perna completa", 1),
+              ("torso", "Tronco", None)]
+
+# Arma implantada (tabela de Essência) → linha da tabela de combate.
+IMPLANT_WEAPON_STATS = {
+    "cyber-shotgun": "Ciber escopeta", "cyber-microgrenade-launcher": "Ciber lançador de microgranada",
+    "cyber-machine-pistol": "Ciber pistola automática", "cyber-holdout": "Ciber escamoteável",
+    "cyber-light-pistol": "Ciber pistola leve", "cyber-heavy-pistol": "Ciber pistola pesada",
+    "cyber-smg": "Ciber submetralhadora", "spurs": "Esporões", "hand-blade": "Lâmina de mão",
+    "shock-hand": "Mão elétrica", "hand-razors": "Navalhas de mão",
+}
+# O livro só diz a perícia das ciber-armas corpo a corpo (Combate Desarmado);
+# as de fogo usam a perícia da categoria de arma de fogo correspondente.
+IMPLANT_WEAPON_SKILLS = {
+    "cyber-shotgun": "longarms", "cyber-microgrenade-launcher": "heavy-weapons", "cyber-machine-pistol": "automatics",
+    "cyber-holdout": "pistols", "cyber-light-pistol": "pistols", "cyber-heavy-pistol": "pistols",
+    "cyber-smg": "automatics",
+}
+
+# Parágrafo de descrição quando o nome difere do item.
+AUGMENTATION_DESC = {
+    "implanted-cyberdeck": "Ciberdeck", "implanted-commlink": "Com-link", "cats-eye": "Olhos de gato",
+    "cybereyes": "Ciber-olhos", "damage-compensators": "Compensador de dano",
+    **{lid: "Cibermembros" for lid, *_ in CYBERLIMBS},
+    "external-clip-port": "Ciber-armas", "cyber-shotgun": "Ciber-armas", "cyber-microgrenade-launcher": "Ciber-armas",
+    "cyber-laser-sight": "Ciber-armas", "cyber-machine-pistol": "Ciber-armas", "cyber-holdout": "Ciber-armas",
+    "cyber-light-pistol": "Ciber-armas", "cyber-heavy-pistol": "Ciber-armas", "cyber-silencer": "Ciber-armas",
+    "cyber-smg": "Ciber-armas", "spurs": "Ciber-armas corpo a corpo", "hand-blade": "Ciber-armas corpo a corpo",
+    "shock-hand": "Ciber-armas corpo a corpo", "hand-razors": "Ciber-armas corpo a corpo",
+}
+
+
 # Qualidades cuja compra exige escolher um item de outro catálogo.
 QUALITY_CHOICES = {"spirit-affinity": "traditions.json#spiritTypes",
                    "mentor-spirit": "mentors.json#mentors"}
@@ -2477,6 +2650,241 @@ def build_armor(book):
             "armor": items, "modifications": modifications}
 
 
+CYBER_ROW = re.compile(
+    r'^(?P<name>.+?) (?P<ess>—|[\d,]+|Nível x [\d,]+) (?P<cap>—|\*|\[\d+\]|\[Nível\]|\d+|Nível) '
+    r'(?P<avail>—|\(Nível x \d+\)[RP]?|Nível x \d+[RP]?|Nível|\d+[RP]?) '
+    r'(?P<cost>\+?(?:Nível x )?[\d.]+ ?¥(?: \+ custo do [\w-]+)?)$')
+BIO_ROW = re.compile(r'^(?P<name>.+?) (?P<ess>[\d,]+|Nível x [\d,]+) (?P<avail>\(Nível x \d+\)[RP]?|\d+[RP]?) '
+                     r'(?P<cost>(?:Nível x )?[\d.]+ ?¥)$')
+BONE_LACING_ROW = re.compile(r'^(?P<name>Plástico|Alumínio|Titânio) \+(?P<body>\d) \+(?P<armor>\d) (?P<dmg>\(FOR.*?\)F)$')
+IMPLANT_MELEE_ROW = re.compile(r'^(?P<name>.+?) (?P<reach>—|\d+) (?P<dmg>\S.*?) (?P<ap>—|[–-]\d+)$')
+IMPLANT_FIREARM_ROW = re.compile(
+    r'^(?P<name>.+?) (?P<acc>\d+ \(\d+\)) (?P<dmg>como Granada|\d+[FA]) (?P<ap>como Granada|—|[–-]\d+) '
+    r'(?P<mode>(?:TS|SA|RJ|RC)(?: ?/ ?(?:TS|SA|RJ|RC))*) (?P<rc>—|\d+) (?P<ammo>.+)$')
+BONE_DENSITY_ROW = re.compile(r'^Densidade óssea Nível (?P<rating>\d) – (?P<dmg>\(FOR.*?\)F) —$')
+CYBER_PLUS = {"deck": "cyberdeck", "Com-link": "commlink"}
+
+
+def essence(text):
+    text = text.strip()
+    return None if text == "—" else rating_value(text)
+
+
+def capacity(text, consumes_bare=False):
+    text = text.strip()
+    if text == "—":
+        return None
+    if text == "*":
+        return "included"
+    if text.startswith("["):
+        return {"cost": rating_value(text.strip("[]"))}
+    value = rating_value(text)
+    return {"cost": value} if consumes_bare else {"provides": value}
+
+
+def augmentation_cost(text):
+    m = re.fullmatch(r'(.+?¥) \+ custo do ([\w-]+)', text.strip())
+    if m:
+        return {"value": cost(m.group(1)), "plus": CYBER_PLUS[m.group(2)]}
+    return cost(text)
+
+
+def row_values(m, consumes_bare=False):
+    out = {}
+    if "ess" in m.groupdict():
+        out["essence"] = essence(m.group("ess"))
+    if "cap" in m.groupdict():
+        cap = capacity(m.group("cap"), consumes_bare)
+        if cap is not None:
+            out["capacity"] = cap
+    out["availability"] = availability(m.group("avail"))
+    out["cost"] = augmentation_cost(m.group("cost"))
+    return out
+
+
+def printed_name(printed):
+    """'Couraça Dérmica (Nível 1-6)' → ('Couraça Dérmica', {'min': 1, 'max': 6})."""
+    m = RATING_IN_NAME.search(printed)
+    name = RATING_IN_NAME.sub(" ", printed).replace("(Perícia)", "").strip()
+    return name, ({"min": int(m.group(1)), "max": int(m.group(2))} if m else None)
+
+
+def build_augmentations(book):
+    lines = gear_lines(book, 451, 460)
+    used = set()
+    p451 = book.prose(book.page(451))
+    grades = []
+    for gid, name in GRADES:
+        m = re.search(rf'{name} x ([\d.]+) (—|[+–-]\d+) x ([\d.]+)', p451)
+        if not m:
+            raise ExtractionError(f"grau de ampliação {name}: linha da tabela não encontrada")
+        modifier = 0 if m.group(2) == "—" else int(m.group(2).replace("–", "-"))
+        grades.append({"id": gid, "name": name, "essence": float(m.group(1)), "availability": modifier,
+                       "cost": float(m.group(3))})
+
+    bone = {m.group("name"): m for _, m, _, _ in
+            read_table(lines, ["MATERIAL CORPO EXTRA ARMADURA", "DANO", "DESARMADO"], BONE_LACING_ROW, used)}
+    implant_melee = {m.group("name"): m for _, m, _, _ in
+                     read_table(lines, "ARMAS ALCANCE DANO PA", IMPLANT_MELEE_ROW, used)}
+    implant_fire = {m.group("name"): m for _, m, _, _ in
+                    read_table(lines, "CIBER-ARMAS PRECISÃO DANO PA MODO CR MUN", IMPLANT_FIREARM_ROW, used)}
+    density = read_table(lines, "ATAQUES DE COMBATE DESARMADO ALCANCE DANO PA", BONE_DENSITY_ROW, used)
+    custom = read_table(lines, "PERSONALIZAÇÃO ESSÊNCIA CAPACIDADE DISP . CUSTO",
+                        re.compile(r'^Cada ponto de FOR ou AGI acima de 3 — — Cibermembro \+ 1 \+5\.000¥$'), used)
+    if len(custom) != 1:
+        raise ExtractionError("cibermembros: linha de personalização não encontrada")
+    limb_rows = read_table(lines, ["CIBERMEMBROS", "MEMBROS ESSÊNCIA CAPACIDADE DISP . CUSTO"], CYBER_ROW, used,
+                           labels={"Membros óbvios", "Membros sintéticos"})
+
+    items = []
+    for category, kind, title, labels, entries in AUGMENTATION_TABLES:
+        pattern = BIO_ROW if kind == "bioware" else CYBER_ROW
+        rows = read_table(lines, title, pattern, used, labels=set(labels))
+        i = 0
+        for aid, printed, extra in entries:
+            name, rating = printed_name(printed)
+            entry = {"id": aid, "name": name, "category": category, "type": kind}
+            if "levels" in extra or "variants" in extra:
+                subs = extra.get("variants") or [(f"rating-{k}", f"Nível {k}") for k in range(1, extra["levels"] + 1)]
+                found = rows[i:i + len(subs)]
+                if [(g, m.group("name")) for g, m, _, _ in found] != [(printed, n) for _, n in subs]:
+                    raise ExtractionError(f"ampliação {name}: linhas de nível/variante fora do esperado")
+                page = found[0][2]
+                i += len(subs)
+                if "levels" in extra:
+                    entry["rating"] = {"min": 1, "max": extra["levels"]}
+                    entry["levels"] = [{"rating": k, **row_values(m)} for k, (_, m, _, _) in enumerate(found, 1)]
+                else:
+                    entry["variants"] = [{"id": vid, "name": vname, **row_values(m)}
+                                         for (vid, vname), (_, m, _, _) in zip(subs, found)]
+            else:
+                if i >= len(rows):
+                    raise ExtractionError(f"ampliação {name}: tabela acabou antes")
+                group, m, page, _ = rows[i]
+                printed_row = m.group("name") if not m.group("name").startswith("(") else f"{group} {m.group('name')}"
+                if " ".join(printed_row.split()) != printed:
+                    raise ExtractionError(f"ampliação {name}: esperado {printed!r}, livro tem {printed_row!r}")
+                i += 1
+                if rating:
+                    entry["rating"] = rating
+                entry.update(row_values(m, consumes_bare=category == "cyberlimb-enhancement"))
+            if "parameter" in extra:
+                entry["parameter"] = extra["parameter"]
+            if "modifiers" in extra:
+                entry["modifiers"] = extra["modifiers"]
+            entry["page"] = page
+            items.append(entry)
+        if i != len(rows):
+            raise ExtractionError(f"tabela {title}: linhas fora do vocabulário {[m.group('name') for _, m, _, _ in rows[i:]]}")
+
+    by_id = {e["id"]: e for e in items}
+    for v in by_id["bone-lacing"]["variants"]:
+        m = bone[v["name"]]
+        v["bodyBonus"] = int(m.group("body"))
+        v["unarmedDamage"] = damage(m.group("dmg"))
+        v["modifiers"] = [{"target": "armor", "add": int(m.group("armor"))}]
+    density_damage = {"value": add(attr("str"), op("sub", ref("rating"), 1)), "type": "physical"}
+    # A tabela dá (FOR)F, (FOR + 1)F… por nível; a fórmula é FOR + (Nível – 1).
+    for _, m, _, _ in density:
+        env = {"attr.str": 0, "rating": int(m.group("rating"))}
+        if evaluate(damage(m.group("dmg"))["value"], env) != evaluate(density_damage["value"], env):
+            raise ExtractionError(f"densidade óssea nível {m.group('rating')}: dano diverge da fórmula")
+    if len(density) != 4:
+        raise ExtractionError("densidade óssea: esperadas 4 linhas de dano desarmado")
+    by_id["bone-density-augmentation"]["unarmedDamage"] = density_damage
+
+    require(book.prose(book.text(457, 458)), "Ataques com ciber armas corpo a corpo usam a perícia Combate "
+            "Desarmado e o limite Físico", "ciber-armas corpo a corpo")
+    for aid, row_name in IMPLANT_WEAPON_STATS.items():
+        if row_name in implant_melee:
+            m = implant_melee.pop(row_name)
+            by_id[aid]["weapon"] = {"skill": "unarmed-combat", "accuracy": ref("limit.physical"),
+                                    "reach": enhanced(m.group("reach"))[0], "damage": damage(m.group("dmg")),
+                                    "ap": armor_penetration(m.group("ap"))}
+        else:
+            m = implant_fire.pop(row_name)
+            acc, acc_plus = enhanced(m.group("acc"))
+            weapon = {"skill": IMPLANT_WEAPON_SKILLS[aid], "accuracy": acc, "accuracyEnhanced": acc_plus,
+                      "damage": damage(m.group("dmg"))}
+            if m.group("ap") != "como Granada":
+                weapon["ap"] = armor_penetration(m.group("ap"))
+            weapon.update({"modes": [MODE_BY_ABBR[x.strip()] for x in m.group("mode").split("/")],
+                           "recoil": enhanced(m.group("rc"))[0], "ammo": ammo(m.group("ammo"))})
+            by_id[aid]["weapon"] = weapon
+    if implant_melee or implant_fire:
+        raise ExtractionError(f"armas implantadas sem item: {list(implant_melee) + list(implant_fire)}")
+
+    limbs = []
+    groups = [("obvious", "Membros óbvios"), ("synthetic", "Membros sintéticos")]
+    for (lid, lname, boxes), k in zip(CYBERLIMBS, range(len(CYBERLIMBS))):
+        entry = {"id": lid, "name": lname, "category": "cyberlimb", "type": "cyberware", "variants": []}
+        for (vid, label), offset in zip(groups, (0, len(CYBERLIMBS))):
+            group, m, page, _ = limb_rows[k + offset]
+            if (group, m.group("name")) != (label, lname):
+                raise ExtractionError(f"cibermembro {lname}: linha fora do esperado ({group}, {m.group('name')})")
+            entry["variants"].append({"id": vid, "name": label.split()[1].capitalize(), **row_values(m)})
+        if boxes is not None:
+            entry["physicalMonitorBoxes"] = boxes
+        entry["page"] = page
+        limbs.append(entry)
+    if len(limb_rows) != 2 * len(CYBERLIMBS):
+        raise ExtractionError("cibermembros: tabela com linhas fora do vocabulário")
+    p456 = book.prose(book.page(456))
+    require(p456, "1 caixa de dano extra em seu Monitor de Condição Física para cada cibermembro que você possuir "
+                  "(ignore mãos e pés e membros parciais contam como metade de um membro)", "cibermembros")
+    items = items[:[e["category"] for e in items].index("cyberlimb-enhancement")] + limbs + \
+        items[[e["category"] for e in items].index("cyberlimb-enhancement"):]
+
+    stops = {"CEFALOTRÔNICOS", "CIBER-OLHOS", "CIBER-OUVIDOS", "CORPOTRÔNICOS", "CIBERMEMBROS", "MELHORIAS DE",
+             "ACESSÓRIOS DE", "CIBER-IMPLANTE DE ARMAS", "BIÔNICOS", "BIÔNICOS CULTIVADOS", "EQUIPAMENTO",
+             "CLASSES DE ITENS", "CIBERCIRURGIA E"}
+    limb_variants = {"obvious": "Cibermembros óbvios", "synthetic": "Cibermembros sintéticos"}
+    names = sorted({e["name"] for e in items} | set(AUGMENTATION_DESC.values()) | set(limb_variants.values())
+                   | {"Personalização"}, key=len, reverse=True)
+    texts = item_texts(lines, used, names, stops)
+    by_fold = {fold(k): v for k, v in texts.items()}
+
+    # As melhorias de cibermembro dividem a introdução da seção.
+    prose = book.prose("\n".join(t for i, (_, t) in enumerate(lines) if i not in used))
+    enhancements = section(prose, "MELHORIAS DE CIBERMEMBROS ", [r' ACESSÓRIOS DE CIBERMEMBROS'])
+    if not enhancements:
+        raise ExtractionError("melhorias de cibermembros: introdução não encontrada")
+    for e in items:
+        if e["category"] == "cyberlimb-enhancement":
+            e["desc"] = enhancements
+            if e["id"] == "cyberlimb-armor":
+                e["modifiers"] = [plus_rating("armor")]
+        if e["category"] == "cyberlimb":
+            for v in e["variants"]:
+                v["desc"] = book.prose(by_fold[fold(limb_variants[v["id"]])][0])
+
+    missing = []
+    for e in items:
+        if "desc" in e:
+            e["page"] = e.pop("page")
+            continue
+        found = by_fold.get(fold(AUGMENTATION_DESC.get(e["id"], e["name"])))
+        if not found:
+            missing.append(e["id"])
+            continue
+        e["desc"] = book.prose(found[0])
+        if found[1]:
+            e["wireless"] = book.prose(found[1])
+        e["page"] = e.pop("page")
+    if missing:
+        raise ExtractionError(f"ampliações sem parágrafo de descrição: {missing}")
+
+    return {
+        "grades": grades,
+        "rules": {"cyberlimbs": {"baseAttributes": 3,
+                                 "customization": {"attributes": ["str", "agi"], "availability": 1, "cost": 5000,
+                                                   "desc": book.prose(by_fold[fold("Personalização")][0])},
+                                 "page": 456},
+                  "page": 451},
+        "augmentations": items,
+    }
+
+
 CATALOGS = {
     "attributes.json": build_attributes,
     "metatypes.json": build_metatypes,
@@ -2493,6 +2901,7 @@ CATALOGS = {
     "complex-forms.json": build_complex_forms,
     "weapons.json": build_weapons,
     "armor.json": build_armor,
+    "augmentations.json": build_augmentations,
 }
 
 EXPECTED_COUNTS = {
@@ -2511,6 +2920,7 @@ EXPECTED_COUNTS = {
     "complex-forms.json": {"complexForms": 14},
     "weapons.json": {"weapons": WEAPON_COUNT, "categories": len(WEAPON_CATEGORIES)},
     "armor.json": {"armor": 12, "modifications": 7},
+    "augmentations.json": {"grades": 5},
 }
 
 

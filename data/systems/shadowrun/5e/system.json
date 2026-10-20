@@ -97,6 +97,17 @@
       ],
       "note": "Capacetes e escudos somam ao nível da armadura vestida."
     },
+    "augmentations": {
+      "source": "augmentations.json",
+      "fields": [
+        "name",
+        "rating",
+        "notes",
+        "essence"
+      ],
+      "grades": "augmentations.json#grades",
+      "note": "A Essência gasta reduz a Essência do personagem, que entra no limite Social."
+    },
     "qualities": {
       "source": "qualities.json",
       "fields": [
@@ -243,7 +254,8 @@
           "lifestyles.json",
           "mechanics.json#creation.resources",
           "weapons.json",
-          "armor.json"
+          "armor.json",
+          "augmentations.json"
         ]
       },
       {
@@ -289,6 +301,7 @@
     "mentors.json",
     "complex-forms.json",
     "weapons.json",
-    "armor.json"
+    "armor.json",
+    "augmentations.json"
   ]
 }
