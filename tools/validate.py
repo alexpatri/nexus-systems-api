@@ -516,6 +516,47 @@ def check_shadowrun(d, sysj, E, W):
             for o in f.get('parameter', {}).get('options', []):
                 if o not in matrix: E(f"forma complexa {f['id']}: atributo da Matriz inexistente {o}")
 
+    traditions = load(d, 'traditions.json')
+    spells = load(d, 'spells.json')
+    if traditions and spells:
+        spirit_types = {t['id'] for t in traditions['spiritTypes']}
+        categories = {c['id'] for c in spells['categories']}
+        for t in traditions['traditions']:
+            if set(t['spirits']) != categories: E(f"tradição {t['id']}: deve ter um espírito por categoria de feitiço")
+            for st in t['spirits'].values():
+                if st not in spirit_types: E(f"tradição {t['id']}: tipo de espírito inexistente {st}")
+
+    if spells:
+        vocab = {k: {x['id'] for x in spells[k]} for k in ('types', 'ranges', 'durations', 'damageTypes', 'keywords',
+                                                           'elements')}
+        ss = spells['spells']
+        if len({x['id'] for x in ss}) != len(ss): E("spells.json: ids duplicados")
+        for x in ss:
+            where = f"feitiço {x['id']}"
+            for field, key in (('type', 'types'), ('range', 'ranges'), ('duration', 'durations')):
+                if x[field] not in vocab[key]: E(f"{where}: {field} inexistente {x[field]}")
+            if x['category'] not in categories: E(f"{where}: categoria inexistente")
+            if ('damage' in x) != (x['category'] == 'combat'): E(f"{where}: só feitiços de Combate têm dano")
+            if 'damage' in x and x['damage'] not in vocab['damageTypes']: E(f"{where}: tipo de dano inexistente")
+            if 'element' in x and x['element'] not in vocab['elements']: E(f"{where}: elemento inexistente")
+            if ('element' in x) != ('elemental' in x['keywords']): E(f"{where}: elemento e palavra-chave Elemental divergem")
+            for k in x['keywords']:
+                if k not in vocab['keywords']: E(f"{where}: palavra-chave inexistente {k}")
+            if not x.get('desc'): E(f"{where}: desc vazia")
+        if {x['category'] for x in ss} != categories: E("spells.json: categoria sem feitiços")
+        ritual_keywords = {k['id'] for k in spells['ritualKeywords']}
+        for r in spells['rituals']:
+            for k in r['keywords']:
+                if k not in ritual_keywords: E(f"ritual {r['id']}: palavra-chave inexistente {k}")
+            if r['time']['unit'] not in ('minute', 'hour'): E(f"ritual {r['id']}: unidade de tempo inválida")
+
+    if powers:
+        for p in powers['powers']:
+            pp = p['powerPoints']
+            if not (isinstance(pp, (int, float)) or (isinstance(pp, dict) and len(pp) == 1
+                                                      and set(pp) <= {'perLevel', 'each', 'byLevel'})):
+                E(f"poder {p['id']}: forma de custo inválida {pp!r}")
+
     for l in lifestyles['identities']:
         if l['availability']['legality'] not in mech['legality']:
             E(f"identidade {l['id']}: legalidade fora do vocabulário")
@@ -554,6 +595,38 @@ def check_shadowrun(d, sysj, E, W):
     troll = next(m for m in metatypes['metatypes'] if m['id'] == 'troll')
     mult = next(mod['mul'] for t in troll['traits'] for mod in t.get('modifiers', []) if mod['target'] == 'lifestyle.cost')
     if low * mult * 3 != 12000: E("exemplo Beto: Estilo de Vida Baixo de troll por 3 meses deveria custar 12.000¥")
+
+    # Clara tem Potencial Melhorado (Social): limite Social 8 (9), p. 102.
+    if powers:
+        ep = next(p for p in powers['powers'] if p['id'] == 'enhanced-potential')['modifiers'][0]
+        env = {f'attr.{a}': v for a, v in SR_EXAMPLES[0][1].items()}
+        if sr_eval(derived['limits']['social']['value'], env) + sr_eval(ep['add'], {'rating': 1}) != 9:
+            E("exemplo Clara: Potencial Melhorado (Social) não leva o limite Social a 9")
+
+    # Rikki (Magia 5), p. 283–285: Clarividência Potência 4 alcança 20 m; Explosão
+    # Potência 7 com 3 e 1 sucessos restantes dá VD 10 e 8, com PA –7 (jaqueta
+    # 12 cai para 5); Raio de Mana com 3 sucessos restantes causa 3 caixas.
+    if spells:
+        cats = {c['id']: c for c in spells['categories']}
+        rikki = {'attr.mag': 5}
+        if sr_eval(cats['detection']['rules']['range'], dict(rikki, force=4)) != 20:
+            E("exemplo Rikki: alcance de Clarividência deveria ser 20 m")
+        indirect = cats['combat']['rules']['indirect']
+        for net, dv in ((3, 10), (1, 8)):
+            if sr_eval(indirect['damage'], {'force': 7, 'netHits': net}) != dv:
+                E(f"exemplo Rikki: Explosão com {net} sucessos restantes deveria dar VD {dv}")
+        if 12 + sr_eval(indirect['ap'], {'force': 7}) != 5: E("exemplo Rikki: PA de Explosão deveria deixar a jaqueta em 5")
+        if sr_eval(cats['combat']['rules']['direct']['damage'], {'netHits': 3}) != 3:
+            E("exemplo Rikki: Raio de Mana com 3 sucessos restantes deveria causar 3 caixas")
+
+    # Lemuel, p. 253: Grade Transcendental Nível 5 dá 2 VD de Enfraquecimento,
+    # resistido com Vontade 4 + Ressonância 6. O VD 7 da Difusão de Ataque Nível 6
+    # no mesmo exemplo não bate com N – 2 e fica de fora.
+    if forms:
+        grid = next(f for f in forms['complexForms'] if f['id'] == 'transcendent-grid')
+        if sr_eval(grid['fading'], {'rating': 5}) != 2: E("exemplo Lemuel: Grade Transcendental Nível 5 deveria dar 2 VD")
+        if sr_eval(forms['rules']['fadingResistance'], {'attr.wil': 4, 'attr.res': 6}) != 10:
+            E("exemplo Lemuel: resistência ao Enfraquecimento deveria ser 10 dados")
 
     # Progressão, p. 106: Reação 2→3 custa 15; perícia 1→2 custa 4; 5→6 custa 12.
     prog = mech['progression']['costs']
