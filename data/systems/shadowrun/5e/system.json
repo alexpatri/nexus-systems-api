@@ -90,6 +90,7 @@
       "spells": "spells.json#spells",
       "rituals": "spells.json#rituals",
       "preparations": "spells.json#preparations",
+      "complexForms": "complex-forms.json#complexForms",
       "fields": [
         "name",
         "kind",
@@ -101,7 +102,8 @@
       "kinds": [
         "spell",
         "preparation",
-        "ritual"
+        "ritual",
+        "complexForm"
       ],
       "note": "Na ficha oficial, a coluna F/P/R/FC indica feitiço, preparativo, ritual ou forma complexa."
     },
@@ -173,7 +175,8 @@
           "awakening.json",
           "traditions.json",
           "spells.json",
-          "adept-powers.json"
+          "adept-powers.json",
+          "complex-forms.json"
         ]
       },
       {
@@ -249,6 +252,7 @@
     "traditions.json",
     "spells.json",
     "adept-powers.json",
-    "mentors.json"
+    "mentors.json",
+    "complex-forms.json"
   ]
 }

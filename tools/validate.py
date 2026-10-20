@@ -506,6 +506,16 @@ def check_shadowrun(d, sysj, E, W):
                 for fid, oid in dq.get('options', {}).items():
                     if oid not in factors.get(fid, set()): E(f"{where}: opção {fid}={oid} inexistente em {q['id']}")
 
+    forms = load(d, 'complex-forms.json')
+    if forms:
+        targets = {t['id'] for t in forms['targets']}
+        matrix = {a['id'] for a in forms['matrixAttributes']}
+        if len({f['id'] for f in forms['complexForms']}) != len(forms['complexForms']): E("complex-forms.json: ids duplicados")
+        for f in forms['complexForms']:
+            if f['target'] not in targets: E(f"forma complexa {f['id']}: alvo inexistente {f['target']}")
+            for o in f.get('parameter', {}).get('options', []):
+                if o not in matrix: E(f"forma complexa {f['id']}: atributo da Matriz inexistente {o}")
+
     for l in lifestyles['identities']:
         if l['availability']['legality'] not in mech['legality']:
             E(f"identidade {l['id']}: legalidade fora do vocabulário")

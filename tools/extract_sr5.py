@@ -615,6 +615,30 @@ MENTORS = [
 ]
 
 
+COMPLEX_FORMS = [
+    ("static-bomb", "Bomba de Estática"),
+    ("resonance-channel", "Canal de Ressonância"),
+    ("tattletale", "Difamador"),
+    ("diffusion", "Difusão de [Atributo da Matriz]"),
+    ("editor", "Editor"),
+    ("resonance-spike", "Ferrão de Ressonância"),
+    ("transcendent-grid", "Grade Transcendental"),
+    ("infusion", "Infusão de [Atributo da Matriz]"),
+    ("cleaner", "Limpador"),
+    ("stitches", "Sutura"),
+    ("pulse-storm", "Tempestade de Pulso"),
+    ("puppeteer", "Titereiro"),
+    ("static-veil", "Véu de Estática"),
+    ("resonance-veil", "Véu de Ressonância"),
+]
+
+COMPLEX_FORM_TARGETS = {"Pessoal": "self", "Dispositivo": "device", "Persona": "persona", "Arquivo": "file",
+                        "Sprite": "sprite"}
+
+MATRIX_ATTRIBUTES = [("attack", "Ataque"), ("sleaze", "Subversão"), ("dataProcessing", "Datagrama"),
+                     ("firewall", "Firewall")]
+
+
 # Qualidades cuja compra exige escolher um item de outro catálogo.
 QUALITY_CHOICES = {"spirit-affinity": "traditions.json#spiritTypes",
                    "mentor-spirit": "mentors.json#mentors"}
@@ -1884,6 +1908,57 @@ def build_mentors(book):
     return {"desc": intro, "rules": {"mysticAdeptChooses": ["magician", "adept"], "page": 320}, "mentors": out}
 
 
+COMPLEX_FORM_LINE = re.compile(r'^Alvo:\s*(\w+)\s*•\s*Duração:\s*([ISP])\s*•\s*VE:\s*N\s*(?:([–+-])\s*(\d+))?$')
+
+
+def build_complex_forms(book):
+    lines, _ = flow(book, 251, 254, {253: ("EXEMPLO", None)})
+    texts = [line.strip() for _, line in lines]
+    pages = [p for p, _ in lines]
+    end = texts.index("SPRITES")
+    anchors = [k for k in range(end) if texts[k].startswith("Alvo:")]
+    heads = [k - 2 if texts[k - 1].startswith("[") else k - 1 for k in anchors]
+
+    by_name = {fold(name).upper(): (cid, name) for cid, name in COMPLEX_FORMS}
+    out = []
+    for n, (k, h) in enumerate(zip(anchors, heads)):
+        heading = " ".join(texts[h:k])
+        if fold(heading).upper() not in by_name:
+            raise ExtractionError(f"forma complexa fora do vocabulário: {heading!r}")
+        cid, name = by_name.pop(fold(heading).upper())
+        m = COMPLEX_FORM_LINE.match(texts[k])
+        if not m or m.group(1) not in COMPLEX_FORM_TARGETS:
+            raise ExtractionError(f"forma complexa {name}: linha Alvo/Duração/VE fora do formato")
+        entry = {"id": cid, "name": name, "target": COMPLEX_FORM_TARGETS[m.group(1)],
+                 "duration": DURATIONS[m.group(2)], "fading": potency_formula(m.group(3), m.group(4), "rating")}
+        if "[" in name:
+            entry["parameter"] = {"kind": "matrixAttribute", "options": [mid for mid, _ in MATRIX_ATTRIBUTES]}
+        stop = heads[n + 1] if n + 1 < len(heads) else end
+        entry.update({"desc": book.prose("\n".join(texts[k + 1:stop])), "page": pages[h]})
+        out.append(entry)
+    if by_name:
+        raise ExtractionError(f"formas complexas não encontradas: {sorted(by_name)}")
+    for e in out:
+        if "parameter" in e:
+            require(e["desc"], "uma para cada atributo da Matriz", f"forma complexa {e['name']}")
+
+    rules = book.prose(book.text(251, 252))
+    require(rules, "O enfraquecimento é resistido com Ressonância + Vontade", "enfraquecimento")
+    require(rules, "Você pode escolher um Nível até três vezes o seu nível de Ressonância", "nível de forma complexa")
+    require(rules, "com VD de Enfraquecimento mínimo de 2", "enfraquecimento mínimo")
+    require(rules, "impondo –2 de penalidade na pilha de dados em todas as ações por forma complexa sustentada",
+            "forma complexa sustentada")
+    require(rules, "Você pode conhecer um total de (Ressonância x 2) formas complexas", "formas conhecidas")
+
+    return {
+        "targets": [{"id": tid, "name": name} for name, tid in COMPLEX_FORM_TARGETS.items()],
+        "matrixAttributes": [{"id": mid, "name": name} for mid, name in MATRIX_ATTRIBUTES],
+        "rules": {"levelMax": mul(attr("res"), 3), "knownMax": mul(attr("res"), 2), "fadingMin": 2,
+                  "fadingResistance": add(attr("res"), attr("wil")), "sustainedPenalty": -2, "page": 251},
+        "complexForms": out,
+    }
+
+
 CATALOGS = {
     "attributes.json": build_attributes,
     "metatypes.json": build_metatypes,
@@ -1897,6 +1972,7 @@ CATALOGS = {
     "spells.json": build_spells,
     "adept-powers.json": build_adept_powers,
     "mentors.json": build_mentors,
+    "complex-forms.json": build_complex_forms,
 }
 
 EXPECTED_COUNTS = {
@@ -1912,6 +1988,7 @@ EXPECTED_COUNTS = {
     "spells.json": {"spells": 84, "categories": 5, "rituals": 9},
     "adept-powers.json": {"powers": 25},
     "mentors.json": {"mentors": 16},
+    "complex-forms.json": {"complexForms": 14},
 }
 
 
