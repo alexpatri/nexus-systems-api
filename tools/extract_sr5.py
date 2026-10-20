@@ -406,6 +406,140 @@ TRADITIONS = [
     ("shamanic", "Xamânica", "TRADIÇÃO XAMÂNICA", "O XAMÃ", "Xamãs", ("cha", "wil")),
 ]
 
+# Palavras-chave como aparecem no cabeçalho dos feitiços.
+SPELL_KEYWORDS = {
+    "DIRETO": ("direct", "Direto"),
+    "INDIRETO": ("indirect", "Indireto"),
+    "ELEMENTAL": ("elemental", "Elemental"),
+    "ATIVO": ("active", "Ativo"),
+    "PASSIVO": ("passive", "Passivo"),
+    "DIRECIONAL": ("directional", "Direcional"),
+    "ÁREA": ("area", "Área"),
+    "ÁREA ESTENDIDA": ("extended-area", "Área Estendida"),
+    "PSÍQUICO": ("psychic", "Psíquico"),
+    "ÓBVIO": ("obvious", "Óbvio"),
+    "REALISTA": ("realistic", "Realista"),
+    "SENTIDO ÚNICO": ("single-sense", "Sentido Único"),
+    "MULTISSENTIDOS": ("multi-sense", "Multissentidos"),
+    "AMBIENTAL": ("environmental", "Ambiental"),
+    "MENTAL": ("mental", "Mental"),
+    "FÍSICO": ("physical", "Físico"),
+    # A introdução da categoria define "Danoso"; o cabeçalho de Arremessar usa "DANO".
+    "DANO": ("damaging", "Danoso"),
+    "ESSÊNCIA": ("essence", "Essência"),
+}
+
+SPELL_PARAMETERS = {"Forma de Vida": "lifeform", "Objeto": "object", "Atributo": "attribute"}
+
+# (id, nome, categoria, elemento dos feitiços elementais)
+SPELLS = [
+    ("shatter", "Estilhaçar", "combat", None),
+    ("powerbolt", "Raio de Força", "combat", None),
+    ("powerball", "Esfera de Força", "combat", None),
+    ("acid-stream", "Jato de Ácido", "combat", "acid"),
+    ("toxic-wave", "Onda Tóxica", "combat", "acid"),
+    ("flamethrower", "Lança-Chamas", "combat", "fire"),
+    ("fireball", "Bola de Fogo", "combat", "fire"),
+    ("knockout", "Nocaute", "combat", None),
+    ("stunbolt", "Raio de Atordoamento", "combat", None),
+    ("stunball", "Esfera de Atordoamento", "combat", None),
+    ("lightning-bolt", "Relâmpago", "combat", "electricity"),
+    ("ball-lightning", "Esfera de Relâmpago", "combat", "electricity"),
+    ("punch", "Soco", "combat", None),
+    ("clout", "Pancada", "combat", None),
+    ("blast", "Explosão", "combat", None),
+    ("death-touch", "Toque da Morte", "combat", None),
+    ("manabolt", "Raio de Mana", "combat", None),
+    ("manaball", "Bola de Mana", "combat", None),
+    ("analyze-device", "Analisar Dispositivo", "detection", None),
+    ("analyze-magic", "Analisar Magia", "detection", None),
+    ("analyze-truth", "Analisar Verdade", "detection", None),
+    ("clairaudience", "Clariaudiência", "detection", None),
+    ("clairvoyance", "Clarividência", "detection", None),
+    ("detect-life-form", "Detectar [Forma de Vida]", "detection", None),
+    ("detect-life-form-extended", "Detectar [Forma de Vida], Estendido", "detection", None),
+    ("detect-object", "Detectar [Objeto]", "detection", None),
+    ("detect-individual", "Detectar Indivíduo", "detection", None),
+    ("detect-enemies", "Detectar Inimigos", "detection", None),
+    ("detect-enemies-extended", "Detectar Inimigos, Estendido", "detection", None),
+    ("detect-magic", "Detectar Magia", "detection", None),
+    ("detect-magic-extended", "Detectar Magia, Estendido", "detection", None),
+    ("detect-life", "Detectar Vida", "detection", None),
+    ("detect-life-extended", "Detectar Vida, Estendido", "detection", None),
+    ("mindlink", "Elo Mental", "detection", None),
+    ("combat-sense", "Sentido de Combate", "detection", None),
+    ("mind-probe", "Sonda Mental", "detection", None),
+    ("hush", "Abafar", "illusion", None),
+    ("silence", "Silenciar", "illusion", None),
+    ("agony", "Agonia", "illusion", None),
+    ("mass-agony", "Agonia em Massa", "illusion", None),
+    ("confusion", "Confusão", "illusion", None),
+    ("mass-confusion", "Confusão em Massa", "illusion", None),
+    ("chaos", "Caos", "illusion", None),
+    ("chaotic-world", "Mundo Caótico", "illusion", None),
+    ("entertainment", "Entretenimento", "illusion", None),
+    ("trid-entertainment", "Entretenimento de Trídeo", "illusion", None),
+    ("phantasm", "Fantasma", "illusion", None),
+    ("trid-phantasm", "Fantasma de Trídeo", "illusion", None),
+    ("stealth", "Furtividade", "illusion", None),
+    ("bugs", "Insetos", "illusion", None),
+    ("swarm", "Enxame", "illusion", None),
+    ("invisibility", "Invisibilidade", "illusion", None),
+    ("improved-invisibility", "Invisibilidade Melhorada", "illusion", None),
+    ("mask", "Máscara", "illusion", None),
+    ("physical-mask", "Máscara Física", "illusion", None),
+    ("animate", "Animar", "manipulation", None),
+    ("mass-animate", "Animar em Massa", "manipulation", None),
+    ("armor", "Armadura", "manipulation", None),
+    ("fling", "Arremessar", "manipulation", None),
+    ("mana-barrier", "Barreira de Mana", "manipulation", None),
+    ("physical-barrier", "Barreira Física", "manipulation", None),
+    ("ice-sheet", "Camada de Gelo", "manipulation", None),
+    ("control-actions", "Controlar Ações", "manipulation", None),
+    ("mob-control", "Controle de Multidão", "manipulation", None),
+    ("control-thoughts", "Controlar Pensamentos", "manipulation", None),
+    ("mob-mind", "Mente da Multidão", "manipulation", None),
+    ("magic-fingers", "Dedos Mágicos", "manipulation", None),
+    ("ignite", "Inflamar", "manipulation", None),
+    ("influence", "Influência", "manipulation", None),
+    ("levitate", "Levitação", "manipulation", None),
+    ("light", "Luz", "manipulation", None),
+    ("poltergeist", "Poltergeist", "manipulation", None),
+    ("shadow", "Sombra", "manipulation", None),
+    ("antidote", "Antídoto", "health", None),
+    ("increase-attribute", "Aumentar [Atributo]", "health", None),
+    ("increase-reflexes", "Aumentar Reflexos", "health", None),
+    ("heal", "Cura", "health", None),
+    ("cure-disease", "Curar Doença", "health", None),
+    ("detox", "Desintoxicação", "health", None),
+    ("stabilize", "Estabilizar", "health", None),
+    ("oxygenate", "Oxigenar", "health", None),
+    ("prophylaxis", "Profilaxia", "health", None),
+    ("decrease-attribute", "Reduzir [Atributo]", "health", None),
+    ("resist-pain", "Resistir à Dor", "health", None),
+]
+
+ELEMENTS = {"acid": ("Ácido", "dano de Ácido"), "fire": ("Fogo", "dano de Fogo"),
+            "electricity": ("Eletricidade", "dano de Eletricidade")}
+
+RITUAL_KEYWORDS = [("anchored", "Ancorado"), ("material-link", "Elo Material"), ("spell", "Feitiço"),
+                   ("minion", "Lacaio"), ("spotter", "Olheiro")]
+
+RITUALS = [
+    ("curse", "Maldição"),
+    ("prodigal-spell", "Feitiço Abundante"),
+    ("remote-sensing", "Sentido Remoto"),
+    ("ward", "Proteção"),
+    ("circle-of-protection", "Círculo de Proteção"),
+    ("circle-of-healing", "Círculo da Cura"),
+    ("renascence", "Renascença"),
+    ("watcher", "Vigia"),
+    ("homunculus", "Homúnculo"),
+]
+
+PREPARATION_TRIGGERS = [("command", "Comando", 2), ("contact", "Contato", 1), ("time", "Tempo", 2)]
+
+
 # Qualidades cuja compra exige escolher um item de outro catálogo.
 QUALITY_CHOICES = {"spirit-affinity": "traditions.json#spiritTypes"}
 
@@ -1129,6 +1263,7 @@ def build_mechanics(book):
     require(p71, "Qualidades Positivas que custe 25 de Carma e de Qualidades Negativas que rendam 25 de Carma",
             "teto de qualidades")
     require(book.prose(book.text(94, 95)), "2.000 neoienes por ponto de Carma", "conversão de carma")
+    require(book.prose(book.page(94)), "o bônus máximo para um atributo é sempre +4", "ampliação máxima")
 
     mechanics = {
         "expressions": {
@@ -1140,6 +1275,8 @@ def build_mechanics(book):
                 "karma.total": "Carma total ganho pelo personagem",
                 "quality.karma": "Custo ou bônus de carma da qualidade",
                 "matrix.dataProcessing": "Datagrama da persona em uso (ciberdeck, com-link ou persona viva)",
+                "force": "Potência do feitiço, ritual ou preparação",
+                "netHits": "Sucessos restantes do teste",
             },
         },
         "derived": {
@@ -1249,6 +1386,7 @@ def build_mechanics(book):
             },
             "page": 103,
         },
+        "augmentation": {"maxAttributeBonus": 4, "page": 94},
         "legality": {"R": "Restrito", "P": "Proibido"},
     }
     check_progression(book, mechanics["progression"]["costs"])
@@ -1320,6 +1458,224 @@ def build_traditions(book):
             "traditions": out}
 
 
+SPELL_SIDEBARS = {
+    283: ("EXEMPLO", None),
+    285: ("EXEMPLO", None),
+    286: ("RESULTADOS DE", None),
+    287: ("TABELA DE SONDA MENTAL", None),
+}
+SPELL_TYPE = re.compile(r'^Tipo:\s*([FM])\s+Alcance:\s*(LDV|T)\s*(\(A\))?(?:\s+Dano:\s*([FA]))?$')
+SPELL_DURATION = re.compile(r'^Duração:\s*([ISP])\s+Dreno:\s*P\s*(?:([–+-])\s*(\d+))?$')
+DURATIONS = {"I": "instant", "S": "sustained", "P": "permanent"}
+
+
+def potency_formula(sign, amount, ref_name):
+    """'P – 3' / 'N + 1' viram fórmula sobre a Potência ou o Nível."""
+    if not sign:
+        return ref(ref_name)
+    return op("sub" if sign in "–-" else "add", ref(ref_name), int(amount))
+
+
+def results_table(text, where):
+    """Linhas "sucessos restantes → resultado" de uma tabela achatada."""
+    rows = []
+    for m in re.finditer(r'(?:^| )(\d)(?:–(\d)|(\+))? (.+?)(?= \d(?:–\d|\+)? [A-Z]|$)', text):
+        low = int(m.group(1))
+        high = int(m.group(2)) if m.group(2) else (None if m.group(3) else low)
+        rows.append({"netHits": {"min": low, "max": high}, "result": m.group(4).strip()})
+    if not rows or rows[0]["netHits"]["min"] != 1:
+        raise ExtractionError(f"{where}: tabela de resultados ilegível")
+    return rows
+
+
+def build_spells(book):
+    lines, boxes = flow(book, 283, 294, SPELL_SIDEBARS)
+    texts = [line.strip() for _, line in lines]
+    texts = texts[texts.index("FEITIÇOS DE COMBATE"):texts.index("CONTRAMÁGICA")]
+    pages = [p for p, _ in lines][[line.strip() for _, line in lines].index("FEITIÇOS DE COMBATE"):]
+
+    category_by_heading = {f"FEITIÇOS DE {name.upper()}": cid for cid, name in SPELL_CATEGORIES}
+    headings = {i: category_by_heading[t] for i, t in enumerate(texts) if t in category_by_heading}
+
+    blocks = []
+    for k, t in enumerate(texts):
+        if not t.startswith("Tipo:"):
+            continue
+        kw = texts[k - 1] if texts[k - 1].startswith("(") else None
+        end = k - 1 if kw else k
+        start = end - 1
+        if texts[start - 1].endswith(","):
+            start -= 1
+        blocks.append({"start": start, "name": " ".join(texts[start:end]), "keywords": kw, "type": t,
+                       "duration": texts[k + 1], "body": k + 2})
+
+    by_name = {fold(name).upper(): (sid, name, cat, element) for sid, name, cat, element in SPELLS}
+    stops = sorted(set(headings) | {b["start"] for b in blocks} | {len(texts)})
+    spells, pending, intros = [], [], {}
+    for b in blocks:
+        key = fold(b["name"]).upper()
+        if key not in by_name:
+            raise ExtractionError(f"feitiço fora do vocabulário: {b['name']!r}")
+        sid, name, category, element = by_name.pop(key)
+        own = max(i for i in headings if i < b["start"])
+        if headings[own] != category:
+            raise ExtractionError(f"feitiço {name}: está em {headings[own]}, vocabulário diz {category}")
+        if own not in intros:
+            first = min(x["start"] for x in blocks if x["start"] > own)
+            intros[own] = (category, book.prose("\n".join(texts[own + 1:first])), pages[own])
+
+        m, d = SPELL_TYPE.match(b["type"]), SPELL_DURATION.match(b["duration"])
+        if not m or not d:
+            raise ExtractionError(f"feitiço {name}: linhas de Tipo/Duração fora do formato")
+        keywords = []
+        for word in (b["keywords"] or "").strip("()").split(","):
+            word = word.strip()
+            if not word:
+                continue
+            if word not in SPELL_KEYWORDS:
+                raise ExtractionError(f"feitiço {name}: palavra-chave fora do vocabulário {word!r}")
+            keywords.append(SPELL_KEYWORDS[word][0])
+        if (category == "combat") != bool(m.group(4)):
+            raise ExtractionError(f"feitiço {name}: só feitiços de Combate têm Dano")
+
+        entry = {"id": sid, "name": name, "category": category, "keywords": keywords,
+                 "type": "physical" if m.group(1) == "F" else "mana",
+                 "range": "los" if m.group(2) == "LDV" else "touch", "area": bool(m.group(3))}
+        if m.group(4):
+            entry["damage"] = "physical" if m.group(4) == "F" else "stun"
+        entry["duration"] = DURATIONS[d.group(1)]
+        entry["drain"] = potency_formula(d.group(2), d.group(3), "force")
+        param = re.search(r'\[(.+?)\]', name)
+        if param:
+            entry["parameter"] = {"id": SPELL_PARAMETERS[param.group(1)], "name": param.group(1)}
+        if element:
+            entry["element"] = element
+        entry["page"] = pages[b["start"]]
+
+        stop = min(s for s in stops if s > b["start"])
+        body = book.prose("\n".join(texts[b["body"]:stop]))
+        pending.append(entry)
+        if body:
+            for e in pending:
+                e["desc"] = body
+                spells.append(e)
+            pending = []
+    if pending or by_name:
+        raise ExtractionError(f"feitiços sem descrição ou não encontrados: {[e['id'] for e in pending] + list(by_name)}")
+
+    for e in spells:
+        if "element" in e:
+            require(e["desc"], ELEMENTS[e["element"]][1], f"feitiço {e['name']}")
+
+    categories = []
+    for _, (cid, desc, page) in sorted(intros.items()):
+        categories.append({"id": cid, "name": dict(SPELL_CATEGORIES)[cid], "desc": desc, "page": page})
+    rules_by_category = {
+        "combat": ("Valor de Dano de um feitiço de combate indireto bem-sucedido é Potência + sucessos restantes, "
+                   "com um PA igual a –(Potência)",
+                   {"direct": {"damage": ref("netHits")},
+                    "indirect": {"damage": add(ref("force"), ref("netHits")), "ap": mul(ref("force"), -1)}}),
+        "detection": ("Potência do feitiço x Magia do conjurador em metros",
+                      {"range": mul(ref("force"), attr("mag")), "extendedRange": mul(ref("force"), attr("mag"), 10)}),
+        "manipulation": ("Valor de Dano igual a sua Potência (inalterado pelos sucessos no teste de Conjuração) e 0 PA",
+                         {"damaging": {"damage": ref("force"), "ap": 0}}),
+    }
+    for c in categories:
+        if c["id"] in rules_by_category:
+            fragment, rules = rules_by_category[c["id"]]
+            require(c["desc"], fragment, f"categoria {c['name']}")
+            c["rules"] = rules
+    detection = next(c for c in categories if c["id"] == "detection")
+    table = book.prose(section(boxes[286], "RESULTADOS", [r'\Z']))
+    detection["results"] = [dict(r, result=r["result"].split(" Exemplo de Detectar Vida: ")[0],
+                                 example=r["result"].split(" Exemplo de Detectar Vida: ")[1])
+                            for r in results_table(section(table, "RESULTADOS", [r'\Z']), "Detecção")]
+    probe = next(e for e in spells if e["id"] == "mind-probe")
+    probe["results"] = results_table(section(book.prose(boxes[287]), "RESULTADOS", [r'\Z']), "Sonda Mental")
+
+    p281, p282 = book.prose(book.page(281)), book.prose(book.page(282) + "\n" + book.page(283))
+    require(p281, "Você pode conjurar um feitiço com Potência até o dobro do seu nível de Magia", "potência máxima")
+    require(p281, "a área do feitiço é uma esfera centrada no alvo com um raio em metros igual a Potência do feitiço",
+            "área de feitiço")
+    require(p282, "você sofre –2 de penalidade na pilha de dados em todos os testes enquanto estiver sustentando",
+            "feitiço sustentado")
+    require(p282, "nunca pode ser menor do que 2", "dreno mínimo")
+
+    return {
+        "types": [{"id": "physical", "name": "Físico", "abbr": "F"}, {"id": "mana", "name": "Mana", "abbr": "M"}],
+        "ranges": [{"id": "los", "name": "Linha de Visão", "abbr": "LDV"}, {"id": "touch", "name": "Toque", "abbr": "T"}],
+        "durations": [{"id": "instant", "name": "Instantâneo", "abbr": "I"},
+                      {"id": "sustained", "name": "Sustentado", "abbr": "S"},
+                      {"id": "permanent", "name": "Permanente", "abbr": "P"}],
+        "damageTypes": [{"id": "physical", "name": "Físico", "abbr": "F"},
+                        {"id": "stun", "name": "Atordoamento", "abbr": "A"}],
+        "keywords": [{"id": kid, "name": name} for kid, name in dict.fromkeys(SPELL_KEYWORDS.values())],
+        "elements": [{"id": eid, "name": name} for eid, (name, _) in ELEMENTS.items()],
+        "rules": {"forceMax": mul(attr("mag"), 2), "drainMin": 2, "sustainedPenalty": -2,
+                  "areaRadius": ref("force"), "page": 281},
+        "categories": categories,
+        "spells": spells,
+        **build_rituals(book),
+        "preparations": build_preparations(book),
+    }
+
+
+def build_rituals(book):
+    lines, _ = flow(book, 296, 298, {297: ("ELO MATERIAL", None), 298: ("VIGIAS E HOMÚNCULOS", None)})
+    texts = [line.strip() for _, line in lines]
+    pages = [p for p, _ in lines]
+    start = texts.index("RITUAIS")
+    texts, pages = texts[start:texts.index("APRENDENDO FEITIÇOS")], pages[start:]
+
+    heads = []
+    for rid, name in RITUALS:
+        found = [i for i, t in enumerate(texts) if t == name.upper() and texts[i + 1].startswith("(")]
+        if len(found) != 1:
+            raise ExtractionError(f"ritual {name}: {len(found)} cabeçalhos encontrados")
+        heads.append(found[0])
+    if heads != sorted(heads):
+        raise ExtractionError("rituais fora da ordem do livro")
+
+    intro = book.prose("\n".join(texts[1:heads[0]]))
+    names = [name for _, name in RITUAL_KEYWORDS]
+    keywords = []
+    for kid, name in RITUAL_KEYWORDS:
+        m = re.search(rf'{name}: (.+?)(?= (?:{"|".join(names)}): |$)', intro)
+        if not m:
+            raise ExtractionError(f"palavra-chave de ritual {name}: definição não encontrada")
+        keywords.append({"id": kid, "name": name, "desc": m.group(1)})
+    by_name = {name.upper(): kid for kid, name in RITUAL_KEYWORDS}
+
+    rituals = []
+    for (rid, name), h, nxt in zip(RITUALS, heads, heads[1:] + [len(texts)]):
+        words = [w.strip() for w in texts[h + 1].strip("()").split(",")]
+        if any(w not in by_name for w in words):
+            raise ExtractionError(f"ritual {name}: palavra-chave fora do vocabulário {words}")
+        desc = book.prose("\n".join(texts[h + 2:nxt]))
+        m = re.search(r'(?:exige|precisa de) \(Potência\) (horas|minutos) para ser', desc)
+        if not m:
+            raise ExtractionError(f"ritual {name}: tempo de execução não encontrado")
+        rituals.append({"id": rid, "name": name, "keywords": [by_name[w] for w in words],
+                        "time": {"unit": {"horas": "hour", "minutos": "minute"}[m.group(1)], "value": ref("force")},
+                        "desc": desc, "page": pages[h]})
+    return {"ritualKeywords": keywords, "rituals": rituals}
+
+
+def build_preparations(book):
+    text = book.prose(book.page(304) + "\n" + book.page(305))
+    require(text, "Você pode fazer uma preparação a uma Potência até duas vezes o seu nível de Magia",
+            "potência de preparação")
+    names = [name for _, name, _ in PREPARATION_TRIGGERS]
+    triggers = []
+    for tid, name, drain in PREPARATION_TRIGGERS:
+        m = re.search(rf'{name}: (.+?)(?= (?:{"|".join(names)}): | ETAPA 5|$)', text)
+        if not m:
+            raise ExtractionError(f"gatilho de preparação {name}: descrição não encontrada")
+        require(m.group(1), f"adiciona +{drain} de Dreno", f"gatilho {name}")
+        triggers.append({"id": tid, "name": name, "drainModifier": drain, "desc": m.group(1)})
+    return {"forceMax": mul(attr("mag"), 2), "triggers": triggers, "page": 304}
+
+
 CATALOGS = {
     "attributes.json": build_attributes,
     "metatypes.json": build_metatypes,
@@ -1330,6 +1686,7 @@ CATALOGS = {
     "mechanics.json": build_mechanics,
     "lifestyles.json": build_lifestyles,
     "traditions.json": build_traditions,
+    "spells.json": build_spells,
 }
 
 EXPECTED_COUNTS = {
@@ -1342,6 +1699,7 @@ EXPECTED_COUNTS = {
     "mechanics.json": {},
     "lifestyles.json": {"lifestyles": 7, "options": 5, "identities": 2},
     "traditions.json": {"traditions": 2, "spiritTypes": 6},
+    "spells.json": {"spells": 84, "categories": 5, "rituals": 9},
 }
 
 

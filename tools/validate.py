@@ -270,7 +270,7 @@ SR_OPS = {
 }
 SR_UNARY = {'ceil', 'floor'}
 SR_REF = re.compile(r'^(attr\.(' + '|'.join(SR_ATTRS) + r')|rating|grade|karma\.total|quality\.karma'
-                    r'|matrix\.dataProcessing)$')
+                    r'|matrix\.dataProcessing|force|netHits)$')
 SR_TARGETS = {
     'attr.max', 'skill.max', 'limit', 'monitor.overflow', 'wound.ignoredBoxes', 'wound.boxesPerPenalty',
     'reputation.notoriety', 'essence.cyberwareLoss', 'lifestyle.cost', 'language.native',

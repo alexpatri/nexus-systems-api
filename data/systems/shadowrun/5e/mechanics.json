@@ -16,7 +16,9 @@
       "grade": "Classe de iniciação ou submersão",
       "karma.total": "Carma total ganho pelo personagem",
       "quality.karma": "Custo ou bônus de carma da qualidade",
-      "matrix.dataProcessing": "Datagrama da persona em uso (ciberdeck, com-link ou persona viva)"
+      "matrix.dataProcessing": "Datagrama da persona em uso (ciberdeck, com-link ou persona viva)",
+      "force": "Potência do feitiço, ritual ou preparação",
+      "netHits": "Sucessos restantes do teste"
     }
   },
   "derived": {
@@ -717,6 +719,10 @@
       "instructorReduction": 0.25
     },
     "page": 103
+  },
+  "augmentation": {
+    "maxAttributeBonus": 4,
+    "page": 94
   },
   "legality": {
     "R": "Restrito",

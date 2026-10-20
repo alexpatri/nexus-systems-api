@@ -81,6 +81,25 @@
         "language"
       ]
     },
+    "magic": {
+      "spells": "spells.json#spells",
+      "rituals": "spells.json#rituals",
+      "preparations": "spells.json#preparations",
+      "fields": [
+        "name",
+        "kind",
+        "typeOrTarget",
+        "range",
+        "duration",
+        "drain"
+      ],
+      "kinds": [
+        "spell",
+        "preparation",
+        "ritual"
+      ],
+      "note": "Na ficha oficial, a coluna F/P/R/FC indica feitiço, preparativo, ritual ou forma complexa."
+    },
     "contacts": {
       "fields": [
         "name",
@@ -138,7 +157,8 @@
         "uses": [
           "priorities.json#columns",
           "awakening.json",
-          "traditions.json"
+          "traditions.json",
+          "spells.json"
         ]
       },
       {
@@ -210,6 +230,7 @@
     "qualities.json",
     "mechanics.json",
     "lifestyles.json",
-    "traditions.json"
+    "traditions.json",
+    "spells.json"
   ]
 }
