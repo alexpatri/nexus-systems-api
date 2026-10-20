@@ -1976,7 +1976,7 @@ def build_mentors(book):
     if unknown:
         raise ExtractionError(f"mentores fora do vocabulário: {unknown}")
 
-    intro = book.prose("\n".join(texts[1:heads[0]]))
+    intro = book.prose("\n".join(t for t in texts[1:heads[0]] if not is_heading(t)))
     require(intro, "Adeptos místicos devem escolher a vantagem de adepto ou de mago quando aceitam o espírito "
             "mentor, e não podem mais mudá-la", "mentores")
     power_names = {pid: name for pid, name, *_ in ADEPT_POWERS}
