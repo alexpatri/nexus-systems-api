@@ -1,0 +1,346 @@
+{
+  "id": "shadowrun",
+  "apiVersion": "5e",
+  "name": "Shadowrun 5e",
+  "locale": "pt-BR",
+  "publisher": "New Order Editora",
+  "bookVersion": "Shadowrun Livro Básico, Quinta Edição (New Order, 2018)",
+  "schemaVersion": 1,
+  "characterTerm": "Incursor das Sombras",
+  "gmTerm": "Mestre",
+  "sheet": {
+    "personal": {
+      "fields": [
+        "name",
+        "metatype",
+        "ethnicity",
+        "age",
+        "sex",
+        "height",
+        "weight",
+        "karma",
+        "totalKarma",
+        "misc"
+      ],
+      "metatype": "metatypes.json#metatypes"
+    },
+    "reputation": {
+      "fields": [
+        "streetCred",
+        "notoriety",
+        "publicAwareness"
+      ],
+      "rules": "mechanics.json#derived.reputation"
+    },
+    "attributes": {
+      "source": "attributes.json",
+      "ranges": "metatypes.json#metatypes",
+      "note": "Atributos ampliados são anotados entre parênteses, depois do valor natural."
+    },
+    "edge": {
+      "attribute": "edg",
+      "note": "A ficha registra o Trunfo e os pontos de Trunfo disponíveis, que são gastos e recuperados em jogo."
+    },
+    "tradition": {
+      "source": "traditions.json",
+      "note": "Define os atributos de Resistência ao Dreno e o espírito de cada categoria de feitiço."
+    },
+    "mentor": {
+      "source": "mentors.json",
+      "quality": "mentor-spirit",
+      "note": "Só com a qualidade Espírito Mentor; adeptos místicos escolhem a vantagem de mago ou de adepto."
+    },
+    "initiative": {
+      "rules": "mechanics.json#derived.initiative"
+    },
+    "limits": {
+      "rules": "mechanics.json#derived.limits"
+    },
+    "attributeTests": {
+      "rules": "mechanics.json#derived.attributeTests"
+    },
+    "movement": {
+      "rules": "mechanics.json#derived.movement"
+    },
+    "conditionMonitor": {
+      "rules": "mechanics.json#derived.monitors"
+    },
+    "weapons": {
+      "source": "weapons.json",
+      "ranged": {
+        "fields": [
+          "name",
+          "damage",
+          "accuracy",
+          "ap",
+          "modes",
+          "recoil",
+          "ammo"
+        ]
+      },
+      "melee": {
+        "fields": [
+          "name",
+          "reach",
+          "damage",
+          "accuracy",
+          "ap"
+        ]
+      }
+    },
+    "armor": {
+      "source": "armor.json",
+      "fields": [
+        "name",
+        "rating",
+        "notes"
+      ],
+      "note": "Capacetes e escudos somam ao nível da armadura vestida."
+    },
+    "augmentations": {
+      "source": "augmentations.json",
+      "fields": [
+        "name",
+        "rating",
+        "notes",
+        "essence"
+      ],
+      "grades": "augmentations.json#grades",
+      "note": "A Essência gasta reduz a Essência do personagem, que entra no limite Social."
+    },
+    "cyberdeck": {
+      "source": "matrix.json#cyberdecks",
+      "programs": "matrix.json#programs",
+      "fields": [
+        "model",
+        "attack",
+        "sleaze",
+        "deviceRating",
+        "dataProcessing",
+        "firewall",
+        "programs",
+        "matrixConditionMonitor"
+      ],
+      "conditionMonitor": "matrix.json#rules.conditionMonitor",
+      "note": "A faixa de atributos do deck é distribuída livremente entre Ataque, Subversão, Datagrama e Firewall."
+    },
+    "commlink": {
+      "source": "matrix.json#commlinks",
+      "attributes": "matrix.json#rules.deviceAttributes"
+    },
+    "vehicle": {
+      "source": "vehicles.json",
+      "fields": [
+        "name",
+        "handling",
+        "acceleration",
+        "speed",
+        "pilot",
+        "body",
+        "armor",
+        "sensor",
+        "notes"
+      ],
+      "note": "Manejo e Velocidade podem vir como Dentro/Fora da Estrada (onRoad/offRoad)."
+    },
+    "qualities": {
+      "source": "qualities.json",
+      "fields": [
+        "quality",
+        "notes",
+        "kind"
+      ]
+    },
+    "skills": {
+      "source": "skills.json",
+      "fields": [
+        "skill",
+        "rating",
+        "kind"
+      ],
+      "kinds": [
+        "active",
+        "knowledge",
+        "language"
+      ]
+    },
+    "magic": {
+      "spells": "spells.json#spells",
+      "rituals": "spells.json#rituals",
+      "preparations": "spells.json#preparations",
+      "complexForms": "complex-forms.json#complexForms",
+      "fields": [
+        "name",
+        "kind",
+        "typeOrTarget",
+        "range",
+        "duration",
+        "drain"
+      ],
+      "kinds": [
+        "spell",
+        "preparation",
+        "ritual",
+        "complexForm"
+      ],
+      "note": "Na ficha oficial, a coluna F/P/R/FC indica feitiço, preparativo, ritual ou forma complexa."
+    },
+    "adeptPowers": {
+      "source": "adept-powers.json",
+      "fields": [
+        "name",
+        "level",
+        "notes"
+      ],
+      "note": "Na ficha oficial o bloco se chama Poderes de Adepto/Outras Habilidades."
+    },
+    "contacts": {
+      "fields": [
+        "name",
+        "loyalty",
+        "connection",
+        "favor"
+      ],
+      "rules": "mechanics.json#creation.contacts"
+    },
+    "lifestyle": {
+      "source": "lifestyles.json",
+      "note": "Um estilo de vida primário; os demais (residências extras, identidades) são pagos à parte."
+    },
+    "identities": {
+      "source": "lifestyles.json#identities",
+      "fields": [
+        "fakeIds",
+        "relatedLifestyles",
+        "funds",
+        "licenses"
+      ]
+    },
+    "nuyen": {
+      "rules": "mechanics.json#creation.resources"
+    }
+  },
+  "creation": {
+    "priorities": {
+      "source": "priorities.json",
+      "rule": "Cada prioridade (A–E) é usada exatamente uma vez entre as cinco colunas."
+    },
+    "steps": [
+      {
+        "order": 1,
+        "id": "concept",
+        "label": "Escolha o conceito",
+        "page": 62
+      },
+      {
+        "order": 2,
+        "id": "metatype",
+        "label": "Escolha o metatipo e distribua os atributos",
+        "page": 65,
+        "uses": [
+          "priorities.json#columns",
+          "metatypes.json",
+          "mechanics.json#creation.attributes"
+        ]
+      },
+      {
+        "order": 3,
+        "id": "magic",
+        "label": "Escolha magia ou ressonância",
+        "page": 68,
+        "uses": [
+          "priorities.json#columns",
+          "awakening.json",
+          "traditions.json",
+          "spells.json",
+          "adept-powers.json",
+          "complex-forms.json"
+        ]
+      },
+      {
+        "order": 4,
+        "id": "qualities",
+        "label": "Compre qualidades",
+        "page": 71,
+        "uses": [
+          "qualities.json",
+          "mechanics.json#creation.qualities",
+          "mentors.json"
+        ]
+      },
+      {
+        "order": 5,
+        "id": "skills",
+        "label": "Compre perícias",
+        "page": 88,
+        "uses": [
+          "priorities.json#columns",
+          "skills.json",
+          "mechanics.json#creation.skills"
+        ]
+      },
+      {
+        "order": 6,
+        "id": "resources",
+        "label": "Gaste seus recursos",
+        "page": 94,
+        "uses": [
+          "priorities.json#columns",
+          "lifestyles.json",
+          "mechanics.json#creation.resources",
+          "weapons.json",
+          "armor.json",
+          "augmentations.json",
+          "matrix.json",
+          "vehicles.json"
+        ]
+      },
+      {
+        "order": 7,
+        "id": "karma",
+        "label": "Gaste o carma restante",
+        "page": 98,
+        "uses": [
+          "mechanics.json#creation.purchases",
+          "mechanics.json#creation.contacts",
+          "mechanics.json#progression"
+        ]
+      },
+      {
+        "order": 8,
+        "id": "final-calculations",
+        "label": "Cálculos finais",
+        "page": 100,
+        "uses": [
+          "mechanics.json#derived"
+        ]
+      },
+      {
+        "order": 9,
+        "id": "finishing",
+        "label": "Toques finais",
+        "page": 102
+      }
+    ]
+  },
+  "catalogs": [
+    "attributes.json",
+    "metatypes.json",
+    "priorities.json",
+    "awakening.json",
+    "skills.json",
+    "qualities.json",
+    "mechanics.json",
+    "lifestyles.json",
+    "traditions.json",
+    "spells.json",
+    "adept-powers.json",
+    "mentors.json",
+    "complex-forms.json",
+    "weapons.json",
+    "armor.json",
+    "augmentations.json",
+    "matrix.json",
+    "vehicles.json"
+  ]
+}

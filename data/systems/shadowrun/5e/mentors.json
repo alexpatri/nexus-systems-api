@@ -1,0 +1,399 @@
+{
+  "desc": "Na busca pela iluminação, afiliação, ou propósito mágico, muitos indivíduos Despertos se atraem por certos animais, figuras mitológicas, ou conceitos. Isso pode ser um ídolo de infância, um totem tribal, ou algo que querem ser na vida. Também pode se relacionar com crenças religiosas ou mágicas. Os sentimentos por essa pessoa ou ideia são tão fortes que assim que o indivíduo Desperta, a ideia ganha vida própria. Tornando-se o que é conhecido como espírito mentor. Esse espírito mentor é muito similar a outros espíritos no sentido de ter sua própria personalidade, mas não é um espírito na ideia de invocar-e-banir. Ele pode ser visto e ouvido por aqueles que escolher, e até interagir fisicamente com seus seguidores. Seu espírito mentor pode ter uma influência significante sobre você, dando benefícios enquanto permanecer digno ou punir você se desviar do caminho (geralmente com reduções temporárias ao seu nível de Magia). A mentoria mágica pode vir em diferentes formas. Geralmente você possui seu elo próprio com seu espírito mentor, mas uma guilda ou sociedade Desperta pode criar um elo com um espírito mentor como um grupo. Não há compreensão verdadeira da natureza de espíritos mentores, mas seu objetivo geral é claro: Eles querem manter indivíduos Despertos no caminho que ajudou a introduzir o espírito mentor na Terra. Para mestres, espíritos mentores podem ser usados como uma ferramenta para comunicar informações ao mago e aprimorar a interpretação. O espírito mentor pode conceder pistas misteriosas, enigmas, profecias, e às vezes até um conselho bem claro. Qualquer personagem Desperto pode se conectar com um espírito mentor ao pegar a qualidade Espírito Mentor (p. 74). Mestres também podem decidir conceder espíritos mentores ao longo do jogo, desde que o personagem do jogador tenha feito o suficiente para merecer. Cada um dos espíritos mentores listados aqui representa um arquétipo. Esses arquétipos são idealizados como totens animais, divindades, e forças da natureza de diferentes culturas e tradições. Os arquétipos listados abaixo servem meramente como exemplos de arquétipos diferentes e não foram feitos para se aplicar a todas as culturas — um totem animal considerado como curativo numa cultura pode ser considerado um enganador em outra. Arquétipos adicionais serão apresentados em suplementos futuros, e você sempre pode trabalhar com o seu mestre para desenvolver um arquétipo de espírito mentor que encaixe melhor com a ideia geral do seu personagem. Cada arquétipo oferece três vantagens: um bônus geral, um bônus aplicado apenas para magos, e um aplicado apenas para adeptos. Adeptos místicos devem escolher a vantagem de adepto ou de mago quando aceitam o espírito mentor, e não podem mais mudá-la. Cada um também possui uma desvantagem e alguns nomes ou conceitos alternativos para o espírito mentor, se não sentir que o nome daqui combine com a sua tradição. Vantagens e desvantagens se aplicam o tempo todo.",
+  "rules": {
+    "mysticAdeptChooses": [
+      "magician",
+      "adept"
+    ],
+    "page": 320
+  },
+  "mentors": [
+    {
+      "id": "eagle",
+      "name": "Águia",
+      "desc": "A Águia é o maior pássaro voador nos céus, considerado o mais nobre por muitas culturas. Ela é orgulhosa e solitária, e vê tudo o que acontece no mundo abaixo. Águias são nobres defensoras da pureza da natureza. Elas são intolerantes com aqueles que não veem as coisas da mesma forma e têm uma forte desconfiança da tecnologia e das suas ferramentas. Aqueles que causem mal à natureza são inimigos da Águia, e a Águia enfrentará grandes perigos para derrotar poluidores e outros malfeitores.",
+      "advantages": {
+        "all": "+2 dados para Testes de Percepção",
+        "magician": "+2 dados para invocar espíritos do ar",
+        "adept": "1 nível gratuito de Sentido de Combate"
+      },
+      "adeptGrants": [
+        {
+          "power": "combat-sense",
+          "levels": 1
+        }
+      ],
+      "disadvantage": "Você adquire a qualidade (p. 77; sem Carma bônus por essa qualidade negativa) Alergia (poluentes, moderada).",
+      "disadvantageQuality": {
+        "quality": "allergy",
+        "options": {
+          "prevalence": "common",
+          "severity": "moderate"
+        },
+        "karma": 0,
+        "note": "Alergia a poluentes, sem o bônus de carma"
+      },
+      "similar": [
+        "Natureza",
+        "Proteção"
+      ],
+      "page": 320
+    },
+    {
+      "id": "dog",
+      "name": "Cão",
+      "desc": "O Cão é um amigo leal. Ele luta ferozmente para defender seu lar e aqueles sob sua proteção. O Cão protege as pessoas de magias nocivas e espíritos perigosos. O Cão é leal, generoso, e solícito com aqueles que demonstram gentileza para ele. Ele é obstinado, geralmente ao ponto da teimosia.",
+      "advantages": {
+        "all": "+2 dados para testes de Rastrear",
+        "magician": "+2 dados para feitiços, preparações, e rituais de feitiço de Detecção",
+        "adept": "2 poderes gratuitos de Sentido Melhorado"
+      },
+      "adeptGrants": [
+        {
+          "power": "improved-sense",
+          "count": 2
+        }
+      ],
+      "disadvantage": "Um mago do Cão é teimosamente leal. Você nunca pode deixar alguém para trás, trair seus companheiros, ou deixar que outros se sacrifiquem no seu lugar sem um Teste bem-sucedido de Carisma + Vontade (3)",
+      "similar": [
+        "Amizade",
+        "Lealdade"
+      ],
+      "page": 321
+    },
+    {
+      "id": "raven",
+      "name": "Corvo",
+      "desc": "O Corvo é um arauto de problemas nas culturas do mundo. Ele é um trapaceiro e um transformador, sombrio e desleal. O Corvo se aproveita da carnificina e do caos, mas ele não causa nada disso — meramente reconhece uma oportunidade quando vê. O Corvo ama comer e raramente recusa uma oferta de comida. O Corvo é parente do Coiote, que possui inclinações de trapaceiro como o Corvo, mas sem a parte soturna e a propensão a carnificina.",
+      "advantages": {
+        "all": "+2 dados para testes de Trapaça",
+        "magician": "+2 dados para feitiços, preparações, e rituais de feitiço da categoria Manipulação",
+        "adept": "Passos sem Pegadas e 1 nível de Controle Vocal gratuitos"
+      },
+      "adeptGrants": [
+        {
+          "power": "traceless-walk"
+        },
+        {
+          "power": "voice-control",
+          "levels": 1
+        }
+      ],
+      "disadvantage": "Você deve fazer um Teste de Carisma (3) + Vontade para evitar se aproveitar do azar de outra pessoa ou fazer uma trapaça ou truque sagaz mesmo se isso for desvantajoso para seus amigos.",
+      "similar": [
+        "Enganação",
+        "Trapaça"
+      ],
+      "page": 321
+    },
+    {
+      "id": "cat",
+      "name": "Gato",
+      "desc": "O Gato é cultuado em diversas culturas pelo mundo. O Gato é geralmente visto como o guardião dos segredos místicos, incluindo aqueles que envolvem o pós vida. Ele certamente conhece muitos segredos, mas raramente decide compartilhá-los, e nunca com alguém que não seja digno. Ele é furtivo, astuto, e arrogante. O Gato brinca com sua presa — ameaçando, provocando, e confundindo seus alvos — em vez de avançar diretamente.",
+      "advantages": {
+        "all": "+2 dados para Testes ou de Ginástica ou Esgueirar (escolha um)",
+        "magician": "+2 dados para feitiços e preparações de ilusão, e rituais de feitiço de ilusão",
+        "adept": "2 níveis gratuitos de Corpo Leve"
+      },
+      "adeptGrants": [
+        {
+          "power": "light-body",
+          "levels": 2
+        }
+      ],
+      "disadvantage": "Magos do Gato brincam com suas presas. A não ser que passe num Teste de Carisma + Vontade (3) no início do combate, você não pode fazer um ataque que incapacite o seu alvo. Se sofrer qualquer dano Físico, aí essa brincadeira acaba.",
+      "similar": [
+        "Mistério",
+        "Furtividade"
+      ],
+      "page": 321
+    },
+    {
+      "id": "wise-warrior",
+      "name": "Guerreiro Sábio",
+      "desc": "O Guerreiro Sábio é habilidoso na arte da guerra, pois a batalha é uma arte para ele, um exercício dos poderes da mente e do corpo. Ele estuda as táticas dos seus oponentes e as supera através de uma combinação de estratégia e proeza em batalha superiores. O Guerreiro Sábio não age por selvageria ou sede de batalha, mas sim de uma posição de conhecimento e sabedoria. Guerreiros Sábios devem seguir o código de honra do guerreiro e se comportar de acordo ou arriscam perder seu favor.",
+      "advantages": {
+        "all": "+2 dados para testes de perícia ou de Liderança ou Instrução (escolha uma)",
+        "magician": "+2 dados para feitiços, preparações, e rituais de feitiço da categoria Combate",
+        "adept": "1 nível gratuito de Habilidade Melhorada numa perícia de Combate"
+      },
+      "adeptGrants": [
+        {
+          "power": "improved-ability",
+          "levels": 1,
+          "parameter": {
+            "categories": [
+              "combat"
+            ]
+          }
+        }
+      ],
+      "disadvantage": "Se você agir com desonra ou com descortesia, seja por escolha ou acidente, sofre –1 de modificador na pilha de dados para todas as ações até se redimir pelo seu comportamento.",
+      "similar": [
+        "Dever",
+        "Sabedoria"
+      ],
+      "page": 321
+    },
+    {
+      "id": "wolf",
+      "name": "Lobo",
+      "desc": "O Lobo é mundialmente reconhecido como caçador e guerreiro. Ele se devota aos outros membros da sua alcateia. Como diz o antigo ditado, o Lobo vence todas as batalhas exceto por uma — a que o mata. Magos Lobos são leais para amigos e família até a morte. Eles não demonstram covardia em batalha, e sua palavra é inquebrável.",
+      "advantages": {
+        "all": "+2 dados para testes de Rastrear",
+        "magician": "+2 dados para feitiços, preparações, e rituais da categoria Combate",
+        "adept": "2 níveis gratuitos de Ampliar Atributo (Agilidade)"
+      },
+      "adeptGrants": [
+        {
+          "power": "attribute-boost",
+          "levels": 2,
+          "parameter": "agi"
+        }
+      ],
+      "disadvantage": "Você deve passar num Teste de Carisma + Vontade (3) para fugir de uma luta.",
+      "similar": [
+        "Caça",
+        "Irmandade"
+      ],
+      "page": 322
+    },
+    {
+      "id": "sea",
+      "name": "Mar",
+      "desc": "O Mar é o berço de todas as criaturas vivas. Ele é incomensurável e temperamental, tranquilo e agradável num momento, aterrorizante e destrutivo no seguinte. Apesar de possuir muita riqueza, ele guarda o que adquire com grande ciúme. O Mar pode ser um aliado poderoso, mas ele deve ser cortejado com muito cuidado.",
+      "advantages": {
+        "all": "+2 dados para testes de Natação",
+        "magician": "+2 para invocar espíritos da água",
+        "adept": "1 nível gratuito de Habilidade Melhorada numa perícia atlética (escolhida ao receber esse bônus)"
+      },
+      "adeptGrants": [
+        {
+          "power": "improved-ability",
+          "levels": 1,
+          "parameter": {
+            "groups": [
+              "athletics"
+            ]
+          }
+        }
+      ],
+      "disadvantage": "Você deve fazer um Teste de Carisma (3) + Vontade para dar algo que seja seu ou ser caridoso de alguma forma.",
+      "similar": [
+        "Caos",
+        "Ganância"
+      ],
+      "page": 322
+    },
+    {
+      "id": "dragonslayer",
+      "name": "Matador de Dragões",
+      "desc": "O mais heroico dos espíritos mentores também é o mais divertido. Apesar de lutar para proteger os seus contra todos os perigos, ele gosta ainda mais de uma boa farra. Ele é um irmãozão que tem um interesse amistoso por tudo que a sua família faz. Apesar de ser ingênuo às vezes, ele é um amigo fiel e um inimigo mortal. Os dragões que ele mata mudaram com o tempo: feras atuais incluem crime, poluição, corrupção, e claro, dragões de verdade. O Matador de Dragões luta ferozmente e com vontade. Assim que der seu juramento, ele nunca o quebrará. Um mago do Matador de Dragões se comporta com honra e respeito, e exige o mesmo daqueles ao seu redor.",
+      "advantages": {
+        "all": "+2 de modificador de pilha de dados para uma perícia social à sua escolha",
+        "magician": "+2 dados para feitiços, preparações, e rituais de feitiço de Combate",
+        "adept": "1 nível gratuito de Precisão Ampliada (perícia) e 1 nível gratuito de Sentido de Perigo"
+      },
+      "adeptGrants": [
+        {
+          "power": "enhanced-accuracy"
+        },
+        {
+          "power": "danger-sense",
+          "levels": 1
+        }
+      ],
+      "disadvantage": "Se quebrar uma promessa, seja por escolha ou acidente, você sofre –1 de modificador na pilha de dados para todas as ações até cumprir a promessa.",
+      "similar": [
+        "Heroísmo",
+        "Aventura"
+      ],
+      "page": 322
+    },
+    {
+      "id": "mountain",
+      "name": "Montanha",
+      "desc": "A Montanha está enraizada no cerne da Terra, mas alcança alturas impressionantes. Ela possui força e resistência sem limites, mas a natureza inflexível da Montanha a limita. A Montanha é uma força teimosa e obstinada, e magos da Montanha são difíceis de se persuadir assim que tenham decidido alguma coisa.",
+      "advantages": {
+        "all": "+2 dados para Testes de Sobrevivência",
+        "magician": "+2 dados para Testes de Contramágica e rituais ancorados",
+        "adept": "1 nível gratuito de Armadura Mística"
+      },
+      "adeptGrants": [
+        {
+          "power": "mystic-armor",
+          "levels": 1
+        }
+      ],
+      "disadvantage": "Quando um mago Montanha faz um plano, ele o segue. Você deve fazer um Teste de Carisma (3) + Vontade para abandonar um curso de ação planejado em troca de outro. Se falhar, você deve continuar com seu plano original, mesmo se isso significar ir sozinho. De forma similar, você deve passar num Teste de Carisma + Vontade (3) para prosseguir sem um plano em qualquer coisa.",
+      "similar": [
+        "Resistência",
+        "Teimosia"
+      ],
+      "page": 322
+    },
+    {
+      "id": "thunderbird",
+      "name": "Pássaro-Trovão",
+      "desc": "O Pássaro-Trovão é uma criatura majestosa que é a encarnação da tempestade. Suas asas são nuvens escuras, seu bico e garras relâmpagos, e seu grito o estalo do trovão. Ele é uma força primordial, frequentemente selvagem, mas necessária para a sobrevivência da terra e a perpetuação do ciclo da vida. O Pássaro-Trovão é uma força a ser respeitada e abordada com muito cuidado, para que sua fúria não seja despertada.",
+      "advantages": {
+        "all": "+2 dados para Testes de Intimidação",
+        "magician": "+2 dados para invocar espíritos do ar",
+        "adept": "1 nível gratuito de Golpe Crítico (perícia)"
+      },
+      "adeptGrants": [
+        {
+          "power": "critical-strike"
+        }
+      ],
+      "disadvantage": "Um mago do Pássaro-Trovão deve passar num teste de Carisma + Vontade (3) para evitar responder um insulto na mesma moeda.",
+      "similar": [
+        "Cólera",
+        "Guerra"
+      ],
+      "page": 323
+    },
+    {
+      "id": "fire-bringer",
+      "name": "Portador da Chama",
+      "desc": "O Portador da Chama roubou o segredo do fogo dos céus e o deu à meta-humanidade como presente e ferramenta. Ele é uma figura de bondade e preocupação, mas suas boas intenções às vezes o colocam em apuros, e seus planos podem falhar em seguir como ele planejava. Ele é um moldador e criador, formando coisas novas do barro primordial e dando o respiro da faísca da vida nelas. Portadores da Chama se devotam ao aperfeiçoamento dos outros, mesmo a custo pessoal. A maioria dos seguidores do Portador da Chama se joga numa causa particular com grande fervor.",
+      "advantages": {
+        "all": "+2 dados para Testes de perícia ou de Artesão ou Alquimia (escolha uma)",
+        "magician": "+2 dados para feitiços, preparações, e rituais de feitiço da categoria Manipulação",
+        "adept": "1 nível gratuito de Habilidade Melhorada numa perícia não combativa"
+      },
+      "adeptGrants": [
+        {
+          "power": "improved-ability",
+          "levels": 1,
+          "parameter": {
+            "exceptCategories": [
+              "combat"
+            ]
+          }
+        }
+      ],
+      "disadvantage": "Quando alguém sinceramente pedir a sua ajuda, você não pode recusar sem passar num Teste Simples de Carisma + Vontade (3)",
+      "similar": [
+        "Invenção",
+        "Generosidade"
+      ],
+      "page": 323
+    },
+    {
+      "id": "rat",
+      "name": "Rato",
+      "desc": "O Rato é encontrado onde humanos e as coisas que eles jogam fora estão, pois o que mais poderia sustentá-lo? O Rato pega os restos, um ladrão furtivo que pega o que precisa para sobreviver. Ele odeia trabalhar em aberto, preferindo ficar nas sombras. O Rato evita lutas sempre que pode — quando tem que lutar, ele luta para matar rapidamente e continuar seu caminho.",
+      "advantages": {
+        "all": "+2 dados para testes de Esgueirar",
+        "magician": "+2 dados para testes de Alquimia ao colher reagentes, e você pode usar reagentes de qualquer tradição",
+        "adept": "2 níveis gratuitos de Imunidade Natural"
+      },
+      "adeptGrants": [
+        {
+          "power": "natural-immunity",
+          "levels": 2
+        }
+      ],
+      "disadvantage": "Um mago Rato deve fazer um Teste de Carisma + (3) Vontade para não fugir ou procurar cobertura imediatamente sempre que se envolver numa situação de combate. Se não houver para onde fugir, ele é forçado a lutar.",
+      "similar": [
+        "Sobrevivência",
+        "Carniceiro"
+      ],
+      "page": 323
+    },
+    {
+      "id": "seducer",
+      "name": "Sedutor",
+      "desc": "O Sedutor é a encarnação do desejo. Ele possui muitos vícios e vontades que precisa satisfazer com frequência. Ele encoraja o ciúme e a ganância, e sempre quer inflamar os desejos dos outros. Ele evita confrontos diretos, mas sente prazer quando outros lutam pela sua atenção ou em seu nome. Ele existe para explorar fraquezas, e não hesitará em sacrificar aqueles que entrem em seu caminho.",
+      "advantages": {
+        "all": "+2 dados para Testes de Trapaça",
+        "magician": "+2 dados para feitiços, preparações, e rituais de feitiço da categoria Manipulação",
+        "adept": "1 nível gratuito de Habilidade Melhorada para uma perícia no grupo de perícia Atuação ou Influência"
+      },
+      "adeptGrants": [
+        {
+          "power": "improved-ability",
+          "levels": 1,
+          "parameter": {
+            "groups": [
+              "acting",
+              "influence"
+            ]
+          }
+        }
+      ],
+      "disadvantage": "Você deve passar num Teste de Carisma + Vontade (3) para evitar perseguir um vício ou prazer (drogas, MQTs, sexo, e assim por diante) quando houver um disponível.",
+      "similar": [
+        "Sedutora",
+        "Tentação"
+      ],
+      "page": 323
+    },
+    {
+      "id": "serpent",
+      "name": "Serpente",
+      "desc": "A Serpente é sábia e conhece muitos segredos. Ela é uma boa conselheira, mas sempre cobra um preço pelos seus conselhos. Personagens Serpente só lutam para se proteger e aos outros. Elas são obcecadas por aprender segredos e tomam grandes riscos para tanto. Elas compartilham seu conhecimento com outros pelo o que conseguirem em troca.",
+      "advantages": {
+        "all": "+2 para testes de Arcana",
+        "magician": "+2 dados para feitiços, preparações, e rituais de feitiço da categoria Detecção",
+        "adept": "2 níveis gratuitos de Cinésica"
+      },
+      "adeptGrants": [
+        {
+          "power": "kinesics",
+          "levels": 2
+        }
+      ],
+      "disadvantage": "Você deve passar num Teste de Carisma + Vontade (3) para evitar perseguir segredos ou conhecimento exclusivo de poucas pessoas quando receber indicações da existência de coisas assim.",
+      "similar": [
+        "Conhecimento",
+        "Curiosidade"
+      ],
+      "page": 323
+    },
+    {
+      "id": "shark",
+      "name": "Tubarão",
+      "desc": "O Tubarão é um caçador frio e implacável. Seu poder é conhecido por todos aqueles que vivem perto do mar. Quando o Tubarão ataca, ele o faz sem piedade, entrando em frenesi graças ao sangue da sua presa. Magos Tubarão tendem ser andarilhos, sempre em movimento. Eles são guerreiros ferozes e mortais. Um mago Tubarão acredita que o único inimigo bom é um inimigo morto. Se desafiado, ele não perde tempo com ameaças ou bravatas, mas ataca para matar.",
+      "advantages": {
+        "all": "+2 dados para testes de Combate Desarmado",
+        "magician": "+2 dados para feitiços, preparações, e rituais de feitiço da categoria Combate.",
+        "adept": "Mãos Letais gratuito"
+      },
+      "adeptGrants": [
+        {
+          "power": "killing-hands"
+        }
+      ],
+      "disadvantage": "Você pode entrar em frenesi ao sofrer dano Físico em combate. Sempre que isso acontecer, faça um Teste Simples de Carisma + Vontade (modificadores de ferimento se aplicam). Você entra em frenesi por 3 turnos menos 1 turno por sucesso, então 3 ou mais sucessos evitam a fúria em frenesi por completo. Caso já esteja em frenesi, aumente a duração. Durante o seu frenesi, você persegue seu(s) agressor(es) sem se importar com sua própria segurança. Se seus alvos acabarem antes que o tempo acabe, você continua a atacar seus corpos.",
+      "similar": [
+        "Fome",
+        "Violência"
+      ],
+      "page": 324
+    },
+    {
+      "id": "bear",
+      "name": "Urso",
+      "desc": "Esse mentor simboliza força e proteção. Ele é um curandeiro e não pode negar aqueles em necessidade sem um bom motivo, e defende aqueles em seus cuidados. O Urso é mais do que um curandeiro gentil; ele é um protetor feroz, abandonando a própria segurança em combate se ferido ou se alguém que está protegendo for ferido.",
+      "advantages": {
+        "all": "+2 dados para testes de resistir a dano (exceto Dreno)",
+        "magician": "+2 dados para feitiços e preparações de saúde, e rituais de feitiço de saúde",
+        "adept": "1 nível gratuito de Cura Rápida"
+      },
+      "adeptGrants": [
+        {
+          "power": "rapid-healing",
+          "levels": 1
+        }
+      ],
+      "disadvantage": "Você pode entrar em frenesi ao sofrer dano Físico em combate ou se alguém sob seus cuidados for gravemente ferido. Faça um Teste Simples de Carisma + Vontade (modificadores de ferimento se aplicam). Você entra em frenesi por 3 turnos menos 1 turno por sucesso, então 3 ou mais sucessos evitam a fúria em frenesi por completo. Caso já esteja em frenesi, aumente a duração. Durante o seu frenesi, você persegue seu(s) agressor(es) sem se importar com sua própria segurança. Se incapacitar o(s) alvo(s) antes de o tempo acabar, a fúria em frenesi se dissipa.",
+      "similar": [
+        "Força",
+        "Proteção"
+      ],
+      "page": 324
+    }
+  ]
+}

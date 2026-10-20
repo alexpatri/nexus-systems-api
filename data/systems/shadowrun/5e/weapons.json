@@ -1,0 +1,2299 @@
+{
+  "firingModes": [
+    {
+      "id": "ss",
+      "abbr": "TS",
+      "name": "Tiro Simples"
+    },
+    {
+      "id": "sa",
+      "abbr": "SA",
+      "name": "Semiautomático"
+    },
+    {
+      "id": "bf",
+      "abbr": "RJ",
+      "name": "Rajada"
+    },
+    {
+      "id": "fa",
+      "abbr": "RC",
+      "name": "Rajada Completa"
+    }
+  ],
+  "ammoFeeds": [
+    {
+      "id": "p",
+      "name": "Pente Removível"
+    },
+    {
+      "id": "b",
+      "name": "Basculante"
+    },
+    {
+      "id": "cinto",
+      "name": "Alimentado por Cinta"
+    },
+    {
+      "id": "t",
+      "name": "Tambor"
+    },
+    {
+      "id": "ai",
+      "name": "Armazenamento Interno"
+    },
+    {
+      "id": "cf",
+      "name": "Carregador Frontal"
+    },
+    {
+      "id": "ci",
+      "name": "Cilindro"
+    }
+  ],
+  "categories": [
+    {
+      "id": "blades",
+      "name": "Lâminas",
+      "skill": "blades"
+    },
+    {
+      "id": "clubs",
+      "name": "Bastões",
+      "skill": "clubs"
+    },
+    {
+      "id": "other-melee",
+      "name": "Outras Armas Corpo a Corpo",
+      "skill": null
+    },
+    {
+      "id": "bows",
+      "name": "Arcos",
+      "skill": "archery"
+    },
+    {
+      "id": "crossbows",
+      "name": "Bestas",
+      "skill": "archery"
+    },
+    {
+      "id": "throwing",
+      "name": "Armas de Arremesso",
+      "skill": "throwing-weapons"
+    },
+    {
+      "id": "tasers",
+      "name": "Tasers",
+      "skill": "pistols"
+    },
+    {
+      "id": "holdouts",
+      "name": "Escamoteáveis",
+      "skill": "pistols"
+    },
+    {
+      "id": "light-pistols",
+      "name": "Pistolas Leves",
+      "skill": "pistols"
+    },
+    {
+      "id": "heavy-pistols",
+      "name": "Pistolas Pesadas",
+      "skill": "pistols"
+    },
+    {
+      "id": "machine-pistols",
+      "name": "Pistolas Automáticas",
+      "skill": "automatics"
+    },
+    {
+      "id": "smgs",
+      "name": "Submetralhadoras",
+      "skill": "automatics"
+    },
+    {
+      "id": "assault-rifles",
+      "name": "Fuzis de Assalto",
+      "skill": "automatics"
+    },
+    {
+      "id": "sniper-rifles",
+      "name": "Fuzis de Precisão",
+      "skill": "longarms"
+    },
+    {
+      "id": "shotguns",
+      "name": "Escopetas",
+      "skill": "longarms"
+    },
+    {
+      "id": "special",
+      "name": "Armas Especiais",
+      "skill": "exotic-ranged-weapon"
+    },
+    {
+      "id": "machine-guns",
+      "name": "Metralhadoras",
+      "skill": "heavy-weapons"
+    },
+    {
+      "id": "launchers",
+      "name": "Canhões e Lançadores",
+      "skill": "heavy-weapons"
+    }
+  ],
+  "rules": {
+    "firearmsWireless": "A arma exibe um ORA com os níveis de munição e tipo de munição carregada. Se tiver um IND, você recebe dois benefícios extras. Primeiro, ejetar um pente (para armas que os têm) é uma Ação Livre em vez de uma Ação Simples. Segundo, alternar modos de tiro (em modelos que têm mais de um) é uma Ação Livre em vez de uma Ação Simples.",
+    "page": 424
+  },
+  "weapons": [
+    {
+      "id": "polearm",
+      "name": "Arma de haste",
+      "category": "blades",
+      "accuracy": 5,
+      "reach": 3,
+      "damage": {
+        "value": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.str"
+            },
+            3
+          ]
+        },
+        "type": "physical"
+      },
+      "ap": -2,
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 1000,
+      "desc": "Isso é, em essência, uma lâmina na ponta de um bastão muito longo. Costuma ter uma cabeça de machado, glaive, ponta de lança, ou implemento mortal similar. Não é fácil de manusear e é quase impossível de ocultar, mas é popular tanto com trolls e com combatentes corpo a corpo querendo manter tais trolls bem longe.",
+      "page": 423
+    },
+    {
+      "id": "sword",
+      "name": "Espada",
+      "category": "blades",
+      "accuracy": 6,
+      "reach": 1,
+      "damage": {
+        "value": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.str"
+            },
+            3
+          ]
+        },
+        "type": "physical"
+      },
+      "ap": -2,
+      "availability": {
+        "value": 5,
+        "legality": "R"
+      },
+      "cost": 500,
+      "desc": "É afiada, pesada, e vai te abrir todinho. Disponível em diversos estilos (wakizashi, seax, cimitarra, jian, machete, e assim por diante), essa lâmina de uma mão não é tão formidável quanto uma katana, mas é bem mais fácil de esconder.",
+      "page": 423
+    },
+    {
+      "id": "combat-knife",
+      "name": "Faca de combate",
+      "category": "blades",
+      "accuracy": 6,
+      "reach": 0,
+      "damage": {
+        "value": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.str"
+            },
+            2
+          ]
+        },
+        "type": "physical"
+      },
+      "ap": -3,
+      "availability": {
+        "value": 4,
+        "legality": null
+      },
+      "cost": 300,
+      "desc": "Uma longa faca de luta estilo KA - -BAR com uma lâmina enegrecida e uma ponta de cinzel para penetrar armadura.",
+      "page": 423
+    },
+    {
+      "id": "survival-knife",
+      "name": "Faca de sobrevivência",
+      "category": "blades",
+      "accuracy": 5,
+      "reach": 0,
+      "damage": {
+        "value": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.str"
+            },
+            2
+          ]
+        },
+        "type": "physical"
+      },
+      "ap": -1,
+      "availability": null,
+      "cost": 100,
+      "desc": "Uma lâmina de ótima qualidade — lisa num gume, serrilhada no outro — com diversos acessórios, incluindo monitor GPS, mini-multi-ferramentas, micro-isqueiro, e um compartimento oculto no cabo. As laterais do aço são banhadas com um químico não - -tóxico que enegrece a lâmina quando inerte para prevenir reflexos indesejados, mas que pode ser ativado para oferecer duas horas de luz fosforescente. Todas as facas podem cortar carne, mas uma faca de sobrevivência é melhor para cortar corda e madeira, ou usada como ferramenta em geral. A faca de sobrevivência é um tipo de engenhoca essencial para qualquer profissional.",
+      "wireless": "A faca exibe um ORA dos seus mapas locais, sua posição GPS, e pode ser usada para fazer com-chamadas.",
+      "page": 423
+    },
+    {
+      "id": "knife",
+      "name": "Faca",
+      "category": "blades",
+      "accuracy": 5,
+      "reach": 0,
+      "damage": {
+        "value": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.str"
+            },
+            1
+          ]
+        },
+        "type": "physical"
+      },
+      "ap": -1,
+      "availability": null,
+      "cost": 10,
+      "desc": "Sua cortadora básica multiuso das ruas. Vem em uma enorme variedade de estilos, cores e formas, mas as estatísticas não variam de um para o outro. Facas comuns são usadas pelos pobres, desesperados, ou cautelosos como armas reserva.",
+      "page": 423
+    },
+    {
+      "id": "katana",
+      "name": "Katana",
+      "category": "blades",
+      "accuracy": 7,
+      "reach": 1,
+      "damage": {
+        "value": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.str"
+            },
+            3
+          ]
+        },
+        "type": "physical"
+      },
+      "ap": -3,
+      "availability": {
+        "value": 9,
+        "legality": "R"
+      },
+      "cost": 1000,
+      "desc": "A lendária espada de duas mãos dos samurai. A katana se tornou sinônimo não apenas dos samurai urbanos, mas de incursores das sombras em geral, pelo menos nos trídeos; onde todo mundo tem uma katana, seja mago ou tecnauta. Mas ser um clichê bobo não torna essa lâmina menos perigosa, ou menos útil num combate.",
+      "page": 423
+    },
+    {
+      "id": "forearm-snap-blades",
+      "name": "Lâminas retráteis de antebraço",
+      "category": "blades",
+      "accuracy": 4,
+      "reach": 0,
+      "damage": {
+        "value": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.str"
+            },
+            2
+          ]
+        },
+        "type": "physical"
+      },
+      "ap": -2,
+      "availability": {
+        "value": 7,
+        "legality": "R"
+      },
+      "cost": 200,
+      "desc": "Essencialmente, elas são como esporões, mas são externas — indolor de se instalar ou remover. Uma bainha de antebraço oculta três lâminas que podem se estender ou retrair através de comandos por link sem fio ou movimento muscular.",
+      "wireless": "Preparar as lâminas retráteis de antebraço é uma Ação Livre em vez de uma Ação Simples.",
+      "page": 423
+    },
+    {
+      "id": "combat-axe",
+      "name": "Machado de combate",
+      "category": "blades",
+      "accuracy": 4,
+      "reach": 2,
+      "damage": {
+        "value": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.str"
+            },
+            5
+          ]
+        },
+        "type": "physical"
+      },
+      "ap": -4,
+      "availability": {
+        "value": 12,
+        "legality": "R"
+      },
+      "cost": 4000,
+      "desc": "Um monstro de duas mãos de liga de tungstênio, disponível com lâmina simples ou dupla. Uma ponta endurecida de perfuração pode ser oculta e carregada por mola no cabo. Apesar de parecer bárbara ou primitiva, as ampliações físicas de 2075 podem tornar uma arma da velha guarda como um machado de combate ainda mais mortal que uma arma de fogo nas mãos certas. Então manda ver na barbaridade.",
+      "page": 423
+    },
+    {
+      "id": "stun-baton",
+      "name": "Bastão de choque",
+      "category": "clubs",
+      "accuracy": 4,
+      "reach": 1,
+      "damage": {
+        "value": 9,
+        "type": "stun",
+        "element": "electricity"
+      },
+      "ap": -5,
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 750,
+      "desc": "Uma arma padrão de controle de multidão, vista como uma ferramenta e símbolo de opressores de governos corporativos, mas pragmaticamente útil para incursores. Ele tem dez cargas e recupera uma carga a cada dez segundos durante a recarga.",
+      "wireless": "O bastão de choque recarrega por indução, recuperando uma carga por hora completa de tempo com sem fio ligado.",
+      "page": 423
+    },
+    {
+      "id": "extendable-baton",
+      "name": "Bastão retrátil",
+      "category": "clubs",
+      "accuracy": 5,
+      "reach": 1,
+      "damage": {
+        "value": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.str"
+            },
+            2
+          ]
+        },
+        "type": "physical"
+      },
+      "ap": 0,
+      "availability": {
+        "value": 4,
+        "legality": null
+      },
+      "cost": 100,
+      "desc": "Esse bastão telescópico pode ser recolhido, e pode ser estendido com uma forte virada do pulso ou um sinal sem fio. É mais fácil de ocultar quando retraído (Modificador de Ocultação 0 quando retraído, +2 quando estendido).",
+      "wireless": "Preparar o bastão retrátil é uma Ação Livre em vez de uma Ação Simples.",
+      "page": 423
+    },
+    {
+      "id": "club",
+      "name": "Bastão",
+      "category": "clubs",
+      "accuracy": 4,
+      "reach": 1,
+      "damage": {
+        "value": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.str"
+            },
+            3
+          ]
+        },
+        "type": "physical"
+      },
+      "ap": 0,
+      "availability": null,
+      "cost": 30,
+      "desc": "A arma que dá nome à perícia. Estas estatísticas representam diversos objetos, incluindo um cabo de machado, taco de beisebol, chave inglesa, pé de cabra, chave de roda, e uma tábua com um prego enferrujado. Há um preço listado, mas não é muito difícil encontrar um de graça se você souber onde procurar.",
+      "page": 423
+    },
+    {
+      "id": "telescoping-staff",
+      "name": "Cajado retrátil",
+      "category": "clubs",
+      "accuracy": 4,
+      "reach": 2,
+      "damage": {
+        "value": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.str"
+            },
+            2
+          ]
+        },
+        "type": "physical"
+      },
+      "ap": 0,
+      "availability": {
+        "value": 4,
+        "legality": null
+      },
+      "cost": 350,
+      "desc": "Esse é um cajado composto e de metal que pode se retrair a um tamanho razoável, um que pode ser oculto com facilidade similar a um bastão de choque ou uma espada. Ele pode ser estendido e travado ao se girar na velocidade e ângulo corretos e girando o cabo, ou através de um sinal sem fio.",
+      "wireless": "Preparar o cajado retrátil é uma Ação Livre em vez de uma Ação Simples.",
+      "page": 423
+    },
+    {
+      "id": "staff",
+      "name": "Cajado",
+      "category": "clubs",
+      "accuracy": 6,
+      "reach": 2,
+      "damage": {
+        "value": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.str"
+            },
+            3
+          ]
+        },
+        "type": "physical"
+      },
+      "ap": 0,
+      "availability": {
+        "value": 3,
+        "legality": null
+      },
+      "cost": 100,
+      "desc": "Esta vara grande e pesada é popular com magos que usam aquela aparência tradicional. Disponível em material composto, madeira de lei, aço de alto teor de carbono e outros.",
+      "page": 423
+    },
+    {
+      "id": "sap",
+      "name": "Porrete",
+      "category": "clubs",
+      "accuracy": 5,
+      "reach": 0,
+      "damage": {
+        "value": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.str"
+            },
+            2
+          ]
+        },
+        "type": "physical"
+      },
+      "ap": 0,
+      "availability": {
+        "value": 2,
+        "legality": null
+      },
+      "cost": 30,
+      "desc": "Também chamado de cassetete, esse é um pequeno bastão flexível ou um pedaço chato de ferro em uma capa flexível de couro. É especialmente projetado para ocultação (Modificador de Ocultação –2).",
+      "page": 423
+    },
+    {
+      "id": "monofilament-whip",
+      "name": "Chicote de monofilamento",
+      "category": "other-melee",
+      "skill": "exotic-melee-weapon",
+      "accuracy": 5,
+      "accuracyEnhanced": 7,
+      "reach": 2,
+      "damage": {
+        "value": 12,
+        "type": "physical"
+      },
+      "ap": -8,
+      "availability": {
+        "value": 12,
+        "legality": "P"
+      },
+      "cost": 10000,
+      "desc": "Icônico. Assustador. Mortal. Poucas armas são tão temidas nas ruas. Essa linha de monofilamento pode cortar osso e armadura como manteiga quente. A linha se estende até dois metros, e se retrai no cabo da arma quando não está em uso. A ação de chicotear, a ponta com peso, e o fio mortal da própria linha do monofilamento torna essa arma um perigo em potencial para o seu usuário. Numa falha, você engancha a ponta com peso em algo próximo e deve desenrola-la antes de fazer outro ataque com ela. Numa falha crítica, você se atinge com o chicote e sofre seu dano base (resistido normalmente). Um chicote de monofilamento requer a perícia de Arma Corpo a Corpo Exótica (Chicote de Monofilamento) para ser usada.",
+      "wireless": "O chicote pode ser preparado com uma Ação Livre em vez de uma Ação Simples, e o sistema de segurança embutido do chicote se retrai automaticamente em vez de enrolar em você numa falha. A Precisão também aumenta em 2.",
+      "page": 423
+    },
+    {
+      "id": "shock-gloves",
+      "name": "Luvas de choque",
+      "category": "other-melee",
+      "skill": "unarmed-combat",
+      "accuracy": {
+        "ref": "limit.physical"
+      },
+      "reach": 0,
+      "damage": {
+        "value": 8,
+        "type": "stun",
+        "element": "electricity"
+      },
+      "ap": -5,
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 550,
+      "desc": "Essas luvas eletricamente isoladas têm uma malha que descarrega uma corrente elétrica com um soco ou um simples toque. As luvas causam dano de eletricidade (p. 170) e podem usar até dez cargas antes de ser necessário conecta-las e recarrega-las (numa taxa de uma carga a cada dez segundos). Ataques com luvas de choque usam a perícia Combate Desarmado.",
+      "wireless": "As luvas de choque recarregam por indução, recuperando uma carga por hora completa de tempo com sem fio ligado.",
+      "page": 423
+    },
+    {
+      "id": "knucks",
+      "name": "Soco-inglês",
+      "category": "other-melee",
+      "skill": "unarmed-combat",
+      "accuracy": {
+        "ref": "limit.physical"
+      },
+      "reach": 0,
+      "damage": {
+        "value": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.str"
+            },
+            1
+          ]
+        },
+        "type": "physical"
+      },
+      "ap": 0,
+      "availability": {
+        "value": 2,
+        "legality": "R"
+      },
+      "cost": 100,
+      "desc": "Estes podem ser armas de punho tradicionais, como soqueiras, ou as “luvas Radicais” modernas com uma fina camada de densiplástico localizada ao lon-go das falanges e o fio da mão. Seja como for, eles aprimoram substancialmente o impacto de um soco, tornando-o potencialmente mortal. Ataques com soco-inglês usam a perícia Combate Desarmado.",
+      "page": 423
+    },
+    {
+      "id": "bow",
+      "name": "Arco",
+      "category": "bows",
+      "rating": {
+        "min": 1,
+        "max": 10
+      },
+      "accuracy": 6,
+      "damage": {
+        "value": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            2
+          ]
+        },
+        "type": "physical"
+      },
+      "ap": {
+        "op": "mul",
+        "of": [
+          {
+            "op": "div",
+            "of": [
+              {
+                "ref": "rating"
+              },
+              4
+            ]
+          },
+          -1
+        ]
+      },
+      "availability": {
+        "value": {
+          "ref": "rating"
+        },
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          100
+        ]
+      },
+      "desc": "Pode ser um arco longo tradicional de fibra de vidro ou madeira, ou possivelmente um composto com roldanas moderno. Ambos são armas arcaicas e raras nas ruas de 2075, e ambos têm a vantagem de ser à prova de hackers. Recarregar um arco é uma Ação Simples (Preparar Arma, p. 166). Arcos têm níveis que indicam a Força mínima necessária para usar essa arma. Ao atacar com um arco, uma pilha de dados cuja Força seja menor que a Força mínima sofre –3 de modificador na pilha de dados por ponto abaixo do mínimo; essa penalidade reflete a dificuldade de puxar o arco e encocar uma flecha. O Nível da arma também é usado para determinar sua distância e dano (Nível máximo é 10). Use o menor valor entre a sua Força, o Nível do arco, ou o Nível da flecha para distância e dano ao atacar um alvo, já que o seu arco de liga de berílio com revestimento de titânio de Nível 10 costuma transformar flechas de madeira ou fibra de vidro em pó ao atingirem um alvo.",
+      "page": 424
+    },
+    {
+      "id": "light-crossbow",
+      "name": "Besta Leve",
+      "category": "crossbows",
+      "accuracy": 7,
+      "damage": {
+        "value": 5,
+        "type": "physical"
+      },
+      "ap": -1,
+      "availability": {
+        "value": 2,
+        "legality": null
+      },
+      "cost": 300,
+      "desc": "Bestas modernas são equipadas com um dispositivo de recarga automática, então a não ser que esteja usando uma peça de museu, recarregar não exige uma ação de Preparar Arma. Bestas têm armazenamento internos (ai) contendo até 4 virotes. Bestas vêm em tamanhos Leve, Média, e Pesada.",
+      "page": 424
+    },
+    {
+      "id": "medium-crossbow",
+      "name": "Besta Média",
+      "category": "crossbows",
+      "accuracy": 6,
+      "damage": {
+        "value": 7,
+        "type": "physical"
+      },
+      "ap": -2,
+      "availability": {
+        "value": 4,
+        "legality": "R"
+      },
+      "cost": 500,
+      "desc": "Bestas modernas são equipadas com um dispositivo de recarga automática, então a não ser que esteja usando uma peça de museu, recarregar não exige uma ação de Preparar Arma. Bestas têm armazenamento internos (ai) contendo até 4 virotes. Bestas vêm em tamanhos Leve, Média, e Pesada.",
+      "page": 424
+    },
+    {
+      "id": "heavy-crossbow",
+      "name": "Besta Pesada",
+      "category": "crossbows",
+      "accuracy": 5,
+      "damage": {
+        "value": 10,
+        "type": "physical"
+      },
+      "ap": -3,
+      "availability": {
+        "value": 8,
+        "legality": "R"
+      },
+      "cost": 1000,
+      "desc": "Bestas modernas são equipadas com um dispositivo de recarga automática, então a não ser que esteja usando uma peça de museu, recarregar não exige uma ação de Preparar Arma. Bestas têm armazenamento internos (ai) contendo até 4 virotes. Bestas vêm em tamanhos Leve, Média, e Pesada.",
+      "page": 424
+    },
+    {
+      "id": "throwing-knife",
+      "name": "Facas de arremesso/shuriken",
+      "category": "throwing",
+      "accuracy": {
+        "ref": "limit.physical"
+      },
+      "damage": {
+        "value": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.str"
+            },
+            1
+          ]
+        },
+        "type": "physical"
+      },
+      "ap": -1,
+      "availability": {
+        "value": 4,
+        "legality": "R"
+      },
+      "cost": 25,
+      "desc": "Uma enorme variedade de formas e tamanhos com aerodinâmica equilibrada, especialmente pesadas, estas armas de arremesso estão disponíveis, desde cravos de arremesso, dardos, e até kunai e shuriken. Um personagem pode preparar (Agilidade ÷ 2) dessas facas com uma ação de Preparar Arma.",
+      "wireless": "Se todas as facas de arremesso ou shuriken que arremessar num único Turno de Combate forem sem fio e tiverrem um sistema de neuroconexão, cada faca arremessada recebe +1 de bônus na pilha de dados por faca arremessada naquele Turno de Combate no seu alvo atual, já que as facas informam e se ajustam pelo vento e outras condições atmosféricas. Então você não receberia bônus no primeiro, +1 bônus no segundo arremesso, +2 no terceiro, etc. (presumindo que mirou todas as três facas no mesmo alvo). Flecha/virote de injeção: Um virote de injeção causa o mesmo dano que uma flecha ou virote comum, mas também inclui uma carga útil de uma dose de uma droga ou toxina. Os efeitos dependem da carga de droga, mas para utiliza-la com sucesso, o ataque deve causar ao menos uma caixa de dano após o Teste de Resistência a Dano. Este é um ataque de toxina com vetor por injeção.",
+      "page": 424
+    },
+    {
+      "id": "defiance-ex-shocker",
+      "name": "Defiance EX Shocker",
+      "category": "tasers",
+      "accuracy": 4,
+      "damage": {
+        "value": 9,
+        "type": "stun",
+        "element": "electricity"
+      },
+      "ap": -5,
+      "modes": [
+        "ss"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 4,
+          "feed": "ai"
+        }
+      ],
+      "availability": null,
+      "cost": 250,
+      "desc": "Este taser de serviço pesado dispara até 4 dardos com fios de até 20 metros de comprimento. A conexão com fio com a bateria permite um choque mais poderoso. Muitos tasers modernos usam dardos sem fio, então o Defiance EX-Shocker é uma exceção. Ele também tem contatos que permitem que sejam usadas como uma arma de atordoamento em combate corpo a corpo (Precisão 3, VD 8A(e), Alcance 0).",
+      "wireless": "Um acerto com sucesso informa você o status da saúde básica do alvo (e dos Monito-res de Condição).",
+      "page": 425
+    },
+    {
+      "id": "yamaha-pulsar",
+      "name": "Yamaha Pulsar",
+      "category": "tasers",
+      "accuracy": 5,
+      "damage": {
+        "value": 7,
+        "type": "stun",
+        "element": "electricity"
+      },
+      "ap": -5,
+      "modes": [
+        "sa"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 4,
+          "feed": "ai"
+        }
+      ],
+      "availability": null,
+      "cost": 180,
+      "desc": "Os dardos desse taser contêm capacitores sem fio, o que significa que o Pulsar elimina a necessidade para fios incômodos. Como resultado, ele é levemente menos poderoso do que o EX Shocker, apesar de disparar mais rápido. Ele não possui os contatos corpo a corpo do EX Shocker.",
+      "wireless": "Um acerto com sucesso informa você o status da saúde básica do alvo (e dos Monitores de Condição).",
+      "page": 425
+    },
+    {
+      "id": "fichetti-tiffani-needler",
+      "name": "Fichetti Tiffani Needler",
+      "category": "holdouts",
+      "accuracy": 5,
+      "damage": {
+        "value": 8,
+        "type": "physical",
+        "element": "flechette"
+      },
+      "ap": 5,
+      "modes": [
+        "sa"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 4,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 5,
+        "legality": "R"
+      },
+      "cost": 1000,
+      "desc": "Projetada para agradar socialites e debutantes, a Tiffani Needler está disponível em várias cores e estilos. Ela também possui um revestimento especial de mudança de cor que pode ser manipulado por sinal sem fio. Isso é útil para assegurar que a sua arma combine com seus sapatos ou sua bolsa. A Needler só pode disparar projéteis flechete (já inseridos no seu código de dano).",
+      "wireless": "Você pode alterar a cor Tiffani Needler com uma Ação Simples.",
+      "page": 425
+    },
+    {
+      "id": "streetline-special",
+      "name": "Streetline Special",
+      "category": "holdouts",
+      "accuracy": 4,
+      "damage": {
+        "value": 6,
+        "type": "physical"
+      },
+      "ap": 0,
+      "modes": [
+        "sa"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 6,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 4,
+        "legality": "R"
+      },
+      "cost": 120,
+      "desc": "Popular entre a escória da sociedade, a Streetline Special é uma arma pequena e leve, feita de materiais compósitos. Detectores de Anomalia Magnética (veja scanner de DAM, p. 446) sofrem –2 de modificador na pilha de dados para detecta-la.",
+      "page": 425
+    },
+    {
+      "id": "walther-palm-pistol",
+      "name": "Walther Palm Pistol",
+      "category": "holdouts",
+      "accuracy": 4,
+      "damage": {
+        "value": 7,
+        "type": "physical"
+      },
+      "ap": 0,
+      "modes": [
+        "ss",
+        "bf"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 2,
+          "feed": "b"
+        }
+      ],
+      "availability": {
+        "value": 4,
+        "legality": "R"
+      },
+      "cost": 180,
+      "desc": "Essa é uma derringer clássica de cano duplo em combinação vertical. É bem poderosa para o tamanho, mas a desvantagem é que ela tem uma das capacidades de “pente” mais diminutas do mercado — apenas uma bala por cano. Os dois canos podem ser disparados de uma só vez como uma rajada curta (veja Balas Insuficientes, p. 180).",
+      "page": 425
+    },
+    {
+      "id": "ares-light-fire-75",
+      "name": "Ares Light Fire 75",
+      "category": "light-pistols",
+      "accuracy": 6,
+      "accuracyEnhanced": 8,
+      "damage": {
+        "value": 6,
+        "type": "physical"
+      },
+      "ap": 0,
+      "modes": [
+        "sa"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 16,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 6,
+        "legality": "P"
+      },
+      "cost": 1250,
+      "desc": "Projetada baseada numa das pistolas mais comuns no mercado, a Light Fire é uma arma para operadores especiais, dificilmente disponível através de canais legais. Ela vem com um silenciador especial montado no cano desenvolvido especialmente para a Light Fire, aplicando –1 adicional de modificador na pilha de dados normalmente concedido por silenciadores. Além do seu silenciador embutido, a Ares Light Fire 75 inclui um sistema de arma inteligente.",
+      "page": 426
+    },
+    {
+      "id": "ares-light-fire-70",
+      "name": "Ares Light Fire 70",
+      "category": "light-pistols",
+      "accuracy": 7,
+      "damage": {
+        "value": 6,
+        "type": "physical"
+      },
+      "ap": 0,
+      "modes": [
+        "sa"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 16,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 3,
+        "legality": "R"
+      },
+      "cost": 200,
+      "desc": "A Ares Light Fire 70 é uma das pistolas mais comuns no mercado. Um silenciador especial montado no cano desenvolvido especialmente para a Light Fire 70 está disponível, que aplica –1 adicional de modificador na pilha de dados para os –4 de sempre (para um total de –5); esse silenciador custa 750 ¥.",
+      "page": 426
+    },
+    {
+      "id": "beretta-201t",
+      "name": "Beretta 201T",
+      "category": "light-pistols",
+      "accuracy": 6,
+      "damage": {
+        "value": 6,
+        "type": "physical"
+      },
+      "ap": 0,
+      "modes": [
+        "sa",
+        "bf"
+      ],
+      "recoil": 0,
+      "recoilEnhanced": 1,
+      "ammo": [
+        {
+          "count": 21,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 7,
+        "legality": "R"
+      },
+      "cost": 210,
+      "desc": "Essa arma leve é utilizada por muitos profissionais de segurança. É capaz de rajada. Já que a 201T é classificada como pistola leve sem outras limitações, ela é muito popular com agências de segurança em países onde pistolas pesadas e automáticas são difíceis de se adquirir de forma legal. Rajadas semiautomáticas usando a Beretta 201T exigem uma Ação Simples. A arma inclui uma coronha destacável.",
+      "page": 426
+    },
+    {
+      "id": "colt-america-l36",
+      "name": "Colt America L36",
+      "category": "light-pistols",
+      "accuracy": 7,
+      "damage": {
+        "value": 7,
+        "type": "physical"
+      },
+      "ap": 0,
+      "modes": [
+        "sa"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 11,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 4,
+        "legality": "R"
+      },
+      "cost": 320,
+      "desc": "Uma pistola venerável com uma grande reputação. Esta arma de fogo básica é barata, facilmente escondida e quase onipresente. Uma perfeita arma descartável.",
+      "page": 426
+    },
+    {
+      "id": "fichetti-security-600",
+      "name": "Fichetti Security 600",
+      "category": "light-pistols",
+      "accuracy": 6,
+      "accuracyEnhanced": 7,
+      "damage": {
+        "value": 7,
+        "type": "physical"
+      },
+      "ap": 0,
+      "modes": [
+        "sa"
+      ],
+      "recoil": 0,
+      "recoilEnhanced": 1,
+      "ammo": [
+        {
+          "count": 30,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 350,
+      "desc": "Uma arma secundária das forças de segurança, o mecanismo de suprimento altamente eficiente desta arma permite um pente com trinta projéteis. A Fichetti Security 600 vem com uma coronha dobrável e destacável e uma mira laser.",
+      "page": 426
+    },
+    {
+      "id": "taurus-omni-6",
+      "name": "Taurus Omni-6",
+      "category": "light-pistols",
+      "accuracy": 5,
+      "accuracyEnhanced": 6,
+      "damage": [
+        {
+          "value": 6,
+          "type": "physical"
+        },
+        {
+          "value": 7,
+          "type": "physical"
+        }
+      ],
+      "ap": [
+        0,
+        -1
+      ],
+      "modes": [
+        "sa",
+        "ss"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 6,
+          "feed": "ci"
+        }
+      ],
+      "availability": {
+        "value": 3,
+        "legality": "R"
+      },
+      "cost": 300,
+      "desc": "Esse revólver surrado e confiável é especialmente projetado para lidar com uma variedade de munições. Popular com aficionados e entusiastas, a Omni-6 acompanha alguns cilindros intercambiáveis para que possa utilizar munição com ou sem cartucho, sendo de pistolas leves ou pesadas. Ao disparar munição de pistola leve, a Omni-6 é semiautomática (SA) e tem um VD base de 6F, e quando dispara munição de pistola pesada só funciona em modo de tiro simples (TS), com um VD de 7F e –1 PA. A Omni-6 acompanha uma mira laser embutida.",
+      "page": 426
+    },
+    {
+      "id": "ares-predator-v",
+      "name": "Ares Predator V",
+      "category": "heavy-pistols",
+      "accuracy": 5,
+      "accuracyEnhanced": 7,
+      "damage": {
+        "value": 8,
+        "type": "physical"
+      },
+      "ap": -1,
+      "modes": [
+        "sa"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 15,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 5,
+        "legality": "R"
+      },
+      "cost": 725,
+      "desc": "A iteração mais recente da arma mais popular no mundo, especialmente com mercenários e incursores das sombras. Atualizada com melhores características de ergonomia e manipulação, a Ares Predator V inclui um sistema de arma inteligente. Alguns dizem que a Ares Predator V não é melhor do que outras armas em sua classe, mas ninguém pode argumentar que ela tem um melhor reconhecimento da marca.",
+      "page": 426
+    },
+    {
+      "id": "ares-viper-slivergun",
+      "name": "Ares Viper Slivergun",
+      "category": "heavy-pistols",
+      "accuracy": 4,
+      "damage": {
+        "value": 9,
+        "type": "physical",
+        "element": "flechette"
+      },
+      "ap": 4,
+      "modes": [
+        "sa",
+        "bf"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 30,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 8,
+        "legality": "P"
+      },
+      "cost": 380,
+      "desc": "Essa Slivergun esguia se aproveita do combo inigualável da capacidade de rajadas e supressão de som (um silenciador embutido, p. 432) junto com sua enorme capacidade de munição. Ela dispara cacos que contam como munição flechete, já contabilizada no código de dano da arma.",
+      "page": 426
+    },
+    {
+      "id": "browning-ultra-power",
+      "name": "Browning Ultra-Power",
+      "category": "heavy-pistols",
+      "accuracy": 5,
+      "accuracyEnhanced": 6,
+      "damage": {
+        "value": 8,
+        "type": "physical"
+      },
+      "ap": -1,
+      "modes": [
+        "sa"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 10,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 4,
+        "legality": "R"
+      },
+      "cost": 640,
+      "desc": "Esta pistola venerável é a principal competidora da Ares Predator como a pistola pesada mais durona do mundo. Ela oferece uma mira laser montada na parte superior e é um pouco mais barata.",
+      "page": 426
+    },
+    {
+      "id": "colt-government-2066",
+      "name": "Colt Government 2066",
+      "category": "heavy-pistols",
+      "accuracy": 6,
+      "damage": {
+        "value": 7,
+        "type": "physical"
+      },
+      "ap": -1,
+      "modes": [
+        "sa"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 14,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 7,
+        "legality": "R"
+      },
+      "cost": 425,
+      "desc": "Esta arma padrão do governo, denominada em homenagem a lendária Colt M191 1A1, usa uma faísca induzida eletricamente para detonar os propulsores da bala. A remoção da maioria das partes móveis do mecanismo de disparo dá a esta arma uma reputação de ser extremamente confiável.",
+      "page": 426
+    },
+    {
+      "id": "remington-roomsweeper",
+      "name": "Remington Roomsweeper",
+      "category": "heavy-pistols",
+      "accuracy": 4,
+      "damage": {
+        "value": 7,
+        "type": "physical"
+      },
+      "ap": -1,
+      "modes": [
+        "sa"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 8,
+          "feed": "ai"
+        }
+      ],
+      "variants": [
+        {
+          "name": "c/ flechetes",
+          "damage": {
+            "value": 9,
+            "type": "physical",
+            "element": "flechette"
+          },
+          "ap": 4
+        }
+      ],
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 250,
+      "desc": "Essa é mais uma escopeta de cano curto do que uma pistola. Quando carregada com cartuchos (flechete) em vez de projéteis sólidos, ela usa distâncias de Pistola Pesada, mas regras de escopetas (Escopetas, p. 180).",
+      "page": 426
+    },
+    {
+      "id": "ruger-super-warhawk",
+      "name": "Ruger Super Warhawk",
+      "category": "heavy-pistols",
+      "accuracy": 5,
+      "damage": {
+        "value": 9,
+        "type": "physical"
+      },
+      "ap": -2,
+      "modes": [
+        "ss"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 6,
+          "feed": "ci"
+        }
+      ],
+      "availability": {
+        "value": 4,
+        "legality": "R"
+      },
+      "cost": 400,
+      "desc": "Esse revólver é alto como um jatinho particular, e duas vezes mais brilhoso. Também é um dos revólveres mais assustadores do mundo. A variante de munição com cartucho é empolgante só pela sensação inestimável de abrir o cilindro com uma mão e jogar fora o latão gasto.",
+      "page": 426
+    },
+    {
+      "id": "ares-crusader-ii",
+      "name": "Ares Crusader II",
+      "category": "machine-pistols",
+      "accuracy": 5,
+      "accuracyEnhanced": 7,
+      "damage": {
+        "value": 7,
+        "type": "physical"
+      },
+      "ap": 0,
+      "modes": [
+        "sa",
+        "bf"
+      ],
+      "recoil": 2,
+      "ammo": [
+        {
+          "count": 40,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 9,
+        "legality": "R"
+      },
+      "cost": 830,
+      "desc": "Um pente grande e o fácil manuseio fazem da Ares Crusader II uma das armas mais populares de sua classe. Ela possui um sistema de compensação de recuo integrado de saída de gás 2 montado no cano e um sistema integrado de arma inteligente.",
+      "page": 427
+    },
+    {
+      "id": "ceska-black-scorpion",
+      "name": "Ceska Black Scorpion",
+      "category": "machine-pistols",
+      "accuracy": 5,
+      "damage": {
+        "value": 6,
+        "type": "physical"
+      },
+      "ap": 0,
+      "modes": [
+        "sa",
+        "bf"
+      ],
+      "recoil": 0,
+      "recoilEnhanced": 1,
+      "ammo": [
+        {
+          "count": 35,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 270,
+      "desc": "Essa pistola semiautomática clássica oferece uma capacidade de rajada ocultável. Ela vem equipada com uma coronha dobrável embutida.",
+      "page": 427
+    },
+    {
+      "id": "steyr-tmp",
+      "name": "Steyr TMP",
+      "category": "machine-pistols",
+      "accuracy": 4,
+      "damage": {
+        "value": 7,
+        "type": "physical"
+      },
+      "ap": 0,
+      "modes": [
+        "sa",
+        "bf",
+        "fa"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 30,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 8,
+        "legality": "R"
+      },
+      "cost": 350,
+      "desc": "Essa pistola com chassi de polímero leve é capaz de rajada completa, mas seu peso leve a torna difícil de controlar ao disparar em rajada completa. Ela vem equipada com uma mira laser embutida na parte superior.",
+      "page": 427
+    },
+    {
+      "id": "colt-cobra-tz-120",
+      "name": "Colt Cobra TZ-120",
+      "category": "smgs",
+      "accuracy": 4,
+      "accuracyEnhanced": 5,
+      "damage": {
+        "value": 7,
+        "type": "physical"
+      },
+      "ap": 0,
+      "modes": [
+        "sa",
+        "bf",
+        "fa"
+      ],
+      "recoil": 2,
+      "recoilEnhanced": 3,
+      "ammo": [
+        {
+          "count": 32,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 5,
+        "legality": "R"
+      },
+      "cost": 660,
+      "desc": "Com seu desenho único e grande variedade de acessórios, a série Colt Cobra é muito popular com forças de segurança de todo o mundo e nos trídeos. A TZ–120 vem com uma coronha dobrável, mira laser montada na parte superior, e um sistema de saída de gás 2 montado no cano.",
+      "page": 427
+    },
+    {
+      "id": "fn-p93-praetor",
+      "name": "FN P93 Praetor",
+      "category": "smgs",
+      "accuracy": 6,
+      "damage": {
+        "value": 8,
+        "type": "physical"
+      },
+      "ap": 0,
+      "modes": [
+        "sa",
+        "bf",
+        "fa"
+      ],
+      "recoil": 1,
+      "recoilEnhanced": 2,
+      "ammo": [
+        {
+          "count": 50,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 11,
+        "legality": "P"
+      },
+      "cost": 900,
+      "desc": "Essa submetralhadora bullpup foi projetada para as equipes de resposta rápida da Interpol (controlada pela Corte Corporativa). Seu sistema especial de câmara concede 1 ponto de Compensação de Recuo, ele possui uma coronha rígida embutida, e uma lanterna que pode ser usada para reduzir penalidades de escuridão em um passo (Modificadores Ambientais, p. 173). A posse da FN P93 sem ser membro legítimo de uma força da Corte Corporativa é um crime na maioria das jurisdições.",
+      "page": 427
+    },
+    {
+      "id": "hk-227",
+      "name": "HK-227",
+      "category": "smgs",
+      "accuracy": 5,
+      "accuracyEnhanced": 7,
+      "damage": {
+        "value": 7,
+        "type": "physical"
+      },
+      "ap": 0,
+      "modes": [
+        "sa",
+        "bf",
+        "fa"
+      ],
+      "recoil": 0,
+      "recoilEnhanced": 1,
+      "ammo": [
+        {
+          "count": 28,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 8,
+        "legality": "R"
+      },
+      "cost": 730,
+      "desc": "A submetralhadora preferida de muitas forças de segurança corporativas e militares, a HK–227 possui uma coronha retrátil, sistema de arma inteligente, e supressor de som embutido.",
+      "page": 427
+    },
+    {
+      "id": "ingram-smartgun-x",
+      "name": "Ingram Smartgun X",
+      "category": "smgs",
+      "accuracy": 4,
+      "accuracyEnhanced": 6,
+      "damage": {
+        "value": 8,
+        "type": "physical"
+      },
+      "ap": 0,
+      "modes": [
+        "bf",
+        "fa"
+      ],
+      "recoil": 2,
+      "ammo": [
+        {
+          "count": 32,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 800,
+      "desc": "Tiroteio classe A. Famosa como a arma preferida de muitos samurai urbanos lendários desde 2050, a Ingram Smartgun vem adornada com um sistema de saída de gás 2, um sistema de arma inteligente e um silenciador integrado.",
+      "page": 427
+    },
+    {
+      "id": "sck-model-100",
+      "name": "SCK Model 100",
+      "category": "smgs",
+      "accuracy": 5,
+      "accuracyEnhanced": 7,
+      "damage": {
+        "value": 8,
+        "type": "physical"
+      },
+      "ap": 0,
+      "modes": [
+        "sa",
+        "bf"
+      ],
+      "recoil": 0,
+      "recoilEnhanced": 1,
+      "ammo": [
+        {
+          "count": 30,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 875,
+      "desc": "A Shin Chou Kyogo é sinônimo de segurança corporativa japonesa. Quase toda força de segurança de uma japanacorp recebe a SCK 100, incluindo a infame Samurai Vermelho da Renraku. A SCK 100 possui um sistema interno de arma inteligente e uma coronha dobrável.",
+      "page": 427
+    },
+    {
+      "id": "uzi-iv",
+      "name": "Uzi IV",
+      "category": "smgs",
+      "accuracy": 4,
+      "accuracyEnhanced": 5,
+      "damage": {
+        "value": 7,
+        "type": "physical"
+      },
+      "ap": 0,
+      "modes": [
+        "bf"
+      ],
+      "recoil": 0,
+      "recoilEnhanced": 1,
+      "ammo": [
+        {
+          "count": 24,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 4,
+        "legality": "R"
+      },
+      "cost": 450,
+      "desc": "Essa submetralhadora velha é uma descendente digna da famosa arma israelita. A submetralhadora possui uma coronha dobrável integral e mira laser embutida na parte superior.",
+      "page": 427
+    },
+    {
+      "id": "ak-97",
+      "name": "AK-97",
+      "category": "assault-rifles",
+      "accuracy": 5,
+      "damage": {
+        "value": 10,
+        "type": "physical"
+      },
+      "ap": -2,
+      "modes": [
+        "sa",
+        "bf",
+        "fa"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 38,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 4,
+        "legality": "R"
+      },
+      "cost": 950,
+      "desc": "O AK-97 é uma arma lendária com uma confiabilidade histórica — você pode enterrá-la por dez anos, desenterrá-la e dispará-la imediatamente, sem problemas. Quando todas as AK-1 74 fabricadas com nanotecnologia derreteram até virar escória, as AK-97 continuaram funcionando bem.",
+      "page": 428
+    },
+    {
+      "id": "ares-alpha",
+      "name": "Ares Alpha",
+      "category": "assault-rifles",
+      "accuracy": 5,
+      "accuracyEnhanced": 7,
+      "damage": {
+        "value": 11,
+        "type": "physical"
+      },
+      "ap": -2,
+      "modes": [
+        "sa",
+        "bf",
+        "fa"
+      ],
+      "recoil": 2,
+      "ammo": [
+        {
+          "count": 42,
+          "feed": "p"
+        }
+      ],
+      "variants": [
+        {
+          "name": "Lançador de Granada",
+          "accuracy": 4,
+          "accuracyEnhanced": 6,
+          "modes": [
+            "ss"
+          ],
+          "ammo": [
+            {
+              "count": 6,
+              "feed": "p"
+            }
+          ]
+        }
+      ],
+      "availability": {
+        "value": 11,
+        "legality": "P"
+      },
+      "cost": 2650,
+      "desc": "Especialmente concebido para as forças especiais da Brigada de Fogo Ares, a Alpha tornou-se um sucesso de vendas em todo o mundo, sendo usada pelas Forças Especiais dos EUCA. Em parte, isso se deve à notoriedade excepcional da marca e também por causa de seu lançador de granadas sob o cano, sistema de arma inteligente e um caro projeto da câmara que fornece 2 pontos de Compensação de Recuo.",
+      "page": 428
+    },
+    {
+      "id": "colt-m23",
+      "name": "Colt M23",
+      "category": "assault-rifles",
+      "accuracy": 4,
+      "damage": {
+        "value": 9,
+        "type": "physical"
+      },
+      "ap": -2,
+      "modes": [
+        "sa",
+        "bf",
+        "fa"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 40,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 4,
+        "legality": "R"
+      },
+      "cost": 550,
+      "desc": "Esse fuzil de assalto barato, fabricado em massa e sem frescuras é amado tanto pelos gangueiros e piratas que conseguem adquirir um e pelos profissionais querendo algo para modificar desde o início.",
+      "page": 428
+    },
+    {
+      "id": "fn-har",
+      "name": "FN HAR",
+      "category": "assault-rifles",
+      "accuracy": 5,
+      "accuracyEnhanced": 6,
+      "damage": {
+        "value": 10,
+        "type": "physical"
+      },
+      "ap": -2,
+      "modes": [
+        "sa",
+        "bf",
+        "fa"
+      ],
+      "recoil": 2,
+      "ammo": [
+        {
+          "count": 35,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 8,
+        "legality": "R"
+      },
+      "cost": 1500,
+      "desc": "Esse fuzil de assalto é absurdamente popular com forças de segurança particular e equipes de resposta corporativas. Ela tem uma mira laser e sistema de saída de gás 2.",
+      "page": 428
+    },
+    {
+      "id": "yamaha-raiden",
+      "name": "Yamaha Raiden",
+      "category": "assault-rifles",
+      "accuracy": 6,
+      "accuracyEnhanced": 8,
+      "damage": {
+        "value": 11,
+        "type": "physical"
+      },
+      "ap": -2,
+      "modes": [
+        "bf",
+        "fa"
+      ],
+      "recoil": 1,
+      "ammo": [
+        {
+          "count": 60,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 14,
+        "legality": "P"
+      },
+      "cost": 2600,
+      "desc": "Esse fuzil de assalto com disparo eletrônico é de última geração. A Raiden é muito precisa e está sendo cada vez mais adotada pelas forças de segurança de japanacorps e os Fuzileiros Japoneses Imperiais. Ela vem com um supressor de som e sistema de arma inteligente embutidos, e o mecanismo de disparo eletrônico e desenho oferecem 1 ponto de Compensação de Recuo.",
+      "page": 428
+    },
+    {
+      "id": "ares-desert-strike",
+      "name": "Ares Desert Strike",
+      "category": "sniper-rifles",
+      "accuracy": 7,
+      "damage": {
+        "value": 13,
+        "type": "physical"
+      },
+      "ap": -4,
+      "modes": [
+        "sa"
+      ],
+      "recoil": 0,
+      "recoilEnhanced": 1,
+      "ammo": [
+        {
+          "count": 14,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 10,
+        "legality": "P"
+      },
+      "cost": 17500,
+      "desc": "Esse rifle de precisão testado em combate é projetado para tiros a longa distância em ambientes cruéis. Isso significa que foi construído sem materiais ou tecnologias que costumam falhar. Ele vem equipado com uma coronha rígida com amortecedor de recuo e uma mira telescópica destacável.",
+      "page": 428
+    },
+    {
+      "id": "cavalier-arms-crockett-ebr",
+      "name": "Cavalier Arms Crockett EBR",
+      "category": "sniper-rifles",
+      "accuracy": 6,
+      "damage": {
+        "value": 12,
+        "type": "physical"
+      },
+      "ap": -3,
+      "modes": [
+        "sa",
+        "bf"
+      ],
+      "recoil": 0,
+      "recoilEnhanced": 1,
+      "ammo": [
+        {
+          "count": 20,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 12,
+        "legality": "P"
+      },
+      "cost": 10300,
+      "desc": "Ficando na linha entre o fuzil de assalto e o rifle de precisão, o Crockett EBR possui um modo de rajada. Apesar de não possuir a capacidade de munição de um fuzil de assalto verdadeiro, e não ter a precisão de um atirador de elite, ele compensa isso com versatilidade, sendo capaz de alternar de forma fluída entre um papel de rifle de precisão e um de combate com o apertar de um botão. Ele vem equipado com uma coronha rígida com amortecedor de recuo e uma mira telescópica destacável.",
+      "page": 428
+    },
+    {
+      "id": "ranger-arms-sm-5",
+      "name": "Ranger Arms SM-5",
+      "category": "sniper-rifles",
+      "accuracy": 8,
+      "damage": {
+        "value": 14,
+        "type": "physical"
+      },
+      "ap": -5,
+      "modes": [
+        "sa"
+      ],
+      "recoil": 0,
+      "recoilEnhanced": 1,
+      "ammo": [
+        {
+          "count": 15,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 16,
+        "legality": "P"
+      },
+      "cost": 28000,
+      "desc": "Uma arma lendária de assassinos, este rifle de precisão tem um silenciador, uma mira telescópica e uma coronha rígida com amortecedor de impac-to. A SM-5 pode ser totalmente desmontada para caber em uma pasta normal. Montar ou desmontá-la exige um Teste Prolongado de Armas de Fogo + Lógica [Mental] (6, Ação Complexa). Embora seja mortal, a SM-5 é frágil. No final de cada Turno de Combate no qual a arma seja usada em um tiroteio, reduza sua Precisão em 1 (até um mínimo de 3). Se a arma for usada como uma arma corpo a corpo ou para se defender de um ataque corpo a corpo, reduza sua Precisão em 2 (até um mínimo de 3). Recalibrar a arma (um trabalho de uma hora) retorna sua Precisão para o normal.",
+      "page": 428
+    },
+    {
+      "id": "remington-950",
+      "name": "Remington 950",
+      "category": "sniper-rifles",
+      "accuracy": 7,
+      "damage": {
+        "value": 12,
+        "type": "physical"
+      },
+      "ap": -4,
+      "modes": [
+        "ss"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 5,
+          "feed": "ai"
+        }
+      ],
+      "availability": {
+        "value": 4,
+        "legality": "R"
+      },
+      "cost": 2100,
+      "desc": "Esse poderoso rifle de caça com ferrolho possui uma moldura clássica de madeira e uma mira telescópica montada na parte superior que o manteve popular entre caçadores por décadas. Ele não pode ter acessórios sob o cano.",
+      "page": 428
+    },
+    {
+      "id": "ruger-101",
+      "name": "Ruger 101",
+      "category": "sniper-rifles",
+      "accuracy": 6,
+      "damage": {
+        "value": 11,
+        "type": "physical"
+      },
+      "ap": -3,
+      "modes": [
+        "sa"
+      ],
+      "recoil": 0,
+      "recoilEnhanced": 1,
+      "ammo": [
+        {
+          "count": 8,
+          "feed": "ai"
+        }
+      ],
+      "availability": {
+        "value": 4,
+        "legality": "R"
+      },
+      "cost": 1300,
+      "desc": "Esse rifle esportivo com design futurista e operado por gás é a arma favorita de muitos caçadores profissionais e amadores. Ele tem uma mira telescópica e uma coronha rígida com amortecedor de impacto.",
+      "page": 428
+    },
+    {
+      "id": "defiance-t-250",
+      "name": "Defiance T-250",
+      "category": "shotguns",
+      "accuracy": 4,
+      "damage": {
+        "value": 10,
+        "type": "physical"
+      },
+      "ap": -1,
+      "modes": [
+        "ss",
+        "sa"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 5,
+          "feed": "ai"
+        }
+      ],
+      "availability": {
+        "value": 4,
+        "legality": "R"
+      },
+      "cost": 450,
+      "desc": "Comum nas ruas quando as coisas acabam se passando mais do que pistolas e facas, esta escopeta semiautomática está disponível no comprimento normal ou na versão de cano curto. É operada a gás, mas também possui uma pump action secundária para situações onde prevenir travas é mais importante do que disparar um segundo tiro rapidamente. A versão de cano curto tem Ocultação +4, o alcance de uma pistola pesada, e um código de dano de 9F.",
+      "page": 429
+    },
+    {
+      "id": "enfield-as-7",
+      "name": "Enfield AS-7",
+      "category": "shotguns",
+      "accuracy": 4,
+      "accuracyEnhanced": 5,
+      "damage": {
+        "value": 13,
+        "type": "physical"
+      },
+      "ap": -1,
+      "modes": [
+        "sa",
+        "bf"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 10,
+          "feed": "p"
+        },
+        {
+          "count": 24,
+          "feed": "t"
+        }
+      ],
+      "availability": {
+        "value": 12,
+        "legality": "P"
+      },
+      "cost": 1100,
+      "desc": "Esta escopeta militar de ataque confere ao usuário um poder de fogo maciço. Como uma arma de proximidade e geral de combate, ela é temida universalmente. Pode ser carregada com pentes com dez projéteis ou com um tambor especial com vinte e quatro projéteis. A Enfield AS-7 vem equipada com uma mira laser embutida na parte superior.",
+      "page": 429
+    },
+    {
+      "id": "pjss-modelo-55",
+      "name": "PJSS Modelo 55",
+      "category": "shotguns",
+      "accuracy": 6,
+      "damage": {
+        "value": 11,
+        "type": "physical"
+      },
+      "ap": -1,
+      "modes": [
+        "ss"
+      ],
+      "recoil": 0,
+      "recoilEnhanced": 1,
+      "ammo": [
+        {
+          "count": 2,
+          "feed": "b"
+        }
+      ],
+      "availability": {
+        "value": 9,
+        "legality": "R"
+      },
+      "cost": 1000,
+      "desc": "Essa é uma arma de estilo clássico para um esporte clássico. Produzida apenas em pequenas quantidades, ela é renomada entre caçadores europeus e de tiro aos pombos como uma arma precisa e prestigiosa. A coronha rígida da arma vem equipada com um amortecedor de recuo embutido. Os dois canos podem ser disparados de uma só vez como uma rajada curta (veja Balas Insuficientes, p. 180).",
+      "page": 429
+    },
+    {
+      "id": "ares-s-iii-super-squirt",
+      "name": "Ares S-III Super Squirt",
+      "category": "special",
+      "accuracy": 3,
+      "damage": {
+        "special": "chemical"
+      },
+      "ap": 0,
+      "modes": [
+        "sa"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 20,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 7,
+        "legality": "R"
+      },
+      "cost": 950,
+      "desc": "Essa popular arma não letal dispara pacotes de gel DMSO. O dimetilsulfóxido força a pele a absorver os químicos que o operador quer aplicar. O ataque em si não causa dano, mas quando o alvo é atingido com sucesso, a DMSO aplica a substância diretamente na corrente sanguínea do alvo como uma toxina com vetor por Contato (Toxinas, Drogas, e MQTs, p. 408). A Super Squirt usa alcances de Pistola Leve e pode receber acessórios sobre e sob o cano.",
+      "page": 429
+    },
+    {
+      "id": "fichetti-pain-inducer",
+      "name": "Indutor de Dor Fichetti",
+      "category": "special",
+      "accuracy": 3,
+      "damage": {
+        "special": "special"
+      },
+      "ap": 0,
+      "modes": [
+        "ss"
+      ],
+      "recoil": 0,
+      "ammo": null,
+      "availability": {
+        "value": 11,
+        "legality": "R"
+      },
+      "cost": 5000,
+      "desc": "Para uma arma não letal, o Indutor de Dor Fichetti não é lá muito humanitário. Ele faz alguém se sentir como se estivesse dentro de um micro-ondas, cozinhando de dentro para fora. Trate isso como um ataque de toxina com uma Tôxicidade de 8 e uma velocidade Imediata. O alvo resiste com Corpo + Vontade. Se a Tôxicidade modificada exceder o limite Mental do alvo, ele deve gastar sua próxima Fase de Ação fazendo o que for possível para fugir da dor. O atacante pode continuar a manter seu feixe num alvo com uma Ação Complexa a não ser que o mestre defina que o alvo se esquivou ou encontrou cobertura. Se o alvo não puder fugir do feixe, ele é incapacitado de tanta dor, sofrendo um modificador na pilha de dados igual à Tôxicidade modificada em todos os testes enquanto o feixe estiver sobre ele. O Indutor de Dor usa os alcances de submetralhadoras e pode receber acessórios na parte superior e sob o cano. Ele possui dez cargas; quando encaixado num ponto de força, ele recarrega uma carga a cada dez segundos.",
+      "wireless": "O Indutor de Dor recarrega por indução numa taxa de 1 carga por hora.",
+      "page": 429
+    },
+    {
+      "id": "parashield-dart-pistol",
+      "name": "Pistola de Dardos Parashield",
+      "category": "special",
+      "accuracy": 5,
+      "damage": {
+        "special": "toxin"
+      },
+      "ap": 0,
+      "modes": [
+        "sa"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 5,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 4,
+        "legality": "R"
+      },
+      "cost": 600,
+      "desc": "A pistola de dardos padrão da indústria que dispara dardos de injeção (p. 433) com narcojeção ou outra carga. A pistola de dardos Parashield usa alcances de Pistola Pesada e pode receber acessórios na parte superior.",
+      "wireless": "O dardo informa se atingiu ou não o alvo e se injetou com sucesso. Ele também pode relatar quaisquer anomalias físicas grotescas no tecido do alvo, apesar dos seus sensores médicos não serem muito sofisticados (Nível de Dispositivo de 1 para o dardo).",
+      "page": 429
+    },
+    {
+      "id": "parashield-dart-rifle",
+      "name": "Rifle de Dardos Parashield",
+      "category": "special",
+      "accuracy": 6,
+      "damage": {
+        "special": "toxin"
+      },
+      "ap": 0,
+      "modes": [
+        "sa"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 6,
+          "feed": "ai"
+        }
+      ],
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 1200,
+      "desc": "Originalmente concebida para derrubar animais grandes de caça de forma não letal a longas distâncias, o rifle de dardos Parashield usa cartuchos de ar comprimido para atirar dardos de injeção. Esta arma inclui uma mira telescópica montada na parte superior. Ela usa os alcances dos rifles de esporte e podem receber acessórios na parte superior e sob o cano.",
+      "wireless": "O dardo informa se atingiu ou não o alvo e se injetou com sucesso. Ele também pode relatar quaisquer anomalias físicas grotescas no tecido do alvo, apesar de os seus sensores médicos não serem muito sofisticados (Nível de Dispositivo de 1 para o dardo).",
+      "page": 429
+    },
+    {
+      "id": "ingram-valiant",
+      "name": "Ingram Valiant",
+      "category": "machine-guns",
+      "accuracy": 5,
+      "accuracyEnhanced": 6,
+      "damage": {
+        "value": 9,
+        "type": "physical"
+      },
+      "ap": -2,
+      "modes": [
+        "bf",
+        "fa"
+      ],
+      "recoil": 2,
+      "recoilEnhanced": 3,
+      "ammo": [
+        {
+          "count": 50,
+          "feed": "p"
+        },
+        {
+          "count": 100,
+          "feed": "cinto"
+        }
+      ],
+      "availability": {
+        "value": 12,
+        "legality": "P"
+      },
+      "cost": 5800,
+      "desc": "Esta metralhadora leve lendária é popular com unidades mercenárias de todo o mundo. Ela tem uma coronha rígida com amortecedor de recuo, uma mira laser e um sistema de saída de gás 2 montado no cano.",
+      "page": 430
+    },
+    {
+      "id": "stoner-ares-m202",
+      "name": "Stoner-Ares M202",
+      "category": "machine-guns",
+      "accuracy": 5,
+      "damage": {
+        "value": 10,
+        "type": "physical"
+      },
+      "ap": -3,
+      "modes": [
+        "fa"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 50,
+          "feed": "p"
+        },
+        {
+          "count": 100,
+          "feed": "cinto"
+        }
+      ],
+      "availability": {
+        "value": 12,
+        "legality": "P"
+      },
+      "cost": 7000,
+      "desc": "Essa metralhadora média é absurdamente poderosa em relação ao seu chassi leve feito de compostos extra duráveis. Graças ao seu tamanho relativamente pequeno, é uma arma secundária muito popular para veículos militares. Trolls sem a menor noção de sutileza costumam decká-las com acessórios para uso como armas pessoais.",
+      "page": 430
+    },
+    {
+      "id": "rpk-hmg",
+      "name": "RPK HMG",
+      "category": "machine-guns",
+      "accuracy": 5,
+      "damage": {
+        "value": 12,
+        "type": "physical"
+      },
+      "ap": -4,
+      "modes": [
+        "fa"
+      ],
+      "recoil": 0,
+      "recoilEnhanced": 6,
+      "ammo": [
+        {
+          "count": 50,
+          "feed": "p"
+        },
+        {
+          "count": 100,
+          "feed": "cinto"
+        }
+      ],
+      "availability": {
+        "value": 16,
+        "legality": "P"
+      },
+      "cost": 16300,
+      "desc": "Essa metralhadora pesada russa é usada pelos militares de diversos países do Leste Europeu e do Oriente Próximo, principalmente como uma arma de suporte montada em veículo. Equipada com um tripé destacável, a RPK costuma ser atirada de uma posição deitada, sentada ou ajoelhada quando não montada num veículo.",
+      "page": 430
+    },
+    {
+      "id": "ares-antioch-2",
+      "name": "Ares Antioch-2",
+      "category": "launchers",
+      "accuracy": 4,
+      "accuracyEnhanced": 6,
+      "damage": {
+        "special": "grenade"
+      },
+      "ap": 0,
+      "modes": [
+        "ss"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 8,
+          "feed": "ai"
+        }
+      ],
+      "availability": {
+        "value": 8,
+        "legality": "P"
+      },
+      "cost": 3200,
+      "desc": "O Antioch–2 possui um design clássico de lançador de granada combinado com um sistema de neuroconexão embutido. É um dos lançadores de granada mais acessíveis no mercado.",
+      "wireless": "Você pode utilizar o link de gatilho sem fio para suas granadas, mesmo se não tiver uma IND (barra lateral Interface Neural Direta, p. 222).",
+      "page": 431
+    },
+    {
+      "id": "armtech-mgl-12",
+      "name": "ArmTech MGL-12",
+      "category": "launchers",
+      "accuracy": 4,
+      "damage": {
+        "special": "grenade"
+      },
+      "ap": 0,
+      "modes": [
+        "sa"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 12,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 10,
+        "legality": "P"
+      },
+      "cost": 5000,
+      "desc": "Esse lançador de granada com configuração bullpup é popular, já que pode atirar em modo semiautomático e carrega muito mais granadas do que seus concorrentes.",
+      "wireless": "Você pode utilizar o link de gatilho sem fio para suas granadas, mesmo se não tiver uma IND (barra lateral Interface Neural Direta, p. 222).",
+      "page": 431
+    },
+    {
+      "id": "aztechnology-striker",
+      "name": "Aztechnology Striker",
+      "category": "launchers",
+      "accuracy": 5,
+      "damage": {
+        "special": "missile"
+      },
+      "ap": 0,
+      "modes": [
+        "ss"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 1,
+          "feed": "cf"
+        }
+      ],
+      "availability": {
+        "value": 10,
+        "legality": "P"
+      },
+      "cost": 1200,
+      "desc": "O Striker é um lançador descartável extremamente leve — perfeito para quando você quer dar um bagaço e fazer uma fuga rápida sem muito peso.",
+      "wireless": "Você pode utilizar o link de gatilho sem fio para suas granadas, mesmo se não tiver uma IND (barra lateral Interface Neural Direta, p. 222).",
+      "page": 431
+    },
+    {
+      "id": "krime-cannon",
+      "name": "Canhão Krime",
+      "category": "launchers",
+      "accuracy": 4,
+      "damage": {
+        "value": 16,
+        "type": "physical"
+      },
+      "ap": -6,
+      "modes": [
+        "sa"
+      ],
+      "recoil": 0,
+      "recoilEnhanced": 1,
+      "ammo": [
+        {
+          "count": 6,
+          "feed": "ai"
+        }
+      ],
+      "availability": {
+        "value": 20,
+        "legality": "P"
+      },
+      "cost": 21000,
+      "desc": "A Krime pode ser uma fabricante pequena, mas seu canhão de assalto, chamado apenas de o Canhão, é uma arma pesada e barata cheia de atitude e poder de fogo. Ela vem com modificação padrão para trolls, e portanto é a primeira arma do Sexto Mundo projetada para clientes maiores.",
+      "page": 431
+    },
+    {
+      "id": "onotari-interceptor",
+      "name": "Onotari Interceptor",
+      "category": "launchers",
+      "accuracy": 4,
+      "accuracyEnhanced": 6,
+      "damage": {
+        "special": "missile"
+      },
+      "ap": 0,
+      "modes": [
+        "ss"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 2,
+          "feed": "cf"
+        }
+      ],
+      "availability": {
+        "value": 18,
+        "legality": "P"
+      },
+      "cost": 14000,
+      "desc": "Esse lançador de míssil desenvolvido pela Saeder-Krupp é projetado para atirar foguetes ou mísseis guiados, de qualquer tipo. Ele possui dois canos e câmaras de disparo separados, e pode carregar até dois mísseis de cada vez que não precisam ser do mesmo tipo. Devido a problemas com a ignição, ele não é capaz de “meter os dois de uma vez”. Ele possui um sistema interno de arma inteligente.",
+      "wireless": "Você pode utilizar o link de gatilho sem fio para seus mísseis, mesmo se não tiver uma IND (barra lateral Interface Neural Direta, p. 222).",
+      "page": 431
+    },
+    {
+      "id": "panther-xxl",
+      "name": "Panther XXL",
+      "category": "launchers",
+      "accuracy": 5,
+      "accuracyEnhanced": 7,
+      "damage": {
+        "value": 17,
+        "type": "physical"
+      },
+      "ap": -6,
+      "modes": [
+        "ss"
+      ],
+      "recoil": 0,
+      "ammo": [
+        {
+          "count": 15,
+          "feed": "p"
+        }
+      ],
+      "availability": {
+        "value": 20,
+        "legality": "P"
+      },
+      "cost": 43000,
+      "desc": "Essa arma grande pra cacete é um canhão de assalto que utiliza munição similar à arma principal em muitos tanques pequenos. Ela vem com um sistema interno de arma inteligente embutido.",
+      "page": 431
+    }
+  ]
+}

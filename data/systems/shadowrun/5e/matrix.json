@@ -1,0 +1,641 @@
+{
+  "rules": {
+    "deviceAttributes": {
+      "dataProcessing": {
+        "ref": "rating"
+      },
+      "firewall": {
+        "ref": "rating"
+      },
+      "page": 234
+    },
+    "conditionMonitor": {
+      "boxes": {
+        "op": "add",
+        "of": [
+          8,
+          {
+            "op": "ceil",
+            "of": [
+              {
+                "op": "div",
+                "of": [
+                  {
+                    "ref": "rating"
+                  },
+                  2
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "page": 228
+    },
+    "matrixAttributes": [
+      {
+        "id": "attack",
+        "name": "Ataque"
+      },
+      {
+        "id": "sleaze",
+        "name": "Subversão"
+      },
+      {
+        "id": "dataProcessing",
+        "name": "Datagrama"
+      },
+      {
+        "id": "firewall",
+        "name": "Firewall"
+      }
+    ]
+  },
+  "commlinkDesc": "Com-links são dispositivos universais de comunicação. São usados por todos, o tempo todo. Com-links são essencialmente os canivetes suíços digitais do mundo moderno. Mesmo o mais básico inclui navegação RA na Matriz, modos múltiplos de telefone e de rádio de áudio e texto em tempo real, aplicativos de música, microprojetores de trídeos, monitores de tela de toque, câmeras embutidas de vídeo e foto digital em alta resolução, scanners de imagem/texto e etiquetas IDRA, sistemas de GPS embutidos, leitores de chip, leitores de Credsticks, fones de ouvido retráteis, discagem por voz, tecnologias de texto para fala e fala para texto e um estojo à prova de impacto e água. E tudo isso a um preço barato que, há algumas décadas, pareceria absurdo.",
+  "commlinks": [
+    {
+      "id": "meta-link",
+      "name": "Meta Link",
+      "deviceRating": 1,
+      "availability": {
+        "value": 2,
+        "legality": null
+      },
+      "cost": 100,
+      "page": 439
+    },
+    {
+      "id": "sony-emperor",
+      "name": "Sony Emperor",
+      "deviceRating": 2,
+      "availability": {
+        "value": 4,
+        "legality": null
+      },
+      "cost": 700,
+      "page": 439
+    },
+    {
+      "id": "renraku-sensei",
+      "name": "Renraku Sensei",
+      "deviceRating": 3,
+      "availability": {
+        "value": 6,
+        "legality": null
+      },
+      "cost": 1000,
+      "page": 439
+    },
+    {
+      "id": "erika-elite",
+      "name": "Erika Elite",
+      "deviceRating": 4,
+      "availability": {
+        "value": 8,
+        "legality": null
+      },
+      "cost": 2500,
+      "page": 439
+    },
+    {
+      "id": "hermes-ikon",
+      "name": "Hermes Ikon",
+      "deviceRating": 5,
+      "availability": {
+        "value": 10,
+        "legality": null
+      },
+      "cost": 3000,
+      "page": 439
+    },
+    {
+      "id": "transys-avalon",
+      "name": "Transys Avalon",
+      "deviceRating": 6,
+      "availability": {
+        "value": 12,
+        "legality": null
+      },
+      "cost": 5000,
+      "page": 439
+    },
+    {
+      "id": "fairlight-caliban",
+      "name": "Fairlight Caliban",
+      "deviceRating": 7,
+      "availability": {
+        "value": 14,
+        "legality": null
+      },
+      "cost": 8000,
+      "page": 439
+    }
+  ],
+  "commlinkOptions": [
+    {
+      "id": "sim-module",
+      "name": "Módulo Simulador",
+      "availability": null,
+      "cost": {
+        "add": 100
+      },
+      "page": 439,
+      "desc": "Esta melhoria do com-link concede a experiência do sensorama, traduzindo os dados de computador em sinais neurais que permitem que você experimente diretamente os programas de sensorama e a realidade aumentada. Um módulo simulador pode ser acessado por uma interface neural direta (trodos, conector de dados ou com-link implantado). Módulos simuladores são essenciais para vários tipos de realidade virtual, incluindo clubes e jogos de RV, sensoramas e prazeres virtuais mais sombrios. Módulos simuladores podem ser para sim aberto, que abre a variedade completa (e perigosa) de experiências de RV."
+    },
+    {
+      "id": "hot-sim-module",
+      "name": "Módulo Simulador (sim aberto)",
+      "availability": {
+        "add": 4,
+        "legality": "P"
+      },
+      "cost": {
+        "add": 250
+      },
+      "page": 439,
+      "desc": "Esta melhoria do com-link concede a experiência do sensorama, traduzindo os dados de computador em sinais neurais que permitem que você experimente diretamente os programas de sensorama e a realidade aumentada. Um módulo simulador pode ser acessado por uma interface neural direta (trodos, conector de dados ou com-link implantado). Módulos simuladores são essenciais para vários tipos de realidade virtual, incluindo clubes e jogos de RV, sensoramas e prazeres virtuais mais sombrios. Módulos simuladores podem ser para sim aberto, que abre a variedade completa (e perigosa) de experiências de RV."
+    }
+  ],
+  "cyberdeckDesc": "Se você fosse um tecnauta e alguém o golpeasse com uma espada de monofilamento, você protegeria seu ciberdeck com seu corpo, não o contrário. Não é apenas porque as coisas estão estupidamente caras — ciberdecks (ou decks) são o sangue vital de um tecnauta, um bilhete integral para hackear o planeta. A forma mais comum de um deck é a retangular longa, lisa, achatada, fina com muito espaço para os controles de toque, embora eles possam ter muitas formas. Para mais informações sobre eles, veja Ciberdecks, p. 227. Todos os ciberdecks possuem módulos ilegais de sim aberto de fábrica.",
+  "cyberdecks": [
+    {
+      "id": "erika-mcd-1",
+      "name": "Erika MCD-1",
+      "deviceRating": 1,
+      "attributeArray": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "programs": 1,
+      "availability": {
+        "value": 3,
+        "legality": "R"
+      },
+      "cost": 49500,
+      "page": 439
+    },
+    {
+      "id": "microdeck-summit",
+      "name": "Microdeck Summit",
+      "deviceRating": 1,
+      "attributeArray": [
+        4,
+        3,
+        3,
+        1
+      ],
+      "programs": 1,
+      "availability": {
+        "value": 3,
+        "legality": "R"
+      },
+      "cost": 58000,
+      "page": 439
+    },
+    {
+      "id": "microtronica-azteca-200",
+      "name": "Microtrónica Azteca 200",
+      "deviceRating": 2,
+      "attributeArray": [
+        5,
+        4,
+        3,
+        2
+      ],
+      "programs": 2,
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 110250,
+      "page": 439
+    },
+    {
+      "id": "hermes-chariot",
+      "name": "Hermes Chariot",
+      "deviceRating": 2,
+      "attributeArray": [
+        5,
+        4,
+        4,
+        2
+      ],
+      "programs": 2,
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 123000,
+      "page": 439
+    },
+    {
+      "id": "novatech-navigator",
+      "name": "Novatech Navigator",
+      "deviceRating": 3,
+      "attributeArray": [
+        6,
+        5,
+        4,
+        3
+      ],
+      "programs": 3,
+      "availability": {
+        "value": 9,
+        "legality": "R"
+      },
+      "cost": 205750,
+      "page": 439
+    },
+    {
+      "id": "renraku-tsurugi",
+      "name": "Renraku Tsurugi",
+      "deviceRating": 3,
+      "attributeArray": [
+        6,
+        5,
+        5,
+        3
+      ],
+      "programs": 3,
+      "availability": {
+        "value": 9,
+        "legality": "R"
+      },
+      "cost": 214125,
+      "page": 439
+    },
+    {
+      "id": "sony-ciy-720",
+      "name": "Sony CIY-720",
+      "deviceRating": 4,
+      "attributeArray": [
+        7,
+        6,
+        5,
+        4
+      ],
+      "programs": 4,
+      "availability": {
+        "value": 12,
+        "legality": "R"
+      },
+      "cost": 345000,
+      "page": 439
+    },
+    {
+      "id": "shiawase-cyber-5",
+      "name": "Shiawase Cyber-5",
+      "deviceRating": 5,
+      "attributeArray": [
+        8,
+        7,
+        6,
+        5
+      ],
+      "programs": 5,
+      "availability": {
+        "value": 15,
+        "legality": "R"
+      },
+      "cost": 549375,
+      "page": 439
+    },
+    {
+      "id": "fairlight-excalibur",
+      "name": "Fairlight Excalibur",
+      "deviceRating": 6,
+      "attributeArray": [
+        9,
+        8,
+        7,
+        6
+      ],
+      "programs": 6,
+      "availability": {
+        "value": 18,
+        "legality": "R"
+      },
+      "cost": 823250,
+      "page": 439
+    }
+  ],
+  "programs": [
+    {
+      "id": "toolbox",
+      "name": "Caixa de Ferramentas",
+      "category": "common",
+      "availability": null,
+      "cost": 80,
+      "modifiers": [
+        {
+          "target": "matrix.dataProcessing",
+          "add": 1
+        }
+      ],
+      "desc": "Os utilitários de gerenciamento de memória na Caixa de Ferramentas concedem um bônus de +1 ao seu atributo Datagrama.",
+      "page": 243
+    },
+    {
+      "id": "configurator",
+      "name": "Configurador",
+      "category": "common",
+      "availability": null,
+      "cost": 80,
+      "desc": "Ao executar este programa, escolha uma configuração para o seu deck que seja diferente da atual. Esta configuração alternativa é armazenada no programa Configurador. Da próxima vez que reconfigurar seu deck, você poderá trocar para a configuração completa armazenada neste programa em vez de trocar apenas dois atributos ou programas, mesmo que isso signifique que o Configurador deixe de funcionar naquele momento. A configuração armazenada neste programa não muda quando você usa, então é possível recuperá-lo novamente se você reconfigurar sua plataforma para outra coisa (presumindo que o programa Configurador esteja sendo executado quando você quiser recuperar a informação armazenada).",
+      "page": 243
+    },
+    {
+      "id": "edit",
+      "name": "Edição",
+      "category": "common",
+      "availability": null,
+      "cost": 80,
+      "desc": "Este programa facilita a edição com uma interface inteligente que aprende o seu estilo e pode até mesmo dar sugestões. Adicione 2 ao limite de Datagrama para os testes de Editar feitos enquanto isto estiver em execução.",
+      "page": 245
+    },
+    {
+      "id": "encryption",
+      "name": "Encriptação",
+      "category": "common",
+      "availability": null,
+      "cost": 80,
+      "modifiers": [
+        {
+          "target": "matrix.firewall",
+          "add": 1
+        }
+      ],
+      "desc": "Ativar o utilitário de Encriptação fornece +1 de bônus para o seu atributo Firewall.",
+      "page": 245
+    },
+    {
+      "id": "signal-scrub",
+      "name": "Limpeza de Sinal",
+      "category": "common",
+      "availability": null,
+      "cost": 80,
+      "desc": "Ao analisar os ruídos de fundo e os sinais recebidos, Limpeza de Sinal fornece redução de ruído Nível 2.",
+      "page": 245
+    },
+    {
+      "id": "virtual-machine",
+      "name": "Máquina Virtual",
+      "category": "common",
+      "availability": null,
+      "cost": 80,
+      "desc": "Este programa cria um espaço de memória virtual em seu deck, aumentando a capacidade do programa ao custo da estabilidade do sistema. Seu deck pode executar dois programas adicionais, mas sempre que sua persona sofrer dano da Matriz, ele sofre uma caixa adicional de dano da Matriz que não pode ser resistido.",
+      "page": 245
+    },
+    {
+      "id": "browse",
+      "name": "Navegador",
+      "category": "common",
+      "availability": null,
+      "cost": 80,
+      "desc": "Este navegador e mecanismo de busca útil reduz pela metade o tempo da ação Busca na Matriz.",
+      "page": 245
+    },
+    {
+      "id": "armor",
+      "name": "Armadura",
+      "category": "hacking",
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 250,
+      "desc": "Este programa funciona com seu firmware como um firewall, concedendo +2 de modificador na pilha de dados para resistir ao dano da Matriz.",
+      "page": 245
+    },
+    {
+      "id": "baby-monitor",
+      "name": "Babá Eletrônica",
+      "category": "hacking",
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 250,
+      "desc": "O programa Babá Eletrônica usa algoritmos roubados da Divisão de Exame Universal de Sistemas e registra os seus movimentos na Matriz, para que você sempre saiba o seu Valor de Vigilância atual.",
+      "page": 245
+    },
+    {
+      "id": "biofeedback",
+      "name": "Biorretroalimentação",
+      "category": "hacking",
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 250,
+      "desc": "Quando você é atacado, este programa envolve todos os ataques que você faça contra outros alvos com sinais perigosos de biorretroalimentação, um tipo de drek que GELOs Negros e agentes da lei usam. Este programa só funciona se o alvo for de natureza biológica (uma aranha de segurança, por exemplo). Quando seu ataque causa dano da Matriz, o alvo é atingido com uma quantidade igual de dano de biorretroalimentação de Atordoamento (se o alvo estiver usando sim fechado) ou Físico (se o alvo estiver usando sim aberto). Este programa também é aplicado ao dano causado por ações de Ataque fracassadas feitas contra você. O dano de biorretroalimentação é resistido com Vontade + Firewall.",
+      "page": 245
+    },
+    {
+      "id": "blackout",
+      "name": "Blecaute",
+      "category": "hacking",
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 250,
+      "desc": "Esta é a versão mais gentil de Biorretroalimentação. Funciona da mesma forma, mas causa apenas dano de Atordoamento, mesmo que o alvo esteja usando sim aberto.",
+      "page": 245
+    },
+    {
+      "id": "lockdown",
+      "name": "Confinamento",
+      "category": "hacking",
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 250,
+      "desc": "Ao causar dano a uma persona, ela fica travada na conexão até você parar este programa ou ela for bem-sucedida em Desplugar.",
+      "page": 245
+    },
+    {
+      "id": "decryption",
+      "name": "Decriptação",
+      "category": "hacking",
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 250,
+      "modifiers": [
+        {
+          "target": "matrix.attack",
+          "add": 1
+        }
+      ],
+      "desc": "Os algoritmos de decriptação neste programa concedem +1 de bônus no seu atributo Ataque.",
+      "page": 245
+    },
+    {
+      "id": "demolition",
+      "name": "Demolição",
+      "category": "hacking",
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 250,
+      "desc": "Demolição vem com as técnicas mais recentes e eficazes de encriptação de Bomba de Dados, adicionando 1 ao nível de qualquer Bomba de Dados preparada enquanto estiver em execução.",
+      "page": 245
+    },
+    {
+      "id": "defuse",
+      "name": "Desarme",
+      "category": "hacking",
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 250,
+      "desc": "Este programa cria uma barreira preditiva entre você e uma Bomba de Dados, dando +4 de modificador na pilha de dados para resistir ao dano de uma.",
+      "page": 245
+    },
+    {
+      "id": "sneak",
+      "name": "Despistador",
+      "category": "hacking",
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 250,
+      "desc": "Este utilitário reflete seu tráfego na Matriz através de rotas desnecessárias, dando +2 de modificador na pilha de dados para defender-se de ações de Rastrear Ícone. Além disso, se um semiDEUS convergir em você quando esse programa estiver em execução, ele não recebe a sua localização física, embora você ainda seja atingido com todas as outras coisas ruins atiradas em você.",
+      "page": 245
+    },
+    {
+      "id": "fork",
+      "name": "Divisão",
+      "category": "hacking",
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 250,
+      "desc": "Você pode usar uma única ação da Matriz em dois alvos com este programa. Você faz um só teste, com os modificadores de cada alvo contando em relação à sua pilha de dados. Cada um dos alvos se defende com suas próprias pilhas de dados. Determine o resultado da ação separadamente contra cada alvo.",
+      "page": 245
+    },
+    {
+      "id": "wrapper",
+      "name": "Empacotador",
+      "category": "hacking",
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 250,
+      "desc": "Este programa cancela os protocolos da Matriz para ícones. Enquanto este programa estiver em execução, seus ícones podem ser o que você quiser ao usar a ação Trocar Ícone. Nas lentes da Matriz, seu programa Martelo poderia parecer um arquivo de música, seu ícone da Ares Predator poderia parecer um Credstick e sua própria persona poderia parecer um Mitsubishi Nightsky. Outra persona pode ver o que o ícone disfarçado é de verdade com um Teste de Percepção da Matriz, mas precisam pelo menos suspeitar o suficiente para tentar (Percepção da Matriz, p. 241).",
+      "page": 245
+    },
+    {
+      "id": "biofeedback-filter",
+      "name": "Filtro de Biorretroalimentação",
+      "category": "hacking",
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 250,
+      "desc": "Este programa é como um firewall para seu módulo simulador, concedendo+2 de modificador na pilha de dados para resistir ao dano de biorretroalimentação.",
+      "page": 246
+    },
+    {
+      "id": "stealth",
+      "name": "Furtividade",
+      "category": "hacking",
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 250,
+      "modifiers": [
+        {
+          "target": "matrix.sleaze",
+          "add": 1
+        }
+      ],
+      "desc": "Este programa engenhoso concede +1 de bônus no seu atributo Subversão.",
+      "page": 246
+    },
+    {
+      "id": "guard",
+      "name": "Guarda",
+      "category": "hacking",
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 250,
+      "desc": "Este programa procura fraquezas da mesma forma que um atacante faria, reduzindo o dano adicional que você sofre de marcas em 1 VD por marca.",
+      "page": 246
+    },
+    {
+      "id": "exploit",
+      "name": "Intrusão",
+      "category": "hacking",
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 250,
+      "desc": "Este programa analisa e varre um alvo em busca de fraquezas em seu Firewall. Você recebe +2 de bônus no seu atributo Subversão ao tentar a ação Hackear de Improviso.",
+      "page": 246
+    },
+    {
+      "id": "shell",
+      "name": "Isolação",
+      "category": "hacking",
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 250,
+      "desc": "Este programa usa um conjunto de algoritmos de filtragem para dar +1 de modificador na pilha de dados para resistir ao dano da Matriz e de biorretroalimentação. Este modificador se acumula com modificadores similares de outros programas.",
+      "page": 246
+    },
+    {
+      "id": "hammer",
+      "name": "Martelo",
+      "category": "hacking",
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 250,
+      "desc": "Sempre que você causar dano de Matriz com uma ação, seu programa ofensivo permite que você cause +2 VD no Dano de Matriz. Isso não se aplica a alvos que sofrem dano ao falhar em uma ação de Ataque contra você.",
+      "page": 246
+    },
+    {
+      "id": "track",
+      "name": "Rastreador",
+      "category": "hacking",
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 250,
+      "desc": "O programa Rastreador fica de olho nos alvos para você, facilitando encontrar seus equivalentes no mundo de carne. Adicione 2 ao seu atributo Datagrama ao fazer testes de Rastrear Ícone com Rastreador em execução. Alternativamente, se o alvo estiver executando Despistador, Rastreador nega o +2 de bônus na pilha de dados desse programa. Perceba que o programa produz um dos benefícios listados, não ambos.",
+      "page": 246
+    },
+    {
+      "id": "mugger",
+      "name": "Salteador",
+      "category": "hacking",
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 250,
+      "desc": "Ao rastrear ativamente suas marcas, o dano bônus delas é aumentado em 1 VD por marca.",
+      "page": 246
+    }
+  ]
+}

@@ -1,0 +1,480 @@
+{
+  "rules": {
+    "capacity": "armor",
+    "modificationRating": {
+      "min": 1,
+      "max": 6
+    },
+    "helmetCapacity": 6,
+    "shieldPhysicalLimit": -1,
+    "page": 437
+  },
+  "armor": [
+    {
+      "id": "clothing",
+      "name": "Roupa",
+      "category": "clothing",
+      "armor": 0,
+      "capacity": 0,
+      "availability": null,
+      "cost": {
+        "min": 20,
+        "max": 100000
+      },
+      "desc": "As roupas de 2075 vêm com funções incríveis que você provavelmente nem vai dar muita atenção. Com-links, tocadores de música, e outros dispositivos eletrônicos podem ser tecidos direto no tecido, alimentados por baterias entrelaçadas ou tecidos especiais de coleta de energia. Do outro lado da economia, as “cruas” e mais baratas, feitas de soja, podem ser compradas por cinco neoienes por peça de roupa de máquinas de vendas por todo o Cortiço. Quanto mais gastar na sua beca, mais impressionante vai ser seu visual.",
+      "page": 436,
+      "options": [
+        {
+          "id": "synth-leather",
+          "name": "(Sintéti)Couro",
+          "armor": 4,
+          "availability": null,
+          "cost": {
+            "add": 200
+          },
+          "desc": "Geralmente feito de sinteticouro, a não ser que esteja esbanjando neoienes, esse tipo de jaqueta (desde até a cintura ou sobretudo) nunca sai de moda e oferece uma proteção módica. Só não vai achando que ela para balas."
+        },
+        {
+          "id": "electrochromic-modification",
+          "name": "Modificação eletrocrômica",
+          "availability": {
+            "add": 2,
+            "legality": null
+          },
+          "cost": {
+            "add": 500
+          },
+          "desc": "Tecidos eletrocrômicos podem mudar de cor com a voltagem, permitindo que você altere a cor da sua roupa ou texto, imagens ou padrões exibidos. Isso é bom para a moda, mas melhor ainda para sumir numa multidão se precisar dar uma trocadinha de roupa. Você pode até conseguir roupa blindada em estilos eletrocrômicos. Leva uma Ação Simples para alterar as configurações das suas roupas eletrocrômicas, mas alguns Turnos de Combate para completar a mudança.",
+          "wireless": "Alterar as configurações das suas roupas é uma Ação Livre, e apesar de não servir bem como camuflagem, ela pode exibir imagens, arquivos de textos, ou um vídeo simples do seu com-link."
+        },
+        {
+          "id": "feedback-clothing",
+          "name": "Roupa tátil",
+          "availability": {
+            "value": 8,
+            "legality": null
+          },
+          "cost": {
+            "add": 500
+          },
+          "desc": "Essa roupa háptica permite um componente tátil para uma experiência em realidade aumentada."
+        }
+      ]
+    },
+    {
+      "id": "full-body-armor",
+      "name": "Armadura corporal completa",
+      "category": "armor",
+      "armor": 15,
+      "capacity": 15,
+      "availability": {
+        "value": 14,
+        "legality": "R"
+      },
+      "cost": 2000,
+      "desc": "Impossível de se ocultar, essa armadura é usada por membros militares e de segurança de todo o mundo para serviços de operações pesadas. Seu estilo é projetado para a intimidação e facilidade de mobilidade, com uma série completa de coldres táticos, bolsas, e correias, e certamente atrairá atenção. O traje pode ser modificado para adaptação de ambiente (ambientes quentes ou frios) ou vedada quimicamente para proteger o usuário completamente de ambientes e ataques tóxicos. O capacete do traje possui Capacidade 6 para o propósito de ser equipado com melhorias de visão ou áudio.",
+      "page": 436,
+      "options": [
+        {
+          "id": "environment-adaptation",
+          "name": "Adaptação ambiental",
+          "availability": {
+            "add": 3,
+            "legality": null
+          },
+          "cost": {
+            "add": 1000
+          }
+        },
+        {
+          "id": "full-helmet",
+          "name": "Capacete completo",
+          "armor": {
+            "add": 3
+          },
+          "availability": null,
+          "cost": {
+            "add": 500
+          }
+        },
+        {
+          "id": "chemical-seal",
+          "name": "Vedação química",
+          "availability": {
+            "add": 6,
+            "legality": null
+          },
+          "cost": {
+            "add": 6000
+          },
+          "desc": "Disponível apenas em armadura corporal completa que inclua um capacete, a vedação química é um controle ambiental hermeticamente fechado que leva uma Ação Complexa para ativar (se já estiver usando a armadura, óbvio). Ela fornece proteção completa contra químicos de vetor por contato e inalação, mas só pode ser usada até um total de uma hora (o limite do suprimento de ar) de cada vez.",
+          "wireless": "Ativar a vedação química é uma Ação Livre."
+        }
+      ]
+    },
+    {
+      "id": "armor-vest",
+      "name": "Colete blindado",
+      "category": "armor",
+      "armor": 9,
+      "capacity": 9,
+      "availability": {
+        "value": 4,
+        "legality": null
+      },
+      "cost": 500,
+      "desc": "Este colete moderno flexível é projetado para ser usado sob a roupa normal, sem exibir nenhum volume. Uma opção popular e barata.",
+      "page": 436
+    },
+    {
+      "id": "lined-coat",
+      "name": "Casacão revestido",
+      "category": "armor",
+      "armor": 9,
+      "capacity": 9,
+      "availability": {
+        "value": 4,
+        "legality": null
+      },
+      "cost": 900,
+      "desc": "Esse casaco estilo Velho Oeste tem sido popular nas ruas cruéis do mundo durante os últimos trinta anos. Além das suas características protetoras, o casaco blindado fornece um modificador de Ocultação adicional de –2 para os itens escondidos nele.",
+      "page": 436
+    },
+    {
+      "id": "armor-jacket",
+      "name": "Jaqueta blindada",
+      "category": "armor",
+      "armor": 12,
+      "capacity": 12,
+      "availability": {
+        "value": 2,
+        "legality": null
+      },
+      "cost": 1000,
+      "desc": "A solução de armadura mais popular nas ruas vem em todos os estilos imagináveis. Ela oferece uma boa proteção sem chamar muita atenção. Mas não pense em usar uma para um jantar.",
+      "page": 436
+    },
+    {
+      "id": "urban-explorer-jumpsuit",
+      "name": "Macacão de Explorador Urbano",
+      "category": "armor",
+      "armor": 9,
+      "capacity": 9,
+      "availability": {
+        "value": 8,
+        "legality": null
+      },
+      "cost": 650,
+      "desc": "Projetado para mensageiros, atletas e incursores, estes macacões coloridos são bem ventilados e permitem uma boa respiração, mas são surpreendentemente protetores com densiplástico leve e blindagem reativa líquida. Os macacões de explorador urbano possuem um aplicativo de música e um biomonitor embutidos.",
+      "page": 436,
+      "options": [
+        {
+          "id": "jumpsuit-helmet",
+          "name": "Capacete",
+          "armor": {
+            "add": 2
+          },
+          "availability": null,
+          "cost": {
+            "add": 100
+          },
+          "desc": "Capacetes vêm numa grande variedade de formatos e tamanhos e protegem a sua cachola de traumas. Capacetes possuem Capacidade 6 para serem incrementados com acessórios como redes de trodo e melhorias de visão."
+        }
+      ]
+    },
+    {
+      "id": "armor-clothing",
+      "name": "Roupa blindada",
+      "category": "armor",
+      "armor": 6,
+      "capacity": 6,
+      "availability": {
+        "value": 2,
+        "legality": null
+      },
+      "cost": 450,
+      "desc": "A trama leve de fibra balística torna estas peças de vestuário quase impossíveis de serem detectadas como armadura. Não fornece tanta proteção quanto uma armadura de verdade, mas vem numa grande variedade de estilos.",
+      "page": 436
+    },
+    {
+      "id": "actioneer-business-clothes",
+      "name": "Roupas de Executivo Actioneer",
+      "category": "armor",
+      "armor": 8,
+      "capacity": 8,
+      "availability": {
+        "value": 8,
+        "legality": null
+      },
+      "cost": 1500,
+      "desc": "Um “traje poderoso” discretamente blindado, muito popular entre Srs. Johnsons, faces, e atravessadores querendo uma proteção de classe alta combinada com estilo. Ele acompanha um coldre ocultável (Acessórios de Armas de Fogo, p. 431) na jaqueta.",
+      "page": 436
+    },
+    {
+      "id": "chameleon-suit",
+      "name": "Traje camaleão",
+      "category": "armor",
+      "armor": 9,
+      "capacity": 9,
+      "availability": {
+        "value": 10,
+        "legality": "R"
+      },
+      "cost": 1700,
+      "desc": "Esse traje de corpo completo possui um revestimento de polímero de rutênio inteligente auxiliado por uma série de sensores; a tecnologia permite que ele escaneie seus arredores e replique as imagens de todas as perspectivas apropriadas. Adicione 2 no seu limite ao fazer testes de Furtividade para se esconder. Um traje camaleão também é blindado para a proteção do usuário.",
+      "wireless": "O traje fornece informação extra sobre os arredores e também dá +2 bônus na pilha de dados em Testes de Furtividade para se esconder.",
+      "page": 436
+    },
+    {
+      "id": "helmet",
+      "name": "Capacete",
+      "category": "helmet",
+      "armor": {
+        "add": 2
+      },
+      "capacity": 6,
+      "availability": {
+        "value": 2,
+        "legality": null
+      },
+      "cost": 100,
+      "desc": "Capacetes vêm numa grande variedade de formatos e tamanhos e protegem a sua cachola de traumas. Capacetes possuem Capacidade 6 para serem incrementados com acessórios como redes de trodo e melhorias de visão.",
+      "page": 438
+    },
+    {
+      "id": "ballistic-shield",
+      "name": "Escudo balístico",
+      "category": "shield",
+      "armor": {
+        "add": 6
+      },
+      "capacity": 6,
+      "availability": {
+        "value": 12,
+        "legality": "R"
+      },
+      "cost": 1200,
+      "weapon": {
+        "skill": "exotic-melee-weapon",
+        "accuracy": 4,
+        "reach": 0,
+        "damage": {
+          "value": {
+            "op": "add",
+            "of": [
+              {
+                "ref": "attr.str"
+              },
+              2
+            ]
+          },
+          "type": "stun"
+        },
+        "ap": 0
+      },
+      "desc": "Esse grande escudo opaco é usado por equipes da SWAT e em combate urbano. Ele possui uma janela plástica transparente e uma estrutura embutida de escada na parte interna para que seja usado para atravessar pequenos obstáculos.",
+      "page": 438
+    },
+    {
+      "id": "shock-shield",
+      "name": "Escudo de choque",
+      "category": "shield",
+      "armor": {
+        "add": 6
+      },
+      "capacity": 6,
+      "availability": {
+        "value": 10,
+        "legality": "R"
+      },
+      "cost": 1500,
+      "weapon": {
+        "skill": "exotic-melee-weapon",
+        "accuracy": 4,
+        "reach": 0,
+        "damage": {
+          "value": 9,
+          "type": "stun",
+          "element": "electricity"
+        },
+        "ap": -5
+      },
+      "desc": "Como medida adicional de controle de multidão, um escudo de choque pode ser usado para eletrocutar qualquer um que entre em contato com ele, causando dano de Eletricidade (p. 170). O escudo taser contém 10 cargas; quando conectado a uma fonte de energia, recupera uma carga a cada 10 segundos.",
+      "wireless": "O escudo de choque recarrega por indução, recarregando uma carga por hora.",
+      "page": 438
+    }
+  ],
+  "modifications": [
+    {
+      "id": "thermal-damping",
+      "name": "Abafador Térmico",
+      "rating": {
+        "min": 1,
+        "max": 6
+      },
+      "capacity": {
+        "cost": {
+          "ref": "rating"
+        }
+      },
+      "availability": {
+        "value": 10,
+        "legality": "R"
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          500
+        ]
+      },
+      "desc": "Projetadas para reduzir sua assinatura térmica, essas camadas internas capturam ou vazam calor para que as camadas externas mantenham uma temperatura superficial igual ao do ar ao redor. Adicione o nível no seu limite em qualquer teste de Esgueirar contra visão termográfica ou sensores térmicos.",
+      "wireless": "O traje fornece informação extra sobre os arredores e também dá seu nível como bônus na pilha de dados em testes de Esgueirar contra detecção de calor.",
+      "page": 437
+    },
+    {
+      "id": "insulation",
+      "name": "Isolamento",
+      "rating": {
+        "min": 1,
+        "max": 6
+      },
+      "capacity": {
+        "cost": {
+          "ref": "rating"
+        }
+      },
+      "availability": {
+        "value": 6,
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          250
+        ]
+      },
+      "desc": "Fibras térmicas e materiais de retenção de calor protegem o usuário contra dano de Frio (p. 170). Adicione o nível total da modificação de Isolamento para o valor de Armadura ao resistir ataques de Frio.",
+      "page": 437
+    },
+    {
+      "id": "nonconductivity",
+      "name": "Não condutividade",
+      "rating": {
+        "min": 1,
+        "max": 6
+      },
+      "capacity": {
+        "cost": {
+          "ref": "rating"
+        }
+      },
+      "availability": {
+        "value": 6,
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          250
+        ]
+      },
+      "desc": "O isolamento elétrico e materiais não-condutores protegem o usuário contra dano de eletricidade (p. 170). Adicione o nível total desta modificação para o valor de Armadura ao resistir ataques de Eletricidade.",
+      "page": 437
+    },
+    {
+      "id": "shock-frills",
+      "name": "Pelagem de Choque",
+      "capacity": {
+        "cost": 2
+      },
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 250,
+      "desc": "Essas linhas de “pelo” são eletricamente carregadas ao serem ativadas, se eriçando e causando dano de Eletricidade em qualquer um que toque você. Use Combate Desarmado para atacar com a pelagem. A pelagem tem 10 cargas; quando conectadas com um ponto energia, ela recarrega uma carga a cada 10 segundos.",
+      "wireless": "A pelagem de choque pode ser ativada ou desativada como uma Ação Livre. Ela também pode recarregar por indução, recarregando uma carga por hora.",
+      "page": 437
+    },
+    {
+      "id": "chemical-protection",
+      "name": "Proteção Química",
+      "rating": {
+        "min": 1,
+        "max": 6
+      },
+      "capacity": {
+        "cost": {
+          "ref": "rating"
+        }
+      },
+      "availability": {
+        "value": 6,
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          250
+        ]
+      },
+      "desc": "Materiais impermeáveis, não porosos, à prova d’água, e um revestimento de agentes neutralizantes protegem o usuário contra ataques químicos de vetor por contato (Toxinas, Drogas e MQTs, p. 408). Adicione o nível da modificação de Proteção Química para testes feitos para resistir ataques de toxinas de vetor por contato.",
+      "page": 437
+    },
+    {
+      "id": "fire-resistance",
+      "name": "Resistente ao Fogo",
+      "rating": {
+        "min": 1,
+        "max": 6
+      },
+      "capacity": {
+        "cost": {
+          "ref": "rating"
+        }
+      },
+      "availability": {
+        "value": 6,
+        "legality": null
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          250
+        ]
+      },
+      "desc": "Materiais retardantes de fogo e inflamáveis protegem o usuário contra dano de Fogo (p. 171). Adicione o nível total da modificação da Resistência ao Fogo para o valor de Armadura ao resistir ataques de Fogo ou fazendo testes para ver se a armadura pega fogo.",
+      "page": 437
+    },
+    {
+      "id": "chemical-seal",
+      "name": "Vedação Química",
+      "capacity": {
+        "cost": 6
+      },
+      "availability": {
+        "value": 12,
+        "legality": "R"
+      },
+      "cost": 3000,
+      "desc": "Disponível apenas em armadura corporal completa que inclua um capacete, a vedação química é um controle ambiental hermeticamente fechado que leva uma Ação Complexa para ativar (se já estiver usando a armadura, óbvio). Ela fornece proteção completa contra químicos de vetor por contato e inalação, mas só pode ser usada até um total de uma hora (o limite do suprimento de ar) de cada vez.",
+      "wireless": "Ativar a vedação química é uma Ação Livre.",
+      "page": 437
+    }
+  ]
+}

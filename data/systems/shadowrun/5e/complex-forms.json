@@ -1,0 +1,334 @@
+{
+  "targets": [
+    {
+      "id": "self",
+      "name": "Pessoal"
+    },
+    {
+      "id": "device",
+      "name": "Dispositivo"
+    },
+    {
+      "id": "persona",
+      "name": "Persona"
+    },
+    {
+      "id": "file",
+      "name": "Arquivo"
+    },
+    {
+      "id": "sprite",
+      "name": "Sprite"
+    }
+  ],
+  "matrixAttributes": [
+    {
+      "id": "attack",
+      "name": "Ataque"
+    },
+    {
+      "id": "sleaze",
+      "name": "Subversão"
+    },
+    {
+      "id": "dataProcessing",
+      "name": "Datagrama"
+    },
+    {
+      "id": "firewall",
+      "name": "Firewall"
+    }
+  ],
+  "rules": {
+    "levelMax": {
+      "op": "mul",
+      "of": [
+        {
+          "ref": "attr.res"
+        },
+        3
+      ]
+    },
+    "knownMax": {
+      "op": "mul",
+      "of": [
+        {
+          "ref": "attr.res"
+        },
+        2
+      ]
+    },
+    "fadingMin": 2,
+    "fadingResistance": {
+      "op": "add",
+      "of": [
+        {
+          "ref": "attr.res"
+        },
+        {
+          "ref": "attr.wil"
+        }
+      ]
+    },
+    "sustainedPenalty": -2,
+    "page": 251
+  },
+  "complexForms": [
+    {
+      "id": "static-bomb",
+      "name": "Bomba de Estática",
+      "target": "self",
+      "duration": "instant",
+      "fading": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          1
+        ]
+      },
+      "desc": "Faça um teste Simples de Software + Ressonância [Nível] contra Intuição + Datagrama contra todos os ícones que tiverem o localizado. Se houver mais do que um, compare seus sucessos com cada um deles separadamente. Cada ícone vencido perde sua localização e você não está mais localizado por tais ícones. Um ícone que tenha uma marca em você não o perde, claro.",
+      "page": 252
+    },
+    {
+      "id": "resonance-channel",
+      "name": "Canal de Ressonância",
+      "target": "device",
+      "duration": "sustained",
+      "fading": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          3
+        ]
+      },
+      "desc": "Em vez de usar canais da Matriz, você se comunica através de um canal de Ressonância. Faça um teste Simples de Software + Ressonância [Nível]. Para cada sucesso restante, reduza o ruído devido à distância até o dispositivo alvo em 1.",
+      "page": 252
+    },
+    {
+      "id": "tattletale",
+      "name": "Difamador",
+      "target": "persona",
+      "duration": "permanent",
+      "fading": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          3
+        ]
+      },
+      "desc": "A Ressonância pode ser usada para imitar os sinais denunciadores da atividade ilegal na Matriz, para a aflição dos seus alvos. Faça um teste Simples de Software + Ressonância [Nível]. Para cada sucesso, aumente o Valor de Vigilância do alvo em 1. Isso só funciona se seu alvo tiver um Valor de Vigilância.",
+      "page": 252
+    },
+    {
+      "id": "diffusion",
+      "name": "Difusão de [Atributo da Matriz]",
+      "target": "device",
+      "duration": "sustained",
+      "fading": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          2
+        ]
+      },
+      "parameter": {
+        "kind": "matrixAttribute",
+        "options": [
+          "attack",
+          "sleaze",
+          "dataProcessing",
+          "firewall"
+        ]
+      },
+      "desc": "Esta descrição de forma complexa é o resumo de quatro formas complexas diferentes, uma para cada atributo da Matriz. Faça um Teste de Oposição de Software + Ressonância [Nível] contra Vontade + Firewall. Se você vencer, o atributo do alvo é reduzido pelos seus sucessos restantes. Não é possível reduzir um atributo para menos do que 1.",
+      "page": 252
+    },
+    {
+      "id": "editor",
+      "name": "Editor",
+      "target": "file",
+      "duration": "permanent",
+      "fading": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          1
+        ]
+      },
+      "desc": "Você infunde um arquivo com Ressonância por tempo suficiente para manipular seu conteúdo. Faça um teste Simples de Software + Ressonância [Nível] contra a Intuição + Datagrama do proprietário do arquivo. Você pode fazer a mesma quantidade de mudanças no arquivo que seria capaz de fazer com seus sucessos restantes em ações de Editar Arquivo.",
+      "page": 252
+    },
+    {
+      "id": "resonance-spike",
+      "name": "Ferrão de Ressonância",
+      "target": "device",
+      "duration": "instant",
+      "fading": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          3
+        ]
+      },
+      "desc": "Você envia um ferrão de Ressonância bruta destrutiva contra o alvo, causando erros e caos. Faça um teste de Software + Ressonância [Nível] contra Vontade + Firewall. Seu alvo sofre 1 caixa de dano da Matriz por sucesso restante, sem chance de resistir.",
+      "page": 252
+    },
+    {
+      "id": "transcendent-grid",
+      "name": "Grade Transcendental",
+      "target": "self",
+      "duration": "instant",
+      "fading": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          3
+        ]
+      },
+      "desc": "Você amplia sua conexão com a Matriz e se conecta a todas as grades de uma vez. Você não sofre penalidade por agir através de grades (pois está em todas elas), assim como os outros que o escolham como alvo. Você também não sofre a penalidade da grade pública. Faça um teste Simples de Software + Ressonância [Nível]. O efeito persiste por um minuto para cada sucesso obtido. Quando você ficar sem sucessos, a forma complexa termina.",
+      "page": 252
+    },
+    {
+      "id": "infusion",
+      "name": "Infusão de [Atributo da Matriz]",
+      "target": "device",
+      "duration": "sustained",
+      "fading": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          2
+        ]
+      },
+      "parameter": {
+        "kind": "matrixAttribute",
+        "options": [
+          "attack",
+          "sleaze",
+          "dataProcessing",
+          "firewall"
+        ]
+      },
+      "desc": "Esta descrição de forma complexa é o resumo de quatro formas complexas diferentes, uma para cada atributo da Matriz. A Ressonância inunda o dispositivo alvo, ampliando o atributo especificado. O Nível da forma complexa deve ser igual ou maior do que o nível do atributo sendo afetado. O atributo é aumentado pelo número de sucessos obtidos, até duas vezes o nível normal do alvo (sucessos que aumentariam o atributo além desse máximo são ignorados). Cada atributo só pode ser afetado por uma única Infusão de cada vez. Se um atributo ampliado por esta forma complexa for trocado por uma ação de Reconfigurar, esta forma complexa termina.",
+      "page": 252
+    },
+    {
+      "id": "cleaner",
+      "name": "Limpador",
+      "target": "persona",
+      "duration": "permanent",
+      "fading": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          2
+        ]
+      },
+      "desc": "Ações ilegais deixam rastros na Matriz, mas a Ressonância pode apagar alguns deles. Faça um teste Simples de Software + Ressonância [Nível]. Para cada sucesso, reduza o Valor de Vigilância do alvo em 1.",
+      "page": 253
+    },
+    {
+      "id": "stitches",
+      "name": "Sutura",
+      "target": "sprite",
+      "duration": "permanent",
+      "fading": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          3
+        ]
+      },
+      "desc": "Você costura os padrões de Ressonância de volta em um sprite. Faça um teste Simples de Software + Ressonância [Nível]. Para cada sucesso, remova 1 caixa de dano da Matriz do sprite alvo.",
+      "page": 253
+    },
+    {
+      "id": "pulse-storm",
+      "name": "Tempestade de Pulso",
+      "target": "persona",
+      "duration": "instant",
+      "fading": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          3
+        ]
+      },
+      "desc": "Você empurra sinais para fora da Ressonância e cerca o alvo com eles. Faça um teste Simples de Software + Ressonância [Nível] contra Lógica + Datagrama. Para cada sucesso restante que obter, você aumenta o ruído do alvo em 1.",
+      "page": 253
+    },
+    {
+      "id": "puppeteer",
+      "name": "Titereiro",
+      "target": "device",
+      "duration": "instant",
+      "fading": {
+        "op": "add",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          1
+        ]
+      },
+      "desc": "Você força comandos de Ressonância em um alvo, forçando-o a executar uma ação da Matriz. Escolha um alvo e uma ação da Matriz para executar. Faça um Teste de Oposição de Software + Ressonância [Nível] contra Vontade + Firewall, com limiar baseado no tipo de ação: 1 para uma Ação Livre, 2 para Simples e 3 para Complexa. Se for bem-sucedido, o alvo executa tal ação da Matriz com sua próxima ação disponível.",
+      "page": 253
+    },
+    {
+      "id": "static-veil",
+      "name": "Véu de Estática",
+      "target": "persona",
+      "duration": "sustained",
+      "fading": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          3
+        ]
+      },
+      "desc": "A energia da Ressonância gira ao seu redor, o escondendo de DEUS. Faça um teste Simples de Software + Ressonância [Nível] com limiar 1 se o alvo estiver na grade pública e 2 se estiver em outra grade. Enquanto você sustentar esta forma complexa e o alvo não saltar para outra grade, o Valor de Vigilância da persona velada não aumenta com o tempo (p. 231). Contudo, ela ainda aumenta como resultado das ações ilegais do alvo.",
+      "page": 253
+    },
+    {
+      "id": "resonance-veil",
+      "name": "Véu de Ressonância",
+      "target": "device",
+      "duration": "sustained",
+      "fading": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          1
+        ]
+      },
+      "desc": "Esta forma complexa permite que você faça o alvo acreditar que algo aconteceu na Matriz. É uma ilusão convincente se você for bem-sucedido em um teste de Software + Ressonância [Nível] contra Intuição + Datagrama. Mesmo que o alvo tenha motivos para acreditar que o que está vendo é falso, ele precisa fazer um Teste de Percepção da Matriz com limiar igual aos seus sucessos restantes para enxergar através da ilusão.",
+      "page": 253
+    }
+  ]
+}

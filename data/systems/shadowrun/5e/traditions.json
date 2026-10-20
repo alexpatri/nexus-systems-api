@@ -1,0 +1,81 @@
+{
+  "desc": "Uma tradição mágica descreve como você interage com a mana. Claro, você não precisa necessariamente de coisas como cânticos, gestos elegantes de mão, maldições murmuradas, e uma filosofia holística para lançar feitiços e invocar espíritos, mas obviamente ajuda bastante a reconectar você com a magia, e sua tradição serve exatamente para isso. Muitas vezes, ao procurar formas de focar, as pessoas usam elementos de sua cultura ou do passado que associam com a magia. Se passar toda a sua vida achando que a magia surge quando você brande uma pequena varinha, ter tal varinha na sua mão ajuda você a focar suas habilidades. Ou quem sabe te disseram que a magia pode ser contida num colar de contas — neste caso, segurar e mexer tal colar é exatamente o que você precisa. Todos os magos são membros de uma das tradições mágicas. Existem muitas tradições mágicas diferentes no Sexto Mundo, e aqui estão duas delas para você. A tradição hermética dá valor à ideia escolar e lógica da conjuração. A magia xamânica é mais livre, selvagem, e pode ganhar forças da personalidade do mago. Seguidores da tradição hermética são chamados de magos, enquanto seguidores da tradição xamânica são chamados de xamãs. Diferentes aspectos do mundo (os elementos) são importantes para tradições de formas diferentes — a descrição de cada tradição descreve como cada elemento se alinha com os tipos diferentes de feitiços, reagentes, e espírito de acordo com o que pensam, indicando que tipos de espíritos e poderes espirituais eles são mais passíveis de invocar em situações particulares. A descrição de cada tradição também inclui os Atributos usados no Teste de Resistência ao Dreno para conjuradores desta tradição.",
+  "spiritTypes": [
+    {
+      "id": "air",
+      "name": "Ar"
+    },
+    {
+      "id": "beasts",
+      "name": "Feras"
+    },
+    {
+      "id": "earth",
+      "name": "Terra"
+    },
+    {
+      "id": "fire",
+      "name": "Fogo"
+    },
+    {
+      "id": "man",
+      "name": "Homem"
+    },
+    {
+      "id": "water",
+      "name": "Água"
+    }
+  ],
+  "traditions": [
+    {
+      "id": "hermetic",
+      "name": "Hermética",
+      "followers": "Magos",
+      "drain": {
+        "op": "add",
+        "of": [
+          {
+            "ref": "attr.log"
+          },
+          {
+            "ref": "attr.wil"
+          }
+        ]
+      },
+      "spirits": {
+        "combat": "fire",
+        "detection": "air",
+        "health": "man",
+        "illusion": "water",
+        "manipulation": "earth"
+      },
+      "desc": "O mago hermético se baseia na lógica, prática e execução de uma fórmula prevista em vez da intuição e improvisação para lançar feitiços de forma eficaz. Ele aprendeu a controlar a magia e crê que o universo (as partes mágicas e o mundano) segue padrões de energia que podem ser manipulados através de símbolos complexos, fórmulas e conhecimento arcano dos seus componentes. Esta tradição era muito praticada (mesmo não sendo tão eficiente) antes mesmo do Despertar, e esta forma logo agradou as corporações e governos graças à sua natureza intelectual e formalizada. Na cabeça do hermético, lançar magias envolve impor a vontade do mago no universo — então pode imaginar alguns dos egos que surgem quando os magos se juntam. Magos são eruditos e costumam ter bibliotecas de informações mágicas de onde projetam feitiços. Qualquer mago que o valha tem pelo menos uma cópia digital de um dos textos fundamentais do hermeticismo (magos ricos têm bela cópia chique escrita e encadernada à mão numa cerimônia também super chique). Ornamentos herméticos incluem equipamentos de luxo feitos à mão em laboratórios arcaicos onde magos podem criar preparações e executar suas pesquisas. Magos criam círculos de poder (geralmente são só estâncias mágicas com uma decoração hermética, mas nem pense em falar isso para um mago). Reagentes herméticos incluem minerais, minérios, e outros elementos — um conhecimento de geologia, parageologia e química ajuda bastante a saber onde encontrar tais reagentes. Em áreas urbanas, itens encontrados nos cantos esotéricos, antigos e esquecidos das cidades podem ser usados por magos. Prédios velhos, cemitérios, e lojas de antiguidade podem ter pedaços de tijolo, cerâmica, vidro, ferro forjado, e joias que foram imbuídas com propriedades mágicas dos elementos. O conhecimento de arquitetura e antiguidades ajuda na procura destes reagentes. Magos, obviamente, têm um comportamento bem arrogante sobre a convocação. O mago costuma acreditar que espíritos são seres inteligentes porém inferiores, predestinados para a servidão. Com esta mentalidade, magos preferem vincular espíritos mais do que conjuradores de outras tradições.",
+      "page": 279
+    },
+    {
+      "id": "shamanic",
+      "name": "Xamânica",
+      "followers": "Xamãs",
+      "drain": {
+        "op": "add",
+        "of": [
+          {
+            "ref": "attr.cha"
+          },
+          {
+            "ref": "attr.wil"
+          }
+        ]
+      },
+      "spirits": {
+        "combat": "beasts",
+        "detection": "water",
+        "health": "earth",
+        "illusion": "air",
+        "manipulation": "man"
+      },
+      "desc": "O xamã utiliza a mana para equilibrar o mundo da natureza e sua própria vontade. Ele crê na harmonia e orientação, observando o mundo e usando emoção para tecer a magia. Ele respeita o dom da magia que o conecta ao fluxo do espírito da vida. Para o xamã, a terra é um ser vivo, e seus filhos são espíritos que guiam e auxiliam aqueles que a ajudam; espíritos do céu, da montanha, pássaros, ratos, até mesmo a meta-humanidade. O xamanismo tem sido praticado há muito mais tempo do que a magia hermética, e pode ser encontrado em todas as partes do mundo, apesar de não ser levado a sério pela meta-humanidade até a Grande Dança Fantasma. Para o xamã, lançar um feitiço é pedir a uma entidade universal superior, como um espírito mentor, que conceda poderes. Xamãs chamam suas estâncias mágicas de “estâncias medicinais”. Uma estância medicinal (também conhecida como tenda de suor, inipi, kiva, temazcal ou uma série de outros nomes) pode ter uma variedade de formas, incluindo uma pequena oca com um teto de pele de animal ou um buraco cavado no chão e cuidadosamente coberto com um teto de galhos entrelaçados, ou numa área urbana uma salinha cheia de peles, pinturas, e tralhas urbanas artisticamente decorativas. Áreas campesinas são um ótimo lugar para um xamã coletar reagentes, encontrar plantas e pedaços de animais, pedras moldadas naturalmente, e frascos de água de locais muito prístinos. O conhecimento de zoologia, parazoologia, botânica e parabotânica os ajuda a encontrar e coletar esses materiais. Em áreas urbanas, xamãs descobrem que o espírito da vida também habita as cidades. Os chamados “xamãs urbanos” encontram reagentes em animais urbanos, pedras naturalmente desgastadas em parques ou canais, e joias artesanais feitas com materiais naturais. O conhecimento de arquitetura e trabalhos manuais ajuda a encontrar este tipo de reagente. A perspectiva xamânica de convocação se baseia na crença de que os espíritos são antigos e inteligentes, e devem ser tratados com o mesmo respeito que se deve demonstrar a um ancião. Graças à crença de que espíritos estão por todos os lugares, xamãs frequentemente invocam espíritos da área quando a necessidade surge, em vez de vinculá-los por longos períodos. Xamãs costumam desenvolver conexões pessoais aos espíritos, seguindo-os enquanto aprendem sua magia.",
+      "page": 279
+    }
+  ]
+}

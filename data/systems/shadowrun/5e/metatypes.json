@@ -1,0 +1,318 @@
+{
+  "metatypes": [
+    {
+      "id": "human",
+      "name": "Humano",
+      "species": "Homo sapiens sapiens",
+      "attributes": {
+        "bod": {
+          "min": 1,
+          "max": 6
+        },
+        "agi": {
+          "min": 1,
+          "max": 6
+        },
+        "rea": {
+          "min": 1,
+          "max": 6
+        },
+        "str": {
+          "min": 1,
+          "max": 6
+        },
+        "wil": {
+          "min": 1,
+          "max": 6
+        },
+        "log": {
+          "min": 1,
+          "max": 6
+        },
+        "int": {
+          "min": 1,
+          "max": 6
+        },
+        "cha": {
+          "min": 1,
+          "max": 6
+        },
+        "edg": {
+          "min": 2,
+          "max": 7
+        },
+        "ess": {
+          "start": 6
+        }
+      },
+      "traits": [],
+      "sprintPerHit": 2,
+      "desc": "Humano (Homo sapiens sapiens) é o metatipo que existe há mais tempo (bem, talvez com uma única exceção). Você os conhece, os adora e, se estiver lendo isso, existe uma grande chance de você ser um deles. São equilibrados em suas habilidades e costumam ter um pouco mais de sorte (representado pelo Trunfo) do que os outros metatipos.",
+      "page": 50
+    },
+    {
+      "id": "elf",
+      "name": "Elfo",
+      "species": "Homo sapiens nobilis",
+      "attributes": {
+        "bod": {
+          "min": 1,
+          "max": 6
+        },
+        "agi": {
+          "min": 2,
+          "max": 7
+        },
+        "rea": {
+          "min": 1,
+          "max": 6
+        },
+        "str": {
+          "min": 1,
+          "max": 6
+        },
+        "wil": {
+          "min": 1,
+          "max": 6
+        },
+        "log": {
+          "min": 1,
+          "max": 6
+        },
+        "int": {
+          "min": 1,
+          "max": 6
+        },
+        "cha": {
+          "min": 3,
+          "max": 8
+        },
+        "edg": {
+          "min": 1,
+          "max": 6
+        },
+        "ess": {
+          "start": 6
+        }
+      },
+      "traits": [
+        {
+          "id": "low-light-vision",
+          "name": "Visão na Penumbra"
+        }
+      ],
+      "sprintPerHit": 2,
+      "desc": "Elfos (Homo sapiens nobilis) são mais altos, mais magros que os humanos e tem orelhas pontudas. Eles têm um dom de ser extremamente irritantes, pois são mais ágeis do que os humanos, além de geralmente terem melhor aparência, só para começar. Também têm uma expectativa de vida muito longa e continuam a parecer jovens em seus quarenta e cinquenta anos. Eles são ocasionalmente conhecidos por exibir esses fatos para os humanos ou qualquer um que esteja dentro do alcance auditivo. Embora a maioria dos elfos tenha surgido no Despertar, juntamente com os outros metatipos, há rumores de que alguns elfos estavam escondidos em algum lugar durante o fluxo mágico do Quinto Mundo e eles são muito mais antigos do que qualquer criatura tem o direito de ser.",
+      "page": 50
+    },
+    {
+      "id": "dwarf",
+      "name": "Anão",
+      "species": "Homo sapiens pumilionis",
+      "attributes": {
+        "bod": {
+          "min": 3,
+          "max": 8
+        },
+        "agi": {
+          "min": 1,
+          "max": 6
+        },
+        "rea": {
+          "min": 1,
+          "max": 5
+        },
+        "str": {
+          "min": 3,
+          "max": 8
+        },
+        "wil": {
+          "min": 2,
+          "max": 7
+        },
+        "log": {
+          "min": 1,
+          "max": 6
+        },
+        "int": {
+          "min": 1,
+          "max": 6
+        },
+        "cha": {
+          "min": 1,
+          "max": 6
+        },
+        "edg": {
+          "min": 1,
+          "max": 6
+        },
+        "ess": {
+          "start": 6
+        }
+      },
+      "traits": [
+        {
+          "id": "thermographic-vision",
+          "name": "Visão Termográfica"
+        },
+        {
+          "id": "pathogen-toxin-resistance",
+          "name": "+2 dados para resistência a patogênicos e toxinas"
+        },
+        {
+          "id": "lifestyle-cost",
+          "name": "+20% de aumento no custo de Estilo de Vida",
+          "modifiers": [
+            {
+              "target": "lifestyle.cost",
+              "mul": 1.2
+            }
+          ]
+        }
+      ],
+      "sprintPerHit": 1,
+      "desc": "Anões (Homo sapiens pumilionis), como pode imaginar, são mais baixos e troncudos do que os humanos. Eles tendem a ser muito fortes e resistentes, capazes de recuperarem-se de danos que vão de pancadas na cabeça até doses de cicuta. Ou pancadas na cabeça com um porrete enrolado em folhas de cicuta. Anões são trabalhadores duros e costumam ser muito valorizados por empresas, o que significa que estão mais profundamente integrados na sociedade humana do que os outros metatipos. Eles ainda enfrentam discriminação devido ao seu tamanho e, muitas vezes, têm de tomar medidas para tornar adequado para eles um mundo construído para os humanos.",
+      "page": 50
+    },
+    {
+      "id": "ork",
+      "name": "Ork",
+      "species": "Homo sapiens robustus",
+      "attributes": {
+        "bod": {
+          "min": 4,
+          "max": 9
+        },
+        "agi": {
+          "min": 1,
+          "max": 6
+        },
+        "rea": {
+          "min": 1,
+          "max": 6
+        },
+        "str": {
+          "min": 3,
+          "max": 8
+        },
+        "wil": {
+          "min": 1,
+          "max": 6
+        },
+        "log": {
+          "min": 1,
+          "max": 5
+        },
+        "int": {
+          "min": 1,
+          "max": 6
+        },
+        "cha": {
+          "min": 1,
+          "max": 5
+        },
+        "edg": {
+          "min": 1,
+          "max": 6
+        },
+        "ess": {
+          "start": 6
+        }
+      },
+      "traits": [
+        {
+          "id": "low-light-vision",
+          "name": "Visão na Penumbra"
+        }
+      ],
+      "sprintPerHit": 2,
+      "desc": "Orks (Homo sapiens robustus) parecem as criaturas que estão morrendo em massa nos filmes e trídeos de fantasia por quase cento e cinquenta anos. Com as sobrancelhas salientes, presas proeminentes e uma grande estatura, os orks têm problemas para evitar o estereótipo de serem brutos violentos que não pensam. Não ajuda o fato de haver mais do que alguns orks que ficam felizes em viver de acordo com esse estereótipo, em vez de combatê-lo. O resultado final é uma tensão encoberta entre orks e humanos, o que leva ambos os grupos a preferirem viver em comunidades separadas. Elfos e orks, por outro lado, geralmente preferem morar em países completamente diferentes. Apesar dos estereótipos, orks podem ser encontrados em todas as esferas da vida, desde becos úmidos até salas de reuniões corporativas. Eles têm uma expectativa de vida mais curta que os humanos, que geralmente os levam a ter um certo desespero para fazer o máximo que puderem nesses anos.",
+      "page": 50
+    },
+    {
+      "id": "troll",
+      "name": "Troll",
+      "species": "Homo sapiens ingentis",
+      "attributes": {
+        "bod": {
+          "min": 5,
+          "max": 10
+        },
+        "agi": {
+          "min": 1,
+          "max": 5
+        },
+        "rea": {
+          "min": 1,
+          "max": 6
+        },
+        "str": {
+          "min": 5,
+          "max": 10
+        },
+        "wil": {
+          "min": 1,
+          "max": 6
+        },
+        "log": {
+          "min": 1,
+          "max": 5
+        },
+        "int": {
+          "min": 1,
+          "max": 5
+        },
+        "cha": {
+          "min": 1,
+          "max": 4
+        },
+        "edg": {
+          "min": 1,
+          "max": 6
+        },
+        "ess": {
+          "start": 6
+        }
+      },
+      "traits": [
+        {
+          "id": "thermographic-vision",
+          "name": "Visão Termográfica"
+        },
+        {
+          "id": "reach",
+          "name": "+1 de Alcance",
+          "modifiers": [
+            {
+              "target": "reach",
+              "add": 1
+            }
+          ]
+        },
+        {
+          "id": "dermal-armor",
+          "name": "+1 de armadura dérmica",
+          "modifiers": [
+            {
+              "target": "armor",
+              "add": 1
+            }
+          ]
+        },
+        {
+          "id": "lifestyle-cost",
+          "name": "+100% de aumento no custo de Estilo de Vida",
+          "modifiers": [
+            {
+              "target": "lifestyle.cost",
+              "mul": 2
+            }
+          ]
+        }
+      ],
+      "sprintPerHit": 1,
+      "desc": "Trolls (Homo sapiens ingentis) fazem os orks parecerem pessoas normais na rua. Orks podem ser, em média, menos de 25 centímetros mais altos do que os humanos, enquanto os trolls, por outro lado, são mais de meio metro mais altos do que orks. Orks podem parecer uma versão monstruosa da humanidade, já os trolls, por outro lado, parecem com versões vagamente humanas da criatura no seu pesadelo mais recente. Com chifres grossos e enrolado em suas cabeças (alguns trolls preferem cortá-los, enquanto outros vão poli-los com orgulho), saliências pontiagudas de cálcio em suas articulações e músculos individuais que são maiores do que um porco crescido, os trolls dão a impressão imediata de que foram construídos para a destruição. A maioria deles consegue viver de acordo com essa imagem. “Contudo, nem todos os trolls estão interessados em absorver e causar dano. Eles tentaram encontrar seu caminho em papéis diferentes, mas seu tamanho grande combina com os estereótipos culturais, dificultando ainda mais para que eles se encaixem. Orks costumam ser mais receptivos com trolls e os dois metatipos muitas vezes moram nos mesmos bairros. Normalmente, estes não são os bairros mais ricos em recursos em um determinado cortiço.",
+      "page": 50
+    }
+  ]
+}

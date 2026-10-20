@@ -1,0 +1,373 @@
+{
+  "columns": [
+    {
+      "id": "metatype",
+      "name": "Metatipo"
+    },
+    {
+      "id": "attributes",
+      "name": "Atributos"
+    },
+    {
+      "id": "magic",
+      "name": "Magia ou Ressonância"
+    },
+    {
+      "id": "skills",
+      "name": "Perícias"
+    },
+    {
+      "id": "resources",
+      "name": "Recursos"
+    }
+  ],
+  "rows": [
+    {
+      "priority": "A",
+      "metatype": [
+        {
+          "metatype": "human",
+          "specialPoints": 9
+        },
+        {
+          "metatype": "elf",
+          "specialPoints": 8
+        },
+        {
+          "metatype": "dwarf",
+          "specialPoints": 7
+        },
+        {
+          "metatype": "ork",
+          "specialPoints": 7
+        },
+        {
+          "metatype": "troll",
+          "specialPoints": 5
+        }
+      ],
+      "attributes": 24,
+      "magic": [
+        {
+          "awakening": "magician",
+          "attribute": {
+            "id": "mag",
+            "value": 6
+          },
+          "skills": {
+            "count": 2,
+            "rating": 5,
+            "from": {
+              "attribute": "mag"
+            }
+          },
+          "formulas": 10
+        },
+        {
+          "awakening": "mystic-adept",
+          "attribute": {
+            "id": "mag",
+            "value": 6
+          },
+          "skills": {
+            "count": 2,
+            "rating": 5,
+            "from": {
+              "attribute": "mag"
+            }
+          },
+          "formulas": 10
+        },
+        {
+          "awakening": "technomancer",
+          "attribute": {
+            "id": "res",
+            "value": 6
+          },
+          "skills": {
+            "count": 3,
+            "rating": 5,
+            "from": {
+              "groups": [
+                "tasking",
+                "electronics",
+                "cracking"
+              ]
+            }
+          },
+          "complexForms": 7,
+          "note": "O exemplo da p. 70 diverge da tabela (duas perícias e 2 formas complexas na prioridade B); vale a tabela."
+        }
+      ],
+      "skills": {
+        "points": 46,
+        "groupPoints": 10
+      },
+      "resources": 450000
+    },
+    {
+      "priority": "B",
+      "metatype": [
+        {
+          "metatype": "human",
+          "specialPoints": 7
+        },
+        {
+          "metatype": "elf",
+          "specialPoints": 6
+        },
+        {
+          "metatype": "dwarf",
+          "specialPoints": 4
+        },
+        {
+          "metatype": "ork",
+          "specialPoints": 4
+        },
+        {
+          "metatype": "troll",
+          "specialPoints": 0
+        }
+      ],
+      "attributes": 20,
+      "magic": [
+        {
+          "awakening": "magician",
+          "attribute": {
+            "id": "mag",
+            "value": 4
+          },
+          "skills": {
+            "count": 2,
+            "rating": 4,
+            "from": {
+              "attribute": "mag"
+            }
+          },
+          "formulas": 7
+        },
+        {
+          "awakening": "mystic-adept",
+          "attribute": {
+            "id": "mag",
+            "value": 4
+          },
+          "skills": {
+            "count": 2,
+            "rating": 4,
+            "from": {
+              "attribute": "mag"
+            }
+          },
+          "formulas": 7
+        },
+        {
+          "awakening": "technomancer",
+          "attribute": {
+            "id": "res",
+            "value": 4
+          },
+          "skills": {
+            "count": 3,
+            "rating": 4,
+            "from": {
+              "groups": [
+                "tasking",
+                "electronics",
+                "cracking"
+              ]
+            }
+          },
+          "complexForms": 4,
+          "note": "O exemplo da p. 70 diverge da tabela (duas perícias e 2 formas complexas na prioridade B); vale a tabela."
+        },
+        {
+          "awakening": "adept",
+          "attribute": {
+            "id": "mag",
+            "value": 6
+          },
+          "skills": {
+            "count": 1,
+            "rating": 4,
+            "from": {
+              "kind": "active"
+            }
+          }
+        },
+        {
+          "awakening": "aspected-magician",
+          "attribute": {
+            "id": "mag",
+            "value": 5
+          },
+          "skillGroups": {
+            "count": 1,
+            "rating": 4,
+            "from": {
+              "groups": [
+                "sorcery",
+                "conjuring",
+                "enchanting"
+              ]
+            }
+          }
+        }
+      ],
+      "skills": {
+        "points": 36,
+        "groupPoints": 5
+      },
+      "resources": 275000
+    },
+    {
+      "priority": "C",
+      "metatype": [
+        {
+          "metatype": "human",
+          "specialPoints": 5
+        },
+        {
+          "metatype": "elf",
+          "specialPoints": 3
+        },
+        {
+          "metatype": "dwarf",
+          "specialPoints": 1
+        },
+        {
+          "metatype": "ork",
+          "specialPoints": 0
+        }
+      ],
+      "attributes": 16,
+      "magic": [
+        {
+          "awakening": "magician",
+          "attribute": {
+            "id": "mag",
+            "value": 3
+          },
+          "formulas": 5
+        },
+        {
+          "awakening": "mystic-adept",
+          "attribute": {
+            "id": "mag",
+            "value": 3
+          },
+          "formulas": 5
+        },
+        {
+          "awakening": "technomancer",
+          "attribute": {
+            "id": "res",
+            "value": 3
+          },
+          "skills": {
+            "count": 3,
+            "rating": 2,
+            "from": {
+              "groups": [
+                "tasking",
+                "electronics",
+                "cracking"
+              ]
+            }
+          },
+          "complexForms": 3,
+          "note": "O exemplo da p. 70 diverge da tabela (duas perícias e 2 formas complexas na prioridade B); vale a tabela."
+        },
+        {
+          "awakening": "adept",
+          "attribute": {
+            "id": "mag",
+            "value": 4
+          },
+          "skills": {
+            "count": 1,
+            "rating": 2,
+            "from": {
+              "kind": "active"
+            }
+          }
+        },
+        {
+          "awakening": "aspected-magician",
+          "attribute": {
+            "id": "mag",
+            "value": 3
+          },
+          "skillGroups": {
+            "count": 1,
+            "rating": 2,
+            "from": {
+              "groups": [
+                "sorcery",
+                "conjuring",
+                "enchanting"
+              ]
+            }
+          }
+        }
+      ],
+      "skills": {
+        "points": 28,
+        "groupPoints": 2
+      },
+      "resources": 140000
+    },
+    {
+      "priority": "D",
+      "metatype": [
+        {
+          "metatype": "human",
+          "specialPoints": 3
+        },
+        {
+          "metatype": "elf",
+          "specialPoints": 0
+        }
+      ],
+      "attributes": 14,
+      "magic": [
+        {
+          "awakening": "adept",
+          "attribute": {
+            "id": "mag",
+            "value": 2
+          }
+        },
+        {
+          "awakening": "aspected-magician",
+          "attribute": {
+            "id": "mag",
+            "value": 2
+          }
+        }
+      ],
+      "skills": {
+        "points": 22,
+        "groupPoints": 0
+      },
+      "resources": 50000
+    },
+    {
+      "priority": "E",
+      "metatype": [
+        {
+          "metatype": "human",
+          "specialPoints": 1
+        }
+      ],
+      "attributes": 12,
+      "magic": [],
+      "skills": {
+        "points": 18,
+        "groupPoints": 0
+      },
+      "resources": 6000
+    }
+  ],
+  "page": 65
+}

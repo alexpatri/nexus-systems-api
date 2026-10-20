@@ -1,0 +1,2455 @@
+{
+  "types": [
+    {
+      "id": "physical",
+      "name": "Físico",
+      "abbr": "F"
+    },
+    {
+      "id": "mana",
+      "name": "Mana",
+      "abbr": "M"
+    }
+  ],
+  "ranges": [
+    {
+      "id": "los",
+      "name": "Linha de Visão",
+      "abbr": "LDV"
+    },
+    {
+      "id": "touch",
+      "name": "Toque",
+      "abbr": "T"
+    }
+  ],
+  "durations": [
+    {
+      "id": "instant",
+      "name": "Instantâneo",
+      "abbr": "I"
+    },
+    {
+      "id": "sustained",
+      "name": "Sustentado",
+      "abbr": "S"
+    },
+    {
+      "id": "permanent",
+      "name": "Permanente",
+      "abbr": "P"
+    }
+  ],
+  "damageTypes": [
+    {
+      "id": "physical",
+      "name": "Físico",
+      "abbr": "F"
+    },
+    {
+      "id": "stun",
+      "name": "Atordoamento",
+      "abbr": "A"
+    }
+  ],
+  "keywords": [
+    {
+      "id": "direct",
+      "name": "Direto"
+    },
+    {
+      "id": "indirect",
+      "name": "Indireto"
+    },
+    {
+      "id": "elemental",
+      "name": "Elemental"
+    },
+    {
+      "id": "active",
+      "name": "Ativo"
+    },
+    {
+      "id": "passive",
+      "name": "Passivo"
+    },
+    {
+      "id": "directional",
+      "name": "Direcional"
+    },
+    {
+      "id": "area",
+      "name": "Área"
+    },
+    {
+      "id": "extended-area",
+      "name": "Área Estendida"
+    },
+    {
+      "id": "psychic",
+      "name": "Psíquico"
+    },
+    {
+      "id": "obvious",
+      "name": "Óbvio"
+    },
+    {
+      "id": "realistic",
+      "name": "Realista"
+    },
+    {
+      "id": "single-sense",
+      "name": "Sentido Único"
+    },
+    {
+      "id": "multi-sense",
+      "name": "Multissentidos"
+    },
+    {
+      "id": "environmental",
+      "name": "Ambiental"
+    },
+    {
+      "id": "mental",
+      "name": "Mental"
+    },
+    {
+      "id": "physical",
+      "name": "Físico"
+    },
+    {
+      "id": "damaging",
+      "name": "Danoso"
+    },
+    {
+      "id": "essence",
+      "name": "Essência"
+    }
+  ],
+  "elements": [
+    {
+      "id": "acid",
+      "name": "Ácido"
+    },
+    {
+      "id": "fire",
+      "name": "Fogo"
+    },
+    {
+      "id": "electricity",
+      "name": "Eletricidade"
+    }
+  ],
+  "rules": {
+    "forceMax": {
+      "op": "mul",
+      "of": [
+        {
+          "ref": "attr.mag"
+        },
+        2
+      ]
+    },
+    "drainMin": 2,
+    "sustainedPenalty": -2,
+    "areaRadius": {
+      "ref": "force"
+    },
+    "page": 281
+  },
+  "categories": [
+    {
+      "id": "combat",
+      "name": "Combate",
+      "desc": "Os feitiços de combate usam mana para criar efeitos nocivos, por métodos diretos ou indiretos. Eles são as armas de um lança-mana, e são tratados assim pelas agências da lei. Direto: Quando seu feitiço de combate direto é conjurado com sucesso, ele causa um número de caixas de dano igual aos sucessos restantes no teste de oposição. O teste de oposição geralmente coloca sua Conjuração + Magia [Potência] contra o Corpo (para feitiços físicos) ou a Vontade (para feitiços de mana). O alvo não pode resistir ao dano, só ao teste de Conjuração. Indireto: Todos os feitiços de combate indiretos originam-se perto do corpo do mago (a maioria dos magos usa suas mãos ou olhos, mas alguns usam seus pés para “chutes de poder” ou emanam poder de todo o corpo para um tipo de efeito de arremesso de aura). Então, o feitiço é lançado com um Teste de Oposição que coloca a Conjuração + Magia [Potência] do mago contra a Reação + Intuição do alvo, como um disparo de arma (nesse caso, com balas feitas de ácido, ou fogo, ou algo igualmente desagradável de se levar na cara). Então você não precisa de fato ser capaz de ver o alvo — você pode lançar estes feitiços vendado ou com um aprimoramento artificial de imagem — desde que tenha uma linha definida de disparo. O Valor de Dano de um feitiço de combate indireto bem-sucedido é Potência + sucessos restantes, com um PA igual a –(Potência). O dano de um feitiço de combate indireto é resistido com Corpo + Armadura (ajustado pelo PA do feitiço). Feitiços de área indiretos saem do mago até o ponto de detonação e, então, explodem. O teste é similar ao de granadas (p. 181): um Teste de Conjuração + Magia [Potência] (3) com dispersão de 2D6 metros. Diferente das granadas, você pode adicionar seus sucessos restantes neste teste para o Valor de Dano do feitiço, mas apenas se superar o limiar; caso contrário, o feitiço ainda detona, mas os sucessos são usados para reduzir a dispersão em um metro por sucesso. Elemental: Estes feitiços causam dano extra (Tipos Especiais de Dano, p. 170). O tipo específico está listado na descrição do feitiço.",
+      "page": 283,
+      "rules": {
+        "direct": {
+          "damage": {
+            "ref": "netHits"
+          }
+        },
+        "indirect": {
+          "damage": {
+            "op": "add",
+            "of": [
+              {
+                "ref": "force"
+              },
+              {
+                "ref": "netHits"
+              }
+            ]
+          },
+          "ap": {
+            "op": "mul",
+            "of": [
+              {
+                "ref": "force"
+              },
+              -1
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "detection",
+      "name": "Detecção",
+      "desc": "Feitiços de Detecção concedem um novo sentido (além dos cinco normais) ou aprimoram um sentido já existente enquanto forem sustentados. Feitiços de Detecção podem ser lançados no próprio usuário ou outro alvo dentro do alcance de toque. O alcance padrão do sentido concedido por um feitiço de Detecção é o Potência do feitiço x Magia do conjurador em metros como raio a partir do alvo do feitiço. Feitiços de detecção de alcance estendido possuem um alcance de Potência x Magia x 10 metros. Quanto mais sucessos restantes consegue ao lançar o feitiço, mais detalhadas são as informações que você recebe. Usar o sentido extra ou aprimorado pode exigir que o alvo faça Observar Detalhadamente como uma Ação Simples. Feitiços de Detecção são ou direcionais (como visão normal), efeitos em área (funcionam em todas as direções ao mesmo tempo, como audição), ou psíquicos (concedendo algum outro sentido especial como telepatia ou precognição). O sentido é ou ativo, exigindo esforços ou ações especiais para usar, ou passivo, o que significa que aprimora as habilidades daqueles afetados sem que tenham que tomar ações separadas. Ativos: Feitiços de Detecção ativos envolvem um Teste de Oposição entre a Conjuração + Magia [Potência] do conjurador e ou Vontade + Lógica (+ Contramágica, se disponível) [Mental] para coisas vivas com auras, (Potência x 2) para objetos mágicos, ou a resistência do objeto para objetos mundanos (p. 295). Contramágica pode ser usada para se defender contra feitiços de detecção ativos, mesmo se o alvo não está ciente da conjuração deles (por exemplo, se entrarem na área de um feitiço ativo de Detectar Inimigos). Quando um feitiço afeta múltiplos alvos, seja porque possui um efeito de área ou porque está sustentado e pode ser encontrado por múltiplas pessoas, você só deve fazer um único Teste de Conjuração. Cada alvo em potencial deve realizar um Teste individual de Resistência a Feitiços e comparar o resultado ao seu. Novos alvos podem ser detectados ao entrarem no alcance do feitiço, e devem realizar um Teste de Resistência a Feitiços contra o seu Teste de Conjuração original. Passivos: Um sentido passivo está simplesmente “ligado” e alimenta informações sensoriais ao cérebro do alvo como outros sentidos — não é necessário interpretá-las. Enquanto o feitiço for sustentado, Testes de Percepção utilizando este sentido têm um limite igual aos sucessos restantes de lançar o feitiço em vez do limite Mental do alvo. Contramágica não pode ser usada para se defender contra um sentido passivo, mas assim que um conjurador oponente perceber que há um feitiço ativo sustentado, ele pode tentar dissipá-lo (veja Dissipar, p. 294). Falhas: Uma falha num Teste de Conjuração de Detecção pode resultar em informações falsas ou incorretas. Da mesma forma, uma falha crítica pode causar Dreno extra (por exemplo, +2 de Valor de Dreno), traduzir qualquer dano de Dreno sofrido em Dano Físico, temporariamente tirar um sentido do alvo, ou inexplicavelmente aplicar o sentido desejado em outros (especialmente oponentes) dentro do alcance — quem sabe eles agradeçam você pela ajuda em detectar toda a sua equipe.",
+      "page": 285,
+      "rules": {
+        "range": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "force"
+            },
+            {
+              "ref": "attr.mag"
+            }
+          ]
+        },
+        "extendedRange": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "force"
+            },
+            {
+              "ref": "attr.mag"
+            },
+            10
+          ]
+        }
+      },
+      "results": [
+        {
+          "netHits": {
+            "min": 1,
+            "max": 1
+          },
+          "result": "Apenas conhecimento comum, sem detalhes",
+          "example": "Um grupo de meta-humanos."
+        },
+        {
+          "netHits": {
+            "min": 2,
+            "max": 2
+          },
+          "result": "Apenas detalhes principais, nada de detalhes menores.",
+          "example": "Um anão, uma troll e um ork entram num bar. Avise se você já ouviu essa."
+        },
+        {
+          "netHits": {
+            "min": 3,
+            "max": 3
+          },
+          "result": "Detalhes principais e menores, com alguns detalhes menores ocultos ou faltantes",
+          "example": "Os três indivíduos acima estão todos armados, e de armas em punho. O troll está liderando."
+        },
+        {
+          "netHits": {
+            "min": 4,
+            "max": 4
+          },
+          "result": "Informação detalhada",
+          "example": "A troll é o seu contato, Moira; você acha que nunca conheceu os outros dois."
+        }
+      ]
+    },
+    {
+      "id": "illusion",
+      "name": "Ilusão",
+      "desc": "Não importa o quanto sejam realistas, as ilusões não podem causar lesões físicas. Elas podem causar distrações, perda de equilíbrio ou orientação, e até mesmo sintomas como enjoo ou dor. Todos estes efeitos somem, no entanto, assim que o mago parar com a ilusão. Ilusões certamente podem ferir ao manipular os sentidos para que uma vítima ande no meio do tráfego ou para fora de um prédio alto, por exemplo, mas elas não podem causar dano diretamente. As ilusões têm as seguintes categorias: Ilusões óbvias são usadas somente para entretenimento e não podem enganar alvos; eles nunca acreditarão que são verdade. Ilusões realistas aparentam ser totalmente reais. Ilusões de sentido único afetam apenas um sentido. Ilusões de múltiplos sentidos afetam todos os sentidos. Ilusões de Mana: Feitiços de Ilusão baseados em mana afetam a mente e não funcionam contra sistemas de observação tecnológicos, como câmeras. Ilusões de mana são resistidas com Lógica + Vontade. Algumas ilusões de mana afetam os sentidos do alvo diretamente, outras afetam os sentidos de alguém que perceba o alvo do feitiço (embora você nunca ser afetado pelo seu próprio feitiço de ilusão). Apesar de ilusões baseadas em mana poderem ser criadas no plano astral, suas auras mágicas as revelam como ilusões para qualquer um que passe num Teste de Sentido Astral — ilusões não podem enganar Sentido Astral nem serem usadas para disfarçar ou criar auras. Ilusões Físicas: Feitiços de ilusão física criam imagens reais ou alteram propriedades físicas, como a luz ou o som. Ilusões físicas podem ser usadas em sistemas vivos e tecnológicos. Elas são resistidas com Intuição + Lógica. Dispositivos não vivos resistem com sua Resistência de Objeto. O mago deve gerar mais sucessos do que o observador para a ilusão ser considerada real. Se o feitiço não for completamente resistido, o alvo é totalmente afetado pela ilusão.",
+      "page": 287
+    },
+    {
+      "id": "manipulation",
+      "name": "Manipulação",
+      "desc": "Feitiços de manipulação controlam, animam ou transformam matéria e energia. Existem uma série de palavras - -chave para feitiços de manipulação. Danoso: Feitiços de Manipulação que causam dano possuem um Valor de Dano igual a sua Potência (inalterado pelos sucessos no teste de Conjuração) e 0 PA. O dano é resistido com Corpo + Armadura. Mental: Os alvos resistem a esses feitiços com Lógica + Vontade. Registre seus sucessos restantes, pois eles determinam por quanto tempo você pode sustentar o feitiço. Enquanto o feitiço for sustentado, o alvo pode usar uma Ação Complexa no seu turno para resistir, fazendo um Teste de Lógica + Vontade com uma penalidade na pilha de dados igual ao Potência do feitiço. Cada sucesso reduz os sucessos restantes do conjurador em 1. O alvo controlado pode usar essa ação mesmo ele não podendo realizar uma ação por causa do feitiço. O feitiço termina quando seus sucessos restantes forem reduzidos a zero. Uma vítima de um feitiço de manipulação mental pode rolar para notar o efeito mágico de acordo com as regras normais de Percebendo Magia (p. 280). Alguns dos feitiços mentais menos sutis (Controlar Ações) são bem óbvios, mas feitiços mais sutis (como Controlar Pensamentos) podem ser bem pérfidos. Ambiental: Esses feitiços não possuem um alvo de fato, e não afetam alvos diretamente. Eles só afetam uma área. Físico: Estes feitiços afetam formas físicas e geralmente são defendidas com a pilha de dados de Corpo + Força de um alvo vivo ou da Resistência do Objeto de um item inanimado.",
+      "page": 290,
+      "rules": {
+        "damaging": {
+          "damage": {
+            "ref": "force"
+          },
+          "ap": 0
+        }
+      }
+    },
+    {
+      "id": "health",
+      "name": "Saúde",
+      "desc": "Feitiços de saúde podem curar lesões físicas, curar doenças (ou causar sintomas), desintoxicar venenos ou drogas (ou simular seus efeitos), e modificar atributos. Nenhuma técnica conhecida atualmente pela magia pode remover dano de Atordoamento ou curar condições psicológicas. Todos os feitiços de saúde exigem que o mago toque fisicamente o alvo do feitiço — esta “cura pelas mãos” é tradição de toda cultura mágica do mundo. A maioria dos feitiços de saúde são conjurados com um Teste simples de Conjuração + Magia [Potência]. Exceções estão listadas nas descrições do feitiço. Essência: Personagens com pouca Essência são mais difíceis de afetar com feitiços de saúde. É difícil fazer o corpo voltar ao seu estado natural quando o estado já foi alterado de forma não-natural. Em termos de jogo, isso significa que você recebe um modificador na pilha de dados igual a Essência atual do alvo menos a Essência máxima dele (o que acabará sendo 0 ou um número negativo), arredondado para cima.",
+      "page": 293
+    }
+  ],
+  "spells": [
+    {
+      "id": "shatter",
+      "name": "Estilhaçar",
+      "category": "combat",
+      "keywords": [
+        "direct"
+      ],
+      "type": "physical",
+      "range": "touch",
+      "area": false,
+      "damage": "physical",
+      "duration": "instant",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          6
+        ]
+      },
+      "page": 283,
+      "desc": "Estes feitiços canalizam o poder mágico destrutivo contra os alvos, causando dano Físico. O alvo é queimado de dentro para fora, tipo botar uma salsicha num micro-ondas mágico. Como energias físicas, eles podem afetar alvos tanto vivos quanto inorgânicos, e são resistidos pelo Corpo do alvo. Estilhaçar exige que você toque o alvo, Raio de Força afeta um único alvo e Esfera de Força é um feitiço de área."
+    },
+    {
+      "id": "powerbolt",
+      "name": "Raio de Força",
+      "category": "combat",
+      "keywords": [
+        "direct"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": false,
+      "damage": "physical",
+      "duration": "instant",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          3
+        ]
+      },
+      "page": 283,
+      "desc": "Estes feitiços canalizam o poder mágico destrutivo contra os alvos, causando dano Físico. O alvo é queimado de dentro para fora, tipo botar uma salsicha num micro-ondas mágico. Como energias físicas, eles podem afetar alvos tanto vivos quanto inorgânicos, e são resistidos pelo Corpo do alvo. Estilhaçar exige que você toque o alvo, Raio de Força afeta um único alvo e Esfera de Força é um feitiço de área."
+    },
+    {
+      "id": "powerball",
+      "name": "Esfera de Força",
+      "category": "combat",
+      "keywords": [
+        "direct"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": true,
+      "damage": "physical",
+      "duration": "instant",
+      "drain": {
+        "ref": "force"
+      },
+      "page": 283,
+      "desc": "Estes feitiços canalizam o poder mágico destrutivo contra os alvos, causando dano Físico. O alvo é queimado de dentro para fora, tipo botar uma salsicha num micro-ondas mágico. Como energias físicas, eles podem afetar alvos tanto vivos quanto inorgânicos, e são resistidos pelo Corpo do alvo. Estilhaçar exige que você toque o alvo, Raio de Força afeta um único alvo e Esfera de Força é um feitiço de área."
+    },
+    {
+      "id": "acid-stream",
+      "name": "Jato de Ácido",
+      "category": "combat",
+      "keywords": [
+        "indirect",
+        "elemental"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": false,
+      "damage": "physical",
+      "duration": "instant",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          3
+        ]
+      },
+      "element": "acid",
+      "page": 284,
+      "desc": "Estes feitiços criam um poderoso corrosivo que jorra no alvo, causando queimaduras sérias e consumindo material orgânico e metálico — trate como dano de Ácido (p. 170), com efeitos apropriados na área afetada e quaisquer objetos lá dentro. O ácido evapora rapidamente, mas o dano causado permanece. Jato de Ácido é um feitiço de um alvo só; Onda Tóxica é um feitiço de área."
+    },
+    {
+      "id": "toxic-wave",
+      "name": "Onda Tóxica",
+      "category": "combat",
+      "keywords": [
+        "indirect",
+        "elemental"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": true,
+      "damage": "physical",
+      "duration": "instant",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          1
+        ]
+      },
+      "element": "acid",
+      "page": 284,
+      "desc": "Estes feitiços criam um poderoso corrosivo que jorra no alvo, causando queimaduras sérias e consumindo material orgânico e metálico — trate como dano de Ácido (p. 170), com efeitos apropriados na área afetada e quaisquer objetos lá dentro. O ácido evapora rapidamente, mas o dano causado permanece. Jato de Ácido é um feitiço de um alvo só; Onda Tóxica é um feitiço de área."
+    },
+    {
+      "id": "flamethrower",
+      "name": "Lança-Chamas",
+      "category": "combat",
+      "keywords": [
+        "indirect",
+        "elemental"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": false,
+      "damage": "physical",
+      "duration": "instant",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          3
+        ]
+      },
+      "element": "fire",
+      "page": 284,
+      "desc": "Estes feitiços criam uma explosão de chamas que se acendem e incendeiam o(s) alvo(s), servindo tanto para causar dor e ser intimidador pra caceta. Estes feitiços causam dano de Fogo (p. 172). Estas chamas se apagam após atingir o alvo, mas seus efeitos secundários podem incendiar materiais inflamados que continuam a queimar após o feitiço se exaurir. Lança-Chamas é um feitiço de um alvo só, enquanto Bola de Fogo é um feitiço de área."
+    },
+    {
+      "id": "fireball",
+      "name": "Bola de Fogo",
+      "category": "combat",
+      "keywords": [
+        "indirect",
+        "elemental"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": true,
+      "damage": "physical",
+      "duration": "instant",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          1
+        ]
+      },
+      "element": "fire",
+      "page": 284,
+      "desc": "Estes feitiços criam uma explosão de chamas que se acendem e incendeiam o(s) alvo(s), servindo tanto para causar dor e ser intimidador pra caceta. Estes feitiços causam dano de Fogo (p. 172). Estas chamas se apagam após atingir o alvo, mas seus efeitos secundários podem incendiar materiais inflamados que continuam a queimar após o feitiço se exaurir. Lança-Chamas é um feitiço de um alvo só, enquanto Bola de Fogo é um feitiço de área."
+    },
+    {
+      "id": "knockout",
+      "name": "Nocaute",
+      "category": "combat",
+      "keywords": [
+        "direct"
+      ],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "damage": "stun",
+      "duration": "instant",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          6
+        ]
+      },
+      "page": 284,
+      "desc": "Estes feitiços canalizam a energia mágica diretamente no alvo, causando dano de Atordoamento. Às vezes são chamados de feitiços de “sono” porque deixam os alvos inconscientes, mas vivos, em casos onde você prefira uma violência mais educada. Nocaute exige que o mago toque o alvo, Raio de Atordoamento afeta um único alvo e Esfera de Atordoamento é um feitiço de área."
+    },
+    {
+      "id": "stunbolt",
+      "name": "Raio de Atordoamento",
+      "category": "combat",
+      "keywords": [
+        "direct"
+      ],
+      "type": "mana",
+      "range": "los",
+      "area": false,
+      "damage": "stun",
+      "duration": "instant",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          3
+        ]
+      },
+      "page": 284,
+      "desc": "Estes feitiços canalizam a energia mágica diretamente no alvo, causando dano de Atordoamento. Às vezes são chamados de feitiços de “sono” porque deixam os alvos inconscientes, mas vivos, em casos onde você prefira uma violência mais educada. Nocaute exige que o mago toque o alvo, Raio de Atordoamento afeta um único alvo e Esfera de Atordoamento é um feitiço de área."
+    },
+    {
+      "id": "stunball",
+      "name": "Esfera de Atordoamento",
+      "category": "combat",
+      "keywords": [
+        "direct"
+      ],
+      "type": "mana",
+      "range": "los",
+      "area": true,
+      "damage": "stun",
+      "duration": "instant",
+      "drain": {
+        "ref": "force"
+      },
+      "page": 284,
+      "desc": "Estes feitiços canalizam a energia mágica diretamente no alvo, causando dano de Atordoamento. Às vezes são chamados de feitiços de “sono” porque deixam os alvos inconscientes, mas vivos, em casos onde você prefira uma violência mais educada. Nocaute exige que o mago toque o alvo, Raio de Atordoamento afeta um único alvo e Esfera de Atordoamento é um feitiço de área."
+    },
+    {
+      "id": "lightning-bolt",
+      "name": "Relâmpago",
+      "category": "combat",
+      "keywords": [
+        "indirect",
+        "elemental"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": false,
+      "damage": "physical",
+      "duration": "instant",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          3
+        ]
+      },
+      "element": "electricity",
+      "page": 284,
+      "desc": "Estas magias criam e direcionam raios elétricos terríveis que causam dano de Eletricidade (p. 170). Relâmpago é um feitiço de alvo único. Esfera de Relâmpago é um feitiço de área."
+    },
+    {
+      "id": "ball-lightning",
+      "name": "Esfera de Relâmpago",
+      "category": "combat",
+      "keywords": [
+        "indirect",
+        "elemental"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": true,
+      "damage": "physical",
+      "duration": "instant",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          1
+        ]
+      },
+      "element": "electricity",
+      "page": 284,
+      "desc": "Estas magias criam e direcionam raios elétricos terríveis que causam dano de Eletricidade (p. 170). Relâmpago é um feitiço de alvo único. Esfera de Relâmpago é um feitiço de área."
+    },
+    {
+      "id": "punch",
+      "name": "Soco",
+      "category": "combat",
+      "keywords": [
+        "indirect"
+      ],
+      "type": "physical",
+      "range": "touch",
+      "area": false,
+      "damage": "stun",
+      "duration": "instant",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          6
+        ]
+      },
+      "page": 284,
+      "desc": "Estes feitiços golpeiam o(s) alvo(s) com uma força psicocinética invisível, similar a um soco fortíssimo, que causa dano de Atordoamento. Soco exige que você toque o alvo. Pancada afeta um único alvo, enquanto Explosão é um feitiço de área."
+    },
+    {
+      "id": "clout",
+      "name": "Pancada",
+      "category": "combat",
+      "keywords": [
+        "indirect"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": false,
+      "damage": "stun",
+      "duration": "instant",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          3
+        ]
+      },
+      "page": 284,
+      "desc": "Estes feitiços golpeiam o(s) alvo(s) com uma força psicocinética invisível, similar a um soco fortíssimo, que causa dano de Atordoamento. Soco exige que você toque o alvo. Pancada afeta um único alvo, enquanto Explosão é um feitiço de área."
+    },
+    {
+      "id": "blast",
+      "name": "Explosão",
+      "category": "combat",
+      "keywords": [
+        "indirect"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": true,
+      "damage": "stun",
+      "duration": "instant",
+      "drain": {
+        "ref": "force"
+      },
+      "page": 284,
+      "desc": "Estes feitiços golpeiam o(s) alvo(s) com uma força psicocinética invisível, similar a um soco fortíssimo, que causa dano de Atordoamento. Soco exige que você toque o alvo. Pancada afeta um único alvo, enquanto Explosão é um feitiço de área."
+    },
+    {
+      "id": "death-touch",
+      "name": "Toque da Morte",
+      "category": "combat",
+      "keywords": [
+        "direct"
+      ],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "damage": "physical",
+      "duration": "instant",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          6
+        ]
+      },
+      "page": 284,
+      "desc": "Toque da Morte, Raio de Mana e Bola de Mana canalizam o poder mágico destrutivo contra o alvo, causando dano Físico. O dano causado é similar a uma morte celular maciça da radiação ou fasciite necrosante, mas sem os efeitos contínuos. Mesmo assim, eca. Uma vez que são feitiços de mana, os feitiços deste grupo afetam alvos vivos e mágicos e são resistidos com Vontade. Toque da Morte exige que o mago toque o alvo. Raio de Mana afeta um único alvo e Bola de Mana é um feitiço de área."
+    },
+    {
+      "id": "manabolt",
+      "name": "Raio de Mana",
+      "category": "combat",
+      "keywords": [
+        "direct"
+      ],
+      "type": "mana",
+      "range": "los",
+      "area": false,
+      "damage": "physical",
+      "duration": "instant",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          3
+        ]
+      },
+      "page": 284,
+      "desc": "Toque da Morte, Raio de Mana e Bola de Mana canalizam o poder mágico destrutivo contra o alvo, causando dano Físico. O dano causado é similar a uma morte celular maciça da radiação ou fasciite necrosante, mas sem os efeitos contínuos. Mesmo assim, eca. Uma vez que são feitiços de mana, os feitiços deste grupo afetam alvos vivos e mágicos e são resistidos com Vontade. Toque da Morte exige que o mago toque o alvo. Raio de Mana afeta um único alvo e Bola de Mana é um feitiço de área."
+    },
+    {
+      "id": "manaball",
+      "name": "Bola de Mana",
+      "category": "combat",
+      "keywords": [
+        "direct"
+      ],
+      "type": "mana",
+      "range": "los",
+      "area": true,
+      "damage": "physical",
+      "duration": "instant",
+      "drain": {
+        "ref": "force"
+      },
+      "page": 284,
+      "desc": "Toque da Morte, Raio de Mana e Bola de Mana canalizam o poder mágico destrutivo contra o alvo, causando dano Físico. O dano causado é similar a uma morte celular maciça da radiação ou fasciite necrosante, mas sem os efeitos contínuos. Mesmo assim, eca. Uma vez que são feitiços de mana, os feitiços deste grupo afetam alvos vivos e mágicos e são resistidos com Vontade. Toque da Morte exige que o mago toque o alvo. Raio de Mana afeta um único alvo e Bola de Mana é um feitiço de área."
+    },
+    {
+      "id": "analyze-device",
+      "name": "Analisar Dispositivo",
+      "category": "detection",
+      "keywords": [
+        "active",
+        "directional"
+      ],
+      "type": "physical",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          3
+        ]
+      },
+      "page": 285,
+      "desc": "Este feitiço permite que o alvo analise o propósito e operação de um dispositivo ou equipamento dentro da área do sentido. A conjuração do feitiço é oposta pela resistência do objeto (p. 295). Cada sucesso restante pode ser usado para adquirir uma informação não aparentemente óbvia sobre o dispositivo (por exemplo, não daria a informação de que é um dispositivo fabricado pela Renraku se a coisa tiver um enorme logo da Renraku, mas pode revelar a condição básica da coisa). Cada sucesso restante concede ao alvo um dado bônus ao operar o dispositivo e permite ao alvo ignorar quaisquer modificadores de teste-padrão de perícias por usá-lo enquanto o feitiço for sustentado."
+    },
+    {
+      "id": "analyze-magic",
+      "name": "Analisar Magia",
+      "category": "detection",
+      "keywords": [
+        "active",
+        "directional"
+      ],
+      "type": "physical",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          3
+        ]
+      },
+      "page": 285,
+      "desc": "Este feitiço permite que o alvo analise o propósito de um objeto mágico (como focos, preparações alquímicas, estâncias mágicas, rituais ativos). Trate os sucessos restantes do Teste de Conjuração como sucessos na Tabela de Sentido Astral (p. 313), exceto que o alvo não precisa estar percebendo astralmente."
+    },
+    {
+      "id": "analyze-truth",
+      "name": "Analisar Verdade",
+      "category": "detection",
+      "keywords": [
+        "active",
+        "directional"
+      ],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          2
+        ]
+      },
+      "page": 285,
+      "desc": "O usuário pode saber se as alegações de um alvo são verdadeiras (ou pelo menos se o alvo acredita serem honestamente verdadeiras). O feitiço requer pelo menos 1 sucesso restante para determinar a validade de uma alegação escolhida. O feitiço não funciona em materiais escritos ou itens gravados por qualquer meio tecnológico. O usuário deve ouvir uma alegação pessoalmente (com o alvo dentro do alcance) para potência julgar sua veracidade."
+    },
+    {
+      "id": "clairaudience",
+      "name": "Clariaudiência",
+      "category": "detection",
+      "keywords": [
+        "passive",
+        "directional"
+      ],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          3
+        ]
+      },
+      "page": 286,
+      "desc": "O alvo pode ouvir sons distantes como se estivesse fisicamente num ponto escolhido dentro do alcance sensorial do feitiço. O local de escuta pode ser movido para qualquer ponto dentro do alcance do feitiço como uma Ação Complexa. Ao usar Clariaudiência, o alvo não pode usar sua audição normal. Este feitiço não traduz imagens visuais, apenas sons (e apenas sons dentro do alcance auditivo natural do alvo; audição ampliada não se aplica)."
+    },
+    {
+      "id": "clairvoyance",
+      "name": "Clarividência",
+      "category": "detection",
+      "keywords": [
+        "passive",
+        "directional"
+      ],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          3
+        ]
+      },
+      "page": 286,
+      "desc": "O alvo pode ver cenas distantes como se estivesse fisicamente num ponto escolhido dentro do alcance sensorial do feitiço. O ponto visual pode ser movido para qualquer ponto dentro do alcance do feitiço como uma Ação Complexa. O alvo não pode usar visão normal ou percepção astral enquanto usar Clarividência. Este feitiço não traduz som, apenas visão, e não funciona com visão ampliada. Não é possível usar Clarividência para lançar feitiços."
+    },
+    {
+      "id": "detect-life-form",
+      "name": "Detectar [Forma de Vida]",
+      "category": "detection",
+      "keywords": [
+        "active",
+        "area"
+      ],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          2
+        ]
+      },
+      "parameter": {
+        "id": "lifeform",
+        "name": "Forma de Vida"
+      },
+      "page": 286,
+      "desc": "O alvo detecta todos os seres de um tipo específico de forma de vida dentro do alcance do sentido e sabe sua quantidade e localização próxima. Isso, na verdade, são diversos feitiços diferentes que devem ser aprendidos, um para cada tipo de forma de vida que um conjurador queira detectar (Detectar Orks, Detectar Elfos, Detectar Dragões, e por aí vai), e aprendidos separadamente."
+    },
+    {
+      "id": "detect-life-form-extended",
+      "name": "Detectar [Forma de Vida], Estendido",
+      "category": "detection",
+      "keywords": [
+        "active",
+        "extended-area"
+      ],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "ref": "force"
+      },
+      "parameter": {
+        "id": "lifeform",
+        "name": "Forma de Vida"
+      },
+      "page": 286,
+      "desc": "O alvo detecta todos os seres de um tipo específico de forma de vida dentro do alcance do sentido e sabe sua quantidade e localização próxima. Isso, na verdade, são diversos feitiços diferentes que devem ser aprendidos, um para cada tipo de forma de vida que um conjurador queira detectar (Detectar Orks, Detectar Elfos, Detectar Dragões, e por aí vai), e aprendidos separadamente."
+    },
+    {
+      "id": "detect-object",
+      "name": "Detectar [Objeto]",
+      "category": "detection",
+      "keywords": [
+        "active",
+        "area"
+      ],
+      "type": "physical",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          2
+        ]
+      },
+      "parameter": {
+        "id": "object",
+        "name": "Objeto"
+      },
+      "page": 286,
+      "desc": "O alvo detecta todos os objetos de um tipo específico dentro do alcance do sentido e sabe sua quantidade e localização próxima. Cada tipo de objeto requer um feitiço separado (Detectar Armas, Detectar Computadores, Detectar Explosivos, e por aí vai). Estes feitiços devem ser aprendidos e conjurados separadamente."
+    },
+    {
+      "id": "detect-individual",
+      "name": "Detectar Indivíduo",
+      "category": "detection",
+      "keywords": [
+        "active",
+        "area"
+      ],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          3
+        ]
+      },
+      "page": 286,
+      "desc": "O alvo pode detectar a presença de um indivíduo específico em qualquer lugar dentro do alcance do sentido. Você deve especificar o indivíduo durante a conjuração, alguém que você conheça ou que pelo menos já tenha encontrado."
+    },
+    {
+      "id": "detect-enemies",
+      "name": "Detectar Inimigos",
+      "category": "detection",
+      "keywords": [
+        "active",
+        "area"
+      ],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          2
+        ]
+      },
+      "page": 286,
+      "desc": "O alvo pode detectar alvos vivos dentro do alcance que tenham intenções hostis a ele. O feitiço não detecta armadilhas (já que não estão vivas), nem pode detectar alguém prestes a atirar de forma aleatória numa multidão (já que a hostilidade não é direcionada ao alvo do feitiço). O feitiço pode detectar alvos preparando uma emboscada ou outro ataque surpresa direcionado ao alvo."
+    },
+    {
+      "id": "detect-enemies-extended",
+      "name": "Detectar Inimigos, Estendido",
+      "category": "detection",
+      "keywords": [
+        "active",
+        "extended-area"
+      ],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "ref": "force"
+      },
+      "page": 286,
+      "desc": "O alvo pode detectar alvos vivos dentro do alcance que tenham intenções hostis a ele. O feitiço não detecta armadilhas (já que não estão vivas), nem pode detectar alguém prestes a atirar de forma aleatória numa multidão (já que a hostilidade não é direcionada ao alvo do feitiço). O feitiço pode detectar alvos preparando uma emboscada ou outro ataque surpresa direcionado ao alvo."
+    },
+    {
+      "id": "detect-magic",
+      "name": "Detectar Magia",
+      "category": "detection",
+      "keywords": [
+        "active",
+        "area"
+      ],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          2
+        ]
+      },
+      "page": 287,
+      "desc": "O alvo pode detectar a presença de todos os focos, feitiços, proteções, estâncias mágicas, preparações alquímicas, rituais ativos, e espíritos dentro do alcance do sentido. O feitiço não detecta personagens ou criaturas Despertas, assinaturas astrais, preparações alquímicas que expiraram ou já foram ativadas, ou os efeitos de feitiços permanentes assim que se tornaram permanentes."
+    },
+    {
+      "id": "detect-magic-extended",
+      "name": "Detectar Magia, Estendido",
+      "category": "detection",
+      "keywords": [
+        "active",
+        "extended-area"
+      ],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "ref": "force"
+      },
+      "page": 287,
+      "desc": "O alvo pode detectar a presença de todos os focos, feitiços, proteções, estâncias mágicas, preparações alquímicas, rituais ativos, e espíritos dentro do alcance do sentido. O feitiço não detecta personagens ou criaturas Despertas, assinaturas astrais, preparações alquímicas que expiraram ou já foram ativadas, ou os efeitos de feitiços permanentes assim que se tornaram permanentes."
+    },
+    {
+      "id": "detect-life",
+      "name": "Detectar Vida",
+      "category": "detection",
+      "keywords": [
+        "active",
+        "area"
+      ],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          3
+        ]
+      },
+      "page": 287,
+      "desc": "O alvo detecta todos os seres vivos (exceto espíritos) dentro do alcance do sentido e sabe sua quantidade e localização próxima. Numa área tumultuada, o feitiço é praticamente inútil, pegando uma bagunça borrada de todos os traços de vida."
+    },
+    {
+      "id": "detect-life-extended",
+      "name": "Detectar Vida, Estendido",
+      "category": "detection",
+      "keywords": [
+        "active",
+        "extended-area"
+      ],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "ref": "force"
+      },
+      "page": 287,
+      "desc": "O alvo detecta todos os seres vivos (exceto espíritos) dentro do alcance do sentido e sabe sua quantidade e localização próxima. Numa área tumultuada, o feitiço é praticamente inútil, pegando uma bagunça borrada de todos os traços de vida."
+    },
+    {
+      "id": "mindlink",
+      "name": "Elo Mental",
+      "category": "detection",
+      "keywords": [
+        "active",
+        "psychic"
+      ],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          1
+        ]
+      },
+      "page": 287,
+      "desc": "Elo Mental permite ao mago e um alvo voluntário a se comunicar mentalmente, trocando conversas, emoções, e imagens mentais. Um sucesso no Teste de Conjuração é suficiente para estabelecer a conexão. O alvo deve permanecer dentro do alcance do mago para o Elo Mental funcionar."
+    },
+    {
+      "id": "combat-sense",
+      "name": "Sentido de Combate",
+      "category": "detection",
+      "keywords": [
+        "passive",
+        "psychic"
+      ],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "ref": "force"
+      },
+      "page": 287,
+      "desc": "O alvo pode, subconscientemente, analisar combates e outras situações perigosas dentro da área, sentindo eventos um segundo antes de acontecerem. Cada sucesso no Teste de Conjuração adiciona 1 dado para Reação em Testes de Surpresa, e também para rolagens feitas ao se defender contra ataques à distância e corpo a corpo enquanto o feitiço permanecer."
+    },
+    {
+      "id": "mind-probe",
+      "name": "Sonda Mental",
+      "category": "detection",
+      "keywords": [
+        "active",
+        "directional"
+      ],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "ref": "force"
+      },
+      "page": 287,
+      "desc": "Este feitiço permite que o alvo sonde telepaticamente a mente de outro alvo específico dentro da área do sentido (selecionado quando o feitiço é lançado). O alvo está ciente da sonda, apesar de poder não saber a fonte do feitiço. A quantidade de sucessos restantes que obtiver no feitiço determina que tipo de informação o usuário pode ler, descrito na tabela. O usuário pode sondar por uma informação por Ação Complexa enquanto o feitiço for sustentado. Usos adicionais de Sonda Mental contra o mesmo alvo dentro de um número de horas igual à Vontade do alvo dão um modificador de –2 na pilha de dados da tentativa da Conjuração.",
+      "results": [
+        {
+          "netHits": {
+            "min": 1,
+            "max": 2
+          },
+          "result": "O usuário só pode ler os pensamentos superficiais do alvo."
+        },
+        {
+          "netHits": {
+            "min": 3,
+            "max": 4
+          },
+          "result": "O usuário pode descobrir qualquer coisa que o alvo saiba de forma consciente, e ver as memórias recentes do alvo (de até 72 horas)."
+        },
+        {
+          "netHits": {
+            "min": 5,
+            "max": null
+          },
+          "result": "O alvo pode sondar o subconsciente do alvo, recebendo informações que o alvo talvez nem esteja ciente, como traços psicológicos, medos profundos, ou memórias ocultas."
+        }
+      ]
+    },
+    {
+      "id": "hush",
+      "name": "Abafar",
+      "category": "illusion",
+      "keywords": [
+        "realistic",
+        "single-sense",
+        "area"
+      ],
+      "type": "mana",
+      "range": "los",
+      "area": true,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          2
+        ]
+      },
+      "page": 288,
+      "desc": "Estes feitiços criam uma área que emudece sons. Ataques sônicos saindo ou entrando do campo, assim como poderes de criatura que usem um meio sonoro (como Uivo Paralisante), são reduzidos em –1 por sucesso no Teste de Conjuração. Qualquer um que tente ouvir um som de dentro ou através da área silenciada deve resistir o feitiço com sucesso. Abafar é um feitiço de mana e portanto só afeta seres vivos e ataques sônicos mágicos. Silenciar afeta dispositivos tecnológicos e é útil para confundir alarmes, dispositivos de detecção, sonares, e comunicações táticas, assim como armas sônicas tecnológicas."
+    },
+    {
+      "id": "silence",
+      "name": "Silenciar",
+      "category": "illusion",
+      "keywords": [
+        "realistic",
+        "single-sense",
+        "area"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": true,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          1
+        ]
+      },
+      "page": 288,
+      "desc": "Estes feitiços criam uma área que emudece sons. Ataques sônicos saindo ou entrando do campo, assim como poderes de criatura que usem um meio sonoro (como Uivo Paralisante), são reduzidos em –1 por sucesso no Teste de Conjuração. Qualquer um que tente ouvir um som de dentro ou através da área silenciada deve resistir o feitiço com sucesso. Abafar é um feitiço de mana e portanto só afeta seres vivos e ataques sônicos mágicos. Silenciar afeta dispositivos tecnológicos e é útil para confundir alarmes, dispositivos de detecção, sonares, e comunicações táticas, assim como armas sônicas tecnológicas."
+    },
+    {
+      "id": "agony",
+      "name": "Agonia",
+      "category": "illusion",
+      "keywords": [
+        "realistic",
+        "single-sense"
+      ],
+      "type": "mana",
+      "range": "los",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          4
+        ]
+      },
+      "page": 288,
+      "desc": "Um favorito dos magos que sofrem por términos de relacionamento, Agonia causa uma ilusão de dor terrível no alvo. Cada sucesso restante obtido pelo mago causa temporariamente 1 caixa de dano Físico e 1 caixa de dano de Atordoamento no alvo. Não é dano de verdade, apenas uma mesura do efeito do feitiço. O alvo é afetado como se o dano fosse de verdade, com as mesmas penalidades de ferimentos. Se as caixas de dano do alvo se preencherem completamente, ele é sobrecarregado pela dor, incapaz de se mover ou agir. Assim que o feitiço acabar, a dor e as caixas de dano somem imediatamente. Agonia afeta um único alvo, enquanto Agonia em Massa é um feitiço de área."
+    },
+    {
+      "id": "mass-agony",
+      "name": "Agonia em Massa",
+      "category": "illusion",
+      "keywords": [
+        "realistic",
+        "single-sense"
+      ],
+      "type": "mana",
+      "range": "los",
+      "area": true,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          2
+        ]
+      },
+      "page": 288,
+      "desc": "Um favorito dos magos que sofrem por términos de relacionamento, Agonia causa uma ilusão de dor terrível no alvo. Cada sucesso restante obtido pelo mago causa temporariamente 1 caixa de dano Físico e 1 caixa de dano de Atordoamento no alvo. Não é dano de verdade, apenas uma mesura do efeito do feitiço. O alvo é afetado como se o dano fosse de verdade, com as mesmas penalidades de ferimentos. Se as caixas de dano do alvo se preencherem completamente, ele é sobrecarregado pela dor, incapaz de se mover ou agir. Assim que o feitiço acabar, a dor e as caixas de dano somem imediatamente. Agonia afeta um único alvo, enquanto Agonia em Massa é um feitiço de área."
+    },
+    {
+      "id": "confusion",
+      "name": "Confusão",
+      "category": "illusion",
+      "keywords": [
+        "realistic",
+        "multi-sense"
+      ],
+      "type": "mana",
+      "range": "los",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          3
+        ]
+      },
+      "page": 288,
+      "desc": "Estes feitiços produzem uma tempestade de sensações e imagens conflitantes para confundir os sentidos. Para cada sucesso restante no Teste de Conjuração, o alvo sofre –1 de modificador na pilha de dados em todos os testes devido à distração. Confusão afeta um único alvo. Confusão em Massa é um feitiço de área. O feitiço Caos é uma versão física da Confusão (acima), então também afeta sistemas e dispositivos sensores tecnológicos. Mundo Caótico é uma versão de área do Caos."
+    },
+    {
+      "id": "mass-confusion",
+      "name": "Confusão em Massa",
+      "category": "illusion",
+      "keywords": [
+        "realistic",
+        "multi-sense",
+        "area"
+      ],
+      "type": "mana",
+      "range": "los",
+      "area": true,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          1
+        ]
+      },
+      "page": 288,
+      "desc": "Estes feitiços produzem uma tempestade de sensações e imagens conflitantes para confundir os sentidos. Para cada sucesso restante no Teste de Conjuração, o alvo sofre –1 de modificador na pilha de dados em todos os testes devido à distração. Confusão afeta um único alvo. Confusão em Massa é um feitiço de área. O feitiço Caos é uma versão física da Confusão (acima), então também afeta sistemas e dispositivos sensores tecnológicos. Mundo Caótico é uma versão de área do Caos."
+    },
+    {
+      "id": "chaos",
+      "name": "Caos",
+      "category": "illusion",
+      "keywords": [
+        "realistic",
+        "multi-sense"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          2
+        ]
+      },
+      "page": 288,
+      "desc": "Estes feitiços produzem uma tempestade de sensações e imagens conflitantes para confundir os sentidos. Para cada sucesso restante no Teste de Conjuração, o alvo sofre –1 de modificador na pilha de dados em todos os testes devido à distração. Confusão afeta um único alvo. Confusão em Massa é um feitiço de área. O feitiço Caos é uma versão física da Confusão (acima), então também afeta sistemas e dispositivos sensores tecnológicos. Mundo Caótico é uma versão de área do Caos."
+    },
+    {
+      "id": "chaotic-world",
+      "name": "Mundo Caótico",
+      "category": "illusion",
+      "keywords": [
+        "realistic",
+        "multi-sense",
+        "area"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": true,
+      "duration": "sustained",
+      "drain": {
+        "ref": "force"
+      },
+      "page": 288,
+      "desc": "Estes feitiços produzem uma tempestade de sensações e imagens conflitantes para confundir os sentidos. Para cada sucesso restante no Teste de Conjuração, o alvo sofre –1 de modificador na pilha de dados em todos os testes devido à distração. Confusão afeta um único alvo. Confusão em Massa é um feitiço de área. O feitiço Caos é uma versão física da Confusão (acima), então também afeta sistemas e dispositivos sensores tecnológicos. Mundo Caótico é uma versão de área do Caos."
+    },
+    {
+      "id": "entertainment",
+      "name": "Entretenimento",
+      "category": "illusion",
+      "keywords": [
+        "obvious",
+        "multi-sense",
+        "area"
+      ],
+      "type": "mana",
+      "range": "los",
+      "area": true,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          3
+        ]
+      },
+      "page": 288,
+      "desc": "Estes feitiços criam ilusões óbvias, porém divertidas. Sucessos no Teste de Conjuração medem o quão detalhada, interessante e cativante a ilusão é para a audiência. O mago pode reproduzir basicamente qualquer coisa da sua imaginação, ou recriar algo que já testemunhou. Efeitos de entretenimento afetam as mentes dos alvos e não podem ser detectados por sensores não-vivos. Entretenimento de Trídeo é um feitiço físico e pode ser percebido por alvos tanto vivos quanto não-vivos. Estes feitiços são usados tanto para diversão quanto para arte. A indústria do entretenimento utiliza ilusionistas literalmente como magos de efeitos especiais. Designers e artistas mágicos se esforçam para criar sensações inovadoras e interessantes, incluindo sensações que não poderiam, de outra forma, ser experimentadas no mundo real. Apenas os ricos podem comprar as experiências singulares oferecidas diretamente por tais magos."
+    },
+    {
+      "id": "trid-entertainment",
+      "name": "Entretenimento de Trídeo",
+      "category": "illusion",
+      "keywords": [
+        "obvious",
+        "multi-sense",
+        "area"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": true,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          2
+        ]
+      },
+      "page": 288,
+      "desc": "Estes feitiços criam ilusões óbvias, porém divertidas. Sucessos no Teste de Conjuração medem o quão detalhada, interessante e cativante a ilusão é para a audiência. O mago pode reproduzir basicamente qualquer coisa da sua imaginação, ou recriar algo que já testemunhou. Efeitos de entretenimento afetam as mentes dos alvos e não podem ser detectados por sensores não-vivos. Entretenimento de Trídeo é um feitiço físico e pode ser percebido por alvos tanto vivos quanto não-vivos. Estes feitiços são usados tanto para diversão quanto para arte. A indústria do entretenimento utiliza ilusionistas literalmente como magos de efeitos especiais. Designers e artistas mágicos se esforçam para criar sensações inovadoras e interessantes, incluindo sensações que não poderiam, de outra forma, ser experimentadas no mundo real. Apenas os ricos podem comprar as experiências singulares oferecidas diretamente por tais magos."
+    },
+    {
+      "id": "phantasm",
+      "name": "Fantasma",
+      "category": "illusion",
+      "keywords": [
+        "realistic",
+        "multi-sense",
+        "area"
+      ],
+      "type": "mana",
+      "range": "los",
+      "area": true,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          1
+        ]
+      },
+      "page": 289,
+      "desc": "Estes feitiços de área criam ilusões convincentes de qualquer objeto, criatura, ou cena que o mago desejar. Eles podem criar uma ilusão de qualquer coisa que o mago já viu antes, indo desde uma flor ou um Credstick até um dragão cuspindo fogo, desde que a ilusão não seja maior do que a área de efeito do feitiço. Qualquer um que possa desacreditar a ilusão deve resistir ao feitiço com sucesso. Simplesmente faça um Teste de Conjuração e use os sucessos obtidos como o limiar para quem tentar resistir posteriormente. Fantasma só afeta seres vivos, enquanto Fantasma de Trídeo também afeta sensores tecnológicos."
+    },
+    {
+      "id": "trid-phantasm",
+      "name": "Fantasma de Trídeo",
+      "category": "illusion",
+      "keywords": [
+        "realistic",
+        "multi-sense",
+        "area"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": true,
+      "duration": "sustained",
+      "drain": {
+        "ref": "force"
+      },
+      "page": 289,
+      "desc": "Estes feitiços de área criam ilusões convincentes de qualquer objeto, criatura, ou cena que o mago desejar. Eles podem criar uma ilusão de qualquer coisa que o mago já viu antes, indo desde uma flor ou um Credstick até um dragão cuspindo fogo, desde que a ilusão não seja maior do que a área de efeito do feitiço. Qualquer um que possa desacreditar a ilusão deve resistir ao feitiço com sucesso. Simplesmente faça um Teste de Conjuração e use os sucessos obtidos como o limiar para quem tentar resistir posteriormente. Fantasma só afeta seres vivos, enquanto Fantasma de Trídeo também afeta sensores tecnológicos."
+    },
+    {
+      "id": "stealth",
+      "name": "Furtividade",
+      "category": "illusion",
+      "keywords": [
+        "realistic",
+        "single-sense"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          2
+        ]
+      },
+      "page": 289,
+      "desc": "Furtividade torna o alvo menos audível a audição normal e ampliada. O alvo move-se em silêncio, fazendo menos ou nenhum barulho. Coisas não diretamente tocadas pelo alvo ainda podem fazer barulho, então um personagem sob um feitiço de Furtividade não faria barulho batendo numa porta, mas a porta faria barulho ao atingir o chão ou parede se for arrombada à força. Qualquer um que possa ouvir o alvo deve antes resistir ao feitiço com sucesso. Faça um Teste de Conjuração e use os sucessos obtidos como o limiar para quem resistir posteriormente. Mesmo se o feitiço for resistido, o alvo pode permanecer despercebido se for bem o suficiente no seu Teste de Esgueirar."
+    },
+    {
+      "id": "bugs",
+      "name": "Insetos",
+      "category": "illusion",
+      "keywords": [
+        "realistic",
+        "multi-sense"
+      ],
+      "type": "mana",
+      "range": "los",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          3
+        ]
+      },
+      "page": 289,
+      "desc": "Estes feitiços fazem o alvo acreditar que insetos pequenos de diversas espécies estão rastejando por todo o seu corpo, picando, mordendo, e rastejando para dentro de orifícios diversos. Os insetos têm aparência, sensação, cheiro e até gosto de verdade. A ilusão geralmente é suficiente para fazer qualquer um que falhe sua resistência a enlouquecer. Para cada sucesso restante obtido, o alvo perde 2 do seu Valor de Iniciativa. Se sustentar o feitiço, ele perde a mesma quantia do Valor de Iniciativa no início de cada Turno de Combate. Insetos afeta um único alvo, enquanto Enxame é um feitiço de área."
+    },
+    {
+      "id": "swarm",
+      "name": "Enxame",
+      "category": "illusion",
+      "keywords": [
+        "realistic",
+        "multi-sense"
+      ],
+      "type": "mana",
+      "range": "los",
+      "area": true,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          1
+        ]
+      },
+      "page": 289,
+      "desc": "Estes feitiços fazem o alvo acreditar que insetos pequenos de diversas espécies estão rastejando por todo o seu corpo, picando, mordendo, e rastejando para dentro de orifícios diversos. Os insetos têm aparência, sensação, cheiro e até gosto de verdade. A ilusão geralmente é suficiente para fazer qualquer um que falhe sua resistência a enlouquecer. Para cada sucesso restante obtido, o alvo perde 2 do seu Valor de Iniciativa. Se sustentar o feitiço, ele perde a mesma quantia do Valor de Iniciativa no início de cada Turno de Combate. Insetos afeta um único alvo, enquanto Enxame é um feitiço de área."
+    },
+    {
+      "id": "invisibility",
+      "name": "Invisibilidade",
+      "category": "illusion",
+      "keywords": [
+        "realistic",
+        "single-sense"
+      ],
+      "type": "mana",
+      "range": "los",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          2
+        ]
+      },
+      "page": 290,
+      "desc": "Este feitiço dificulta a detecção do alvo através dos sentidos visuais normais (incluindo visão na penumbra, termográfica ou outros sentidos que dependam do espectro visual). O alvo está completamente tangível e detectável pelos outros sentidos (audição, olfato, tato e até mesmo paladar, se chegar a tanto). Sua aura ainda é visível para a percepção astral. Qualquer um que possa estar em uma posição de perceber o alvo deve primeiro resistir ao feitiço. Simplesmente faça um Teste de Conjuração e use os sucessos obtidos como o limiar para quem resistir posteriormente. Mesmo se o feitiço for resistido, o alvo pode permanecer não detectado se for bem o suficiente no seu Teste de Esgueirar. Um personagem invisível ainda pode ser detectado por formas não visuais, como audição ou olfato. Ataques contra alvos invisíveis sofrem o modificador de Tiro às Cegas se o atacante não puder ver ou sentir de alguma forma o alvo do feitiço. A Invisibilidade afeta as mentes dos observadores. Invisibilidade Melhorada imita os arredores do alvo de todos os ângulos e também afeta os sensores tecnológicos."
+    },
+    {
+      "id": "improved-invisibility",
+      "name": "Invisibilidade Melhorada",
+      "category": "illusion",
+      "keywords": [
+        "realistic",
+        "single-sense"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          1
+        ]
+      },
+      "page": 290,
+      "desc": "Este feitiço dificulta a detecção do alvo através dos sentidos visuais normais (incluindo visão na penumbra, termográfica ou outros sentidos que dependam do espectro visual). O alvo está completamente tangível e detectável pelos outros sentidos (audição, olfato, tato e até mesmo paladar, se chegar a tanto). Sua aura ainda é visível para a percepção astral. Qualquer um que possa estar em uma posição de perceber o alvo deve primeiro resistir ao feitiço. Simplesmente faça um Teste de Conjuração e use os sucessos obtidos como o limiar para quem resistir posteriormente. Mesmo se o feitiço for resistido, o alvo pode permanecer não detectado se for bem o suficiente no seu Teste de Esgueirar. Um personagem invisível ainda pode ser detectado por formas não visuais, como audição ou olfato. Ataques contra alvos invisíveis sofrem o modificador de Tiro às Cegas se o atacante não puder ver ou sentir de alguma forma o alvo do feitiço. A Invisibilidade afeta as mentes dos observadores. Invisibilidade Melhorada imita os arredores do alvo de todos os ângulos e também afeta os sensores tecnológicos."
+    },
+    {
+      "id": "mask",
+      "name": "Máscara",
+      "category": "illusion",
+      "keywords": [
+        "realistic",
+        "multi-sense"
+      ],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          2
+        ]
+      },
+      "page": 290,
+      "desc": "O feitiço Máscara exige que o mago toque o alvo. O alvo assume uma aparência física diferente (do mesmo tamanho básico e formato da sua forma natural) escolhida pelo mago. Este feitiço pode alterar a voz, cheiro e outras características físicas do alvo. Qualquer um que possa perceber o disfarce deve primeiro resistir ao feitiço com sucesso. Simplesmente faça um Teste de Conjuração e use os sucessos obtidos como o limiar para quem resistir posteriormente. Máscara afeta as mentes dos observadores. Máscara Física cria uma ilusão que também afeta sensores tecnológicos."
+    },
+    {
+      "id": "physical-mask",
+      "name": "Máscara Física",
+      "category": "illusion",
+      "keywords": [
+        "realistic",
+        "multi-sense"
+      ],
+      "type": "physical",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          1
+        ]
+      },
+      "page": 290,
+      "desc": "O feitiço Máscara exige que o mago toque o alvo. O alvo assume uma aparência física diferente (do mesmo tamanho básico e formato da sua forma natural) escolhida pelo mago. Este feitiço pode alterar a voz, cheiro e outras características físicas do alvo. Qualquer um que possa perceber o disfarce deve primeiro resistir ao feitiço com sucesso. Simplesmente faça um Teste de Conjuração e use os sucessos obtidos como o limiar para quem resistir posteriormente. Máscara afeta as mentes dos observadores. Máscara Física cria uma ilusão que também afeta sensores tecnológicos."
+    },
+    {
+      "id": "animate",
+      "name": "Animar",
+      "category": "manipulation",
+      "keywords": [
+        "physical"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          1
+        ]
+      },
+      "page": 290,
+      "desc": "Este feitiço faz com que objetos inanimados comecem a se mexer. O objeto se move de acordo com sua estrutura (bolas rolam, tapetes rastejam, estátuas humanoides podem andar, e assim por diante). O feitiço concede uma flexibilidade limitada, permitindo que objetos sólidos como estátuas bamboleiem um pouco como se tivessem juntas. Você precisa conseguir sucessos restantes contra a Resistência de Objeto (p. 295) do alvo; itens maiores (com mais de 200 quilos) têm resistência aumentada em 2 por cada 200 quilos de peso. Controlar o objeto só requer uma Ação Simples; objetos também podem ser comandados a manter seu movimento enquanto você volta sua atenção para outro lugar. Você só possui um controle rústico sobre os movimentos do objeto e não pode manipular partes ou componentes individuais (controle mais preciso requer um feitiço como Dedos Mágicos, p. 292). A taxa máxima de movimento para objetos é (Potência) metros por turno, sujeita à decisão do mestre. Se outra pessoa estiver segurando o objeto, você deve vencer um Teste de Oposição usando Potência x 2 contra a Força + Corpo do portador para livrar o objeto. Se estiver amarrado ou preso, isso é um Teste de Sucesso de Potência x 2 contra um limiar apropriado definido pelo mestre. Animar afeta um único objeto não-vivo; Animar em Massa é um feitiço de área que pode fazer diversos objetos se moverem ao mesmo tempo (como uma sala cheia de vassouras, por exemplo)."
+    },
+    {
+      "id": "mass-animate",
+      "name": "Animar em Massa",
+      "category": "manipulation",
+      "keywords": [
+        "physical",
+        "area"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": true,
+      "duration": "sustained",
+      "drain": {
+        "op": "add",
+        "of": [
+          {
+            "ref": "force"
+          },
+          1
+        ]
+      },
+      "page": 290,
+      "desc": "Este feitiço faz com que objetos inanimados comecem a se mexer. O objeto se move de acordo com sua estrutura (bolas rolam, tapetes rastejam, estátuas humanoides podem andar, e assim por diante). O feitiço concede uma flexibilidade limitada, permitindo que objetos sólidos como estátuas bamboleiem um pouco como se tivessem juntas. Você precisa conseguir sucessos restantes contra a Resistência de Objeto (p. 295) do alvo; itens maiores (com mais de 200 quilos) têm resistência aumentada em 2 por cada 200 quilos de peso. Controlar o objeto só requer uma Ação Simples; objetos também podem ser comandados a manter seu movimento enquanto você volta sua atenção para outro lugar. Você só possui um controle rústico sobre os movimentos do objeto e não pode manipular partes ou componentes individuais (controle mais preciso requer um feitiço como Dedos Mágicos, p. 292). A taxa máxima de movimento para objetos é (Potência) metros por turno, sujeita à decisão do mestre. Se outra pessoa estiver segurando o objeto, você deve vencer um Teste de Oposição usando Potência x 2 contra a Força + Corpo do portador para livrar o objeto. Se estiver amarrado ou preso, isso é um Teste de Sucesso de Potência x 2 contra um limiar apropriado definido pelo mestre. Animar afeta um único objeto não-vivo; Animar em Massa é um feitiço de área que pode fazer diversos objetos se moverem ao mesmo tempo (como uma sala cheia de vassouras, por exemplo)."
+    },
+    {
+      "id": "armor",
+      "name": "Armadura",
+      "category": "manipulation",
+      "keywords": [
+        "physical"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          2
+        ]
+      },
+      "page": 291,
+      "desc": "Este feitiço cria um campo brilhante de energia mágica ao redor do alvo que o protege contra Dano Físico. Ele fornece Armadura igual aos sucessos obtidos e é cumulativo com outras armaduras. Ele não se inclui em qualquer cálculo para determinar sobrecarga de armadura (veja Armadura e Sobrecarga, p. 169)."
+    },
+    {
+      "id": "fling",
+      "name": "Arremessar",
+      "category": "manipulation",
+      "keywords": [
+        "physical",
+        "damaging"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": false,
+      "duration": "instant",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          2
+        ]
+      },
+      "page": 291,
+      "desc": "Este feitiço arremessa psicocineticamente um objeto único com não mais de (Potência) quilos contra um alvo designado. Use o seu Teste de Conjuração no lugar do Teste de Combate À Distância normal para fazer o item atingir o alvo e use a sua Magia em vez da Força para determinar o Valor de Dano e o alcance. Use os alcances padrão de granadas (veja a Tabela de Distância, p. 185)."
+    },
+    {
+      "id": "mana-barrier",
+      "name": "Barreira de Mana",
+      "category": "manipulation",
+      "keywords": [
+        "environmental",
+        "area"
+      ],
+      "type": "mana",
+      "range": "los",
+      "area": true,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          2
+        ]
+      },
+      "page": 291,
+      "desc": "Barreira de Mana cria uma barreira invisível de energia mágica. Ela tem uma taxa de barreira igual aos sucessos restantes obtidos e segue as regras de barreiras de mana (p. 315). Esta barreira não restringe seres vivos ou objetos físicos, mas impede espíritos, focos, seres de natureza dupla, e feitiços no plano onde você a conjurar (físico ou astral). Se conjurada no plano astral, ela também impede formas astrais e reduz visibilidade."
+    },
+    {
+      "id": "physical-barrier",
+      "name": "Barreira Física",
+      "category": "manipulation",
+      "keywords": [
+        "environmental",
+        "area"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": true,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          1
+        ]
+      },
+      "page": 291,
+      "desc": "Este feitiço cria um campo de força reluzente e translúcido com 1 ponto de nível de Armadura e Estrutura por sucesso. Você pode formar a barreira como um domo com raio e altura igual ao raio normal do feitiço. Como alternativa, você pode usá-la para formar uma parede com altura igual ao Potência do feitiço e um comprimento igual ao seu Potência x 2. Barreira Física cria uma parede física. Qualquer coisa do tamanho de uma molécula (ou menor) pode atravessar a barreira, incluindo ar ou outros gases. Qualquer coisa maior do que isso trata a barreira como uma parede física normal. A parede é translúcida mas brilha, o equivalente a Névoa Leve (p. 174). A barreira não impede conjuração (além das penalidades de visibilidade), exceto por feitiços com componentes físicos como feitiços de combate indiretos. A barreira pode ser derrubada por ataques físicos, mas desde que a sustente, ela irá regenerar todo o seu Nível de Estrutura no início de cada Turno de Combate. Se a barreira for reduzida a Nível de Estrutura 0, ela desaba e o feitiço termina."
+    },
+    {
+      "id": "ice-sheet",
+      "name": "Camada de Gelo",
+      "category": "manipulation",
+      "keywords": [
+        "environmental",
+        "area"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": true,
+      "duration": "instant",
+      "drain": {
+        "ref": "force"
+      },
+      "page": 291,
+      "desc": "Este feitiço cria uma camada escorregadia de gelo na área de efeito. Personagens que atravessem o gelo devem fazer um Teste de Agilidade + Reação com um limiar igual aos sucessos que você obteve para evitar a queda. Veículos devem fazer um Teste de Batida imediato (p. 201). A camada derrete a uma taxa de 1 metro quadrado por minuto em temperatura ambiente (mais rápido quando está mais quente, mais devagar quando mais frio, nada se estiver congelando)."
+    },
+    {
+      "id": "control-actions",
+      "name": "Controlar Ações",
+      "category": "manipulation",
+      "keywords": [
+        "mental"
+      ],
+      "type": "mana",
+      "range": "los",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          1
+        ]
+      },
+      "page": 291,
+      "desc": "Você controla as ações físicas do seu alvo como se fosse uma marionete. A consciência da vítima não é afetada, mas você controla o corpo da vítima. Use suas próprias perícias ao forçar seu alvo a realizar ações. É necessária uma Ação Complexa para fazer o alvo realizar qualquer ação. Controlar Ações só afeta um único alvo, Controle de Multidão afeta qualquer alvo vivo dentro da área de efeito. Vítimas de Controle de Multidão podem ser manipuladas individualmente (com ações separadas) ou realizar o mesmo comando como grupo (com uma ação simples)."
+    },
+    {
+      "id": "mob-control",
+      "name": "Controle de Multidão",
+      "category": "manipulation",
+      "keywords": [
+        "mental",
+        "area"
+      ],
+      "type": "mana",
+      "range": "los",
+      "area": true,
+      "duration": "sustained",
+      "drain": {
+        "op": "add",
+        "of": [
+          {
+            "ref": "force"
+          },
+          1
+        ]
+      },
+      "page": 291,
+      "desc": "Você controla as ações físicas do seu alvo como se fosse uma marionete. A consciência da vítima não é afetada, mas você controla o corpo da vítima. Use suas próprias perícias ao forçar seu alvo a realizar ações. É necessária uma Ação Complexa para fazer o alvo realizar qualquer ação. Controlar Ações só afeta um único alvo, Controle de Multidão afeta qualquer alvo vivo dentro da área de efeito. Vítimas de Controle de Multidão podem ser manipuladas individualmente (com ações separadas) ou realizar o mesmo comando como grupo (com uma ação simples)."
+    },
+    {
+      "id": "control-thoughts",
+      "name": "Controlar Pensamentos",
+      "category": "manipulation",
+      "keywords": [
+        "mental"
+      ],
+      "type": "mana",
+      "range": "los",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          1
+        ]
+      },
+      "page": 292,
+      "desc": "O mago toma controle da mente do alvo, direcionando tudo o que o alvo pensa. O mago dá comandos mentalmente com uma Ação Padrão, e o alvo fica compelido a obedecer como se fosse sua própria ideia. Controlar Ações só afeta um único alvo, e Mente da Multidão afeta qualquer alvo vivo dentro da área de efeito. Vítimas de uma Mente da Multidão podem ser manipuladas individualmente (com ações separadas) ou realizar o mesmo comando como grupo (com uma ação simples)."
+    },
+    {
+      "id": "mob-mind",
+      "name": "Mente da Multidão",
+      "category": "manipulation",
+      "keywords": [
+        "mental",
+        "area"
+      ],
+      "type": "mana",
+      "range": "los",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "add",
+        "of": [
+          {
+            "ref": "force"
+          },
+          1
+        ]
+      },
+      "page": 292,
+      "desc": "O mago toma controle da mente do alvo, direcionando tudo o que o alvo pensa. O mago dá comandos mentalmente com uma Ação Padrão, e o alvo fica compelido a obedecer como se fosse sua própria ideia. Controlar Ações só afeta um único alvo, e Mente da Multidão afeta qualquer alvo vivo dentro da área de efeito. Vítimas de uma Mente da Multidão podem ser manipuladas individualmente (com ações separadas) ou realizar o mesmo comando como grupo (com uma ação simples)."
+    },
+    {
+      "id": "magic-fingers",
+      "name": "Dedos Mágicos",
+      "category": "manipulation",
+      "keywords": [
+        "physical"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          2
+        ]
+      },
+      "page": 292,
+      "desc": "Dedos Mágicos cria um efeito psicocinético parecido com uma mão invisível que pode segurar ou manipular itens. Os sucessos no Teste de Conjuração + Magia são a Força e Agilidade efetivas do feitiço. Você pode usar perícias remotamente com Dedos Mágicos, substituindo seus limites inerentes com a Potência do feitiço. O feitiço tem problemas com o controle preciso, por isso, até mesmo ações simples como pegar uma moeda podem exigir um teste (à critério do mestre). Você pode lutar, arrombar uma fechadura ou realizar qualquer outra ação usando os dedos mágicos como se fossem suas mãos verdadeiras. Os dedos mágicos podem manipular objetos dentro da sua linha de visão, mas apenas objetos de um metro no máximo de cada vez (as “mãos” não podem se afastar entre si mais do que a distância do seu braço). Esta magia é uma mão na roda (sem trocadilhos) para desarmar bombas e lidar com trabalhos perigosos de uma distância segura."
+    },
+    {
+      "id": "ignite",
+      "name": "Inflamar",
+      "category": "manipulation",
+      "keywords": [
+        "physical"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": false,
+      "duration": "permanent",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          1
+        ]
+      },
+      "page": 292,
+      "desc": "O feitiço Inflamar acelera a agitação molecular do alvo, fazendo-o pegar fogo assim que o feitiço se tornar permanente. Contra alvos não-vivos, o mago deve passar contra a pilha de dados da Resistência do Objeto do alvo. Assim que o alvo inflamar, ele queima normalmente até ser consumido ou apagado. Contra alvos vivos, trate Inflamar como um Teste de Conjuração + Magia [Potência] contra Corpo + Reação. Se bem-sucedido, o feitiço envolve um alvo vivo em calor e chamas, eventualmente incendiando-o (Dano de Fogo p. 172)."
+    },
+    {
+      "id": "influence",
+      "name": "Influência",
+      "category": "manipulation",
+      "keywords": [
+        "mental"
+      ],
+      "type": "mana",
+      "range": "los",
+      "area": false,
+      "duration": "permanent",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          1
+        ]
+      },
+      "page": 292,
+      "desc": "Você implanta uma única sugestão na mente da vítima, como um poderoso comando pós-hipnótico. Por exemplo, você pode fazer o seu alvo achar que FizzyFluid é a melhor bebida do mercado, ou não se lembrar do nome do seu melhor amigo, ou que deveria deixar você passar por uma porta trancada. O alvo executa esta sugestão como se fosse sua própria ideia. Se confrontado com o erro da sugestão (como quando a realidade do sabor do FizzyFluid na sua boca entra em contraste com a crença de que é gostoso), o alvo pode tentar superá-la com as regras de superar manipulações mentais (p. 290). Em qualquer caso, a sugestão se esvai naturalmente após um número de minutos igual aos seus sucessos restantes."
+    },
+    {
+      "id": "levitate",
+      "name": "Levitação",
+      "category": "manipulation",
+      "keywords": [
+        "physical"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          2
+        ]
+      },
+      "page": 292,
+      "desc": "Levitação permite que você levante telecineticamente uma pessoa ou objeto e a movimente por aí. Você deve vencer um limiar igual à massa do alvo dividida por 200 quilos, arredondado para cima. O alvo do feitiço pode ser movido para qualquer lugar na sua linha de visão com uma taxa de movimento igual a Potência do feitiço em metros por Turno de Combate. Se você tentar levitar um item em posse de outro ser vivo ou levitar um ser vivo relutante, tal ser pode defender-se do Teste de Conjuração com Força + Corpo. Você pode usar este feitiço para levitar a si mesmo, se precisar de uma visão de uma perspectiva mais alta ou desejar um mergulho sem paraquedas."
+    },
+    {
+      "id": "light",
+      "name": "Luz",
+      "category": "manipulation",
+      "keywords": [
+        "environmental",
+        "area"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": true,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          4
+        ]
+      },
+      "page": 292,
+      "desc": "Este feitiço cria um ponto móvel de luz, iluminando um raio igual ao Potência do feitiço em metros. O feitiço não pode ser usado para cegar um alvo, mas geralmente anula os modificadores de visibilidade de escuridão. Cada sucesso no Teste de Conjuração retira –1 dado de penalidade devido às condições de luz."
+    },
+    {
+      "id": "poltergeist",
+      "name": "Poltergeist",
+      "category": "manipulation",
+      "keywords": [
+        "environmental",
+        "area"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": true,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          2
+        ]
+      },
+      "page": 292,
+      "desc": "Poltergeist pega todos os objetos pequenos (até um quilo de massa) dentro da área do feitiço e os movimenta em padrões aleatórios. Isso cria o equivalente à penalidade de visibilidade de Névoa Leve (p. 174). O feitiço causa 2 caixas de dano de Atordoamento (resistidos com Corpo + Armadura) em qualquer um na área a cada Turno de Combate, golpeando com destroços voadores. Poltergeist pode causar mais dano em ambientes bagunçados, ou causar dano Físico se o mestre achar que os destroços são perigosos o suficiente (vidro quebrado e pregos, por exemplo). Se não existem destroços ao redor, este feitiço não faz muito além de um barulho assustador."
+    },
+    {
+      "id": "shadow",
+      "name": "Sombra",
+      "category": "manipulation",
+      "keywords": [
+        "environmental",
+        "area"
+      ],
+      "type": "physical",
+      "range": "los",
+      "area": true,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          3
+        ]
+      },
+      "page": 293,
+      "desc": "Sombra cria um globo de escuridão com um raio igual a Potência do feitiço em metros. Para cada dois sucessos, aumente a penalidade de iluminação (p. 174) em uma categoria — 2 sucessos para Luz Parcial, 4 sucessos para Luz Fraca, e 6 sucessos para Escuridão Total. Este feitiço não pode fazer mais do que Escuridão Total."
+    },
+    {
+      "id": "antidote",
+      "name": "Antídoto",
+      "category": "health",
+      "keywords": [],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "permanent",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          3
+        ]
+      },
+      "page": 293,
+      "desc": "Este feitiço ajuda um alvo envenenado a superar uma toxina. Conjuradores podem usá-lo depois que o alvo foi envenenado, mas antes que o alvo tenha que realizar seu Teste de Resistência a Toxinas, baseado na Velocidade da toxina. Adicione os sucessos deste feitiço diretamente aos sucessos do Teste de Resistência a Toxinas."
+    },
+    {
+      "id": "increase-attribute",
+      "name": "Aumentar [Atributo]",
+      "category": "health",
+      "keywords": [
+        "essence"
+      ],
+      "type": "physical",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          3
+        ]
+      },
+      "parameter": {
+        "id": "attribute",
+        "name": "Atributo"
+      },
+      "page": 293,
+      "desc": "Este feitiço aumenta um Atributo (natural ou ampliado) num alvo voluntário. Uma versão deste feitiço existe para cada atributo Físico e Mental, mas não para Atributos Especiais (Iniciativa, Trunfo, Essência, Magia, ou Ressonância). A Potência do feitiço deve ser igual ou exceder o valor (ampliado) do Atributo afetado. O Atributo é aumentado em uma quantidade igual aos sucessos obtidos, até o máximo ampliado do alvo (qualquer sucesso que aumentaria o Atributo além do seu máximo ampliado é ignorado). Cada Atributo só pode ser afetado por um único feitiço de Aumentar Atributo por vez. Tenha em mente que aumentar um Atributo pode afetar outras estatísticas derivadas (Aumentar Reação também afeta iniciativa, por exemplo, enquanto Aumentar Corpo adiciona caixas extras ao Monitor de Condição Física do personagem enquanto o feitiço durar)."
+    },
+    {
+      "id": "increase-reflexes",
+      "name": "Aumentar Reflexos",
+      "category": "health",
+      "keywords": [
+        "essence"
+      ],
+      "type": "physical",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "ref": "force"
+      },
+      "page": 293,
+      "desc": "Este feitiço aumenta a iniciativa do alvo. Cada sucesso rolado no Teste de Conjuração adiciona +1 à Iniciativa do alvo, e cada dois sucessos adiciona um Dado de Iniciativa. Um personagem só pode ser afetado por um único feitiço de Aumentar Reflexos por vez, e os Dados de Iniciativa máximos que se pode ter é +5D6."
+    },
+    {
+      "id": "heal",
+      "name": "Cura",
+      "category": "health",
+      "keywords": [
+        "essence"
+      ],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "permanent",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          4
+        ]
+      },
+      "page": 293,
+      "desc": "Cura repara as lesões físicas. Ele cura um número de caixas de dano Físico igual aos sucessos do Teste de Conjuração do feitiço. Os sucessos também podem ser usados para reduzir o tempo base para a magia ficar permanente. Cada sucesso gasto desta forma reduz 1 Turno de Combate (você pode dividir os sucessos entre a cura e a redução do tempo). As caixas de dano Físico que seu alvo ainda tenha após outras caixas serem curadas magicamente só podem ser curadas com tempo e descanso."
+    },
+    {
+      "id": "cure-disease",
+      "name": "Curar Doença",
+      "category": "health",
+      "keywords": [
+        "essence"
+      ],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "permanent",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          4
+        ]
+      },
+      "page": 293,
+      "desc": "Este feitiço é usado a qualquer momento após uma infecção para auxiliar o paciente a superar uma doença. O personagem infectado recebe uma quantidade de dados adicionais no seu Teste de Resistência a Doenças igual aos sucessos restantes do feitiço até o paciente se recuperar (ou morrer) Ele não cura qualquer dano já causado pela doença (que exija um feitiço de Cura separado)."
+    },
+    {
+      "id": "detox",
+      "name": "Desintoxicação",
+      "category": "health",
+      "keywords": [],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "permanent",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          6
+        ]
+      },
+      "page": 293,
+      "desc": "Desintoxicação alivia os efeitos colaterais de uma droga ou veneno. A Potência do feitiço deve ser igual ou exceder o VD da toxina. Um único sucesso é suficiente para eliminar todos os sintomas. Desintoxicação não cura ou previne dano causado por toxinas, mas elimina quaisquer efeitos colaterais que possam gerar na vítima (tontura, alucinações, enjoo, dor, e assim por diante). Desintoxicação é a cura de ressaca preferida entre aqueles que têm acesso a ela."
+    },
+    {
+      "id": "stabilize",
+      "name": "Estabilizar",
+      "category": "health",
+      "keywords": [],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "permanent",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          4
+        ]
+      },
+      "page": 294,
+      "desc": "Quando aplicado a um personagem com uma faixa cheia de dano Físico, este feitiço estabiliza todas as suas funções vitais e previne o personagem de morrer. A Potência do feitiço deve igualar ou exceder o dano em excesso já sofrido quando o feitiço se inicia. O tempo total deve ser esperado para o feitiço se tornar permanente antes que o personagem fique realmente estabilizado; sucessos reduzem o tempo levado em 1 Turno de Combate cada. Se bem-sucedido, o feitiço previne que o personagem sofra danos futuros por Excesso de Dano Físico (p. 209)."
+    },
+    {
+      "id": "oxygenate",
+      "name": "Oxigenar",
+      "category": "health",
+      "keywords": [],
+      "type": "physical",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          5
+        ]
+      },
+      "page": 294,
+      "desc": "Este feitiço oxigena o sangue de um alvo voluntário, concedendo dados de Corpo extras (1 dado para cada sucesso) para resistir sufocamento, estrangulamento, efeitos de gás inalado, ou qualquer outro efeito de privação de oxigênio. O feitiço também permite ao alvo respirar debaixo d’água."
+    },
+    {
+      "id": "prophylaxis",
+      "name": "Profilaxia",
+      "category": "health",
+      "keywords": [],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          4
+        ]
+      },
+      "page": 294,
+      "desc": "Este feitiço concede um dado extra por sucesso para um alvo tentar resistir à infecção, drogas ou toxinas. O feitiço não diferencia entre drogas nocivas ou benéficas, então o alvo também resiste a remédios e outras drogas úteis enquanto sob seus efeitos. Reduza os bônus de uma droga benéfica em 1 para cada sucesso rolado na conjuração; três ou mais sucessos bloqueiam efeitos que não possuem um bônus ou penalidade associada."
+    },
+    {
+      "id": "decrease-attribute",
+      "name": "Reduzir [Atributo]",
+      "category": "health",
+      "keywords": [
+        "essence"
+      ],
+      "type": "physical",
+      "range": "touch",
+      "area": false,
+      "duration": "sustained",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          2
+        ]
+      },
+      "parameter": {
+        "id": "attribute",
+        "name": "Atributo"
+      },
+      "page": 294,
+      "desc": "Este feitiço enfraquece o alvo, reduzindo um Atributo designado. Uma versão deste feitiço existe para cada atributo Físico e Mental, mas não para atributos Especiais (Iniciativa, Trunfo, Essência, Magia, ou Ressonância). Ele afeta Atributos naturais e ampliados. Este feitiço é lançado com um Teste de Oposição de Conjuração + Magia [Potência] contra (Atributo alvo) + Vontade. Se o mago vencer, o Atributo é reduzido pelos sucessos restantes do feitiço. Se um Atributo Físico for reduzido a 0, a vítima está incapacitada e paralisada. Se um Atributo Mental for reduzido a 0, a vítima fica parada, demente e confusa. Reduzir um Atributo também afeta outras estatísticas derivadas que o usem (por exemplo, se Reação ou Intuição forem reduzidas, a Iniciativa também reduz) enquanto o feitiço for sustentado."
+    },
+    {
+      "id": "resist-pain",
+      "name": "Resistir à Dor",
+      "category": "health",
+      "keywords": [],
+      "type": "mana",
+      "range": "touch",
+      "area": false,
+      "duration": "permanent",
+      "drain": {
+        "op": "sub",
+        "of": [
+          {
+            "ref": "force"
+          },
+          4
+        ]
+      },
+      "page": 294,
+      "desc": "Resistir à Dor permite ao usuário ignorar a dor de ferimentos, reduzindo penalidades de dano Físico ou de Atordoamento. Cada sucesso no Teste de Conjuração remove o efeito de uma caixa de dano de cada faixa do Monitor de Condição do usuário. Ele não remove o dano em si; apenas elimina os modificadores. Se todas as caixas da faixa estiverem cheias, o personagem ainda cai inconsciente. O feitiço é permanente no sentido que a ampliação nos níveis de endorfina do paciente não se esvai. Se o dano do usuário for mais alto do que o nível em que o paciente está resistindo à dor ou se os ferimentos atuais forem curados, o feitiço se dissipa. Uma pessoa só pode estar sob os efeitos de um feitiço de Resistir à Dor de cada vez (o com o maior número de sucessos)."
+    }
+  ],
+  "ritualKeywords": [
+    {
+      "id": "anchored",
+      "name": "Ancorado",
+      "desc": "Todos os rituais ancorados devem ser colocados num objeto físico ou símbolo de significância mística que serve como o ponto focal do ritual. Isso pode ser algo usado especificamente para o ritual (uma pedra ou uma porta para ancorar uma proteção, por exemplo), ou uma inscrição mística (escrita em tinta, pigmento, sangue, escarificação, etc.), ou até mesmo a própria fundação. A âncora não pode ser movida relativamente à Gaiasfera (o planeta) pela duração do efeito do ritual, ou o ritual desaba e o efeito acaba mais cedo."
+    },
+    {
+      "id": "material-link",
+      "name": "Elo Material",
+      "desc": "O ritual requer um elo material com o alvo, algo que já foi uma vez parte do alvo. Elos materiais de seres vivos não são utilizáveis para sempre em rituais — a barra lateral Elo Material (p. 297) traz todos os detalhes."
+    },
+    {
+      "id": "spell",
+      "name": "Feitiço",
+      "desc": "Este ritual é utilizado em conjunto com um feitiço que o líder do ritual conhece. Parte das suas propriedades pode mudar — o ritual detalha como. Se o líder possui quaisquer modificadores ao feitiço de um espírito mentor, os modificadores também se aplicam ao ritual. Esses rituais são suscetíveis a dissipar (p. 294)."
+    },
+    {
+      "id": "minion",
+      "name": "Lacaio",
+      "desc": "O ritual cria uma entidade semiautônoma, geralmente algo para ajudar o mago que a criou. Qualquer lacaio criado está vinculado ao líder do ritual, que não pode ter mais lacaios de uma só vez do que seu nível de Carisma."
+    },
+    {
+      "id": "spotter",
+      "name": "Olheiro",
+      "desc": "Se o alvo do ritual estiver fora da visão do líder, o líder deve designar alguém que possa ver o alvo por ele, chamado de olheiro. O indivíduo agindo como olheiro deve ser um membro do grupo conjurando o ritual — ou um espírito vinculado a um membro deste grupo — e deve ser capaz de perceber o alvo astralmente. O olheiro deve estar presente na fundação do ritual quando o ritual se iniciar e então deve viajar fisicamente ou astralmente para onde possa sentir astralmente o alvo do feitiço; esta é uma exceção à regra de “proibido sair” na Etapa 4 da conjuração do ritual. O alvo não precisa estar astralmente ativo (e geralmente é mais seguro para o olheiro não estar); o olheiro só precisa ser capaz de senti-lo astralmente para estabelecer o elo místico necessário. Se o feitiço for um feitiço de área, o olheiro deve ser capaz de sentir astralmente o local alvo. Pela duração do ritual, um elo está presente entre a forma astral do olheiro e o grupo do ritual. Se o olheiro for notado pelo alvo, é possível utilizar o elo para rastreá-lo de volta ao local físico da equipe do ritual. O olheiro não realiza um Teste de Trabalho em Equipe com o resto dos participantes mas ainda sofre o mesmo Dreno que os outros."
+    }
+  ],
+  "rituals": [
+    {
+      "id": "curse",
+      "name": "Maldição",
+      "keywords": [
+        "material-link",
+        "spell"
+      ],
+      "time": {
+        "unit": "hour",
+        "value": {
+          "ref": "force"
+        }
+      },
+      "desc": "Uma Maldição permite que um feitiço de ilusão seja conjurado num alvo através de um elo material em vez de um elo místico por observar o objeto. Uma Maldição pode ser usada em qualquer alvo, seja dentro do alcance visual do líder ou não, desde que haja uma ligação com o alvo. Se o feitiço se aplicar a múltiplos alvos, como num feitiço em massa, o ritual deve ter um elo com cada um dos alvos. O elo é utilizado como parte da oferenda e é efetivamente destruído durante o ritual. O feitiço é conjurado normalmente (utilizando trabalho em equipe, se aplicável) com todos os testes e Dreno apropriados para o feitiço de ilusão escolhido (etapa 6 da Conjuração Ritual). Pela duração do ritual, um elo está presente entre o alvo e o grupo do ritual enquanto a porção do feitiço for sustentada. É possível avistar o elo e usá-lo para rastreá-lo de volta ao local físico da equipe do ritual. O ritual exige (Potência) horas para ser executado.",
+      "page": 297
+    },
+    {
+      "id": "prodigal-spell",
+      "name": "Feitiço Abundante",
+      "keywords": [
+        "spell",
+        "spotter"
+      ],
+      "time": {
+        "unit": "hour",
+        "value": {
+          "ref": "force"
+        }
+      },
+      "desc": "Este ritual permite você conjurar qualquer feitiço de Combate num alvo distante fora da linha de visão da sua equipe de ritual. O feitiço de Combate pode ser direto ou indireto. Feitiços de Combate diretos viajam até o alvo pelo espaço astral. Feitiços de Combate indiretos viajam até o alvo pelo espaço físico, necessitando de um caminho desimpedido (mas não necessariamente reto) no mundo físico entre a equipe de ritual e o alvo para que o feitiço alcance seu destino — a magia voa da fundação até o alvo, desviando de quaisquer obstáculos no caminho. O ritual exige (Potência) horas para ser realizado.",
+      "page": 297
+    },
+    {
+      "id": "remote-sensing",
+      "name": "Sentido Remoto",
+      "keywords": [
+        "spell",
+        "spotter"
+      ],
+      "time": {
+        "unit": "hour",
+        "value": {
+          "ref": "force"
+        }
+      },
+      "desc": "Este ritual permite que você lance qualquer feitiço de Detecção com um alcance ainda maior. A área do feitiço é aumentada para Potência x (soma total dos atributos de Magia dos participantes) x 100 metros. O usuário do feitiço deve estar presente na fundação durante o ritual mas pode então levar seu novo sentido para fora da fundação enquanto os participantes do ritual o sustentam para ele. Todos os participantes do ritual percebem a mesma coisa que o usuário percebe através do feitiço. Se o feitiço tiver um alvo (como quando usa um feitiço de Elo Mental ou Sonda Mental durante o ritual), você precisará de um olheiro para observar o alvo. O ritual precisa de (Potência) horas para ser executado. Em seguida, se algum dos participantes parar de sustentar o ritual, ele acaba.",
+      "page": 297
+    },
+    {
+      "id": "ward",
+      "name": "Proteção",
+      "keywords": [
+        "anchored"
+      ],
+      "time": {
+        "unit": "hour",
+        "value": {
+          "ref": "force"
+        }
+      },
+      "desc": "A proteção é um ritual básico, ensinado a muitos magos. Ela cria uma barreira de mana (p. 315) com uma Potência igual a Potência do ritual. A proteção pode englobar um volume de até cinquenta metros cúbicos vezes a soma do nível de Magia dos participantes. O ritual precisa de (Potência) horas para ser concluído. A proteção dura por uma quantidade de semanas igual aos sucessos restantes desde a etapa de selar o ritual — se o líder gastar uma quantia de carma igual a Potência da proteção, a proteção é permanente.",
+      "page": 297
+    },
+    {
+      "id": "circle-of-protection",
+      "name": "Círculo de Proteção",
+      "keywords": [
+        "anchored"
+      ],
+      "time": {
+        "unit": "hour",
+        "value": {
+          "ref": "force"
+        }
+      },
+      "desc": "O círculo de proteção é uma pequena barreira de mana e física. Apesar de ser chamado de círculo, ele cria uma esfera ao redor da âncora que possui um raio em metros igual ao nível de Magia do líder. O círculo age como uma combinação dos feitiços barreira física e barreira de mana (p. 315) com uma Potência igual à Potência do ritual. A barreira de mana tem natureza dupla. A proteção dura por uma quantidade de horas igual aos sucessos restantes desde a etapa de selar o ritual. Qualquer um ou qualquer coisa dentro da barreira está protegida de objetos físicos e ataques mágicos externos. Se algo atravessar a barreira de dentro, a proteção acaba. O ritual precisa de (Potência) horas para ser executado.",
+      "page": 297
+    },
+    {
+      "id": "circle-of-healing",
+      "name": "Círculo da Cura",
+      "keywords": [
+        "anchored",
+        "spell"
+      ],
+      "time": {
+        "unit": "hour",
+        "value": {
+          "ref": "force"
+        }
+      },
+      "desc": "Este ritual é utilizado para conjurar uma magia de cura em diversos alvos de uma só vez. Apesar de ser chamado de círculo, ele cria uma esfera ao redor da âncora que possui um raio em metros igual ao nível de Magia do líder. O ritual precisa de (Potência) horas para ser concluído. Os sucessos restantes da etapa de selar são usados como os sucessos restantes para o feitiço, e se aplicam a todos do círculo desde que permaneçam dentro do círculo. O círculo dura por (Potência) dias.",
+      "page": 297
+    },
+    {
+      "id": "renascence",
+      "name": "Renascença",
+      "keywords": [
+        "anchored",
+        "spell"
+      ],
+      "time": {
+        "unit": "hour",
+        "value": {
+          "ref": "force"
+        }
+      },
+      "desc": "Este ritual sustenta e mantém um feitiço de manipulação de área por um tempo. A área do feitiço é uma esfera com um raio igual ao nível de Magia do líder, e o efeito é baseado na Potência do ritual e nos sucessos restantes da etapa de selar. A duração base do efeito é 1 hora, que se dobra para cada sucesso restante a partir da etapa de selar do ritual. O ritual precisa de (Potência) horas para ser executado.",
+      "page": 298
+    },
+    {
+      "id": "watcher",
+      "name": "Vigia",
+      "keywords": [
+        "minion"
+      ],
+      "time": {
+        "unit": "minute",
+        "value": {
+          "ref": "force"
+        }
+      },
+      "desc": "Vigias são como espíritos, mas na verdade são entidades nascidas da própria mente do líder do ritual em vez dos meta-planos. Eles são uma criação da mana, tecidos com as personalidades dos participantes do ritual. Um vigia pode falar qualquer idioma que seus criadores (o que inclui o líder e seus participantes) conheçam. Um vigia está vinculado apenas ao líder do ritual e segue suas ordens. Um vigia dura por uma quantidade de horas igual à sua Potência vezes os sucessos restantes desde a etapa de selar o ritual. As perícias de um vigia são iguais a metade da Potência do ritual (arredondando para cima). Um líder pode dispensar um vigia vinculado a ele como uma Ação Livre. Vigias não podem ser banidos ou alvos de contramágica. O ritual precisa de (Potência) minutos para ser executado.",
+      "page": 298
+    },
+    {
+      "id": "homunculus",
+      "name": "Homúnculo",
+      "keywords": [
+        "minion"
+      ],
+      "time": {
+        "unit": "hour",
+        "value": {
+          "ref": "force"
+        }
+      },
+      "desc": "O mago pode prender uma faísca de inteligência numa forma inanimada, criando um homúnculo. O homúnculo possui forma física mas não é muito sagaz. Ele entende qualquer idioma que seus criadores (líder e participantes) conheçam e possui uma personalidade módica que reflete a dos seus criadores. Você precisa de um objeto inanimado para animar durante o ritual. Apesar do fato de que seu nome significa “homenzinho”, o homúnculo não precisa ter forma humanoide — estatuetas animais são bem comuns entre xamãs, e não subestime a utilidade de uma extensão elétrica animada. Ele pode ter no máximo (Potência x 10) quilogramas em massa, e ganha uma quantia limitada de flexibilidade (a mesma que o feitiço Animar, p. 290) pela duração do ritual. Seja o que precisar usar, a pilha de dados da Resistência do objeto é adicionada à oposição para o Teste de Conjuração Ritual do líder e dos participantes, e é por isso que com-links homúnculos são raros de se ver. O homúnculo obedece aos comandos do líder o máximo que puder dentro das limitações das suas capacidades físicas. Comandar um homúnculo é diferente de comandar um espírito. Um espírito é intuitivo e inteligente; um homúnculo só segue ordens e fica frustrado quando a tarefa se torna impossível. Um homúnculo dura por uma quantidade de dias igual à sua Potência vezes os sucessos restantes desde a etapa de selar o ritual. As perícias de um Homúnculo são iguais a metade da Potência do ritual (arredondando para cima). O ritual precisa de (Potência) horas para ser executado.",
+      "page": 298
+    }
+  ],
+  "preparations": {
+    "forceMax": {
+      "op": "mul",
+      "of": [
+        {
+          "ref": "attr.mag"
+        },
+        2
+      ]
+    },
+    "triggers": [
+      {
+        "id": "command",
+        "name": "Comando",
+        "drainModifier": 2,
+        "desc": "Você dispara o gatilho da preparação. Você deve estar no plano físico (ou manifestar se estiver projetando astralmente), ter linha de visão com a preparação (como definido para Conjuração, p. 281), e realizar uma Ação Simples para disparar a preparação. Você tem um certo controle sobre o alvo da preparação com este gatilho. Este gatilho adiciona +2 de Dreno à criação da preparação. Gatilhos de comando são os únicos gatilhos de preparação que os feitiços de cura podem ter."
+      },
+      {
+        "id": "contact",
+        "name": "Contato",
+        "drainModifier": 1,
+        "desc": "O próximo ser vivo a tocar a preparação ativa o feitiço. Este gatilho adiciona +1 de Dreno."
+      },
+      {
+        "id": "time",
+        "name": "Tempo",
+        "drainModifier": 2,
+        "desc": "Escolha uma quantidade de tempo ao escolher este gatilho. A contagem regressiva começa no fim da criação da preparação, e a preparação é ativada quando o tempo acabar. O tempo que você declara está limitado à Potência final da preparação em horas — se o tempo for maior do que a Potência resultante após a criação, a preparação se ativa prematuramente. Este gatilho adiciona +2 de Dreno à criação da preparação."
+      }
+    ],
+    "page": 304
+  }
+}

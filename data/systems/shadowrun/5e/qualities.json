@@ -1,0 +1,942 @@
+{
+  "qualities": [
+    {
+      "id": "spirit-affinity",
+      "name": "Afinidade Espiritual",
+      "kind": "positive",
+      "karma": 7,
+      "choice": "traditions.json#spiritTypes",
+      "desc": "Disponível apenas para usuários de magia, a qualidade Afinidade Espiritual permite que um personagem esteja sintonizado a um tipo de espírito (veja Espíritos, p. 303). Esses espíritos acham o personagem interessante, são atraídos por ele e mais inclinados a ajudá-lo. Eles podem relutar para atacar o personagem e, se forçados, provavelmente não usarão força letal. Observadores e servos não contam para esta qualidade, pois são construídos e não são invocados como espíritos normais. A Afinidade Espiritual fornece aos magos 1 serviço adicional de espírito para cada espírito daquele tipo e também +1 de modificador na pilha de dados para os Testes de Vinculação. Usuários de Magia podem possuir esta qualidade para um tipo de espírito que não seja parte da sua tradição mágica.",
+      "page": 71
+    },
+    {
+      "id": "high-pain-tolerance",
+      "name": "Alto Limiar de Dor",
+      "kind": "positive",
+      "karma": {
+        "perLevel": 7
+      },
+      "levels": {
+        "max": 3
+      },
+      "modifiers": [
+        {
+          "target": "wound.ignoredBoxes",
+          "add": {
+            "ref": "rating"
+          }
+        }
+      ],
+      "desc": "Alto Limiar de Dor permite que o personagem continue suportando a dor como se já tivesse um monte na sua cabeça. Um personagem com Alto Limiar de Dor pode ignorar uma caixa de dano por nível desta qualidade ao calcular os modificadores de ferimento (veja Modificadores de Ferimento, p. 169). Então, um personagem com esta qualidade em Nível 2 pode receber 4 caixas de dano, mas continuar sem modificadores de ferimento, como se tivesse apenas 2 caixas de dano. Então, o modificador de ferimento de –1 começaria a agir quando o personagem sofresse a quinta caixa de dano. Esta qualidade não pode ser usada com o poder de adepto Resistência à Dor, biônico editor de dor ou biônico compensador de dano.",
+      "page": 72
+    },
+    {
+      "id": "ambidextrous",
+      "name": "Ambidestria",
+      "kind": "positive",
+      "karma": 4,
+      "desc": "Um personagem com Ambidestria pode manusear objetos igualmente com qualquer uma das mãos. Sem esta qualidade, qualquer ação somente com a mão inábil (ex.: disparar um tiro) sofre –2 de modificador na pilha de dados (veja Atacante Usando Arma Na Mão Secundária, p. 178).",
+      "page": 72
+    },
+    {
+      "id": "human-looking",
+      "name": "Aparência Humana",
+      "kind": "positive",
+      "karma": 6,
+      "desc": "Um personagem meta-humano com a qualidade Aparência Humana pode se passar por humano na maioria das circunstâncias. PdMs humanos respondem com atitudes neutras com relação a tais personagens ao fazer testes de perícias Sociais (p. 139), mesmo aqueles humanos que sejam especialmente preconceituosos contra meta-humanos. O personagem pode sofrer uma animosidade maior de PdMs que sejam preconceituosos contra humanos e que o confundam com um humano ou não confiem nos seus motivos para tentar parecer humano. Apenas elfos, anões e orks podem escolher a qualidade Aparência Humana.",
+      "page": 72
+    },
+    {
+      "id": "aptitude",
+      "name": "Aptidão",
+      "kind": "positive",
+      "karma": 14,
+      "modifiers": [
+        {
+          "target": "skill.max",
+          "of": {
+            "choose": "skill"
+          },
+          "add": 1
+        }
+      ],
+      "desc": "Esta qualidade é como você se torna ainda superior ao melhor do mundo. O limite padrão para perícias é 12. Ocasionalmente, existe uma personagem que pode superar os limites e ser realmente excepcional em uma perícia específica. Com esta qualidade específica, a personagem pode ter uma perícia com nível 7 durante a criação e pode aumentá-la até chegar a 13. Os personagens só podem escolher a qualidade Aptidão uma vez.",
+      "page": 72
+    },
+    {
+      "id": "natural-athlete",
+      "name": "Atleta Natural",
+      "kind": "positive",
+      "karma": 7,
+      "desc": "Um personagem com esta qualidade tem a combinação inata de aptidão física, consciência espacial e atletismo natural ou talento para ginástica. Embora o personagem possa não ser um atleta de nível internacional e possa precisar de treinamento para chegar ao desempenho máximo, ele está no ápice de sua forma física para sua classe de tamanho e peso. O Atleta Natural adiciona +2 de modificador na pilha de dados para testes de perícia de Corrida e Ginástica.",
+      "page": 72
+    },
+    {
+      "id": "exceptional-attribute",
+      "name": "Atributo Excepcional",
+      "kind": "positive",
+      "karma": 14,
+      "modifiers": [
+        {
+          "target": "attr.max",
+          "of": {
+            "choose": "attribute",
+            "except": [
+              "ess",
+              "edg"
+            ]
+          },
+          "add": 1
+        }
+      ],
+      "desc": "A qualidade Atributo Excepcional é o que possibilita o troll carismático ou o anão ágil. Ele permite que você tenha um atributo em um ponto acima do limite máximo do metatipo. Por exemplo, uma personagem ork com a qualidade Atributo Excepcional para Força poderia levar seu atributo Força até 9 antes das ampliações serem aplicadas, em vez do limite normal, 8. O Atributo Excepcional também se aplica a Atributos Especiais, como Magia e Ressonância. O Trunfo não pode ser afetado pelo Atributo Excepcional (o Trunfo é aumentado por outra qualidade, Sortudo). Uma personagem só pode escolher Atributo Excepcional uma vez e apenas com a aprovação do mestre.",
+      "page": 72
+    },
+    {
+      "id": "bilingual",
+      "name": "Bilíngue",
+      "kind": "positive",
+      "karma": 5,
+      "modifiers": [
+        {
+          "target": "language.native",
+          "add": 1
+        }
+      ],
+      "desc": "Personagens que tenham essa qualidade leem, escrevem e falam um segundo idioma fluentemente. Eles podem listar um segundo idioma como nativo (veja Perícias de Idioma, p. 150). Esta qualidade só pode ser adquirida durante a criação de personagem: sua escolha dá ao personagem uma segunda perícia de idioma livre durante a Etapa Cinco: Comprar Perícias Ativas, de Conhecimento e de Idioma (p. 88).",
+      "page": 72
+    },
+    {
+      "id": "blandness",
+      "name": "Cara Genérica",
+      "kind": "positive",
+      "karma": 8,
+      "modifiers": [
+        {
+          "target": "reputation.notoriety",
+          "add": -1
+        }
+      ],
+      "desc": "Esta personagem se mistura na multidão, raramente é percebida e é facilmente esquecida. Ela é desinteressante em todos os aspectos da sua aparência física. Quem tentar descrever a personagem não conseguirá dizer nada mais preciso do que “altura mediana, forma mediana, cabelo normal” etc. Aumente o limiar para quem tentar lembrar detalhes específicos sobre a personagem em 1. Isso significa que um Teste de Memória com dificuldade Mediana (limiar 2) se torna um teste Difícil (limiar 3). Indivíduos que tentem seguir ou localizar fisicamente a personagem com a qualidade Cara Genérica em um ambiente populoso recebem -2 de modificador na pilha de dados em todos os testes relacionados à sua busca. As mesmas penalidades são aplicadas se estiverem perguntando sobre a pessoa com base na aparência física da personagem. Contudo, o modificador não é aplicado a buscas mágicas ou na Matriz. Se a personagem adquirir tatuagens visíveis, cicatrizes, cibernéticos óbvios ou outros traços marcantes, os bônus da qualidade Cara Genérica desaparecem até as características marcantes serem removidas da aparência da personagem. Em algumas circunstâncias e situações específicas, o mestre pode determinar que a Cara Genérica não é aplicável. Por exemplo, uma troll com a qualidade Cara Genérica ainda tem a cabeça e os ombros acima de uma multidão de humanos e ainda se destaca, não importa o quanto seus chifres possam ser normais. A personagem só recupera seu bônus ao deixar a situação na qual se destaca. Essa qualidade reduz a Notoriedade em 1 (p. 368).",
+      "page": 72
+    },
+    {
+      "id": "astral-chameleon",
+      "name": "Camaleão Astral",
+      "kind": "positive",
+      "karma": 10,
+      "desc": "Com a qualidade Camaleão Astral, a assinatura astral do personagem se mistura com o cenário do espaço astral e é difícil de ser detectado. Todas as assinaturas deixadas pelo personagem duram apenas a metade do tempo de outras assinaturas astrais. Indivíduos que tentem sentir assinaturas astrais deixadas para trás por um personagem com esta qualidade recebem -2 de modificador na pilha de dados no Teste de Sentido Astral. Apenas personagens com nível de Magia e capazes de deixar assinaturas astrais podem ter esta qualidade.",
+      "page": 74
+    },
+    {
+      "id": "focused-concentration",
+      "name": "Concentração Focada",
+      "kind": "positive",
+      "karma": {
+        "perLevel": 4
+      },
+      "levels": {
+        "max": 6
+      },
+      "desc": "Uma tecnomante ou usuária de magia com a qualidade Concentração Focada tem a disciplina para manipular o mana ou a Ressonância de forma mais precisa do que seria possível. Esta precisão reduz a tensão no corpo da usuária de magia ou tecnomante. Ela consegue sustentar um feitiço/forma complexa com potência/nível igual ao seu nível de Concentração Focada sem sofrer penalidades. Por exemplo, uma usuária de magia com Concentração Focada 3 pode sustentar um feitiço de Armadura com potência 3 sem o modificador negativo na pilha de dados por sustentar um feitiço. Sustentar feitiços ou formas complexas adicionais resulta no modificador padrão de -2 na pilha de dados por feitiço ou forma complexa sustentada. Esta qualidade só pode ser escolhida por usuários de magia que possam conjurar feitiços e tecnomantes.",
+      "page": 74
+    },
+    {
+      "id": "guts",
+      "name": "Coragem",
+      "kind": "positive",
+      "karma": 10,
+      "desc": "Quando um espírito inseto com mandíbulas gotejantes se aproxima, a personagem com Coragem é provavelmente aquela que levantará e lutará em vez dar no pé. Coragem dá à personagem +2 de modificador na pilha de dados em testes para resistir ao medo e à intimidação, incluindo o medo mágico induzido por feitiços ou poderes de criaturas.",
+      "page": 74
+    },
+    {
+      "id": "quick-healer",
+      "name": "Curandeiro Rápido",
+      "kind": "positive",
+      "karma": 3,
+      "desc": "Um personagem com a qualidade Curandeiro Rápido recebe a +2 de modificador na pilha de dados para todos os Testes de Cura feitos sobre/para/por ele, incluindo a cura mágica.",
+      "page": 74
+    },
+    {
+      "id": "will-to-live",
+      "name": "Desejo de Viver",
+      "kind": "positive",
+      "karma": {
+        "perLevel": 3
+      },
+      "levels": {
+        "max": 3
+      },
+      "modifiers": [
+        {
+          "target": "monitor.overflow",
+          "add": {
+            "ref": "rating"
+          }
+        }
+      ],
+      "desc": "Para cada nível em Desejo de Viver, a personagem ganha 1 Caixa de Dano em Excesso adicional (p. 101). Essas caixas adicionais só permitem que a personagem receba dano adicional antes de morrer: elas não aumentam o limiar no qual a personagem fica inconsciente ou incapacitada, nem afetam os modificadores do dano que a personagem sofreu.",
+      "page": 74
+    },
+    {
+      "id": "natural-hardening",
+      "name": "Endurecimento Natural",
+      "kind": "positive",
+      "karma": 10,
+      "modifiers": [
+        {
+          "target": "matrix.biofeedbackFilter",
+          "add": 1
+        }
+      ],
+      "desc": "Esta qualidade deixa a estrutura neural da personagem mais resistente a retroalimentação. Isso fornece 1 ponto de filtro de biorretroalimentação natural, que é cumulativo com um programa Filtro de Biorretroalimentação ou o firewall do tecnomante (p. 251).",
+      "page": 74
+    },
+    {
+      "id": "mentor-spirit",
+      "name": "Espírito Mentor",
+      "kind": "positive",
+      "karma": 5,
+      "choice": "mentors.json#mentors",
+      "desc": "Todos precisam de alguma ajuda na vida, mesmo que venha de alguém relativamente transparente e insubstancial. Espírito Mentor significa que a personagem segue um espírito patrono (veja Espíritos Mentores, p. 320) que a orienta em sua prática de magia e fornece algumas vantagens e desvantagens para suas habilidades naturais. Uma personagem pode mudar de espíritos mentores, mas só pode ter um espírito mentor de cada vez. Para mudar de espíritos mentores, a personagem precisa primeiro recomprar o espírito mentor atual como se fosse uma qualidade Negativa. Depois, ele pode comprar a qualidade novamente para seguir um novo espírito mentor. Este custo representa o esforço de se separar de um espírito mentor e se ligar a um novo. Cada tradição tem um nome diferente para um espírito mentor. Magos herméticos preferem o termo “espírito mentor”, enquanto xamãs usam a palavra “totem” para o espírito que seguem. Embora os nomes possam variar, a forma na qual o mentor funciona é a mesma. Esta qualidade só está disponível para personagens que tenham um nível de atributo Magia.",
+      "page": 74
+    },
+    {
+      "id": "catlike",
+      "name": "Felino",
+      "kind": "positive",
+      "karma": 7,
+      "desc": "Personagens com a qualidade Felino são dotados de uma elegância única, um andar furtivo e uma habilidade quase sobrenatural de se mover em silêncio. Eles também alegam sempre cair de pé, embora não costumem deixar os outros testarem isso. Esta qualidade adiciona +2 de modificador na pilha de dados para testes de perícia Esgueirar.",
+      "page": 75
+    },
+    {
+      "id": "jury-rigger",
+      "name": "Gambiarra",
+      "kind": "positive",
+      "karma": 10,
+      "desc": "Gambiarra dá ao personagem o entendimento intuitivo do funcionamento interno e princípios básicos de dispositivos mecânicos e eletrônicos. Ele sabe como consertar o quebrado, renovar o desgastado, melhorar a eficiência do dispositivo ou força-lo a fazer coisas que os projetistas não pretendiam. Personagens com a qualidade Gambiarra recebem +2 de modificador na pilha de dados para os testes de Mecânica (p.144) ao improvisar com equipamentos. Se o mestre decidir que o que o personagem deseja realizar é realmente possível, ele determina o limiar para o sucesso usando a Tabela de Construir/Consertar (p. 146) como uma orientação, depois reduz o limiar do teste em 1. Embora um Teste bem-sucedido da Perícia Mecânica permita que o personagem com Gambiarra realize feitos técnicos impressionantes, tudo que ele desenvolve é temporário. Exemplos do que o personagem pode fazer com Gambiarra incluem: • Improvisar um dispositivo destruído para que funcione apenas mais uma vez (ou 1D6 minutos). • Regular um dispositivo eletrônico para funcionar em um nível superior do que o normal por 1D6 Turnos de Combate. • Por 1D6 minutos, arranque temporariamente um desempenho adicional dos componentes de um drone ou veículo, aumentando seu Sensor ou Manejo em +1 (se for combinado com os bônus de Piloto Nato, os componentes críticos do veículo ou drone queimam completamente no final da duração do esforço além dos seus limites. Nesse ponto, o veículo ou drone se torna um enorme peso de papel). • Improvisar um dispositivo ou arma de uso único de componentes distintos (o mestre tem a palavra final sobre a disponibilidade das peças adequadas). • Desenvolver uma forma improvisada de contornar uma medida de segurança, como um raio de alarme ou placa de pressão.",
+      "page": 75
+    },
+    {
+      "id": "natural-immunity",
+      "name": "Imunidade Natural",
+      "kind": "positive",
+      "karma": {
+        "options": [
+          {
+            "id": "natural",
+            "name": "Doença ou toxina natural",
+            "karma": 4
+          },
+          {
+            "id": "synthetic",
+            "name": "Doença ou toxina sintética",
+            "karma": 10
+          }
+        ]
+      },
+      "desc": "A habilidade de tomar pequenas doses de veneno casualmente nunca pode ser subestimada. Um personagem com Imunidade Natural tem uma imunidade inata ou desenvolveu a imunidade a uma doença ou toxina. A qualidade está disponível em dois níveis. Se comprada com o nível de 4 Carma, o personagem é imune a uma única doença ou toxina natural. Se a Imunidade Natural comprada com o nível de 10 Carma, o personagem é imune a uma única doença ou toxina sintética (criada artificialmente). A Imunidade Natural não afeta doenças ou toxinas que tenham uma base mágica, como o VIVO. O jogador e o mestre devem concordar sobre a doença, droga ou veneno ao qual o personagem é imune. O personagem pode tomar uma dose da droga ou veneno e ser exposto à doença uma vez a cada seis horas, sem efeitos ruins. Qualquer dose ou exposição subsequente durante as próximas seis horas causa o dano normal, mas o tempo de recuperação do personagem é reduzido pela metade. Perceba que personagens com Imunidade Natural a uma doença podem ser vetores, infectando outros personagens sem sofrer dos efeitos prejudiciais.",
+      "page": 75
+    },
+    {
+      "id": "indomitable",
+      "name": "Indomável",
+      "kind": "positive",
+      "karma": {
+        "perLevel": 8
+      },
+      "levels": {
+        "max": 3
+      },
+      "modifiers": [
+        {
+          "target": "limit",
+          "of": {
+            "choose": "limit"
+          },
+          "add": 1,
+          "times": {
+            "ref": "rating"
+          }
+        }
+      ],
+      "desc": "Corpos e mentes têm limites, mas algumas pessoas têm a disposição para forçarem além dessas limitações. Para cada nível de Indomável, a personagem recebe +1 de aumento em um Limite Inerente à sua escolha (Mental, Físico ou Social). Ela pode escolher três níveis e aplicá-los da forma que quiser (+3 em um Limite Inerente, por exemplo, ou +2 em um Limite Inerente e +1 em outro, ou +1 em todos os três).",
+      "page": 75
+    },
+    {
+      "id": "photographic-memory",
+      "name": "Memória Fotográfica",
+      "kind": "positive",
+      "karma": 6,
+      "desc": "Uma personagem com Memória Fotográfica pode lembrar instantaneamente de fatos, datas, números e tudo mais que viu ou ouviu. A personagem ganha +2 de modificador na pilha de dados em todos os Testes de Memória.",
+      "page": 75
+    },
+    {
+      "id": "analytical-mind",
+      "name": "Mente Analítica",
+      "kind": "positive",
+      "karma": 5,
+      "desc": "Mente Analítica descreve a habilidade extraordinária de analisar informações de forma lógica, deduzir soluções para problemas ou separar informações vitais de distrações e ruídos. É útil para quebrar códigos, resolver enigmas, descobrir armadilhas e examinar dados. Esta qualidade dá ao personagem +2 de modificador na pilha de dados para Testes de Lógica envolvendo o reconhecimento de padrões, análise de evidências, busca por pistas e solução de enigmas. Esta qualidade também reduz o tempo necessário para o personagem resolver um problema pela metade.",
+      "page": 75
+    },
+    {
+      "id": "gearhead",
+      "name": "Piloto Nato",
+      "kind": "positive",
+      "karma": 11,
+      "desc": "O Piloto Nato é quem você procura quando é hora de botar o pé na tábua e correr. Ele é um motorista, um ás no volante. Quando está no volante/manche/controle de um veículo ou drone, ele tem um entendimento intuitivo das suas limitações e capacidades e pode levar qualquer máquina que controle para dar o seu melhor. Durante um combate ou perseguição com veículos, um Piloto Nato pode aumentar a Velocidade do seu veículo ou drone em 20 por cento ou aumentar seu modificador de Manejo em +1 (à escolha do jogador). Ele também recebe +2 de modificador na pilha de dados ao tentar movimentos difíceis ou manobras no veículo.Durante um combate ou perseguição com veículos, um Piloto Nato pode aumentar a Velocidade ou Manejo do seu veículo ou drone em +1 (à escolha do jogador) por 1D6 minutos. O jogador pode escolher fazer este bônus durar por 1D6 minutos adicionais, se quiser. Fazer isso força o veículo ou drone muito além dos seus limites de projeto e arrisca a causar um dano catastrófico. Para cada minuto que o personagem forçar o veículo além do período inicial do bônus, o veículo sofre automaticamente um ponto de dano de tensão (sem resistência).",
+      "page": 75
+    },
+    {
+      "id": "first-impression",
+      "name": "Primeira Impressão",
+      "kind": "positive",
+      "karma": 11,
+      "modifiers": [
+        {
+          "target": "reputation.notoriety",
+          "add": -1
+        }
+      ],
+      "desc": "A qualidade Primeira Impressão permite que o personagem entre facilmente em novos ambientes, situações, grupos e trabalhos. Seja se infiltrando em uma gangue, fazendo contatos em uma cidade nova ou obtendo um convite para um encontro particular, o personagem ganha +2 temporários de modificador na pilha de dados para os Testes Sociais relevantes, como Negociação e Trapaça, durante o primeiro encontro. Este modificador não se aplica ao segundo encontro e aos subsequentes. Essa qualidade reduz a Notoriedade em 1 (p. 368).",
+      "page": 76
+    },
+    {
+      "id": "codeslinger",
+      "name": "Programador Rápido",
+      "kind": "positive",
+      "karma": 10,
+      "desc": "Uns e zeros são praticamente um idioma nativo para um Programador Rápido. O personagem é perito em executar uma ação específica da Matriz (que ele seleciona ao escolher esta qualidade) e recebe +2 de modificador na pilha de dados para essa ação na Matriz. Só pode ser selecionada para Ações da Matriz (p. 237) que tenham um teste associado.",
+      "page": 76
+    },
+    {
+      "id": "resistance-to-pathogens-toxins",
+      "name": "Resistência a Patogênicos/Toxinas",
+      "kind": "positive",
+      "karma": {
+        "options": [
+          {
+            "id": "one",
+            "name": "Patogênicos ou toxinas",
+            "karma": 4
+          },
+          {
+            "id": "both",
+            "name": "Patogênicos e toxinas",
+            "karma": 8
+          }
+        ]
+      },
+      "desc": "Uma personagem com Resistência a Patogênicos/Toxinas pode combater doenças ou drogas com maior facilidade do que outros personagens e recebe +1 de modificador na pilha de dados nos Testes de Resistência. A qualidade tem dois níveis: com 4 Carma, o personagem é resistente a patogênicos ou toxinas, mas não ambos. Se a personagem comprar esta qualidade com 8 Carma, ele recebe +1 de modificador para resistir a ambos.",
+      "page": 76
+    },
+    {
+      "id": "magic-resistance",
+      "name": "Resistência Mágica",
+      "kind": "positive",
+      "karma": {
+        "perLevel": 6
+      },
+      "levels": {
+        "max": 4
+      },
+      "desc": "Esta é uma habilidade maravilhosa para rebater potencialmente uma Bola de Fogo. Para cada 6 de Carma gastos em Resistência Mágica, o personagem recebe um dado adicional nos Testes de Resistência a Feitiços. Contudo, a qualidade Resistência Mágica está sempre “ligada”: o personagem não pode desligá-la para receber feitiços benéficos, como Cura. Um personagem com Resistência Mágica não pode fazer parte de feitiços que exijam um alvo voluntário. Tais feitiços falham automaticamente quando usados em personagens resistentes à mágica. Personagens com Nível de Magia não podem selecionar essa qualidade.",
+      "page": 76
+    },
+    {
+      "id": "lucky",
+      "name": "Sortudo",
+      "kind": "positive",
+      "karma": 12,
+      "modifiers": [
+        {
+          "target": "attr.max",
+          "of": "edg",
+          "add": 1
+        },
+        {
+          "target": "reputation.notoriety",
+          "add": -1
+        }
+      ],
+      "desc": "Os dados rolam e a moeda gira a favor desta personagem com muita frequência, dando à ela uma chance de deixar outros de boca aberta com sua boa sorte. Sortudo permite que a personagem tenha um atributo Trunfo um ponto maior do que o máximo do metatipo (por exemplo, uma personagem humana poderia aumentar seu Trunfo para 8). Perceba que escolher esta qualidade não aumenta realmente o nível atual de Trunfo da personagem, apenas dá a oportunidade para isso. O custo de Carma para ganhar o ponto adicional ainda deve ser pago. Esta qualidade só pode ser escolhida uma vez e deve ser aprovada pelo mestre. A qualidade Sortudo não pode ser combinada com Atributo Excepcional. Essa qualidade reduz a Notoriedade em 1 (p. 368).",
+      "page": 76
+    },
+    {
+      "id": "home-ground",
+      "name": "Terreno Familiar",
+      "kind": "positive",
+      "karma": 10,
+      "desc": "Se uma personagem conhece sua vizinhança melhor do que qualquer um (os atalhos, esconderijos e pessoas que pode confiar), então provavelmente ela tem a qualidade Terreno Familiar. Ela conhece as famílias que moram lá, suas histórias e o que as crianças que se mudaram estão fazendo, conhece as ruas melhor do que o GradeGuia, sabe sobre coisas que não estão no GradeGuia e sabe quando o GradeGuia está errado. Ela conhece a política das gangues, quem está trabalhando para quem e quem está correndo de quem. Mas não é só as ruas físicas. Dependendo da personagem, a qualidade Terreno Familiar pode se manifestar de formas específicas a quem ou o que ela é. Ao escolher esta habilidade, selecione um dos bônus abaixo: • Aclimatação Astral: A personagem está aclimatada à contagem de fundo do seu Terreno Familiar. Em toda uma vida de familiaridade, ela aprendeu a trabalhar por ai, permitindo ignorar até dois pontos da contagem de fundo. Por exemplo, se a contagem de fundo do seu Terreno Familiar for 3, ela vê apenas com uma redução de 1 em seus testes de Magia. Se a contagem de fundo for 5, para ela é apenas 3, e assim por diante. Esta qualidade funciona apenas no Terreno Familiar e não tem benefícios em outros lugares. • Conheço um Cara: A personagem construiu relações duradouras com as pessoas da sua vizinhança. Essas pessoas não são contatos, mas elas a reconhecem como um dos seus e provavelmente farão favores ou conversarão com ela. PdMs da vizinhança do Terreno Familiar da personagem são considerados amistosos em relação a ela, sempre que os encontra (a menos que tenha feito algo para mudar isso). a personagem recebe +2 de Crédito de Rua para qualquer Negociação com pessoas do seu Terreno Familiar. • Território Digital: Este é para uma tecnauta ou tecnomante que tenha uma central específica para chamar de sua. Ela pode realmente conhecer o ponto ou pode ser um local que ela frequente o bastante para considerar como sua casa. A personagem recebe +2 bônus nos Testes de Matriz enquanto estiver na central do seu Terreno Familiar. Bônus de outras Qualidades podem acumular com o Terreno Familiar. Se a personagem ficar sem frequentar esta central por mais de seis meses, ela perde a qualidade Terreno Familiar, pois não está mais tão familiarizada quanto deveria. • Transportador: Esta personagem conhece o desenho das ruas, becos, túneis de serviço etc. como a palma da mão. Ela sabe quando o GradeGuia está errado e quando ele está desatualizado. Quando a transportadora está em seu Terreno Familiar, ela tem +2 de modificador na pilha de dados para Testes de Alcançar/Fugir. Esse modificador também se aplica a Testes de Esgueirar para não ser seguida. • Em Fuga: Esconder e ficar na moita são partes do cotidiano deste incursor das sombras. Em Fuga significa que a personagem tem um conhecimento enciclopédico de estâncias, tocas, edifícios abandonados, qualquer lugar fora de mão não reivindicado por gangues ou moradores de rua. Quando precisa encontrar um local seguro na correria, esta personagem recebe +2 de bônus na pilha de dados no teste de Intuição + perícia de rua apropriada para achar o lugar certo para esconder rápido. • Política de Rua: Esta personagem conhece as gangues de rua, as operações criminosas e as afiliações por baixo dos panos que são o tecido social e político do seu Terreno Familiar. Ela recebe +2 de modificador na pilha de dados para todos os testes de Conhecimento relacionados a gangues e suas operações. Esta qualidade pode ser selecionada múltiplas vezes, sendo selecionada uma das categorias descritas acima em cada escolha.",
+      "page": 76
+    },
+    {
+      "id": "double-jointed",
+      "name": "Ultraflexibilidade",
+      "kind": "positive",
+      "karma": 6,
+      "desc": "Uma personagem com Ultraflexibilidade tem juntas extraordinariamente flexíveis e pode dobrar e contorcer o seu corpo em posições extremas. A personagem recebe +2 de modificador na pilha de dados para todos os testes de Arte da Fuga. A personagem também pode se espremer em espaços pequenos e apertados onde personagens menos flexíveis não conseguiriam. Também são ótimas em festas e bares.",
+      "page": 77
+    },
+    {
+      "id": "toughness",
+      "name": "Vitalidade",
+      "kind": "positive",
+      "karma": 9,
+      "desc": "Personagens com a qualidade Vitalidade absorvem o dano com maior facilidade do que outros. Tais personagens ganham +1 de modificador na pilha de dados em seu Corpo ao fazer testes de Resistência a Dano.",
+      "page": 77
+    },
+    {
+      "id": "allergy",
+      "name": "Alergia",
+      "kind": "negative",
+      "karma": {
+        "sum": [
+          {
+            "id": "prevalence",
+            "name": "Predominância",
+            "options": [
+              {
+                "id": "uncommon",
+                "name": "Incomum",
+                "karma": 2,
+                "desc": "A substância ou condição é rara para o local ou ambiente. Exemplos: prata, ouro, antibiótico, grama."
+              },
+              {
+                "id": "common",
+                "name": "Comum",
+                "karma": 7,
+                "desc": "A substância ou condição é predominante no local ou ambiente. Exemplos: luz solar, frutos do mar, abelhas, pólen, poluentes, sensibilidade a Wi-Fi, soja, trigo."
+              }
+            ]
+          },
+          {
+            "id": "severity",
+            "name": "Gravidade",
+            "options": [
+              {
+                "id": "mild",
+                "name": "Leve",
+                "karma": 3,
+                "desc": "Os sintomas causam desconforto e distração. Aplique –2 de modificador na pilha de dados aos Testes Físicos da personagem enquanto estiver sob efeito da Alergia."
+              },
+              {
+                "id": "moderate",
+                "name": "Moderada",
+                "karma": 8,
+                "desc": "O contato com o alergênico causa uma dor intensa. Aplique –4 de modificador na pilha de dados a todos os Testes Físicos feitos enquanto a personagem sentir os sintomas."
+              },
+              {
+                "id": "severe",
+                "name": "Grave",
+                "karma": 13,
+                "desc": "O contato com o alergênico resulta em dor extrema e dano físico real. Aplique –4 de modificador na pilha de dados a todos os testes feitos enquanto a personagem sentir os sintomas. A personagem também sofre 1 caixa de Dano Físico (sem resistência) para cada 1 minuto que ficar exposta ao alergênico."
+              },
+              {
+                "id": "extreme",
+                "name": "Extrema",
+                "karma": 18,
+                "desc": "Um personagem neste nível, quando exposto ao alergênico, entra em choque anafilático total. O personagem recebe –6 de modificador para tudo que fizer. Considera-se que o personagem está em uma agonia excruciante. O personagem sofre 1 caixa de Dano Físico (sem resistência) para cada 30 segundos que ficar exposto ao alergênico. Primeiros Socorros, Medicina ou meios mágicos podem interromper o dano do choque anafilático."
+              }
+            ]
+          }
+        ]
+      },
+      "desc": "Uma personagem com a qualidade Alergia é alérgica à uma substância ou condição encontrada em seu ambiente. O valor da qualidade depende de dois fatores. O primeiro é se a substância ou condição é Incomum (2 Carma) ou Comum (7 Carma). Depois, determine a gravidade dos sintomas: Leve (3 Carma), Moderada (8 Carma), Grave (13 Carma), ou Extrema (18 Carma). Adicione os valores adequados para descobrir o valor final. Por exemplo, o valor de uma Alergia Moderada Incomum (Prata) é de 10 Carma (2+8 Carma). Se a personagem for atacado com uma substância da sua alergia, ela perde 1 dado do seu Teste de Resistência para cada estágio de gravidade da Alergia (ex.: 1 dado para alergia Leve, 2 dados para Moderada etc.).",
+      "page": 77
+    },
+    {
+      "id": "scorched",
+      "name": "Arrasado",
+      "kind": "negative",
+      "karma": 10,
+      "modifiers": [
+        {
+          "target": "reputation.notoriety",
+          "add": 1
+        }
+      ],
+      "sideEffects": [
+        {
+          "name": "Perda de Memória (curto prazo)",
+          "desc": "O personagem não lembra de usar o chip MQT. Ele faz outro Teste de Abstinência imediatamente. O fracasso no teste significa que o desejo volta imediatamente, como nos sintomas da abstinência. O personagem deve encaixar outro chip. Para o encontro com um GELO, o personagem deve fazer um Teste de Memória com limiar aumentado em +1. Um fracasso no Teste de Memória resulta em falhas na memória e uma possível desorientação enquanto estiver na central."
+        },
+        {
+          "name": "Perda de Memória (longo prazo)",
+          "desc": "Os mesmos efeitos de Perda de Memória (curto prazo) são aplicados. Além disso, pela duração do efeito, o personagem perde o acesso a uma perícia ativa. Ele simplesmente não se lembra como usá-la (por exemplo, a perícia Pistolas). Trate-o como alheio em tal perícia até os sintomas sumirem."
+        },
+        {
+          "name": "Apagão",
+          "desc": "Pela duração do efeito, o personagem não retém as memórias dos eventos durante aquele período. A memória não pode ser restaurada por meios tecnológicos ou mágicos."
+        },
+        {
+          "name": "Enxaquecas",
+          "desc": "O personagem recebe –2 em todos os testes Físicos e Mentais, sensibilidade à luz e náusea (p. 408)."
+        },
+        {
+          "name": "Paranoia/Ansiedade",
+          "desc": "O personagem deve fazer Testes Sociais até mesmo para as interações básicas. São Testes de Sucesso com limiar 5. Se nenhuma perícia aparente for aplicada, o personagem deve fazer um teste-padrão com Carisma –1. O fracasso significa que o personagem reage com paranoia ou ansiedade naquela situação pela duração do efeito."
+        }
+      ],
+      "desc": "Um personagem Arrasado está lidando com problemas neurológicos sofridos ou danos causados de alguma forma por GELO Negro, GELO Psicotrópico ou MQT. O problema pode se manifestar como perda da memória de curto ou longo prazo, apagões inesperados, enxaquecas constantes, sentidos reduzidos (visão, toque, olfato etc.) e distúrbios de humor, como paranoia e ansiedade. O personagem escolhe um efeito específico de Arrasado e seu efeito deve ser evidente o suficiente para atrapalhar o personagem e representar possíveis ganchos da trama para o mestre. Sempre que ele entrar na RV ou colocar um chip MQT o personagem deve fazer um Teste de Corpo + Vontade (4). Se fracassar, ele experimenta os efeitos físicos especificados por seis horas. Uma falha ou falha crítica neste teste resulta em sofrer os efeitos por 24 horas. A única forma de eliminar a qualidade Arrasado é obter o tratamento médico necessário para consertar o dano e, então, gastar o Carma para recomprar a qualidade Negativa. Contudo, uma vez Arrasado, o personagem continua suscetível à condição. Outro encontro ruim com um GELO Negro ou Psicotrópico ou um MQT vai trazer esta qualidade de volta. Além dos efeitos colaterais físicos que o personagem possa ter por ser Arrasado, ele é vulnerável ao dano causado por GELO Negro ou Psicotrópico ou MQTs. Quando enfrentar este GELO, o personagem deve fazer um Teste de Compostura (4) (p. 152) para conseguir confrontá-lo sem entrar em pânico. Se conseguir confrontar o GELO que causou a condição Arrasado, o personagem sofre –2 nos Testes de Resistência a Dano quando esses programas estiverem causando dano. Para pegar a qualidade Arrasado para MQTs, o personagem deve ter pelo menos um Vício Leve em MQTs e possuir os equipamentos necessários para usar MQTs. Para pegar a qualidade Arrasado para GELO Negro ou Psicotrópico, o personagem deve ser um tecnauta ou um tecnomante. Essa qualidade aumenta a Notoriedade em 1 (p. 368).",
+      "page": 77
+    },
+    {
+      "id": "bad-luck",
+      "name": "Azar",
+      "kind": "negative",
+      "karma": 10,
+      "modifiers": [
+        {
+          "target": "reputation.notoriety",
+          "add": 1
+        }
+      ],
+      "desc": "A personagem é amaldiçoada: sua sorte normalmente se volta contra ela. Quando a personagem usar o Trunfo, lance 1D6. Se o resultado for 1, o ponto de Trunfo é gasto, mas tem seu efeito exatamente oposto ao pretendido. Por exemplo, se a personagem espera ganhar dados adicionais, ela perde tal quantidade de dados da sua pilha. Se a personagem gasta o Trunfo para agir primeiro no Passo de Iniciativa, ela acaba sendo a última. Se a personagem gasta o Trunfo para negar uma falha, o Azar transforma em uma falha crítica. Por exemplo, se a personagem usar Forçar o Limite, ela perde tal quantidade de dados da sua pilha de dados. Se uma personagem usar Ataque Relâmpago, sua iniciativa torna-se +0D6 em vez de +5D6, ou seja, utiliza apenas seu Nível de Iniciativa. Se a personagem usar Tomar a Iniciativa, ela acaba sendo a última em vez de primeira em cada Passo de Iniciativa. Essa qualidade aumenta a Notoriedade em 1 (p. 368).",
+      "page": 78
+    },
+    {
+      "id": "low-pain-tolerance",
+      "name": "Baixo Limiar de Dor",
+      "kind": "negative",
+      "karma": 9,
+      "modifiers": [
+        {
+          "target": "wound.boxesPerPenalty",
+          "set": 2
+        }
+      ],
+      "desc": "Personagens com Baixo Limiar de Dor são especialmente sensíveis à dor: elas sofrem –1 de modificador de ferimento para cada 2 caixas de dano cumulativo, em vez das 3 caixas normais. Isso afeta as faixas de danos Físico e de Atordoamento.",
+      "page": 79
+    },
+    {
+      "id": "codeblock",
+      "name": "Bloqueio de Código",
+      "kind": "negative",
+      "karma": 10,
+      "desc": "Um personagem com a qualidade Bloqueio de Código sempre tem problema com uma ação específica da Matriz. Ele recebe –2 de modificador na pilha de dados sempre que tentar aquele tipo de ação da Matriz. Bloqueio de Código é aplicado apenas a ações da Matriz com um teste associado. Ele não se aplica a ações que não precisam de teste (p. 237). Personagens não podem aplicar Bloqueio de Código para ações de hackear que provavelmente nunca usarão.",
+      "page": 79
+    },
+    {
+      "id": "code-of-honor",
+      "name": "Código de Honra",
+      "kind": "negative",
+      "karma": 15,
+      "desc": "A personagem tem um Código de Honra obrigatório quando se trata de matar membros de um grupo específico. É uma questão de um princípio inabalável. Personagens com a qualidade Código de Honra escolhe um grupo específico do que não matarão ou permitirão que outros matem. Exemplos de grupos incluem mulheres, crianças, observadores inocentes ou um metatipo específico. Uma personagem pode escolher paracriaturas específicas, mas apenas se a paracriatura específica tiver o poder Sapiência. O mestre deve aprovar o grupo que o personagem define como “fora de cogitação”. Se o grupo (como crianças) não for encontrado regularmente nas campanhas, o mestre pode rejeitar a escolha. Se a jogadora acredita bastante em sua escolha, o mestre pode permitir que ela selecione dois grupos que não machucará (ex.: mulheres e crianças), um dos quais provavelmente aparecerá na campanha. Uma maga pode escolher, de forma legítima, não destruir nenhum tipo de espírito para o qual seu Espírito Mentor conceda um bônus na invocação. Este Código de Honra respeita seu Espírito Mentor e vale o Carma. Os personagens não podem escolher um grupo obscuro ou inexistente para pegar esta qualidade: não é possível ganhar Carma ao jurar nunca matar hamsters sapientes, por exemplo. Sempre que alguém tentar matar um membro da lista protegida do personagem, ele deve fazer um Teste de Carisma + Vontade (4). O fracasso significa que a personagem deve interromper imediatamente a violência contra o membro do seu grupo protegido. Se a situação forçar a personagem a agir contra alguém do seu grupo protegido, ela sempre escolherá métodos não letais. Matar um membro de um grupo que jurou proteger é uma linha que ela não cruzará por nenhum motivo. Existem desvantagens em ter um Código de Honra. Por exemplo, deixar testemunhas para trás. Para cada pessoa no grupo protegido que a personagem deixar vivo e que possa lembrar dela, aumente a Consciência Pública do personagem em 1. As opções de trabalho do personagem também são limitadas: ela não aceitará um trabalho se o objetivo for a morte de um membro de um grupo protegido e terá limitações sobre participar de uma missão com alta chance de causar danos colaterais aos membros do seu grupo protegido. Sempre há uma forma das coisas darem errado quando a força não letal é usada. Uma pessoa pode ter uma reação alérgica gravíssima contra a droga inofensiva para desacordá-la ou uma condição cardíaca que transforma o choque do taser em algo letal. Por este motivo, sempre que a personagem fizer uma ação violenta ou permitir que outros façam uma ação violenta contra um membro do seu grupo escolhido, o mestre lança secretamente 1D6. Se tirar 1, existe uma complicação imprevista do uso da força não letal. Com um meta-humano, pode ser uma condição médica grave, com um espírito, uma tentativa de banir em vez de destruir pode, de fato, libertar o espírito. Quando a complicação surgir, o mestre faz um Teste de Percepção (4) secreto para o personagem notar se algo deu errado. Se uma pessoa no grupo escolhido da personagem for morta, seja intencionalmente ou não, a personagem perde um ponto de Carma naquela aventura para cada pessoa no seu “grupo protegido” que tenha morrido. O Código de Honra também pode ter outras formas. Por exemplo: • Credo do Assassino: Uma personagem nunca mata alguém que não tenha sido pago para matar. Ser preciso como uma assassina, sem deixar danos colaterais, e ser invisível são características importantes daqueles que acreditam no Credo do Assassino. Personagens que escolham esta versão do Código de Honra perdem 1 ponto de Carma para cada assassinato não intencional e/ou não pago que cometerem e sua Consciência Pública aumenta em 1 para cada uma dessas mortes. • Código do Guerreiro: A personagem que segue o Código do Guerreiro mantém um senso rígido de honra pessoal. Em 2075, é provável que esta personagem não mate uma pessoa desarmada, faça uma ação letal contra um oponente que esteja alheio ou despreparado para o ataque (ex.: um guarda que não saiba que a incursor está lá) ou realize voluntariamente uma ação que poderia matar alguém indefeso (ex.: de uma bala perdida ou permitir que alguém seja morto por um atirador de elite). A personagem perde 1 Carma para cada pessoa desarmada e indefesa que matar ou permitir a morte através de suas ações.",
+      "page": 79
+    },
+    {
+      "id": "dependents",
+      "name": "Dependentes",
+      "kind": "negative",
+      "karma": {
+        "options": [
+          {
+            "id": "nuisance",
+            "name": "Irritação ocasional",
+            "karma": 3,
+            "modifiers": [
+              {
+                "target": "lifestyle.cost",
+                "mul": 1.1
+              }
+            ]
+          },
+          {
+            "id": "inconvenience",
+            "name": "Inconveniência regular",
+            "karma": 6,
+            "modifiers": [
+              {
+                "target": "lifestyle.cost",
+                "mul": 1.2
+              }
+            ]
+          },
+          {
+            "id": "close",
+            "name": "Membro próximo que mora junto",
+            "karma": 9,
+            "modifiers": [
+              {
+                "target": "lifestyle.cost",
+                "mul": 1.3
+              }
+            ]
+          }
+        ]
+      },
+      "modifiers": [
+        {
+          "target": "progression.trainingTime",
+          "mul": 1.5
+        }
+      ],
+      "desc": "Um personagem com a qualidade Dependentes tem um ou mais entes queridos que dependem dele para o suporte emocional e financeiro. Dependentes podem incluir filhos, pais, cônjuges ou amantes, irmão/irmã ou um velho amigo. Atender às necessidades de um dependente deve ocupar uma boa quantidade do tempo do personagem, assim como do seu dinheiro. Aumente a quantidade de tempo necessária para aprender uma nova perícia ou melhorar uma perícia existente em cinquenta por cento. Veja a seção Progressão do Personagem na p. 103 para mais informações sobre quanto tempo leva para melhorar as perícias. Aumente também o tempo base para qualquer projeto de longo prazo em cinquenta por cento. Um dependente também pode ser um problema de outras formas: entrando no caminho, dividindo a moradia, se envolvendo no trabalho do personagem, pegando o carro emprestado, ligando nos momentos mais inoportunos etc. Por 3 Carma, o dependente é uma irritação ocasional: aparecendo de forma inesperada (como quando o personagem precisa ir para um encontro), precisando de suporte emocional, favores ou outras confirmações de amizade/ compromisso e, ocasionalmente, dinheiro. Exemplos de dependentes deste nível incluem: irmão folgado, namorado(a) de longa data ou um filho que não more com o personagem, mas para quem ele pague pensão e visite regularmente. Aumente o custo do estilo de vida do personagem em 10 por cento a cada mês. Por 6 Carma, o dependente é uma inconveniência regular: precisando de atenção e compromisso regularmente, se envolvendo nos negócios do personagem, morando junto. Exemplos deste nível incluem: companheiro(a) de relação estável/esposa/marido ou membro da família, um filho de quem o personagem compartilhe a custódia e tenha em casa rotineiramente (a cada 2 fins de semana etc.) ou um filho pequeno ou irmão por quem o personagem seja responsável. Aumente o custo do estilo de vida do personagem em 20 por cento a cada mês. No nível de 9 Carma, o dependente é um membro próximo ou parceiro e mora com o personagem. O dependente é uma mancha no tempo e nos recursos do personagem e/ou exige cuidado e atenção especiais que limitam a disponibilidade do personagem para missões ou ações específicas. Exemplos desses dependentes incluem uma grande família que compartilhe a mesma moradia, pais ou avós com necessidades médicas ou físicas e a custódia integral de filho(s). Aumente o custo do estilo de vida do personagem em 30 por cento a cada mês.",
+      "page": 80
+    },
+    {
+      "id": "elf-poser",
+      "name": "Elfo Poser",
+      "kind": "negative",
+      "karma": 6,
+      "modifiers": [
+        {
+          "target": "reputation.notoriety",
+          "add": 1
+        }
+      ],
+      "desc": "O Elfo Poser é um personagem humano que quer ser um elfo. Ele se associa com elfos o máximo possível, fala como elfos e altera sua aparência para parecer um elfo. Personagens com esta qualidade podem passar por cirurgia cosmética para ter orelhas e olhos élficos e podem se passar por elfos com sucesso e evitar os modificadores Sociais negativos associados ao fato de não ser elfo. Elfos de verdade consideram Elfos Poser uma vergonha, muitos humanos pensam neles como vendidos e outros metatipos geralmente consideram os posers patéticos. Se um elfo descobrir o segredo do personagem, provavelmente ele o tratará com desprezo e hostilidade (veja a Tabela de Modificadores Sociais, p. 140). Um elfo poser exposto também pode enfrentar um estigma de humanos preconceituosos como um “traidor da raça”. Apenas personagens humanos podem assumir a qualidade Elfo Poser. Essa qualidade aumenta a Notoriedade em 1 (p. 368).",
+      "page": 80
+    },
+    {
+      "id": "distinctive-style",
+      "name": "Estilo Distinto",
+      "kind": "negative",
+      "karma": 5,
+      "desc": "Uma personagem com a qualidade Estilo Distinto tem pelo menos um aspecto da sua aparência, maneirismo ou personalidade que a torna memorável de forma inconveniente. Escolhas para Estilo Distinto incluem, entre outros: tatuagens que não podem ser escondidas facilmente, um sotaque ou forma de falar incomum, escolhas de roupas bizarras, cicatrizes, símbolos de gangues ou pessoais, ampliações personalizadas e berrantes e modificações não meta-humanas, como uma cauda. Perceba que o que é distinto em uma cultura ou local pode não ser em outra. O Estilo Distinto que o jogador escolhe torna sua personagem fácil de ser lembrada. Qualquer um que tente identificar, rastrear ou localizar fisicamente esta personagem (ou obter informações através da coleta de dados) recebe +2 de modificador na pilha de dados nos testes relevantes. Se um PdM fizer um Teste de Memória (p. 152) para determinar o quanto se lembra da personagem, reduza o Limiar de Dificuldade em 1, até um mínimo de 1. Esta qualidade é de natureza física e não se aplica a buscas astrais. Esta qualidade só pode ser escolhida uma vez. Esta qualidade é incompatível com Cara Genérica.",
+      "page": 80
+    },
+    {
+      "id": "astral-beacon",
+      "name": "Farol Astral",
+      "kind": "negative",
+      "karma": 10,
+      "desc": "A assinatura astral de um personagem com Farol Astral parece, bem, um farol: altamente visível no plano astral. A assinatura também dura o dobro de tempo do que duraria sem a qualidade Farol Astral. Outros que tentem senti-la recebem -1 no limiar do seu teste de Sentido Astral para obter informações sobre ela. Apenas personagens com nível de Magia podem ter esta qualidade.",
+      "page": 80
+    },
+    {
+      "id": "gremlins",
+      "name": "Gremlins",
+      "kind": "negative",
+      "karma": {
+        "perLevel": 4
+      },
+      "levels": {
+        "max": 4
+      },
+      "modifiers": [
+        {
+          "target": "reputation.notoriety",
+          "add": 1
+        }
+      ],
+      "desc": "Personagens com a qualidade Gremlins não se dão bem com tecnologia. Dispositivos falham inexplicavelmente, software travam inesperadamente, veículos recusam a dar partida, componentes ficam excepcionalmente frágeis ao toque e conexões sem fio sofrem problemas e interferências estranhas sempre que ele está envolvido. Para cada nível (máximo de 4), reduza o número de 1s jogados para obter uma falha (p. 45) em 1 sempre que a personagem estiver tentando usar um dispositivo moderadamente sofisticado. Por exemplo, uma personagem com uma pilha de dados 8 e Gremlins nível 2 (8 de Carma) ativaria uma falha se três ou mais 1s resultassem do teste (em vez dos 5 normais). O mestre também pode exigir que o personagem faça um teste para a operação de algo que normalmente teria sucesso automático para ver se uma falha ocorre. Ao descrever os efeitos de uma falha causada por Gremlins, o mestre deve brincar com a noção de um defeito mecânico ou eletrônico particularmente estranho. Alguns exemplos de falhas induzidas por Gremlins incluem: um pente caindo de uma pistola ao tentar um tiro crítico, um teclado queimando inexplicavelmente ao inserir um código para desarmar um sistema de alarme ou a interface de com-link convertendo para Sperethiel no meio da sentença ao tentar acessar um nodo restrito. Perceba que Gremlins é uma qualidade Negativa: seus efeitos atrapalham o personagem (e provavelmente divertem os outros). A personagem não pode usar sua qualidade Gremlins para causar dano aos equipamentos de alta tecnologia de um oponente ao simplesmente tocá-los. Qualquer coisa que a personagem tente sabotar usando apenas os Gremlins funcionará perfeitamente. (Obviamente, ele pode tentar formas normais de sabotagem, mas os Gremlins atrapalharão seus esforços.) Este efeito é aplicado apenas a equipamentos externos e não afeta cibernéticos, biônicos ou outros implantes. Essa qualidade aumenta a Notoriedade em 1 (p. 368).",
+      "page": 80
+    },
+    {
+      "id": "incompetent",
+      "name": "Incompetente",
+      "kind": "negative",
+      "karma": 5,
+      "modifiers": [
+        {
+          "target": "reputation.notoriety",
+          "add": 1
+        }
+      ],
+      "desc": "Um personagem Incompetente tem uma falta total de conhecimento ou habilidade com um grupo de perícias Ativas específico, ou pior: talvez ele tenha um conhecimento vago das perícias contidas no grupo, mas não tem a coordenação nem a compreensão para chegar perto de executá-las adequadamente. Não importa quanto esforço coloque nessa área, ele simplesmente não consegue entendê-la. Seria preciso um milagre para ele, de alguma forma, passar do nível “fraco” nessas perícias. Incompetente não pode ser aplicado a perícias de Conhecimento ou Idioma. O personagem Incompetente é tratado como tendo o nível de perícia “alheio” para todas as perícias no grupo (veja Tabela de Nível de Perícia, p. 131). Em alguns casos, pode ser necessário um Teste de Sucesso até mesmo para tarefas que são naturais para a maioria das pessoas. Personagens não podem possuir o grupo de perícias para o qual tenham a qualidade Incompetente. Se um equipamento conceder um bônus ou precisar do uso de uma perícia específica na qual o personagem seja Incompetente, ele não recebe os benefícios do equipamento. Os mestres estão livres para rejeitar escolhas que se revelem irrelevantes ou exploradoras no jogo, como Incompetente: Ar Livre em uma campanha totalmente baseada em uma arcologia. (Isso deve ser óbvio, mas por via das dúvidas: Personagens nunca podem escolher Incompetente para um grupo de perícias que sejam fisicamente incapazes de usar. Um não mago não pode pegar Incompetente em Feitiçaria, Convocação ou Encantação, um não tecnomante não pode ser Incompetente em uma perícia que precise de Ressonância, e assim por diante.) Incompetente só pode ser comprado uma vez. Essa qualidade aumenta a Notoriedade em 1 (p. 368).",
+      "page": 81
+    },
+    {
+      "id": "uneducated",
+      "name": "Inculto",
+      "kind": "negative",
+      "karma": 8,
+      "modifiers": [
+        {
+          "target": "reputation.notoriety",
+          "add": 1
+        }
+      ],
+      "desc": "Um personagem Inculto não é debilitado mentalmente: ele apenas nunca teve a oportunidade de aprender. Seja por ele e sua família estarem isolados em muquifos, serem desSINados ou desprivilegiados de outra forma, ele não teve acesso ao sistema de educação. Ele só tem um conhecimento rudimentar da leitura, escrita e aritmética. Personagens com a qualidade Inculto são considerados “alheios” em perícias Técnicas, de Conhecimento Acadêmico e Profissional que não possuam (veja Níveis de Perícias, p. 129) e não podem fazer testes-padrão para essas perícias. O mestre também pode exigir que o personagem faça Testes de Sucesso para tarefas comuns que o morador típico dos cortiços faz corriqueiramente. Além disso, o custo de Carma para aprender novas perícias, grupos de perícias ou especializações (ou melhorar as existentes nessas categorias) é o dobro do nível normal (incluindo na criação do personagem) e é possível que o personagem nunca aprenda alguns grupos de perícia que pertençam a essas categorias. Essa qualidade aumenta a Notoriedade em 1 (p. 368).",
+      "page": 81
+    },
+    {
+      "id": "insomnia",
+      "name": "Insônia",
+      "kind": "negative",
+      "karma": {
+        "options": [
+          {
+            "id": "mild",
+            "name": "Leve",
+            "karma": 10
+          },
+          {
+            "id": "severe",
+            "name": "Grave",
+            "karma": 15
+          }
+        ]
+      },
+      "desc": "Uma personagem com a qualidade Insônia tem problemas para dormir e raramente se sente descansada. Geralmente, é apenas um incômodo. Contudo, para incursores, isso pode ser um problema sério, quando dependem da capacidade de descansar a cada oportunidade para ficarem atentos. A Insônia pode aumentar a quantidade de tempo que a personagem leva para recuperar do dano de Atordoamento. No nível de 10 Carma, antes da personagem lançar seu Corpo + Vontade para recuperar o dano de Atordoamento, o personagem faz um Teste de Intuição + Vontade (4). Se a personagem tiver sucesso no teste, ela não é impedida pela Insônia e se recupera normalmente do dano de Atordoamento. Ela também recupera 1 ponto de Trunfo após 8 horas de sono tranquilo. Se a personagem fracassar, dobre quantidade de tempo que levaria para se recuperar do dano de Atordoamento. Então, em vez de curar um número de caixas de dano de Atordoamento em uma hora, agora leva duas horas por teste. Se a personagem for afetada pela Insônia, ela não renova o seu Trunfo e não pode renová-lo nas próximas 24 horas. No nível de 15 Carma, o fracasso no Teste de Vontade + Intuição (4) significa que todos os esforços para recuperar do dano de Atordoamento através de descanso são negados pelo mesmo período e a personagem deve tentar de novo depois. Nenhum dano de Atordoamento é recuperado pela tentativa devido à insônia que a personagem sofre e ela deve esperar 24 horas antes do seu Trunfo renovar.",
+      "page": 81
+    },
+    {
+      "id": "bad-rep",
+      "name": "Má Reputação",
+      "kind": "negative",
+      "karma": 7,
+      "modifiers": [
+        {
+          "target": "reputation.notoriety",
+          "add": 3
+        }
+      ],
+      "desc": "Um personagem com a qualidade Má Reputação tem uma mancha escura e duradoura em sua reputação. Talvez seja um ex-tira da Cavaleiro Errante conhecido por ter sido especialmente brutal ao lidar com incursores das sombras. Ou dizem nas ruas que, uma vez, ele matou um membro da sua própria equipe de incursores. Se ele for Desperto e vier de uma região poluída, pode ser geralmente aceito que ele é um xamã tóxico. O fato dele ser realmente culpado ou não de alguma transgressão é irrelevante. O que as pessoas acreditam que ele fez maculou permanentemente a forma com que eles o veem e lidam com ele. Independentemente do motivo, o personagem começa o jogo com 3 pontos de Notoriedade (p. 368) que só podem ser removidos ou reduzidos ao confrontar e resolver a fonte da má reputação. Só então a qualidade Má Reputação pode ser recomprada com Carma.",
+      "page": 82
+    },
+    {
+      "id": "unsteady-hands",
+      "name": "Mãos Instáveis",
+      "kind": "negative",
+      "karma": 7,
+      "desc": "Uma personagem com Mãos Instáveis tem tremores leves que afetam a destreza e a sutileza em suas mãos. A personagem sofre –2 de modificador na pilha de dados em todos os testes baseados em Agilidade quando os sintomas se manifestarem. A condição pode ser fisiológica (um distúrbio genético ou nervos danificados não tratados, por exemplo), causada por um trauma psicológico ou até mesmo um sintoma da idade. Algumas ampliações ou remédios podem mascarar esses sintomas em circunstâncias normais. Sob situações mais estressantes durante uma incursão, existe uma chance da condição Mãos Instáveis reaparecer. A personagem faz um Teste de Agilidade + Corpo (4) após um encontro estressante (combate, por exemplo). Um teste bem-sucedido significa que a personagem não sofre os sintomas desta condição (desta vez). Um fracasso faz as dificuldades relacionadas com as mãos instáveis reaparecerem e elas continuam com a personagem pelo resto da incursão.",
+      "page": 82
+    },
+    {
+      "id": "ork-poser",
+      "name": "Ork Poser",
+      "kind": "negative",
+      "karma": 6,
+      "modifiers": [
+        {
+          "target": "reputation.notoriety",
+          "add": 1
+        }
+      ],
+      "desc": "Influenciado pelo Rock Goblin ou pelas tendências orxploitation supervalorizadas, um Ork Poser é um elfo ou humano que altera sua aparência para parecer um ork. Várias biomodificações cosméticas (implantes de presas, esteroides, alterações de laringe etc.) permitem que ele se passe por um ork. Ork Posers são um constrangimento para muitos orks, mas alguns toleram, e até apreciam, o elogio por trás do esforço. Isso significa que um ork que descubra o segredo do personagem pode ficar muito hostil em relação a ele ou estar disposto a deixar o personagem entrar para a “família”, desde que ele passe no ritual de trote adequado para provar sua “orkidão”. Um poser ork exposto também pode enfrentar o estigma de outros humanos ou elfos como “traidores da raça” se tais humanos/elfos tiverem preconceito contra orks. Apenas humanos e elfos podem assumir a qualidade Ork Poser. Essa qualidade aumenta a Notoriedade em 1 (p. 368).",
+      "page": 82
+    },
+    {
+      "id": "combat-paralysis",
+      "name": "Paralisia de Combate",
+      "kind": "negative",
+      "karma": 12,
+      "modifiers": [
+        {
+          "target": "reputation.notoriety",
+          "add": 1
+        }
+      ],
+      "desc": "Uma personagem com Paralisia de Combate congela no combate; isso inclui combate astral e cibercombate. No primeiro Teste de Iniciativa da personagem, ele divide o seu Valor de Iniciativa naquela rodada pela metade (arredondado para cima). Nos Turnos de Combate subsequentes, a personagem pode lançar sua Iniciativa normal. Paralisia de Combate também dá à personagem –3 de modificador na pilha de dados nos Testes de Surpresa. Se a personagem precisar fazer um Teste de Compostura enquanto estiver sob disparos ou em uma situação similar de combate, o mestre aplica +1 de modificador no limiar. Essa qualidade aumenta a Notoriedade em 1 (p. 368).",
+      "page": 82
+    },
+    {
+      "id": "loss-of-confidence",
+      "name": "Perda de Confiança",
+      "kind": "negative",
+      "karma": 10,
+      "desc": "A qualidade Perda de Confiança significa que algo fez o personagem perder a confiança em si mesmo e em suas habilidades. Embora seja um tecnauta habilidoso, ele falhou ao hackear na central da Stuffer Stack ou, apesar da sua alta Agilidade, ele teve uma falha em um Teste fácil de Escalada e caiu em uma lixeira. Independentemente do motivo, agora ele duvida de si e das suas habilidades. Nos testes que envolvem a perícia afetada, o personagem sofre –2 de modificador na pilha de dados. Se o personagem tiver uma especialização na perícia, ele não poderá usar tal especialização enquanto sofrer da perda de confiança. A perícia escolhida para ter uma Perda de Confiança deve ser uma que o personagem se orgulhe e tenha investido na sua progressão. Apenas perícias com nível 4 ou mais podem sofrer da qualidade Perda de Confiança. Trunfo não pode ser usado em testes envolvendo esta perícia quando o personagem estiver sofrendo de Perda de Confiança.",
+      "page": 82
+    },
+    {
+      "id": "prejudiced",
+      "name": "Preconceituoso",
+      "kind": "negative",
+      "karma": {
+        "sum": [
+          {
+            "id": "prevalence",
+            "name": "Predominância do grupo alvo",
+            "options": [
+              {
+                "id": "specific",
+                "name": "Grupo alvo específico",
+                "karma": 3,
+                "desc": "ex.: os Despertos, tecnomantes, metamorfos, magos aspectados"
+              },
+              {
+                "id": "common",
+                "name": "Grupo alvo comum",
+                "karma": 5,
+                "desc": "ex.: humanos, meta-humanos"
+              }
+            ]
+          },
+          {
+            "id": "degree",
+            "name": "Grau",
+            "options": [
+              {
+                "id": "biased",
+                "name": "Inclinado",
+                "karma": 0,
+                "desc": "ex.: inimigo de metas no armário"
+              },
+              {
+                "id": "outspoken",
+                "name": "Aberto",
+                "karma": 2,
+                "desc": "ex.: membro típico do Humanis"
+              },
+              {
+                "id": "radical",
+                "name": "Radical",
+                "karma": 5,
+                "desc": "ex.: supremacia racial"
+              }
+            ]
+          }
+        ]
+      },
+      "desc": "Com esta qualidade, o personagem é Preconceituoso contra membros de um grupo específico de pessoas: meta-humanos, Despertos, criaturas sapientes não meta-humanas ou algum outro grupo. O personagem não é simplesmente intolerante, ele é franco sobre suas crenças e pode trabalhar ativamente contra o alvo do seu preconceito. Dependendo do grau de preconceito, esta qualidade pode causar problemas para o personagem ao expressar suas opiniões ou quando for forçado a confrontar os alvos do seu preconceito. O bônus de Carma fornecido por esta qualidade varia, dependendo do quanto o grupo odiado é comum, com que frequência o personagem encontrará membros do grupo e o grau no qual o personagem é abertamente contra eles. Consulte a Tabela de Preconceituoso para determinar o valor do Carma da qualidade baseado na predominância do grupo odiado e o nível do preconceito. Ao lidar com o alvo do seu preconceito, o personagem recebe –2 de modificador na pilha de dados por nível de gravidade da qualidade Preconceituoso para todos os Testes Sociais. Se as negociações forem parte do encontro, o alvo recebe +2 de modificador por nível da qualidade Preconceituoso. Assim, se um personagem que seja radical em opiniões preconceituosas contra os Despertos tenta negociar com o alvo do seu preconceito, ele recebe –6 no seu Teste de Negociação, enquanto o alvo recebe +6 de modificador na pilha de dados.",
+      "page": 82
+    },
+    {
+      "id": "uncouth",
+      "name": "Rude",
+      "kind": "negative",
+      "karma": 14,
+      "modifiers": [
+        {
+          "target": "reputation.notoriety",
+          "add": 1
+        }
+      ],
+      "desc": "O personagem com a qualidade Rude tem dificuldade em interagir com os outros. Ele age impulsivamente, exagera em qualquer provocação percebida e costuma fazer o que aparece na cabeça sem considerar as consequências (ou seja, mostra o dedo para o Sr. Johnson, chama um troll bêbado de “Trog” ou responde a uma provocação casual de um incursor rival com um soco na cara). Todos os Testes Sociais feitos pelo personagem para resistir a agir de forma imprópria ou impulsiva recebem –2 de modificador na pilha de dados. Além disso, o custo para aprender ou melhorar Perícias Sociais é dobrado para personagens Rudes (incluindo na criação do personagem) e eles nunca podem aprender grupos de perícias Sociais. Personagens Rudes são tratados como “alheios” em perícias Sociais que não tiverem Nível 1 ou mais (veja Níveis de Perícias, p. 129). O mestre pode exigir que o personagem faça Testes de Sucesso para situações sociais que não representam dificuldade para personagens normais. Essa qualidade aumenta a Notoriedade em 1 (p. 368).",
+      "page": 83
+    },
+    {
+      "id": "spirit-bane",
+      "name": "Ruína Espiritual",
+      "kind": "negative",
+      "karma": 7,
+      "modifiers": [
+        {
+          "target": "reputation.notoriety",
+          "add": 1
+        }
+      ],
+      "desc": "Uma personagem com Ruína Espiritual realmente incomoda um tipo específico de espírito (p. 303). Seja pela personagem ter uma reputação por ferir este tipo de espírito ou algo em sua aura que os enfureça, os espíritos do tipo afetado por Ruína Espiritual provavelmente perturbarão a personagem quando ela está em sua presença e poderão relutar em obedecer ou executar favores para a personagem ou seus amigos. Se os espíritos deste tipo receberem uma ordem para atacar um grupo que inclua a personagem, tais espíritos a escolherão e tentarão destruí-la primeiro. Os espíritos afetados sempre usarão força letal contra personagens com a qualidade Ruína Espiritual. Se a personagem com Ruína Espiritual tentar invocar ou vincular este espírito, ela sofre –2 de modificador na pilha de dados para a tentativa. Se a invocadora tentar banir um espírito deste tipo, o espírito recebe +2 de modificador na pilha de dados para resistir a essa tentativa. Observadores e servos não contam para Ruína Espiritual, pois são construídos e não são invocados como espíritos normais. Esta qualidade só pode ser escolhida por usuários de magia. Usuários de magia podem possuir esta qualidade para um tipo de espírito que não seja parte da sua tradição mágica. Essa qualidade aumenta a Notoriedade em 1 (p. 368).",
+      "page": 83
+    },
+    {
+      "id": "sinner",
+      "name": "Sinado (Camada)",
+      "kind": "negative",
+      "karma": {
+        "options": [
+          {
+            "id": "national",
+            "name": "SIN Nacional",
+            "karma": 5
+          },
+          {
+            "id": "criminal",
+            "name": "SIN Criminoso",
+            "karma": 10,
+            "modifiers": [
+              {
+                "target": "reputation.notoriety",
+                "add": 1
+              }
+            ]
+          },
+          {
+            "id": "corporate-limited",
+            "name": "SIN Corporativo Limitado",
+            "karma": 15
+          },
+          {
+            "id": "corporate-born",
+            "name": "Nato Corporativo",
+            "karma": 25
+          }
+        ]
+      },
+      "desc": "Existem quatro tipos de SINs que entram na qualidade SINado (Camada): SIN Nacional, SIN Criminoso (seja Corporativo ou Nacional), SIN Corporativo Limitado ou Nato Corporativo. Indivíduos com SINs são obrigados por lei a sempre transmitirem seus SINs. Um SIN legal é necessário para todas as compras legais. Isso as transforma em coisas muito úteis, então os desSINados geralmente se viram usando SINs falsos (p. 363) para poderem participar da sociedade. SIN NACIONAL No nível de 5 Carma, a personagem tem o que é chamado de SIN Nacional. Os pais do personagem eram cidadãos legais de uma nação (como os EUCA ou ECA) e ela tem sido uma cidadã dessa nação desde o nascimento. Ela tem direito de votar, é qualificado para ter passaportes emitidos em sua nação, se alistar no exército nacional ou trabalhar no governo nacional. Um SIN Nacional é necessário para qualquer autorização de segurança nacional ou para qualquer tipo de carreira militar nacional. Uma personagem com um SIN Nacional paga quinze por cento da sua receita bruta em impostos. Ela também não está conectada de forma alguma às megacorporações. A principal desvantagem de ter um SIN Nacional é que a personagem está no sistema. A nação de origem possui os dados biométricos da personagem (DNA, digitais, leituras de retina) arquivados e tais dados são compartilhados com agências da lei através do Registro Global de SIN. Isso facilita muito rastrear uma personagem caso um trabalho dê errado. Além disso, as nações normalmente vendem as informações pessoais ligadas ao SIN da personagem para as corporações. Quem tem um SIN legal recebe quase três vezes mais spam do que aqueles que não tem um SIN ou usam SINs falsos, e as mensagens de spam que recebem são perturbadoramente adaptadas para as suas preferências (com base nos seus hábitos de compra e navegação). SIN CRIMINOSO No nível de 10 Carma, a personagem tem um SIN Criminoso (seja Corporativo ou Nacional). Seu SIN Criminoso substitui seus SINs anteriores. Em algum momento da sua vida, a personagem foi presa e passou um tempo na cadeia por um crime e foi marcada como uma criminosa pelo resto da sua vida. Ela é legalmente obrigada a sempre transmitir seu SIN Criminoso. Não fazê-lo é um crime que pode levá-la de volta à prisão. Ela é evitada pela sociedade que segue a lei. Se for obrigatório, os cidadãos que seguem a lei lidarão com uma personagem desSINada antes de precisarem interagir com uma criminosa conhecida. Com seu SIN Criminoso, a personagem sofrerá com olhares preconceituosos, suspeita e/ou hostilidade aberta da maioria de pessoas com SINs. Geralmente ela será proibida de entrar em alguns lugares (lojas de ponta, revendas de carros, museus, galerias etc.) e terá dificuldade em encontrar empregos legais. Ela pode esperar ser detida por até 48 horas para averiguação sempre que um crime for cometido na sua área. O sistema judicial em 2075 é mais uma linha de montagem do que uma instituição de justiça. Os suspeitos são tratados como culpados até que se prove o contrário, uma prova circunstancial plausível é geralmente suficiente para a condenação e a sentença está mais relacionada ao humor do juiz do que ao crime. Neste ambiente, é provável que os tiras estejam mais interessados em encerrar o caso do que em resolver um crime. Eles tentarão colocar os crimes na personagem com o SIN Criminoso, esteja ela envolvida com isso ou não. É comum um nível de “ajuste” dos fatos e de “interpretação” dos relatos das testemunhas para dar suporte às alegações. Fabricar prova, mesmo só para atingir as metas de produtividade de condenações, não é raro. Usuários de magia costumam receber um tratamento mais hostil do sistema judicial do que criminosos comuns. Se a personagem for uma usuária de magia com um SIN Criminoso, ela está registrada na agência da lei local. Ela pode esperar verificações regulares (mas geralmente não agendadas) para confirmar onde ela mora e garantir que ela não está usando fórmulas mágicas, focos ou outros equipamentos mágicos proibidos. A nação ou corporação que emitiu o SIN Criminoso vigiará a personagem de perto. Se ela não atualizar as informações residenciais ou parecer que esteja tentando fugir da sua vigilância, ela estará sujeita à prisão. Ela também deve pagar quinze por cento de imposto sobre sua receita bruta para a entidade que emitiu o SIN Criminoso Essa qualidade aumenta a Notoriedade em 1 (p. 368). SIN CORPORATIVO LIMITADO No nível de 15 Carma, a personagem tem um SIN Corporativo Limitado. Ela de alguma forma tem uma posição de fora em uma megacorporação. Ela pode ter sido contratada como escrava de aluguel (ou ser a filha menor de idade de uma pessoa contratada como um escravo de aluguel) ou talvez levada por alguém na megacorporação que viu uma vantagem em sua perícia, talento, área de especialização ou outro atributo. Na maioria das circunstâncias, o SIN Corporativo Limitado substitui o SIN Nacional. Seu SIN Corporativo Limitado se torna parte do Registro Global de SIN, que as agências policiais e corporações de segurança têm acesso. Muitos desses SINs Corporativos Limitados registram se a personagem é Desperta ou não. O SIN Corporativo Limitado permite que a personagem seja empregada de uma megacorporação na maioria dos casos e substitui qualquer SIN Nacional que a personagem possa ter tido anteriormente. Com um SIN Corporativo, a personagem pode ser empregada de forma lucrativa pela megacorporação emitente como uma escrava de aluguel, membro de baixo escalão dos serviços de segurança de uma corporação ou alistada em um exército corporativo. Embora ela possa ter uma autorização de segurança secreta para executar seus deveres, ela não pode chegar a uma posição de liderança, tornar-se uma funcionária ou ser parte das Forças Especiais da megacorporação (como os Samurai Vermelhos). Como um grupo, acredita-se que personagens que tenham SINs Corporativos Limitados sabem algo valioso sobre o funcionamento interno da megacorporação ou possuem um conjunto de perícias que as megacorporações rivais gostariam de ter. Dessa forma, eles são considerados alvos válidos para extração, mesmo se não estiverem mais ativos na corporação. Personagens com SIN Corporativo Limitado sofrem preconceito e hostilidade daqueles nas sombras que são desSINados. Os desSINados acreditam que as corporações deliberadamente os deixam pobres e sem poder para que possam ser explorados. A personagem com a SIN Corporativa Limitada pode ser pessoalmente culpada pelas ações da sua corporação: protestar que ela não tem autoridade real e nenhuma conexão com as ações em questão geralmente não ajuda em nada. Para os desSINados e neoanarquistas, a personagem com um SIN Corporativo Limitado é uma vendida e escolheu um sistema corrupto e opressivo em vez do seu próprio povo. A personagem paga vinte por cento da sua receita bruta em impostos para a sua megacorporação. SIN CORPORATIVO No nível de 25 Carma está o SIN Corporativo Nato. A personagem com este ID provavelmente nasceu em uma megacorporação ou pertencia à uma quando ela atingiu a extraterritorialidade. Pelo menos um dos seus pais também tinha o SIN Corporativo Nato. Ela cresceu na corporação, seu envolvimento social, educação e quase todos os aspectos da sua vida foram gerenciados pela corporação. Suas perícias e aptidões foram avaliadas constantemente e ela foi preparada para a carreira mais adequada. Seu mundo inteiro era a corporação. Personagens com o SIN Corporativo Nato tinham o potencial e a oportunidade para progredir na hierarquia da corporação. Ela poderia ter sido uma administradora de departamento, uma estrategista financeira, uma agente da inteligência corporativa, uma oficial no exército da megacorp ou até mesmo membro das Forças Especiais Corporativas (Samurai Vermelhos da Renraku ou a Brigada de Fogo da Ares). Com um SIN Corporativo Nato, ela poderia ter tido autorização super secreta dentro da corporação e acesso a recursos quase ilimitados. Então, algo aconteceu. Um erro imperdoável, as maquinações de um rival, um supervisor que precisa de um bode expiatório, algo jogou a personagem da corporação nas sombras frias e inclementes. Nas sombras, um SIN que teve a chave para a oportunidade agora é um risco mortal. Muitos nas sombras veem a Corporativa Nata como os raros privilegiados, os aristocratas nas limusines blindadas que os desprezam, oprimem, exploram e negam seus direitos básicos. Se os desSINados descobrirem o SIN Corporativo Nato de uma personagem, as reações podem variar da suspeita profunda até a hostilidade violenta. Lesões graves e a morte são possibilidades reais. A lealdade da personagem para sua corporação nunca é questionada, o que pode ser um risco insuperável em uma cultura que trabalha contra as megacorps. Aspirantes a incursores foram mortos por ter SINs Corporativos Natos. Felizmente, os registros Corporativos Natos são limitados da megacorporação que os criaram. Os arquivos no Registro Global de SIN podem confirmar que ela tem um SIN válido, mas não contêm informações adicionais. Aqueles com SINs Corporativos Natos pagam dez por cento da sua receita bruta como imposto para a sua corporação.",
+      "page": 83
+    },
+    {
+      "id": "weak-immune-system",
+      "name": "Sistema Imunológico Fraco",
+      "kind": "negative",
+      "karma": 10,
+      "modifiers": [
+        {
+          "target": "reputation.notoriety",
+          "add": 1
+        }
+      ],
+      "desc": "Uma personagem com um Sistema Imunológico Fraco tem uma resistência reduzida a infecções e doenças. Aumente a Toxicidadede qualquer doença em +2 para cada Teste de Resistência. A personagem com Sistema Imunológico Fraco não pode pegar as qualidades Imunidade Natural ou Resistência a Patogênicos/Toxinas. Um Sistema Imunológico Fraco costuma resultar de tratamentos de imunossupressão usados em procedimentos de cibercirurgia e biogenética, então é razoável acreditar que personagens que passaram por amplas modificações corporais provavelmente tenham esta qualidade. Essa qualidade aumenta a Notoriedade em 1 (p. 368).",
+      "page": 85
+    },
+    {
+      "id": "sensitive-system",
+      "name": "Sistema Sensível",
+      "kind": "negative",
+      "karma": 12,
+      "modifiers": [
+        {
+          "target": "essence.cyberwareLoss",
+          "mul": 2
+        }
+      ],
+      "desc": "Uma personagem com a qualidade Sistema Sensível tem problemas imunossupressores com implantes cibernéticos. Duplique todas as perdas de Essência causadas por cibernéticos. Implantes biônicos, independente da forma que foram cultivados, são rejeitados pelo corpo da personagem. Esta qualidade funciona diferente para personagens que sejam tecnomantes ou Despertos e, portanto, nunca planejam colocar implantes. Para personagens Emergidos ou Despertos, essa qualidade possui uma desvantagem adicional. Uma usuária de magia ou tecnomante com Sistema Sensível deve fazer um Teste de Vontade (2) antes dos Testes de Dreno ou Enfraquecimento. Uma usuária de magia ou tecnomante com Sistema Sensível deve fazer um Teste de Corpo + Vontade (4) antes dos Testes de Dreno ou Enfraquecimento.",
+      "page": 85
+    },
+    {
+      "id": "social-stress",
+      "name": "Tensão Social",
+      "kind": "negative",
+      "karma": 8,
+      "desc": "Como resultado de uma perda ou trauma ou devido a uma composição psicológica inata, a qualidade Tensão Social sobrecarrega a personagem com emoções que interferem com sua habilidade de interagir com os outros. Deve ser estabelecida uma causa específica e um gatilho para a Tensão Social. Por exemplo, se sua Tensão Social é causada pela culpa de sobrevivente após a perda de um amigo próximo, encontrar inesperadamente alguém que se pareça com o amigo perdido aumentará a tensão. Quando uma personagem estiver usando a perícias Liderança ou Etiqueta, reduza o número de 1s necessários para o teste ser uma falha em 1. Os Mestres devem pedir mais Testes Sociais para personagens com Tensão Social para determinar como uma personagem reage aos outros, especialmente se surgir a situação relacionada à causa da sua tensão.",
+      "page": 85
+    },
+    {
+      "id": "simsense-vertigo",
+      "name": "Vertigem de Sensorama",
+      "kind": "negative",
+      "karma": 5,
+      "desc": "Personagens que sofrem de Vertigem de Sensorama experimentam sensações de desorientação sempre que trabalham com realidade aumentada, realidade virtual ou sensorama (incluindo neuroconexões, fuso-simuladores e conexões de imagem). Tais personagens recebem –2 no modificador na pilha de dados para todos os testes ao interagir com RA, RV ou sensoramas.",
+      "page": 85
+    },
+    {
+      "id": "addiction",
+      "name": "Vício",
+      "kind": "negative",
+      "karma": {
+        "options": [
+          {
+            "id": "mild",
+            "name": "Leve",
+            "karma": 4
+          },
+          {
+            "id": "moderate",
+            "name": "Moderado",
+            "karma": 9
+          },
+          {
+            "id": "severe",
+            "name": "Severo",
+            "karma": 20
+          },
+          {
+            "id": "burnout",
+            "name": "Esgotamento",
+            "karma": 25
+          }
+        ]
+      },
+      "modifiers": [
+        {
+          "target": "reputation.notoriety",
+          "add": 1
+        }
+      ],
+      "examples": [
+        "Chips melhor-que-tudo (p. 413)",
+        "Preparações alquímicas (p. 317)",
+        "Álcool",
+        "Drogas de rua",
+        "Focos (veja p. 318)",
+        "Ampliações"
+      ],
+      "desc": "Um personagem com a qualidade Vício é dependente de substâncias químicas, tais como drogas de rua (novacoca, glória, tempo); dispositivos tecnológicos ou mágicos, como chips de melhor-que-tudo (MQT) ou focos, ou atividades potencialmente viciantes, como jogos de azar ou sexo. Vícios Físicos afetam as funções do corpo, causando dor, náusea, tremores e outros efeitos colaterais que podem prejudicar o incursor, principalmente durante a abstinência. Alguns efeitos possíveis dos Vícios psicológicos incluem paranoia, ansiedade, insônia, concentração ruim, distúrbios de humor e depressão. Para regras específicas sobre Testes de Vício, Testes de Abstinência e ficar limpo, veja p. 415. O valor do bônus de Carma depende da gravidade do vício. Os níveis de vício incluem: Leve, Moderado, Severo ou Esgotamento. Os vícios pioram em períodos prolongados sem tratamento. Cada nível de Vício tem um nível de dosagem inicial que diz ao personagem quanto da substância ou atividade eles devem usar para saciar o desejo. Este nível pode ser aumentado se o personagem tiver ampliações. Quando mais severo for o Vício do personagem, mais substância ou tempo devotado à atividade ele precisa para satisfazer à sua necessidade. Na extremidade menor do espectro da qualidade Vício (Leve, Moderado), é mais fácil esconder os efeitos do Vício. Nos níveis mais graves (Severo, Esgotamento), existem sinais físicos e mentais perceptíveis do Vício. Estes sinais têm um impacto negativo nos Testes Sociais, mesmo que ele não esteja sofrendo os efeitos da abstinência. Leve (4 Carma)/1 dose ou 1 hora de atividade de hábito: Desejos leves ocorrem uma vez por mês para o personagem. Se o personagem falhar no seu Teste de Abstinência, ele sofre os sintomas da abstinência e deve ativamente buscar o uso da substância ou a execução da atividade para ter um alívio. Em uma incursão, isso pode significar o atraso nos planos que a equipe de incursores preparou meticulosamente para um trabalho, especialmente se o personagem estiver ocupado jogando com um apostador ou colocando um MQT em vez de estar disponível para a incursão. Enquanto o personagem estiver sofrendo dos sintomas de abstinência, aplique -2 de modificador na pilha de dados para todos os testes baseados em atributos Mentais (se a dependência for psicológica) ou em atributos Físicos (se a dependência for física) do personagem. Se o personagem tiver sucesso em seu Teste de Abstinência, ele não sofre os sintomas de abstinência e não precisa da substância ou da atividade de hábito até fazer o próximo Teste de Abstinência (em um mês). Ele é capaz de ficar limpo naquele mês. Moderado (9 Carma)/1 dose ou 1 hora de atividade de hábito: O desejo de nível Moderado ocorre aproximadamente a cada duas semanas. Enquanto o personagem experimentar os sintomas de abstinência, ele sofre –4 de modificador na pilha de dados para todos os testes baseados em atributos Mentais (se a dependência for psicológica) ou em atributos Físicos (se a dependência for física) até satisfazer seu desejo. Severo (20 Carma)/2 doses ou 2 horas de atividade de hábito: O vício está saindo de controle. O viciado experimenta os desejos uma vez por semana. Se falhar no Teste de Abstinência, ele sofre –4 de modificador na pilha de dados para seus testes baseados em atributos Mentais ou Físicos (conforme a sua dependência) durante a abstinência. Além disso, ele sofre –2 de modificador na pilha de dados em todos os Testes Sociais, esteja ou não em abstinência. É quase impossível para o personagem esconder seu vício agora, mesmo que ele tenha uma dose. Os sintomas físicos e psicológicos do dano causado pelo Vício são aparentes ao observador atento. Esgotamento (25 Carma) 3 doses/3 horas (mínimo) da atividade de hábito: Completo é a progressão final da qualidade Vício. O viciado sente os desejos pela sua droga ou hábito de escolha todos os dias. Até satisfazer sua necessidade com uma dose, o personagem sofre –6 de penalidade em seus testes baseados em atributos Mentais ou Físicos (conforme a sua dependência) durante a abstinência. Uma vez que seu Vício é evidente até mesmo para o observador casual, o personagem sofre –3 de modificador na pilha de dados em todos os Testes Sociais, esteja ou não em abstinência. O mestre decide se deve ou não pedir Testes de Abstinência durante o período de descanso de um personagem Viciado, dependendo do quanto o mestre queira que o vício tenha um impacto no jogo para o personagem. Essa qualidade aumenta a Notoriedade em 1 (p. 368).",
+      "page": 85
+    }
+  ]
+}
