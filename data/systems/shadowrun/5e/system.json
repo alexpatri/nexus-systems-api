@@ -88,6 +88,15 @@
         ]
       }
     },
+    "armor": {
+      "source": "armor.json",
+      "fields": [
+        "name",
+        "rating",
+        "notes"
+      ],
+      "note": "Capacetes e escudos somam ao nível da armadura vestida."
+    },
     "qualities": {
       "source": "qualities.json",
       "fields": [
@@ -233,7 +242,8 @@
           "priorities.json#columns",
           "lifestyles.json",
           "mechanics.json#creation.resources",
-          "weapons.json"
+          "weapons.json",
+          "armor.json"
         ]
       },
       {
@@ -278,6 +288,7 @@
     "adept-powers.json",
     "mentors.json",
     "complex-forms.json",
-    "weapons.json"
+    "weapons.json",
+    "armor.json"
   ]
 }

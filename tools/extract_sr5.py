@@ -704,6 +704,37 @@ WEAPON_SKILLS = {"monofilament-whip": "exotic-melee-weapon", "shock-gloves": "un
 WEAPON_COUNT = 74
 
 
+# (linha da tabela, id, item-pai quando a linha é opcional de outro item, categoria)
+ARMOR_ROWS = [
+    ("(Sintéti)Couro", "synth-leather", "clothing", None),
+    ("Modificação eletrocrômica", "electrochromic-modification", "clothing", None),
+    ("Roupa", "clothing", None, "clothing"),
+    ("Roupa tátil", "feedback-clothing", "clothing", None),
+    ("Armadura corporal completa", "full-body-armor", None, "armor"),
+    ("Adaptação ambiental", "environment-adaptation", "full-body-armor", None),
+    ("Capacete completo", "full-helmet", "full-body-armor", None),
+    ("Vedação química", "chemical-seal", "full-body-armor", None),
+    ("Colete blindado", "armor-vest", None, "armor"),
+    ("Casacão revestido", "lined-coat", None, "armor"),
+    ("Jaqueta blindada", "armor-jacket", None, "armor"),
+    ("Macacão de Explorador Urbano", "urban-explorer-jumpsuit", None, "armor"),
+    ("Capacete", "jumpsuit-helmet", "urban-explorer-jumpsuit", None),
+    ("Roupa blindada", "armor-clothing", None, "armor"),
+    ("Roupas de Executivo Actioneer", "actioneer-business-clothes", None, "armor"),
+    ("Traje camaleão", "chameleon-suit", None, "armor"),
+]
+HELMET_SHIELD_IDS = {"Capacete": ("helmet", "helmet"), "Escudo balístico": ("ballistic-shield", "shield"),
+                     "Escudo de choque": ("shock-shield", "shield")}
+ARMOR_MOD_IDS = {
+    "Abafador Térmico": "thermal-damping", "Isolamento": "insulation", "Não condutividade": "nonconductivity",
+    "Pelagem de Choque": "shock-frills", "Proteção Química": "chemical-protection",
+    "Resistente ao Fogo": "fire-resistance", "Vedação Química": "chemical-seal",
+}
+# Parágrafo de descrição quando o nome difere da linha da tabela.
+ARMOR_DESC = {"synth-leather": "Jaqueta/sobretudo de couro", "electrochromic-modification": "Roupa eletrocrômica",
+              "clothing": "Roupas", "thermal-damping": "Abafamento térmico"}
+
+
 # Qualidades cuja compra exige escolher um item de outro catálogo.
 QUALITY_CHOICES = {"spirit-affinity": "traditions.json#spiritTypes",
                    "mentor-spirit": "mentors.json#mentors"}
@@ -2145,12 +2176,13 @@ def read_table(lines, title, row, used, labels=(), subrow=None):
     subrow é a regex de uma linha que complementa a anterior (variante ou
     acessório embutido), devolvida na lista da linha-mãe.
     """
-    norm = " ".join(title.split())
-    starts = [i for i, (_, t) in enumerate(lines) if " ".join(t.split()) == norm]
+    title = [" ".join(t.split()) for t in ([title] if isinstance(title, str) else title)]
+    norm = [" ".join(t.split()) for _, t in lines]
+    starts = [i for i in range(len(lines)) if norm[i:i + len(title)] == title]
     if len(starts) != 1:
         raise ExtractionError(f"tabela {title!r}: {len(starts)} títulos encontrados")
-    i, rows, group = starts[0] + 1, [], None
-    used.add(starts[0])
+    i, rows, group = starts[0] + len(title), [], None
+    used.update(range(starts[0], i))
     while i < len(lines):
         text = " ".join(lines[i][1].split())
         if text.endswith(" ou") and i + 1 < len(lines):  # linha quebrada: "50 (p) ou / 100 (cinto) …"
@@ -2173,8 +2205,24 @@ def read_table(lines, title, row, used, labels=(), subrow=None):
 
 
 def item_texts(lines, used, names, stops):
-    """{nome: (descrição, sem fio)} a partir dos parágrafos "Nome: …" fora das tabelas."""
-    prose = [t for i, (_, t) in enumerate(lines) if i not in used]
+    """{nome: (descrição, sem fio)} a partir dos parágrafos "Nome: …" fora das tabelas.
+
+    Linhas em caixa alta que antecedem uma tabela, ou que repetem o nome de um
+    item, são legendas de tabela ou de imagem e saem do texto; as demais em
+    caixa alta são títulos de seção.
+    """
+    alnum = lambda s: re.sub(r'[^a-z0-9]', "", fold(s))
+    item_names = {alnum(n) for n in names}
+    captions = set()
+    for i, (_, t) in enumerate(lines):
+        if i in used or not is_heading(t):
+            continue
+        j = i + 1
+        while j < len(lines) and j not in used and is_heading(lines[j][1]):
+            j += 1
+        if (j < len(lines) and j in used) or alnum(t) in item_names:
+            captions.add(i)
+    prose = [t for i, (_, t) in enumerate(lines) if i not in used and i not in captions]
     key = lambda s: fold(s).replace("–", "-")
     starts = {}
     for i, t in enumerate(prose):
@@ -2317,6 +2365,118 @@ def build_weapons(book):
     }
 
 
+ARMOR_ROW = re.compile(r'^(?P<name>.+?) (?P<armor>—|\+?\d+) (?P<avail>—|\+?\d+[RP]?) '
+                       r'(?P<cost>\+?[\d.,]+ ?¥(?:-[\d.]+¥)?)$')
+SHIELD_WEAPON_ROW = re.compile(r'^(?P<name>.+?) (?P<acc>\d+) (?P<reach>—|\d+) (?P<dmg>\S.*?) (?P<ap>—|[–-] ?\d+)$')
+ARMOR_MOD_ROW = re.compile(r'^(?P<name>.+?) (?P<cap>\[Nível\]|\d+) (?P<avail>\d+[RP]?) (?P<cost>(?:Nível x )?[\d.,]+ ?¥)$')
+
+
+def armor_value(text):
+    text = text.strip()
+    if text == "—":
+        return None
+    return {"add": int(text[1:])} if text.startswith("+") else int(text)
+
+
+def armor_cost(text):
+    m = re.fullmatch(r'([\d.]+)¥-([\d.]+)¥', text.replace(" ", ""))
+    return {"min": number(m.group(1)), "max": number(m.group(2))} if m else cost(text)
+
+
+def build_armor(book):
+    lines = gear_lines(book, 436, 438)
+    used = set()
+    rows = read_table(lines, "ROUPA NÍVEL DE ARMADURA DISP CUSTO", ARMOR_ROW, used)
+    rows += read_table(lines, "ARMADURA NÍVEL DE ARMADURA DISP CUSTO", ARMOR_ROW, used)
+    helmets = read_table(lines, ["CAPACETE/ ESCUDO", "NÍVEL DE", "ARMADURA DISP CUSTO"], ARMOR_ROW, used)
+    shields = {m.group("name"): m for _, m, _, _ in
+               read_table(lines, ["ARMA CORPO A", "CORPO EXÓTICA PRECISÃO ALCANCE DANO PA"], SHIELD_WEAPON_ROW, used)}
+    mods = read_table(lines, "MODIFICAÇÃO CAPACIDADE DISP CUSTO", ARMOR_MOD_ROW, used)
+
+    names = [r[0] for r in ARMOR_ROWS] + list(HELMET_SHIELD_IDS) + list(ARMOR_MOD_IDS) + list(ARMOR_DESC.values())
+    names = sorted({fold(n): n for n in names}.values(), key=len, reverse=True)
+    texts = item_texts(lines, used, names, {"ARMADURA", "MODIFICAÇÕES DE ARMADURA", "CAPACETES/ESCUDOS",
+                                            "ELETRÔNICA", "ROUPA E ARMADURA"})
+    by_fold = {fold(k): v for k, v in texts.items()}
+
+    def described(entry, desc_name):
+        found = by_fold.get(fold(desc_name))
+        if not found:
+            raise ExtractionError(f"armadura {entry['name']}: parágrafo de descrição não encontrado")
+        entry["desc"] = book.prose(found[0])
+        if found[1]:
+            entry["wireless"] = book.prose(found[1])
+
+    expected = [r[0] for r in ARMOR_ROWS]
+    if [m.group("name") for _, m, _, _ in rows] != expected:
+        raise ExtractionError(f"armaduras fora da ordem esperada: {[m.group('name') for _, m, _, _ in rows]}")
+    items, by_id, options = [], {}, []
+    for (name, aid, parent, category), (_, m, page, _) in zip(ARMOR_ROWS, rows):
+        entry = {"id": aid, "name": name}
+        if category:
+            entry["category"] = category
+        armor = armor_value(m.group("armor"))
+        if armor is not None:
+            entry["armor"] = armor
+        if category:
+            entry["capacity"] = armor or 0
+        entry["availability"] = availability(m.group("avail"))
+        entry["cost"] = armor_cost(m.group("cost"))
+        if parent:
+            # Opções de outro item: algumas têm parágrafo próprio; as demais
+            # estão descritas no item-pai.
+            if fold(ARMOR_DESC.get(aid, name)) in by_fold:
+                described(entry, ARMOR_DESC.get(aid, name))
+            options.append((parent, entry))
+            continue
+        described(entry, ARMOR_DESC.get(aid, name))
+        entry["page"] = page
+        by_id[aid] = entry
+        items.append(entry)
+    for parent, entry in options:
+        by_id[parent].setdefault("options", []).append(entry)
+
+    require(book.prose(book.page(437)), "A Capacidade de uma armadura é igual ao seu Nível de Armadura", "capacidade")
+    require(book.prose(book.page(437)), "Cada modificação também tem um nível entre 1 e 6, exceto quando descrito",
+            "nível de modificação")
+    p438 = book.prose(book.text(437, 438))
+    require(p438, "Capacetes possuem Capacidade 6", "capacidade de capacete")
+    require(p438, "você sofre –1 de modificador no seu limite Físico", "escudos")
+    for _, m, page, _ in helmets:
+        hid, category = HELMET_SHIELD_IDS[m.group("name")]
+        armor = armor_value(m.group("armor"))
+        entry = {"id": hid, "name": m.group("name"), "category": category, "armor": armor,
+                 "capacity": 6 if category == "helmet" else armor["add"],
+                 "availability": availability(m.group("avail")), "cost": cost(m.group("cost"))}
+        if m.group("name") in shields:
+            w = shields[m.group("name")]
+            entry["weapon"] = {"skill": "exotic-melee-weapon", "accuracy": int(w.group("acc")),
+                               "reach": enhanced(w.group("reach"))[0], "damage": damage(w.group("dmg")),
+                               "ap": armor_penetration(w.group("ap").replace(" ", ""))}
+        described(entry, m.group("name"))
+        entry["page"] = page
+        items.append(entry)
+
+    modifications = []
+    for _, m, page, _ in mods:
+        name = m.group("name")
+        entry = {"id": ARMOR_MOD_IDS[name], "name": name}
+        if m.group("cap") == "[Nível]":
+            entry["rating"] = {"min": 1, "max": 6}
+            entry["capacity"] = {"cost": ref("rating")}
+        else:
+            entry["capacity"] = {"cost": int(m.group("cap"))}
+        entry["availability"] = availability(m.group("avail"))
+        entry["cost"] = cost(m.group("cost"))
+        described(entry, ARMOR_DESC.get(entry["id"], name))
+        entry["page"] = page
+        modifications.append(entry)
+
+    return {"rules": {"capacity": "armor", "modificationRating": {"min": 1, "max": 6}, "helmetCapacity": 6,
+                      "shieldPhysicalLimit": -1, "page": 437},
+            "armor": items, "modifications": modifications}
+
+
 CATALOGS = {
     "attributes.json": build_attributes,
     "metatypes.json": build_metatypes,
@@ -2332,6 +2492,7 @@ CATALOGS = {
     "mentors.json": build_mentors,
     "complex-forms.json": build_complex_forms,
     "weapons.json": build_weapons,
+    "armor.json": build_armor,
 }
 
 EXPECTED_COUNTS = {
@@ -2349,6 +2510,7 @@ EXPECTED_COUNTS = {
     "mentors.json": {"mentors": 16},
     "complex-forms.json": {"complexForms": 14},
     "weapons.json": {"weapons": WEAPON_COUNT, "categories": len(WEAPON_CATEGORIES)},
+    "armor.json": {"armor": 12, "modifications": 7},
 }
 
 

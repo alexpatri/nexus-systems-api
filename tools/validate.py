@@ -606,6 +606,30 @@ def check_shadowrun(d, sysj, E, W):
             sr_check_cost(w['cost'], where, E)
             if not w.get('desc'): E(f"{where}: desc vazia")
 
+    armor = load(d, 'armor.json')
+    if armor:
+        if len({a['id'] for a in armor['armor']}) != len(armor['armor']): E("armor.json: ids duplicados")
+        for a in armor['armor']:
+            where = f"armadura {a['id']}"
+            if a['category'] not in ('clothing', 'armor', 'helmet', 'shield'): E(f"{where}: categoria inválida")
+            if a['category'] in ('helmet', 'shield') and not (isinstance(a.get('armor'), dict) and 'add' in a['armor']):
+                E(f"{where}: capacete e escudo somam ao nível da armadura vestida")
+            if a['category'] in ('clothing', 'armor') and a['capacity'] != a.get('armor', 0):
+                E(f"{where}: capacidade deve ser igual ao nível de armadura")
+            for o in [a] + a.get('options', []):
+                sr_check_availability(o['availability'], where, E, mech['legality'])
+                sr_check_cost(o['cost'], where, E)
+            if 'weapon' in a:
+                if a['weapon']['skill'] not in skill_ids: E(f"{where}: perícia de arma inexistente")
+                sr_check_damage(a['weapon']['damage'], where, E, SR_GEAR_ELEMENTS, SR_GEAR_SPECIALS)
+            if not a.get('desc'): E(f"{where}: desc vazia")
+        for m in armor['modifications']:
+            where = f"modificação de armadura {m['id']}"
+            sr_check_expr(m['capacity']['cost'], where, E)
+            if is_expr(m['capacity']['cost']) != ('rating' in m): E(f"{where}: capacidade por nível exige rating")
+            sr_check_availability(m['availability'], where, E, mech['legality'])
+            sr_check_cost(m['cost'], where, E)
+
     for l in lifestyles['identities']:
         if l['availability']['legality'] not in mech['legality']:
             E(f"identidade {l['id']}: legalidade fora do vocabulário")

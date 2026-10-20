@@ -660,7 +660,7 @@
         "legality": null
       },
       "cost": 300,
-      "desc": "Bestas modernas são equipadas com um disARMAS CORPO A CORPO positivo de recarga automática, então a não ser que esteja usando uma peça de museu, recarregar não exige uma ação de Preparar Arma. Bestas têm armazenamento internos (ai) contendo até 4 virotes. Bestas vêm em tamanhos Leve, Média, e Pesada.",
+      "desc": "Bestas modernas são equipadas com um dispositivo de recarga automática, então a não ser que esteja usando uma peça de museu, recarregar não exige uma ação de Preparar Arma. Bestas têm armazenamento internos (ai) contendo até 4 virotes. Bestas vêm em tamanhos Leve, Média, e Pesada.",
       "page": 424
     },
     {
@@ -678,7 +678,7 @@
         "legality": "R"
       },
       "cost": 500,
-      "desc": "Bestas modernas são equipadas com um disARMAS CORPO A CORPO positivo de recarga automática, então a não ser que esteja usando uma peça de museu, recarregar não exige uma ação de Preparar Arma. Bestas têm armazenamento internos (ai) contendo até 4 virotes. Bestas vêm em tamanhos Leve, Média, e Pesada.",
+      "desc": "Bestas modernas são equipadas com um dispositivo de recarga automática, então a não ser que esteja usando uma peça de museu, recarregar não exige uma ação de Preparar Arma. Bestas têm armazenamento internos (ai) contendo até 4 virotes. Bestas vêm em tamanhos Leve, Média, e Pesada.",
       "page": 424
     },
     {
@@ -696,7 +696,7 @@
         "legality": "R"
       },
       "cost": 1000,
-      "desc": "Bestas modernas são equipadas com um disARMAS CORPO A CORPO positivo de recarga automática, então a não ser que esteja usando uma peça de museu, recarregar não exige uma ação de Preparar Arma. Bestas têm armazenamento internos (ai) contendo até 4 virotes. Bestas vêm em tamanhos Leve, Média, e Pesada.",
+      "desc": "Bestas modernas são equipadas com um dispositivo de recarga automática, então a não ser que esteja usando uma peça de museu, recarregar não exige uma ação de Preparar Arma. Bestas têm armazenamento internos (ai) contendo até 4 virotes. Bestas vêm em tamanhos Leve, Média, e Pesada.",
       "page": 424
     },
     {
@@ -752,7 +752,7 @@
       "availability": null,
       "cost": 250,
       "desc": "Este taser de serviço pesado dispara até 4 dardos com fios de até 20 metros de comprimento. A conexão com fio com a bateria permite um choque mais poderoso. Muitos tasers modernos usam dardos sem fio, então o Defiance EX-Shocker é uma exceção. Ele também tem contatos que permitem que sejam usadas como uma arma de atordoamento em combate corpo a corpo (Precisão 3, VD 8A(e), Alcance 0).",
-      "wireless": "Um acerto com sucesso informa você o status da saúde básica do alvo (e dos Monito-res de Condição). DEFIANCE EX-SHOCKER",
+      "wireless": "Um acerto com sucesso informa você o status da saúde básica do alvo (e dos Monito-res de Condição).",
       "page": 425
     },
     {
@@ -1011,7 +1011,7 @@
         "legality": "R"
       },
       "cost": 350,
-      "desc": "Uma arma secundária das forças de segurança, o mecanismo de suprimento altamente efiSTREETLINE SPECIAL COLT AMERICA L36",
+      "desc": "Uma arma secundária das forças de segurança, o mecanismo de suprimento altamente eficiente desta arma permite um pente com trinta projéteis. A Fichetti Security 600 vem com uma coronha dobrável e destacável e uma mira laser.",
       "page": 426
     },
     {
@@ -1205,7 +1205,7 @@
         "legality": "R"
       },
       "cost": 250,
-      "desc": "Essa é mais uma escopeta de cano curto do que uma pistola. Quando carregada com cartuchos (flechete) em vez de projéteis sólidos, ela usa distâncias de Pistola Pesada, mas regras de escopetas (Escopetas, p. 180). TAURUS OMNI-6 ARES PREDATOR V REMINGTON ROOMSWEEPER",
+      "desc": "Essa é mais uma escopeta de cano curto do que uma pistola. Quando carregada com cartuchos (flechete) em vez de projéteis sólidos, ela usa distâncias de Pistola Pesada, mas regras de escopetas (Escopetas, p. 180).",
       "page": 426
     },
     {
@@ -1509,7 +1509,7 @@
         "legality": "R"
       },
       "cost": 450,
-      "desc": "Essa submetralhadora velha é uma descendente digna da famosa arma israelita. A submetralhadora possui uma coronha dobrável integral e mira laser embutida na parte superior. INGRAM SMARTGUN X",
+      "desc": "Essa submetralhadora velha é uma descendente digna da famosa arma israelita. A submetralhadora possui uma coronha dobrável integral e mira laser embutida na parte superior.",
       "page": 427
     },
     {
@@ -1736,7 +1736,7 @@
         "legality": "P"
       },
       "cost": 10300,
-      "desc": "Ficando na linha entre o fuzil de assalto e o rifle de precisão, o Crockett EBR possui um modo de rajada. Apesar de não possuir a capacidade de munição de um fuzil de assalto verdadeiro, e não ter a precisão de um atirador de elite, ele compensa isso com versatilidade, sendo capaz de alternar de forma fluída enYAMAHA RAIDEN CAVALIER ARMS CROCKETT EBR",
+      "desc": "Ficando na linha entre o fuzil de assalto e o rifle de precisão, o Crockett EBR possui um modo de rajada. Apesar de não possuir a capacidade de munição de um fuzil de assalto verdadeiro, e não ter a precisão de um atirador de elite, ele compensa isso com versatilidade, sendo capaz de alternar de forma fluída entre um papel de rifle de precisão e um de combate com o apertar de um botão. Ele vem equipado com uma coronha rígida com amortecedor de recuo e uma mira telescópica destacável.",
       "page": 428
     },
     {
@@ -1963,7 +1963,8 @@
         "legality": "R"
       },
       "cost": 5000,
-      "desc": "Para uma arma não letal, o Indutor de Dor Fichetti não é lá muito humanitário. Ele faz alguém se sentir como se estivesse dentro de um micro-ondas, cozinhando de dentro para fora. Trate isso como um ataque de toxina com uma Tôxicidade de 8 e uma velocidade Imediata. O alvo resiste com Corpo + Vontade. Se a Tôxicidade modificada exceder o limite Mental do alvo, ele deve gastar sua próxima Fase de Ação fazendo o que for possível para fugir da dor. O atacante pode continuar a manter seu feixe num alvo com uma Ação Complexa a não ser que o mestre defina que o alvo se esquivou ou encontrou cobertura. Se o alvo não puder fugir do feixe, ele é incapacitado de tanta dor, sofrendo um modificador na pilha de dados igual à Tôxicidade modificada em todos os testes enquanto o feixe estiver sobre ele. PJSS MODELO 55",
+      "desc": "Para uma arma não letal, o Indutor de Dor Fichetti não é lá muito humanitário. Ele faz alguém se sentir como se estivesse dentro de um micro-ondas, cozinhando de dentro para fora. Trate isso como um ataque de toxina com uma Tôxicidade de 8 e uma velocidade Imediata. O alvo resiste com Corpo + Vontade. Se a Tôxicidade modificada exceder o limite Mental do alvo, ele deve gastar sua próxima Fase de Ação fazendo o que for possível para fugir da dor. O atacante pode continuar a manter seu feixe num alvo com uma Ação Complexa a não ser que o mestre defina que o alvo se esquivou ou encontrou cobertura. Se o alvo não puder fugir do feixe, ele é incapacitado de tanta dor, sofrendo um modificador na pilha de dados igual à Tôxicidade modificada em todos os testes enquanto o feixe estiver sobre ele. O Indutor de Dor usa os alcances de submetralhadoras e pode receber acessórios na parte superior e sob o cano. Ele possui dez cargas; quando encaixado num ponto de força, ele recarrega uma carga a cada dez segundos.",
+      "wireless": "O Indutor de Dor recarrega por indução numa taxa de 1 carga por hora.",
       "page": 429
     },
     {
@@ -2233,7 +2234,7 @@
         "legality": "P"
       },
       "cost": 21000,
-      "desc": "A Krime pode ser uma fabricante pequena, mas seu canhão de assalto, chamado apenas de CANHÃO KRIME",
+      "desc": "A Krime pode ser uma fabricante pequena, mas seu canhão de assalto, chamado apenas de o Canhão, é uma arma pesada e barata cheia de atitude e poder de fogo. Ela vem com modificação padrão para trolls, e portanto é a primeira arma do Sexto Mundo projetada para clientes maiores.",
       "page": 431
     },
     {
