@@ -1,0 +1,390 @@
+{
+  "activations": [
+    {
+      "id": "simple",
+      "name": "Ação Simples"
+    },
+    {
+      "id": "free",
+      "name": "Ação Livre"
+    },
+    {
+      "id": "interrupt",
+      "name": "Ação de Interrupção (–5 do Valor de Iniciativa)"
+    }
+  ],
+  "rules": {
+    "maxLevel": {
+      "ref": "attr.mag"
+    },
+    "drainResistance": {
+      "op": "add",
+      "of": [
+        {
+          "ref": "attr.bod"
+        },
+        {
+          "ref": "attr.wil"
+        }
+      ]
+    },
+    "page": 308
+  },
+  "powers": [
+    {
+      "id": "attribute-boost",
+      "name": "Ampliar Atributo",
+      "powerPoints": {
+        "perLevel": 0.25
+      },
+      "parameter": {
+        "kind": "attribute",
+        "options": [
+          "bod",
+          "agi",
+          "rea",
+          "str"
+        ]
+      },
+      "activation": "simple",
+      "desc": "Você canaliza uma força interior para realizar feitos físicos impressionantes, além das suas habilidades normais. Ampliar Atributo deve ser comprado para um Atributo Físico específico (Agilidade, Corpo, Reação, ou Força); poderes de Ampliar Atributo separados podem ser comprados para atributos diferentes. Este poder não pode ser comprado para um Atributo Mental ou Especial. Ao ativar este poder, faça um Teste de Magia + Nível de Ampliar Atributo. Cada sucesso neste teste amplia seu nível de atributo em 1, até o seu máximo de Atributo ampliado. Isso só afeta as suas pilhas de dados; o seu limite Físico e níveis de Iniciativa não mudam com Ampliar Atributo. A ampliação dura por uma quantidade de Turnos de Combate igual a duas vezes o número de sucessos que obtiver. Quando a ampliação acabar, você sofre Dreno igual ao nível desse poder.",
+      "page": 308
+    },
+    {
+      "id": "missile-parry",
+      "name": "Aparar Projétil",
+      "powerPoints": {
+        "perLevel": 0.25
+      },
+      "activation": "interrupt",
+      "desc": "Você pode pegar projéteis lentos no ar, como flechas, facas de arremesso, granadas, ou shuriken. Ao usar este poder, adicione +1 dado por nível à sua pilha de defesa contra o teste de ataque a distância do atacante. Se conseguir sucessos restantes, você pega o projétil em pleno ar. Você deve ter pelo menos uma mão vazia para utilizar Aparar Projétil.",
+      "page": 309
+    },
+    {
+      "id": "mystic-armor",
+      "name": "Armadura Mística",
+      "powerPoints": {
+        "perLevel": 0.5
+      },
+      "modifiers": [
+        {
+          "target": "armor",
+          "add": {
+            "ref": "rating"
+          }
+        }
+      ],
+      "desc": "Este poder protege você de ataques físicos. Para cada nível, este poder dá a você 1 ponto de Armadura (cumulativa com outras armaduras, mas sem aumentar a carga) que também protege contra dano sofrido em combate astral.",
+      "page": 309
+    },
+    {
+      "id": "improved-physical-attribute",
+      "name": "Atributo Físico Melhorado",
+      "powerPoints": {
+        "perLevel": 1
+      },
+      "parameter": {
+        "kind": "attribute",
+        "options": [
+          "bod",
+          "agi",
+          "rea",
+          "str"
+        ]
+      },
+      "modifiers": [
+        {
+          "target": "attr",
+          "of": "parameter",
+          "add": {
+            "ref": "rating"
+          }
+        }
+      ],
+      "desc": "Este poder permite você aumentar um atributo físico (Corpo, Agilidade, Reação, e Força). Isso aprimora o seu atributo, então o seu limite Físico também pode aumentar com o novo nível de Atributo. Este poder permite você ultrapassar seu Atributo máximo natural, até o seu máximo ampliado.",
+      "page": 309
+    },
+    {
+      "id": "kinesics",
+      "name": "Cinésica",
+      "powerPoints": {
+        "perLevel": 0.25
+      },
+      "desc": "Cinésica concede controle total sobre a comunicação não verbal e subconsciente do seu corpo além dos sinais sociais, mesmo quando estiver em situações sociais de estresse. Isso inclui expressões faciais, movimentos corporais, movimentos oculares, flutuações nos batimentos cardíacos e pressão sanguínea, e até mesmo controle sobre glândulas sudoríparas, dificultando qualquer tentativa de medir seu estado emocional e sinceridade. Adicione +1 para resistir a Testes Sociais e testes para ler suas emoções como Julgar Intenções, sentido astral, ou testes de sinceridade.",
+      "page": 309
+    },
+    {
+      "id": "voice-control",
+      "name": "Controle Vocal",
+      "powerPoints": {
+        "perLevel": 0.5
+      },
+      "modifiers": [
+        {
+          "target": "limit",
+          "of": "social",
+          "add": {
+            "ref": "rating"
+          }
+        }
+      ],
+      "desc": "Você adquire um nível impressionante de controle sobre as propriedades da sua voz. Você pode alterar a afinação, modulação e tom da sua voz à vontade, assim como aumentar seu volume. Você pode mascarar sua voz e imitar sons dentro do alcance normal de vocalização meta- -humana (nada de infrassom ou ultrassom) e imitar vozes de outros. Se usar este truque para enganar uma pessoa ou um sistema de reconhecimento de voz, faça um Teste de Oposição usando a sua Personificação + Carisma [Mental] contra o nível do sistema de reconhecimento de voz x 2, ou contra a Percepção + Intuição dos personagens que o adepto está tentando enganar, adicionando seu nível neste poder como bônus na sua pilha de dados. Você também pode ajustar a sua voz para gerar efeitos sociais positivos, dando a você +1 por nível no seu limite Social.",
+      "page": 309
+    },
+    {
+      "id": "light-body",
+      "name": "Corpo Leve",
+      "powerPoints": {
+        "perLevel": 0.25
+      },
+      "desc": "Corpo Leve é usado para realizar saltos incríveis sobre longas distâncias. Adicione o nível do poder à sua Agilidade antes de calcular a distância máxima que você pode pular. Além disso, adicione 1 dado por nível ao seu Teste de Ginástica ao saltar. Se por acaso você falhar, reduza a distância efetiva da queda pelo nível em metros ao calcular seu dano de queda.",
+      "page": 309
+    },
+    {
+      "id": "wall-running",
+      "name": "Correr na Parede",
+      "powerPoints": 0.5,
+      "activation": "simple",
+      "desc": "Você pode correr para cima por paredes íngremes ou outras superfícies verticais por uma distância limitada. Faça um Teste de Corrida + Força [Magia], com sucessos indicando quantos metros você pode subir numa fase de ação. Se quiser correr por distâncias mais longas, você precisa de degraus, beiradas, ou algo onde possa parar e depois utilizar este poder novamente. Se quiser correr ao longo de uma superfície vertical em vez de para cima, você pode fazer isso combinando este poder com uma ação de Arrancada (p. 162). No final do seu movimento, você cai da parede, independente se alcançou a distância desejada ou não.",
+      "page": 309
+    },
+    {
+      "id": "rapid-healing",
+      "name": "Cura Rápida",
+      "powerPoints": {
+        "perLevel": 0.5
+      },
+      "desc": "Você se recupera mais rapidamente de dano, curando- -se magicamente ao longo de períodos de tempo. Adicione +1 dado por nível ao seu Corpo para Testes de Cura. Também adicione +1 dado por nível para qualquer teste feito para curar você através de meios mágicos ou mundanos (como um feitiço de Cura ou a perícia Primeiros Socor-ros), independente se a tentativa for feita por você ou por outro personagem.",
+      "page": 309
+    },
+    {
+      "id": "critical-strike",
+      "name": "Golpe Crítico",
+      "powerPoints": 0.5,
+      "parameter": {
+        "kind": "skill",
+        "options": [
+          "unarmed-combat",
+          "clubs",
+          "blades",
+          "astral-combat",
+          "exotic-melee-weapon"
+        ]
+      },
+      "modifiers": [
+        {
+          "target": "weapon.damage",
+          "of": "parameter",
+          "add": 1
+        }
+      ],
+      "desc": "Este poder aprimora uma perícia corpo a corpo específica: Combate Desarmado, Bastões, Lâminas, Combate Astral, ou uma perícia Corpo a Corpo de arma Exótica específica. A perícia específica é escolhida quando você compra o poder. Aumente o VD dos seus ataques com a perícia selecionada em 1. Golpe Crítico é compatível com armas e outros poderes de adeptos. O poder pode ser escolhido múltiplas vezes, cada uma para uma perícia corpo a corpo diferente.",
+      "page": 309
+    },
+    {
+      "id": "improved-ability",
+      "name": "Habilidade Melhorada",
+      "powerPoints": {
+        "perLevel": 0.5
+      },
+      "parameter": {
+        "kind": "skill",
+        "categories": [
+          "combat",
+          "physical",
+          "social",
+          "technical",
+          "vehicle"
+        ]
+      },
+      "modifiers": [
+        {
+          "target": "skill.rating",
+          "of": "parameter",
+          "add": {
+            "ref": "rating"
+          }
+        }
+      ],
+      "desc": "Este poder aumenta o Nível de uma perícia específica de Combate, Física, Social, Técnica, ou de Veículo por nível do poder. Você deve conhecer a perícia para poder comprar este poder para ela, e você não pode comprá-la para grupos de perícias. A melhoria máxima possível é o seu nível atual da perícia x 1,5 (arredondando para cima).",
+      "page": 310
+    },
+    {
+      "id": "natural-immunity",
+      "name": "Imunidade Natural",
+      "powerPoints": {
+        "perLevel": 0.25
+      },
+      "desc": "Adicione +1 por nível aos seus testes para resistir toxinas e doenças.",
+      "page": 310
+    },
+    {
+      "id": "killing-hands",
+      "name": "Mãos Letais",
+      "powerPoints": 0.5,
+      "activation": "free",
+      "desc": "Este poder permite que você cause dano letal com seus ataques desarmados. Ao causar dano no alvo de um ataque desarmado, você pode escolher causar ou dano de Atordoamento ou dano Físico. Mãos Letais pode ser combinado com outros poderes de adepto que aumentem dano desarmado. Seus ataques de Mãos Letais são mágicos, então eles podem atravessar as defesas mágicas de uma criatura contra ataques, como o poder Imunidade a Armas Normais, e podem ser usados por adeptos com Percepção Astral durante combate astral.",
+      "page": 310
+    },
+    {
+      "id": "traceless-walk",
+      "name": "Passos sem Pegadas",
+      "powerPoints": 1,
+      "desc": "Você pode se mover sobre superfícies — incluindo neve, areia, ou papel de arroz — sem deixar rastros visíveis. Você não faz som através de contato com o chão (apesar de o movimento ainda poder causar outros sons), e qualquer Teste de Percepção baseado em audição para detectar você sofre –4 de penalidade na pilha de dados. Você não dispara sensores de vibração de piso ou de pressão. Você não pode andar sobre superfícies líquidas — você é mágico, não milagreiro — mas você pode andar por neve funda sem afundar. Apesar de você ainda poder ser rastreado por traços não-visuais como faro, até mesmo esses Testes de Rastrear são mais difíceis e sofrem –2 de penalidade na pilha de dados.",
+      "page": 310
+    },
+    {
+      "id": "enhanced-perception",
+      "name": "Percepção Ampliada",
+      "powerPoints": {
+        "perLevel": 0.5
+      },
+      "desc": "Este poder aguça todos os seus sentidos. Adicione +1 dado por nível para todos os Testes de Percepção e Testes de Sentido Astral.",
+      "page": 310
+    },
+    {
+      "id": "astral-perception",
+      "name": "Percepção Astral",
+      "powerPoints": 1,
+      "activation": "simple",
+      "desc": "Este poder permite que você preencha a lacuna entre os reinos físico e astral e veja dentro do plano astral. Como você possui natureza dupla enquanto usa percepção astral, você pode atacar formas astrais ao usar este poder. Siga todas as regras normais para percepção astral (p. 312).",
+      "page": 310
+    },
+    {
+      "id": "enhanced-potential",
+      "name": "Potencial Melhorado",
+      "powerPoints": {
+        "perLevel": 0.5
+      },
+      "parameter": {
+        "kind": "limit"
+      },
+      "modifiers": [
+        {
+          "target": "limit",
+          "of": "parameter",
+          "add": 1
+        }
+      ],
+      "desc": "Este poder permite a um adepto aumentar um dos seus limites inerentes (Físico, Mental, ou Social), especificado ao comprar o poder, em 1. Você pode comprar este poder múltiplas vezes, uma vez por limite inerente.",
+      "page": 310
+    },
+    {
+      "id": "enhanced-accuracy",
+      "name": "Precisão Ampliada",
+      "powerPoints": 0.25,
+      "parameter": {
+        "kind": "skill",
+        "categories": [
+          "combat"
+        ],
+        "except": [
+          "unarmed-combat"
+        ]
+      },
+      "modifiers": [
+        {
+          "target": "weapon.accuracy",
+          "of": "parameter",
+          "add": 1
+        }
+      ],
+      "desc": "Uma arma nas suas mãos se torna uma extensão do seu corpo. Ao comprar este poder, escolha uma Perícia de Combate (Pistolas, Bastões, Armas Pesadas, etc.). Ao usar a perícia, adicione 1 à Precisão da arma que está usando. Este poder não pode ser usado com Combate Desarmado, mas pode ser comprado múltiplas vezes com uma perícia de cada vez.",
+      "page": 310
+    },
+    {
+      "id": "adrenaline-boost",
+      "name": "Pulso de Adrenalina",
+      "powerPoints": {
+        "perLevel": 0.25
+      },
+      "activation": "free",
+      "desc": "Este poder permite que você realize mais em um Turno de Combate. Você recebe +2 no seu Valor de Iniciativa pelo Turno de Combate atual para cada nível deste poder que você possuir. No início do próximo turno após o Pulso de Adrenalina, você sofre Dreno igual ao número de níveis que tiver neste poder.",
+      "page": 310
+    },
+    {
+      "id": "improved-reflexes",
+      "name": "Reflexos Melhorados",
+      "powerPoints": {
+        "byLevel": [
+          1.5,
+          2.5,
+          3.5
+        ]
+      },
+      "levels": {
+        "max": 3
+      },
+      "modifiers": [
+        {
+          "target": "attr",
+          "of": "rea",
+          "add": {
+            "ref": "rating"
+          }
+        },
+        {
+          "target": "initiative.dice",
+          "add": {
+            "ref": "rating"
+          }
+        }
+      ],
+      "desc": "Este poder aumenta a sua velocidade de reação, da mesma forma que reflexos cabeados. Para cada nível, você recebe +1 para Reação (isso também afeta Iniciativa) e +1D6 Dado de Iniciativa (até um máximo de 5D6). O nível máximo de Reflexos Melhorados é 3, e o aumento não pode ser combinado com outros aumentos tecnológicos ou mágicos de Iniciativa.",
+      "page": 310
+    },
+    {
+      "id": "pain-resistance",
+      "name": "Resistência à Dor",
+      "powerPoints": {
+        "perLevel": 0.5
+      },
+      "modifiers": [
+        {
+          "target": "wound.ignoredBoxes",
+          "add": {
+            "ref": "rating"
+          }
+        }
+      ],
+      "desc": "Resistência à dor permite que você ignore os efeitos de ferimentos (mas não o dano de fato). Para cada nível de resistência à dor, os modificadores de ferimento no Monitor de Condição se movem uma caixa abaixo na tabela, então com 1 nível neste poder, você sofre a penalidade de –1 após 4 caixas de dano em vez de 3. Se tiver 2 níveis do poder, a penalidade não se ativa até que você tenha 5 caixas de dano. Resistência à Dor funciona igualmente nos Monitores de Condição Físico e Atordoamento. Resistência à Dor também permite que você resista à dor de tortura, magia, doenças. Cada nível adiciona +2 dados para qualquer teste que faça para resistir qualquer sofrimento.",
+      "page": 311
+    },
+    {
+      "id": "spell-resistance",
+      "name": "Resistência a Feitiços",
+      "powerPoints": {
+        "perLevel": 0.5
+      },
+      "desc": "Você é inerentemente resistente a feitiços. Adicione +1 dado por nível para Testes de Resistência contra feitiços, rituais de feitiço, preparações alquímicas, ou poderes de Feitiço Inato de criatura (mas não outros poderes de criatura). Resistência a Feitiços não interfere com feitiços que você decidir não resistir.",
+      "page": 311
+    },
+    {
+      "id": "combat-sense",
+      "name": "Sentido de Combate",
+      "powerPoints": {
+        "perLevel": 0.5
+      },
+      "desc": "Sentido de Combate concede um sentido instintivo de qualquer ameaça em potencial próxima. Ao se defender contra ataques corpo a corpo e à distância, você ganha +1 de bônus de pilha de dados para testes de defesa por nível deste poder. Adeptos com esse poder sempre recebem um Teste de Percepção antes de uma possível situação de surpresa, recebendo o benefício de ser alertados caso o teste seja bem-sucedido.",
+      "page": 311
+    },
+    {
+      "id": "danger-sense",
+      "name": "Sentido de Perigo",
+      "powerPoints": {
+        "perLevel": 0.25
+      },
+      "desc": "Você fica instintivamente sensível aos seus arredores e das ameaças iminentes que podem não ser imediatamente visíveis. É a sensação ruim que o personagem sente antes de cair numa armadilha, aquele instinto que o faz pular logo antes do problema surgir. Para cada nível neste poder, você ganha +1 dado em Testes de Surpresa.",
+      "page": 311
+    },
+    {
+      "id": "improved-sense",
+      "name": "Sentido Melhorado",
+      "powerPoints": {
+        "each": 0.25
+      },
+      "desc": "Este poder concede melhorias sensoriais normalmente não possuídas pelo seu metatipo de personagem. Essas melhorias podem incluir visão na penumbra ou termográfica, audição de alta ou baixa frequência, e assim por diante. Qualquer aprimoramento de sentidos concedido por cibernéticos ou biônicos pode ser concedido por este poder, a não ser que este aprimoramento ou dê dados bônus para Testes de Percepção ou exija sem fio para funcionar (ou ambos). Além dos aprimoramentos sensoriais listados para cibernéticos e biônicos, outras melhorias selecionáveis incluem: Senso de Direção: Adicione +2 dados para testes de perícia Navegação ao viajar. Além disso, com um Teste de Percepção + Intuição (2), você pode identificar a direção para onde está voltado e se está acima ou abaixo do nível do mar. Tato Melhorado: Os dedos do adepto são sensíveis para imperfeições na superfície de um objeto, permitindo que perceba algo tão sutil quanto a impressão da escrita num pedaço do papel (até mesmo papel que estava abaixo da folha onde a escrita foi feita). Adicione +2 dados para Testes de Percepção de tato. Afinação Perfeita: Com um Teste de Percepção + Intuição (2), você pode reconhecer um tom musical ou por audição ou até mesmo por sentir a frequência da vibração. Isso não significa que você canta bem, só que sabe reconhecer quando desafinou. Escala Humana: Com um Teste de Percepção + Intuição (2), o adepto pode determinar o peso de um objeto até a última grama caso possa erguer ou carregar o objeto. Pode ser usado para aquela competição de fisiculturismo e arcanoarqueólogos tentando determinar quanto uma estátua pesa antes de tentar arrancá-la da sua placa de pressão.",
+      "page": 311
+    }
+  ]
+}

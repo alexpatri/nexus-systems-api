@@ -275,7 +275,12 @@ SR_TARGETS = {
     'attr.max', 'skill.max', 'limit', 'monitor.overflow', 'wound.ignoredBoxes', 'wound.boxesPerPenalty',
     'reputation.notoriety', 'essence.cyberwareLoss', 'lifestyle.cost', 'language.native',
     'matrix.biofeedbackFilter', 'progression.trainingTime', 'reach', 'armor',
+    'attr', 'initiative.dice', 'skill.rating', 'weapon.accuracy', 'weapon.damage',
 }
+# O que cada alvo seleciona com "of".
+SR_SELECTS = {'attr': 'attribute', 'attr.max': 'attribute', 'skill.max': 'skill', 'skill.rating': 'skill',
+              'weapon.accuracy': 'skill', 'weapon.damage': 'skill', 'limit': 'limit'}
+SR_LIMITS = ('physical', 'mental', 'social')
 SR_SKILL_CATEGORIES = {'combat', 'physical', 'social', 'magical', 'resonance', 'technical', 'vehicle'}
 
 # Personagens de exemplo do livro: atributos das p. 67 e 70, resultados da p. 102.
@@ -326,25 +331,38 @@ def sr_walk_exprs(o, path=""):
         for i, v in enumerate(o): yield from sr_walk_exprs(v, f"{path}[{i}]")
 
 
-def sr_check_modifier(m, where, E, skill_ids):
+def sr_check_modifier(m, where, E, skill_ids, parameter=None):
+    """parameter é o parâmetro da entrada dona do modificador, para "of": "parameter"."""
     ops = [k for k in ('add', 'mul', 'set') if k in m]
     if len(ops) != 1: E(f"{where}: modificador precisa de exatamente um entre add/mul/set"); return
     sr_check_expr(m[ops[0]], where, E)
-    if m.get('target') not in SR_TARGETS: E(f"{where}: alvo fora do vocabulário {m.get('target')!r}")
-    sel = m.get('of')
+    target, sel = m.get('target'), m.get('of')
+    if target not in SR_TARGETS: E(f"{where}: alvo fora do vocabulário {target!r}")
+    kind = SR_SELECTS.get(target)
+    valid = {'attribute': SR_ATTRS, 'limit': SR_LIMITS, 'skill': skill_ids}.get(kind, ())
     if sel is None: pass
-    elif m['target'] == 'attr.max' and isinstance(sel, str):
-        if sel not in SR_ATTRS: E(f"{where}: atributo inexistente {sel}")
-    elif m['target'] == 'limit' and isinstance(sel, str):
-        if sel not in ('physical', 'mental', 'social'): E(f"{where}: limite inexistente {sel}")
+    elif sel == 'parameter':
+        if not parameter: E(f"{where}: 'of': 'parameter' sem parâmetro na entrada")
+        elif parameter['kind'] != kind: E(f"{where}: parâmetro {parameter['kind']} incompatível com {target}")
+    elif isinstance(sel, str):
+        if sel not in valid: E(f"{where}: {kind or target} inexistente {sel}")
     elif isinstance(sel, dict):
-        expected = {'attr.max': 'attribute', 'skill.max': 'skill', 'limit': 'limit'}.get(m['target'])
-        if sel.get('choose') != expected: E(f"{where}: escolha {sel.get('choose')!r} incompatível com {m['target']}")
-        for a in sel.get('except', []):
-            if a not in SR_ATTRS: E(f"{where}: atributo inexistente em except: {a}")
+        if sel.get('choose') != kind: E(f"{where}: escolha {sel.get('choose')!r} incompatível com {target}")
+        for a in sel.get('except', []) + sel.get('only', []):
+            if a not in valid: E(f"{where}: {kind} inexistente em except/only: {a}")
     else:
         E(f"{where}: seletor 'of' inválido {sel!r}")
     if 'times' in m: sr_check_expr(m['times'], f"{where}.times", E)
+
+
+def sr_check_parameter(param, where, E, skill_ids, skill_categories):
+    kind = param.get('kind')
+    valid = {'attribute': SR_ATTRS, 'limit': SR_LIMITS, 'skill': skill_ids}.get(kind)
+    if valid is None: E(f"{where}: parâmetro de tipo desconhecido {kind!r}"); return
+    for o in param.get('options', []) + param.get('except', []):
+        if o not in valid: E(f"{where}: opção de parâmetro inexistente {o}")
+    for c in param.get('categories', []):
+        if c not in skill_categories: E(f"{where}: categoria de perícia inexistente {c}")
 
 
 def check_shadowrun(d, sysj, E, W):
@@ -446,6 +464,17 @@ def check_shadowrun(d, sysj, E, W):
             if m.get('target') == 'reputation.notoriety' and (m['add'] < 0) != (q['kind'] == 'positive'):
                 E(f"qualidade {q['id']}: sinal da notoriedade incoerente com o tipo")
         if not q.get('desc'): E(f"qualidade {q['id']}: desc vazia")
+
+    powers = load(d, 'adept-powers.json')
+    if powers:
+        if len({p['id'] for p in powers['powers']}) != len(powers['powers']): E("adept-powers.json: ids duplicados")
+        activations = {a['id'] for a in powers['activations']}
+        for p in powers['powers']:
+            where = f"poder {p['id']}"
+            if p.get('parameter'): sr_check_parameter(p['parameter'], where, E, skill_ids, SR_SKILL_CATEGORIES)
+            if p.get('activation') and p['activation'] not in activations: E(f"{where}: ativação inexistente")
+            for i, m in enumerate(p.get('modifiers', [])):
+                sr_check_modifier(m, f"{where}[{i}]", E, skill_ids, p.get('parameter'))
 
     for l in lifestyles['identities']:
         if l['availability']['legality'] not in mech['legality']:

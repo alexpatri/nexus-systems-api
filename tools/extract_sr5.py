@@ -540,6 +540,50 @@ RITUALS = [
 PREPARATION_TRIGGERS = [("command", "Comando", 2), ("contact", "Contato", 1), ("time", "Tempo", 2)]
 
 
+PHYSICAL_ATTRIBUTES = ["bod", "agi", "rea", "str"]
+
+# (id, nome, parâmetro escolhido na compra, nível máximo próprio, modificadores)
+ADEPT_POWERS = [
+    ("attribute-boost", "Ampliar Atributo", {"kind": "attribute", "options": PHYSICAL_ATTRIBUTES}, None, []),
+    ("missile-parry", "Aparar Projétil", None, None, []),
+    ("mystic-armor", "Armadura Mística", None, None, [{"target": "armor", "add": ref("rating")}]),
+    ("improved-physical-attribute", "Atributo Físico Melhorado",
+     {"kind": "attribute", "options": PHYSICAL_ATTRIBUTES}, None,
+     [{"target": "attr", "of": "parameter", "add": ref("rating")}]),
+    ("kinesics", "Cinésica", None, None, []),
+    ("voice-control", "Controle Vocal", None, None, [{"target": "limit", "of": "social", "add": ref("rating")}]),
+    ("light-body", "Corpo Leve", None, None, []),
+    ("wall-running", "Correr na Parede", None, None, []),
+    ("rapid-healing", "Cura Rápida", None, None, []),
+    ("critical-strike", "Golpe Crítico",
+     {"kind": "skill", "options": ["unarmed-combat", "clubs", "blades", "astral-combat", "exotic-melee-weapon"]},
+     None, [{"target": "weapon.damage", "of": "parameter", "add": 1}]),
+    ("improved-ability", "Habilidade Melhorada",
+     {"kind": "skill", "categories": ["combat", "physical", "social", "technical", "vehicle"]}, None,
+     [{"target": "skill.rating", "of": "parameter", "add": ref("rating")}]),
+    ("natural-immunity", "Imunidade Natural", None, None, []),
+    ("killing-hands", "Mãos Letais", None, None, []),
+    ("traceless-walk", "Passos sem Pegadas", None, None, []),
+    ("enhanced-perception", "Percepção Ampliada", None, None, []),
+    ("astral-perception", "Percepção Astral", None, None, []),
+    ("enhanced-potential", "Potencial Melhorado", {"kind": "limit"}, None,
+     [{"target": "limit", "of": "parameter", "add": 1}]),
+    ("enhanced-accuracy", "Precisão Ampliada", {"kind": "skill", "categories": ["combat"], "except": ["unarmed-combat"]},
+     None, [{"target": "weapon.accuracy", "of": "parameter", "add": 1}]),
+    ("adrenaline-boost", "Pulso de Adrenalina", None, None, []),
+    ("improved-reflexes", "Reflexos Melhorados", None, 3,
+     [{"target": "attr", "of": "rea", "add": ref("rating")}, {"target": "initiative.dice", "add": ref("rating")}]),
+    ("pain-resistance", "Resistência à Dor", None, None, [{"target": "wound.ignoredBoxes", "add": ref("rating")}]),
+    ("spell-resistance", "Resistência a Feitiços", None, None, []),
+    ("combat-sense", "Sentido de Combate", None, None, []),
+    ("danger-sense", "Sentido de Perigo", None, None, []),
+    ("improved-sense", "Sentido Melhorado", None, None, []),
+]
+
+ACTIVATIONS = {"Ação Simples": "simple", "Ação Livre": "free",
+               "Ação de Interrupção (–5 do Valor de Iniciativa)": "interrupt"}
+
+
 # Qualidades cuja compra exige escolher um item de outro catálogo.
 QUALITY_CHOICES = {"spirit-affinity": "traditions.json#spiritTypes"}
 
@@ -1676,6 +1720,83 @@ def build_preparations(book):
     return {"forceMax": mul(attr("mag"), 2), "triggers": triggers, "page": 304}
 
 
+POWER_COST = re.compile(r'^Custo:\s*(.+?)\s*$')
+
+
+def power_cost(text, box, name):
+    m = re.match(r'^([\d.]+) PP( por nível| cada)?$', text)
+    if m:
+        value = float(m.group(1))
+        value = int(value) if value.is_integer() else value
+        return {" por nível": {"perLevel": value}, " cada": {"each": value}, None: value}[m.group(2)]
+    if text == "Variável, veja tabela":
+        levels = re.findall(r'^Nível (\d) ([\d.]+)$', box, re.M)
+        if [int(n) for n, _ in levels] != [1, 2, 3]:
+            raise ExtractionError(f"poder {name}: tabela de custo ilegível")
+        return {"byLevel": [float(c) for _, c in levels]}
+    raise ExtractionError(f"poder {name}: custo fora do formato {text!r}")
+
+
+def build_adept_powers(book):
+    lines, boxes = flow(book, 308, 311, {310: ("TABELA DE REFLEXOS MELHORADOS", None)})
+    texts = [line.strip() for _, line in lines]
+    pages = [p for p, _ in lines]
+    start = texts.index("PODERES DE ADEPTO")
+    intro = book.prose("\n".join(texts[:start]))
+    require(intro, "O número máximo de níveis que pode ter em qualquer poder é igual ao seu Nível de Magia",
+            "nível máximo de poder")
+    require(intro, "é resistido com Corpo + Vontade", "dreno de adepto")
+
+    costs = [k for k in range(start, len(texts)) if POWER_COST.match(texts[k])]
+    heads = []
+    for k in costs:
+        param = texts[k - 1] if texts[k - 1].startswith("(") else None
+        heads.append((k - (2 if param else 1), texts[k - (2 if param else 1)], param))
+
+    by_name = {fold(name).upper(): entry for entry in ADEPT_POWERS for name in [entry[1]]}
+    out = []
+    for n, (k, (h, heading, param)) in enumerate(zip(costs, heads)):
+        key = fold(heading).upper()
+        if key not in by_name:
+            raise ExtractionError(f"poder de adepto fora do vocabulário: {heading!r}")
+        pid, name, parameter, max_level, modifiers = by_name.pop(key)
+        if bool(param) != (parameter is not None and pid != "improved-physical-attribute"):
+            raise ExtractionError(f"poder {name}: parâmetro no livro {param!r} diverge do vocabulário")
+
+        cost = power_cost(POWER_COST.match(texts[k]).group(1), boxes.get(310, ""), name)
+        body = k + 1
+        activation = None
+        if texts[body].startswith("Ativação:"):
+            label = texts[body].split(":", 1)[1].strip()
+            if label not in ACTIVATIONS:
+                raise ExtractionError(f"poder {name}: ativação fora do vocabulário {label!r}")
+            activation = ACTIVATIONS[label]
+            body += 1
+        end = heads[n + 1][0] if n + 1 < len(heads) else len(texts)
+
+        entry = {"id": pid, "name": name, "powerPoints": cost}
+        if max_level:
+            entry["levels"] = {"max": max_level}
+        if parameter:
+            entry["parameter"] = parameter
+        if activation:
+            entry["activation"] = activation
+        if modifiers:
+            entry["modifiers"] = modifiers
+        entry.update({"desc": book.prose("\n".join(texts[body:end])), "page": pages[h]})
+        out.append(entry)
+    if by_name:
+        raise ExtractionError(f"poderes de adepto não encontrados: {sorted(by_name)}")
+    require(out[[p["id"] for p in out].index("improved-reflexes")]["desc"],
+            "O nível máximo de Reflexos Melhorados é 3", "Reflexos Melhorados")
+
+    return {
+        "activations": [{"id": aid, "name": label} for label, aid in ACTIVATIONS.items()],
+        "rules": {"maxLevel": attr("mag"), "drainResistance": add(attr("bod"), attr("wil")), "page": 308},
+        "powers": out,
+    }
+
+
 CATALOGS = {
     "attributes.json": build_attributes,
     "metatypes.json": build_metatypes,
@@ -1687,6 +1808,7 @@ CATALOGS = {
     "lifestyles.json": build_lifestyles,
     "traditions.json": build_traditions,
     "spells.json": build_spells,
+    "adept-powers.json": build_adept_powers,
 }
 
 EXPECTED_COUNTS = {
@@ -1700,6 +1822,7 @@ EXPECTED_COUNTS = {
     "lifestyles.json": {"lifestyles": 7, "options": 5, "identities": 2},
     "traditions.json": {"traditions": 2, "spiritTypes": 6},
     "spells.json": {"spells": 84, "categories": 5, "rituals": 9},
+    "adept-powers.json": {"powers": 25},
 }
 
 
