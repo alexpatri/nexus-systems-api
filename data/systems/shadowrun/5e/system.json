@@ -24,6 +24,14 @@
       ],
       "metatype": "metatypes.json#metatypes"
     },
+    "reputation": {
+      "fields": [
+        "streetCred",
+        "notoriety",
+        "publicAwareness"
+      ],
+      "rules": "mechanics.json#derived.reputation"
+    },
     "attributes": {
       "source": "attributes.json",
       "ranges": "metatypes.json#metatypes",
@@ -32,6 +40,21 @@
     "edge": {
       "attribute": "edg",
       "note": "A ficha registra o Trunfo e os pontos de Trunfo disponíveis, que são gastos e recuperados em jogo."
+    },
+    "initiative": {
+      "rules": "mechanics.json#derived.initiative"
+    },
+    "limits": {
+      "rules": "mechanics.json#derived.limits"
+    },
+    "attributeTests": {
+      "rules": "mechanics.json#derived.attributeTests"
+    },
+    "movement": {
+      "rules": "mechanics.json#derived.movement"
+    },
+    "conditionMonitor": {
+      "rules": "mechanics.json#derived.monitors"
     },
     "qualities": {
       "source": "qualities.json",
@@ -53,6 +76,31 @@
         "knowledge",
         "language"
       ]
+    },
+    "contacts": {
+      "fields": [
+        "name",
+        "loyalty",
+        "connection",
+        "favor"
+      ],
+      "rules": "mechanics.json#creation.contacts"
+    },
+    "lifestyle": {
+      "source": "lifestyles.json",
+      "note": "Um estilo de vida primário; os demais (residências extras, identidades) são pagos à parte."
+    },
+    "identities": {
+      "source": "lifestyles.json#identities",
+      "fields": [
+        "fakeIds",
+        "relatedLifestyles",
+        "funds",
+        "licenses"
+      ]
+    },
+    "nuyen": {
+      "rules": "mechanics.json#creation.resources"
     }
   },
   "creation": {
@@ -74,7 +122,8 @@
         "page": 65,
         "uses": [
           "priorities.json#columns",
-          "metatypes.json"
+          "metatypes.json",
+          "mechanics.json#creation.attributes"
         ]
       },
       {
@@ -93,7 +142,8 @@
         "label": "Compre qualidades",
         "page": 71,
         "uses": [
-          "qualities.json"
+          "qualities.json",
+          "mechanics.json#creation.qualities"
         ]
       },
       {
@@ -103,7 +153,8 @@
         "page": 88,
         "uses": [
           "priorities.json#columns",
-          "skills.json"
+          "skills.json",
+          "mechanics.json#creation.skills"
         ]
       },
       {
@@ -112,20 +163,30 @@
         "label": "Gaste seus recursos",
         "page": 94,
         "uses": [
-          "priorities.json#columns"
+          "priorities.json#columns",
+          "lifestyles.json",
+          "mechanics.json#creation.resources"
         ]
       },
       {
         "order": 7,
         "id": "karma",
         "label": "Gaste o carma restante",
-        "page": 98
+        "page": 98,
+        "uses": [
+          "mechanics.json#creation.purchases",
+          "mechanics.json#creation.contacts",
+          "mechanics.json#progression"
+        ]
       },
       {
         "order": 8,
         "id": "final-calculations",
         "label": "Cálculos finais",
-        "page": 100
+        "page": 100,
+        "uses": [
+          "mechanics.json#derived"
+        ]
       },
       {
         "order": 9,
@@ -141,6 +202,8 @@
     "priorities.json",
     "awakening.json",
     "skills.json",
-    "qualities.json"
+    "qualities.json",
+    "mechanics.json",
+    "lifestyles.json"
   ]
 }

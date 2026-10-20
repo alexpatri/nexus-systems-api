@@ -12,6 +12,7 @@ As fórmulas são árvores {"op": ..., "of": [...]} com folhas numéricas ou
 {"ref": ...}; o validate.py tem o avaliador de referência.
 """
 import json
+import math
 import pathlib
 import re
 import sys
@@ -60,6 +61,26 @@ def ceil(a):
 
 def floor(a):
     return op("floor", a)
+
+
+OPS = {
+    "add": lambda xs: sum(xs),
+    "sub": lambda xs: xs[0] - sum(xs[1:]),
+    "mul": lambda xs: math.prod(xs),
+    "div": lambda xs: xs[0] / xs[1],
+    "ceil": lambda xs: math.ceil(xs[0]),
+    "floor": lambda xs: math.floor(xs[0]),
+    "min": min,
+    "max": max,
+}
+
+
+def evaluate(expr, env):
+    if isinstance(expr, (int, float)):
+        return expr
+    if "ref" in expr:
+        return env[expr["ref"]]
+    return OPS[expr["op"]]([evaluate(a, env) for a in expr["of"]])
 
 
 # --- vocabulário ---
@@ -343,6 +364,30 @@ AWAKENINGS = [
     ("technomancer", "Tecnomante", "res", None),
 ]
 
+LIFESTYLES = [
+    ("street", "Ruas", "RUAS", "Rua"),
+    ("squatter", "Muquifo", "MUQUIFO", "Muquifo"),
+    ("low", "Baixo", "BAIXO", "Baixo"),
+    ("middle", "Médio", "MÉDIO", "Médio"),
+    ("high", "Alto", "ALTO", "Alto"),
+    ("luxury", "Luxuoso", "LUXUOSO", "Luxuoso"),
+]
+
+LIFESTYLE_OPTIONS = [
+    ("special-work-area", "Área de Trabalho Especializado", "ÁREA DE TRABALHO ESPECIALIZADO",
+     {"add": 1000}, "+1.000 neoienes por mês"),
+    ("extra-secure", "Extra Seguro", "EXTRA SEGURO", {"percent": 20}, "+20 por cento do estilo de vida"),
+    ("obscure", "Obscuro/Difícil de Encontrar", "OBSCURO/DIFÍCIL DE ENCONTRAR",
+     {"percent": 10}, "+10 por cento do estilo de vida"),
+    ("cramped", "Apertado", "APERTADO", {"percent": -10}, "–10 por cento do estilo de vida"),
+    ("dangerous-area", "Área Perigosa", "ÁREA PERIGOSA", {"percent": -20}, "–20 por cento do estilo de vida"),
+]
+
+IDENTITIES = [
+    ("fake-sin", "SIN Falso", "SIN Falso (Nível 1-6) (Nível x 3)P Nível x 2.500¥", 2500),
+    ("fake-license", "Licença Falsa", "Licença falsa (Nível 1-6) (Nível x 3)P Nível x 200¥", 200),
+]
+
 
 # --- leitura do livro ---
 
@@ -418,6 +463,11 @@ def require(text, fragment, where):
 
 def fold(s):
     return unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower()
+
+
+def heading_re(heading):
+    """Cabeçalho em linha própria, tolerando quebra de linha entre as palavras."""
+    return re.compile(r'^' + r'\s+'.join(map(re.escape, heading.split())) + r'\s*$', re.M)
 
 
 def is_heading(line):
@@ -971,6 +1021,253 @@ def check_notoriety(book, qualities):
         raise ExtractionError(f"notoriedade diverge da p. 368: {sorted(marked ^ (listed | {'bad-rep'}))}")
 
 
+def build_lifestyles(book):
+    p95 = book.page(95)
+    text = book.text(369, 370)
+    out = []
+    for lid, name, heading, table_name in LIFESTYLES:
+        cost = re.search(rf'^{name} (Grátis|[\d.]+¥)$', p95, re.M)
+        nuyen = re.search(rf'^{table_name} (\d)D6 x ([\d.]+)¥$', p95, re.M)
+        if not cost or not nuyen:
+            raise ExtractionError(f"estilo de vida {name}: linha das tabelas da p. 95 não encontrada")
+        monthly = 0 if cost.group(1) == "Grátis" else int(cost.group(1)[:-1].replace(".", ""))
+        body = section(text, f"\n{heading}\n", [r'^Custo:'])
+        if body is None:
+            raise ExtractionError(f"estilo de vida {name}: descrição não encontrada nas p. 369–370")
+        cost_line = section(text, f"\n{heading}\n", [r'\n[A-ZÁÉÍÓÚÂÊÔÃÕÇ/ ]{4,}\n'])
+        if monthly and money(monthly).replace("¥", " neoienes") not in book.prose(cost_line):
+            raise ExtractionError(f"estilo de vida {name}: custo da p. 95 diverge da descrição")
+        out.append({"id": lid, "name": name, "cost": monthly,
+                    "startingNuyen": {"dice": int(nuyen.group(1)), "multiplier": int(nuyen.group(2).replace(".", ""))},
+                    "desc": book.prose(body), "page": 369})
+
+    hospital = book.prose(section(text, "\nHOSPITALIZADO\n", [r'^OPÇÕES DE ESTILO']) or "")
+    require(hospital, "Custo: 500 neoienes por dia pelo atendimento básico, 1.000 neoienes por tratamento intensivo",
+            "estilo de vida Hospitalizado")
+    out.append({"id": "hospitalized", "name": "Hospitalizado", "primary": False,
+                "costPerDay": {"basic": 500, "intensive": 1000},
+                "desc": hospital.split(" Custo:")[0], "page": 369})
+
+    opts = []
+    headings = [h for _, _, h, _, _ in LIFESTYLE_OPTIONS] + ["PAGANDO AS CONTAS"]
+    for oid, name, heading, cost, cost_text in LIFESTYLE_OPTIONS:
+        body = section(text, heading_re(heading), [heading_re(h).pattern for h in headings if h != heading])
+        if body is None:
+            raise ExtractionError(f"opção de estilo de vida {name}: não encontrada na p. 370")
+        body = book.prose(body)
+        require(body, f"Custo: {cost_text}", f"opção de estilo de vida {name}")
+        opts.append({"id": oid, "name": name, "cost": cost, "desc": body.split(" Custo:")[0], "page": 370})
+
+    rules = book.prose(text + "\n" + book.page(371))
+    require(rules, "pagamento equivalente a 100 meses de aluguel", "estilo de vida permanente")
+    require(rules, "O custo é dez por cento extra por pessoa adicional", "estilo de vida de equipe")
+    require(book.prose(book.text(94, 95)), "Os neoienes restantes acima de 5.000 são perdidos",
+            "neoienes iniciais")
+
+    identities = []
+    p442 = book.page(442)
+    for iid, name, row, unit in IDENTITIES:
+        require(p442, row, f"identidade {name}")
+        identities.append({"id": iid, "name": name, "rating": {"min": 1, "max": 6},
+                           "availability": {"value": mul(ref("rating"), 3), "legality": "P"},
+                           "cost": mul(ref("rating"), unit), "page": 442})
+
+    return {"lifestyles": out, "options": opts,
+            "rules": {"teamPercentPerExtraPerson": 10, "permanentMonths": 100},
+            "identities": identities}
+
+
+def build_mechanics(book):
+    p101 = book.prose(book.page(101))
+    for fragment in ["Iniciativa (Intuição + Reação) + 1D6", "Iniciativa Astral (Intuição x 2) + 2D6",
+                     "Iniciativa de RA da Matriz (Intuição + Reação) + 1D6",
+                     "(Sim Fechado)(Datagrama + Intuição) + 3D6", "(Sim Aberto)(Datagrama + Intuição) + 4D6",
+                     "Mental [(Lógica x 2) + Intuição + Vontade] / 3 (arredonde para cima)",
+                     "Físico [(Força x 2) + Corpo + Reação] / 3 (arredonde para cima)",
+                     "Social [(Carisma x 2) + Vontade + Essência] / 3 (arredonde para cima)",
+                     "Físico [Corpo / 2] + 8", "Atordoamento [Vontade / 2] + 8", "Excesso Corpo + bônus de Ampliação",
+                     "Ataque Carisma", "Datagrama Lógica", "Nível de Dispositivo Ressonância", "Firewall Vontade",
+                     "Subversão Intuição"]:
+        require(p101, fragment, "Tabela de Cálculos Finais (p. 101)")
+    require(book.prose(book.page(100)), "arredonde a Essência para cima", "limite Social")
+    require(book.prose(book.page(52)), "Todos têm um e podem conseguir até mais quatro (para um total de cinco)",
+            "dados de iniciativa")
+    p152 = book.page(152)
+    for fragment in ["COMPOSTURA (CAR + VON)", "JULGAR INTENÇÕES (CAR + INT)", "ERGUER/CARREGAR (COR + FOR)",
+                     "MEMÓRIA (LOG + VON)"]:
+        require(p152, fragment, "testes apenas de atributos (p. 152)")
+    p152 = book.prose(p152)
+    for fragment in ["15 quilogramas por ponto de Força", "5 quilogramas por ponto de Força",
+                     "Força x 10 quilogramas"]:
+        require(p152, fragment, "erguer/carregar (p. 152)")
+    require(book.page(162), "Agilidade x 2 Agilidade x 4", "movimento")
+    p368 = book.prose(book.page(368))
+    require(p368, "o Crédito de Rua é igual ao Carma total da personagem, dividido por 10, sempre arredondando "
+                  "para baixo", "crédito de rua")
+    require(p368, "mínimo de 0", "notoriedade")
+
+    p98 = book.prose(book.page(98))
+    for fragment in ["o excedente máximo seja de 7 Carma", "Níveis de Dispositivo 6 ou menos ou Disponibilidade 12 "
+                     "ou menos", "igual ao nível de Carisma do personagem x 3", "4 Carma por forma complexa",
+                     "5 Carma por feitiço", "1 Carma por serviço", "1 Carma por tarefa",
+                     "não pode ter mais do que 7 Carma"]:
+        require(p98, fragment, "compras com carma (p. 98)")
+    p71 = book.prose(book.page(71))
+    require(p71, "o personagem começa o processo de criação com 25 de Carma", "carma inicial")
+    require(p71, "Qualidades Positivas que custe 25 de Carma e de Qualidades Negativas que rendam 25 de Carma",
+            "teto de qualidades")
+    require(book.prose(book.text(94, 95)), "2.000 neoienes por ponto de Carma", "conversão de carma")
+
+    mechanics = {
+        "expressions": {
+            "ops": sorted(OPS),
+            "refs": {
+                "attr.<id>": "Valor atual do atributo, já com ampliações",
+                "rating": "Nível do item, da qualidade ou do nível novo sendo comprado",
+                "grade": "Classe de iniciação ou submersão",
+                "karma.total": "Carma total ganho pelo personagem",
+                "quality.karma": "Custo ou bônus de carma da qualidade",
+                "matrix.dataProcessing": "Datagrama da persona em uso (ciberdeck, com-link ou persona viva)",
+            },
+        },
+        "derived": {
+            "initiative": {
+                "physical": {"name": "Iniciativa", "base": add(attr("rea"), attr("int")), "dice": 1},
+                "astral": {"name": "Iniciativa Astral", "base": mul(attr("int"), 2), "dice": 2},
+                "matrixAR": {"name": "Iniciativa de RA da Matriz", "base": add(attr("rea"), attr("int")), "dice": 1},
+                "matrixVRCold": {"name": "Iniciativa de RV da Matriz (Sim Fechado)",
+                                 "base": add(ref("matrix.dataProcessing"), attr("int")), "dice": 3},
+                "matrixVRHot": {"name": "Iniciativa de RV da Matriz (Sim Aberto)",
+                                "base": add(ref("matrix.dataProcessing"), attr("int")), "dice": 4},
+                "maxDice": 5,
+                "page": 101,
+            },
+            "limits": {
+                "physical": {"name": "Limite Físico",
+                             "value": ceil(div(add(mul(attr("str"), 2), attr("bod"), attr("rea")), 3))},
+                "mental": {"name": "Limite Mental",
+                           "value": ceil(div(add(mul(attr("log"), 2), attr("int"), attr("wil")), 3))},
+                "social": {"name": "Limite Social",
+                           "value": ceil(div(add(mul(attr("cha"), 2), attr("wil"), ceil(attr("ess"))), 3))},
+                "page": 101,
+            },
+            "monitors": {
+                "physical": {"name": "Monitor de Condição Física", "boxes": add(ceil(div(attr("bod"), 2)), 8)},
+                "stun": {"name": "Monitor de Condição de Atordoamento", "boxes": add(ceil(div(attr("wil"), 2)), 8)},
+                "overflow": {"name": "Excesso", "boxes": attr("bod")},
+                "wounds": {"boxesPerPenalty": 3, "penalty": -1},
+                "page": 101,
+            },
+            "attributeTests": {
+                "composure": {"name": "Compostura", "pool": add(attr("cha"), attr("wil"))},
+                "judgeIntentions": {"name": "Julgar Intenções", "pool": add(attr("cha"), attr("int"))},
+                "memory": {"name": "Memória", "pool": add(attr("log"), attr("wil"))},
+                "liftCarry": {"name": "Erguer/Carregar", "pool": add(attr("bod"), attr("str"))},
+                "page": 152,
+            },
+            "lifting": {"unit": "kg", "lift": mul(attr("str"), 15), "overhead": mul(attr("str"), 5),
+                        "carry": mul(attr("str"), 10), "page": 152},
+            "movement": {"unit": "m por Turno de Combate", "walk": mul(attr("agi"), 2), "run": mul(attr("agi"), 4),
+                         "sprint": "metatypes.json#metatypes", "page": 162},
+            "livingPersona": {
+                "attack": attr("cha"), "sleaze": attr("int"), "dataProcessing": attr("log"),
+                "firewall": attr("wil"), "deviceRating": attr("res"), "page": 101,
+            },
+            "reputation": {
+                "streetCred": {"name": "Crédito de Rua", "value": floor(div(ref("karma.total"), 10))},
+                "notoriety": {"name": "Notoriedade", "base": 0, "min": 0,
+                              "note": "Some os modificadores reputation.notoriety das qualidades"},
+                "publicAwareness": {"name": "Consciência Pública", "base": 0},
+                "page": 368,
+            },
+        },
+        "creation": {
+            "karma": 25,
+            "qualities": {"positiveMax": 25, "negativeMax": 25},
+            "attributes": {"atNaturalMaxMax": 1, "pointsPerRating": 1,
+                           "note": "Só um atributo Físico ou Mental pode começar no máximo natural; "
+                                   "Trunfo, Magia e Ressonância não contam."},
+            "specialAttributes": ["edg", "mag", "res"],
+            "skills": {"maxRating": 6, "specializationsPerSkill": 1, "specializationCost": 1,
+                       "knowledgeMaxRating": 6,
+                       "knowledgePoints": mul(add(attr("int"), attr("log")), 2)},
+            "contacts": {"karma": mul(attr("cha"), 3), "minConnection": 1, "minLoyalty": 1, "minKarma": 2,
+                         "maxKarmaPerContact": 7},
+            "resources": {"karmaToNuyen": {"rate": 2000, "maxKarma": 10}, "nuyenCarryOver": 5000,
+                          "maxAvailability": 12, "maxDeviceRating": 6},
+            "karmaCarryOver": 7,
+            "purchases": {
+                "spell": {"karma": 5, "max": mul(attr("mag"), 2)},
+                "complexForm": {"karma": 4, "max": mul(attr("res"), 2)},
+                "boundSpiritService": {"karma": 1, "maxSpirits": attr("cha"), "force": attr("mag")},
+                "registeredSpriteTask": {"karma": 1, "maxSprites": attr("cha"), "level": attr("res")},
+                "fociForceMax": mul(attr("mag"), 2),
+                "powerPoint": {"karma": 5, "max": attr("mag"), "only": "mystic-adept"},
+            },
+            "page": 62,
+        },
+        "progression": {
+            "costs": {
+                "attribute": mul(ref("rating"), 5),
+                "activeSkill": mul(ref("rating"), 2),
+                "skillGroup": mul(ref("rating"), 5),
+                "knowledgeSkill": ref("rating"),
+                "languageSkill": ref("rating"),
+                "specialization": 7,
+                "newKnowledgeOrLanguage": 1,
+                "positiveQuality": mul(ref("quality.karma"), 2),
+                "removeNegativeQuality": mul(ref("quality.karma"), 2),
+                "spell": 5,
+                "complexForm": 4,
+                "initiation": add(10, mul(ref("grade"), 3)),
+                "submersion": add(10, mul(ref("grade"), 3)),
+                "note": "Custo para subir ao nível rating a partir do anterior; comprar vários níveis soma os degraus.",
+            },
+            "maxRating": {"skill": 12, "skillAptitude": 13},
+            "perDowntime": {"attributeRatings": 2, "skillRatings": 3, "skillGroupRatings": 1},
+            "training": {
+                "attribute": {"unit": "week", "time": ref("rating")},
+                "edge": None,
+                "skill": [{"ratings": [1, 4], "unit": "day", "time": ref("rating")},
+                          {"ratings": [5, 8], "unit": "week", "time": ref("rating")},
+                          {"ratings": [9, 13], "unit": "week", "time": mul(ref("rating"), 2)}],
+                "skillGroup": {"unit": "week", "time": mul(ref("rating"), 2)},
+                "specialization": {"unit": "month", "time": 1},
+                "instructorReduction": 0.25,
+            },
+            "page": 103,
+        },
+        "legality": {"R": "Restrito", "P": "Proibido"},
+    }
+    check_progression(book, mechanics["progression"]["costs"])
+    return mechanics
+
+
+def check_progression(book, costs):
+    text = book.page(107)
+    for row in re.finditer(r'^(\d+)((?: (?:\d+|—)){10})\s*$', text, re.M):
+        start = int(row.group(1))
+        for target, cell in zip(range(2, 12), row.group(2).split()):
+            if cell == "—":
+                continue
+            total = sum(evaluate(costs["attribute"], {"rating": r}) for r in range(start + 1, target + 1))
+            if total != int(cell):
+                raise ExtractionError(f"progressão de atributo {start}→{target}: livro {cell}, fórmula {total}")
+    # Rótulos como saem do PDF: "Grupo de Perícias / Ativas" e "Perícias de /
+    # Conhecimento" quebram a linha antes dos números.
+    rows = {"Perícia Ativa": "activeSkill", "Ativas": "skillGroup", "Conhecimento": "knowledgeSkill",
+            "Perícias de Idioma": "languageSkill"}
+    for label, key in rows.items():
+        m = re.search(rf'^{label} ((?:\d+ ){{11}}\d+)(?: (\d+|—))?\s*$', text, re.M)
+        if not m:
+            raise ExtractionError(f"progressão: linha {label!r} não encontrada na p. 107")
+        cells = [int(c) for c in m.group(1).split()] + ([int(m.group(2))] if m.group(2) not in (None, "—") else [])
+        for rating, cell in enumerate(cells, 1):
+            total = sum(evaluate(costs[key], {"rating": r}) for r in range(1, rating + 1))
+            if total != cell:
+                raise ExtractionError(f"progressão {label} nível {rating}: livro {cell}, fórmula {total}")
+
+
 CATALOGS = {
     "attributes.json": build_attributes,
     "metatypes.json": build_metatypes,
@@ -978,6 +1275,8 @@ CATALOGS = {
     "awakening.json": build_awakening,
     "skills.json": build_skills,
     "qualities.json": build_qualities,
+    "mechanics.json": build_mechanics,
+    "lifestyles.json": build_lifestyles,
 }
 
 EXPECTED_COUNTS = {
@@ -987,6 +1286,8 @@ EXPECTED_COUNTS = {
     "awakening.json": {"awakenings": 5},
     "skills.json": {"skills": 75, "groups": 15},
     "qualities.json": {"qualities": 59},
+    "mechanics.json": {},
+    "lifestyles.json": {"lifestyles": 7, "options": 5, "identities": 2},
 }
 
 

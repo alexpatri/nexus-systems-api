@@ -1,0 +1,194 @@
+{
+  "lifestyles": [
+    {
+      "id": "street",
+      "name": "Ruas",
+      "cost": 0,
+      "startingNuyen": {
+        "dice": 1,
+        "multiplier": 20
+      },
+      "desc": "O personagem vive nas ruas, ou nos esgotos, túneis de vapor, edifícios condenados, ou qualquer choupana temporária que puder encontrar. A comida está onde o personagem consegue encontrar, o banho é uma coisa do passado e a única segurança do personagem é a que ele cria para si mesmo. Este estilo de vida é a parte inferior da escada, habitada por vagabundos de todos os tipos.",
+      "page": 369
+    },
+    {
+      "id": "squatter",
+      "name": "Muquifo",
+      "cost": 500,
+      "startingNuyen": {
+        "dice": 2,
+        "multiplier": 40
+      },
+      "desc": "A vida fede no muquifo e, na maioria das vezes, o mesmo acontece com a personagem. Ela come nutri-soja de baixa qualidade e levedo, adicionando sabores com um conta- -gotas. Seu lar é um edifício de baixa qualidade, talvez um pouco consertado, possivelmente até mesmo convertido em quartel ou dividido em salas do tamanho de armários e compartilhado com outros posseiros. Ou talvez ela só alugue um tanque de dormir do tamanho de caixão durante a noite. A única coisa pior do que o estilo de vida do Muquifo é morar nas ruas.",
+      "page": 369
+    },
+    {
+      "id": "low",
+      "name": "Baixo",
+      "cost": 2000,
+      "startingNuyen": {
+        "dice": 3,
+        "multiplier": 60
+      },
+      "desc": "Com este estilo de vida, a personagem tem um apartamento e provavelmente ninguém a incomodará muito desde que mantenha a porta trancada. Ela pode contar com refeições regulares: a nutri-soja pode não ser muito gostosa, mas pelo menos é quente. Energia e água estão disponíveis durante os períodos designados de racionamento. A segurança depende da regularidade dos pagamentos para a gangue de rua local. Operários, criminosos menores e outras pessoas presas em uma rotina, apenas começando ou com azar tendem a ter estilos de vida Baixos.",
+      "page": 369
+    },
+    {
+      "id": "middle",
+      "name": "Médio",
+      "cost": 5000,
+      "startingNuyen": {
+        "dice": 4,
+        "multiplier": 100
+      },
+      "desc": "O estilo de vida Médio oferece uma boa casa ou apartamento com muito conforto. Personagens com este estilo de vida às vezes comem nutri-soja, assim como outros alimentos naturais mais caros, mas pelo menos o autocozinheiro tem um conjunto completo de torneiras de sabor. Este é o estilo de vida dos assalariados ou criminosos normais de certo sucesso.",
+      "page": 369
+    },
+    {
+      "id": "high",
+      "name": "Alto",
+      "cost": 10000,
+      "startingNuyen": {
+        "dice": 5,
+        "multiplier": 500
+      },
+      "desc": "Um estilo de vida Alto oferece uma casa ou apartamento espaçoso, boa comida e a tecnologia que facilita a vida. O personagem pode não ter as mesmas regalias dos maiorais, mas também não precisa de tantas pessoas atirando para protegê-la. Sua casa está em uma zona segura ou protegida por bons subornos sólidos para a polícia local contratada e chefe da gangue local. Ele tem um serviço de cuidados domésticos ou tecnologia suficiente para cuidar da maior parte das tarefas. Esta é a vida para os afortunados de ambos os lados da lei: gerentes de nível médio, chefes da máfia seniores e similares.",
+      "page": 369
+    },
+    {
+      "id": "luxury",
+      "name": "Luxuoso",
+      "cost": 100000,
+      "startingNuyen": {
+        "dice": 6,
+        "multiplier": 1000
+      },
+      "desc": "Este estilo de vida oferece o melhor de tudo: acomodações pomposas, muitos brinquedos de alta tecnologia, a melhor comida e bebida, você sabe. A personagem tem funcionários domésticos, serviço de limpeza ou drones sofisticados para fazer as tarefas. Ela mora em sua mansão enorme, apartamento chique ou suíte de cobertura em um hotel de classe. A segurança domiciliar é a melhor, com guardas bem treinados, segurança astral e tempos de resposta rápidos. Seu sistema de entretenimento doméstico é melhor do que nos cinemas públicos e acessível a partir de qualquer lugar da casa. Ela está na lista VIP em vários restaurantes e clubes exclusivos, reais e virtuais. Esta é a vida para os vencedores de grandes prêmios no mundo de Shadowrun: executivos de alto nível, figurões do governo, figurões da Yakuza e os poucos incursores das sombras que têm sucesso nos grandes trabalhos (e vivem a gastar o dinheiro).",
+      "page": 369
+    },
+    {
+      "id": "hospitalized",
+      "name": "Hospitalizado",
+      "primary": false,
+      "costPerDay": {
+        "basic": 500,
+        "intensive": 1000
+      },
+      "desc": "Este estilo de vida especial aplica-se apenas quando um personagem está doente ou ferido. O personagem está confinado a um hospital: um de verdade, uma clínica equipada como um hospital ou em um local privado com os equipamentos necessários. Os personagens não podem ter este estilo de vida. Eles apenas pagam por isso até ficarem bem ou irem à falência, o que vier primeiro.",
+      "page": 369
+    }
+  ],
+  "options": [
+    {
+      "id": "special-work-area",
+      "name": "Área de Trabalho Especializado",
+      "cost": {
+        "add": 1000
+      },
+      "desc": "O local é uma oficina, garagem, escritório, estúdio, ou outra forma de área grande que pode conter um espaço de trabalho especializado. Equipamento especializado pode ser montado “do jeito que você quiser” para que as tarefas sejam realizadas facilmente e rapidamente. Testes de perícias relevantes ao espaço têm seu Limite aumentado em 2 quando feitos neste espaço.",
+      "page": 370
+    },
+    {
+      "id": "extra-secure",
+      "name": "Extra Seguro",
+      "cost": {
+        "percent": 20
+      },
+      "desc": "A segurança onde você vive é particularmente rígida. A vizinhança pode ser envolta por um muro, vigiada por segurança contratada, patrulhada por uma gangue altruísta, ou estar perto de algum indivíduo particularmente poderoso com quem ninguém quer se meter. Seja qual for o caso, a segurança do espaço de vivência é acima da média para a área. Todas as rolagens de Resposta de Ameaça Elevada (veja p. 351) e outras de resposta de segurança são feitas um nível aprimorado do que a área normalmente seria.",
+      "page": 370
+    },
+    {
+      "id": "obscure",
+      "name": "Obscuro/Difícil de Encontrar",
+      "cost": {
+        "percent": 10
+      },
+      "desc": "Você mora onde? Na esquina do que com o quê? Sua casa é particularmente difícil de encontrar ou está numa área obscura e/ou pouco conhecida da cidade. Todo mundo precisa pedir informações ou ter um bom mapa para encontrar a sua casa, e ainda assim, costumam se perder. Você já desistiu da entrega de pizza, e prefere encontrar a entregadora no cruzamento mais próximo. Qualquer teste da Perícia Esgueirar (exceto do proprietário) feito nos arredores da residência são feitos com penalidade de –2.",
+      "page": 370
+    },
+    {
+      "id": "cramped",
+      "name": "Apertado",
+      "cost": {
+        "percent": -10
+      },
+      "desc": "Não é pequeno, só aconchegante — pelo menos de acordo com o senhorio. O espaço do lugar só é o suficiente para você viver, sem fazer muito além disso. Pode esquecer qualquer hobby ou trabalho, ou mesmo esticar as pernas ao sentar — simplesmente não há espaço. Qualquer teste de Perícia ligado a Lógica tem seu Limite reduzido em 2 (até um mínimo de 1) quando feito nesse espaço.",
+      "page": 370
+    },
+    {
+      "id": "dangerous-area",
+      "name": "Área Perigosa",
+      "cost": {
+        "percent": -20
+      },
+      "desc": "Não foi aqui onde meteram bala naquele cara ontem? A área onde você vive é particularmente perigosa e costuma ter crimes, incluindo violência. Segurança e agências da lei ficam sobrecarregadas na área, então só responderão à necessidade mais desesperada e serão mais lentas na resposta. As pessoas na área se acostumaram a cuidar de si mesmas. Ah, vai, pelo menos o aluguel é mais barato, é só não ficar com nada chique na sua casa. Qualquer Resposta de Ameaça Elevada (veja p. 352) ou outras rolagens similares de segurança são feitas como se essa área fosse de um nível menor do que é.",
+      "page": 370
+    }
+  ],
+  "rules": {
+    "teamPercentPerExtraPerson": 10,
+    "permanentMonths": 100
+  },
+  "identities": [
+    {
+      "id": "fake-sin",
+      "name": "SIN Falso",
+      "rating": {
+        "min": 1,
+        "max": 6
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            3
+          ]
+        },
+        "legality": "P"
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          2500
+        ]
+      },
+      "page": 442
+    },
+    {
+      "id": "fake-license",
+      "name": "Licença Falsa",
+      "rating": {
+        "min": 1,
+        "max": 6
+      },
+      "availability": {
+        "value": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            3
+          ]
+        },
+        "legality": "P"
+      },
+      "cost": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          200
+        ]
+      },
+      "page": 442
+    }
+  ]
+}

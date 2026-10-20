@@ -1,0 +1,725 @@
+{
+  "expressions": {
+    "ops": [
+      "add",
+      "ceil",
+      "div",
+      "floor",
+      "max",
+      "min",
+      "mul",
+      "sub"
+    ],
+    "refs": {
+      "attr.<id>": "Valor atual do atributo, já com ampliações",
+      "rating": "Nível do item, da qualidade ou do nível novo sendo comprado",
+      "grade": "Classe de iniciação ou submersão",
+      "karma.total": "Carma total ganho pelo personagem",
+      "quality.karma": "Custo ou bônus de carma da qualidade",
+      "matrix.dataProcessing": "Datagrama da persona em uso (ciberdeck, com-link ou persona viva)"
+    }
+  },
+  "derived": {
+    "initiative": {
+      "physical": {
+        "name": "Iniciativa",
+        "base": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.rea"
+            },
+            {
+              "ref": "attr.int"
+            }
+          ]
+        },
+        "dice": 1
+      },
+      "astral": {
+        "name": "Iniciativa Astral",
+        "base": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "attr.int"
+            },
+            2
+          ]
+        },
+        "dice": 2
+      },
+      "matrixAR": {
+        "name": "Iniciativa de RA da Matriz",
+        "base": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.rea"
+            },
+            {
+              "ref": "attr.int"
+            }
+          ]
+        },
+        "dice": 1
+      },
+      "matrixVRCold": {
+        "name": "Iniciativa de RV da Matriz (Sim Fechado)",
+        "base": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "matrix.dataProcessing"
+            },
+            {
+              "ref": "attr.int"
+            }
+          ]
+        },
+        "dice": 3
+      },
+      "matrixVRHot": {
+        "name": "Iniciativa de RV da Matriz (Sim Aberto)",
+        "base": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "matrix.dataProcessing"
+            },
+            {
+              "ref": "attr.int"
+            }
+          ]
+        },
+        "dice": 4
+      },
+      "maxDice": 5,
+      "page": 101
+    },
+    "limits": {
+      "physical": {
+        "name": "Limite Físico",
+        "value": {
+          "op": "ceil",
+          "of": [
+            {
+              "op": "div",
+              "of": [
+                {
+                  "op": "add",
+                  "of": [
+                    {
+                      "op": "mul",
+                      "of": [
+                        {
+                          "ref": "attr.str"
+                        },
+                        2
+                      ]
+                    },
+                    {
+                      "ref": "attr.bod"
+                    },
+                    {
+                      "ref": "attr.rea"
+                    }
+                  ]
+                },
+                3
+              ]
+            }
+          ]
+        }
+      },
+      "mental": {
+        "name": "Limite Mental",
+        "value": {
+          "op": "ceil",
+          "of": [
+            {
+              "op": "div",
+              "of": [
+                {
+                  "op": "add",
+                  "of": [
+                    {
+                      "op": "mul",
+                      "of": [
+                        {
+                          "ref": "attr.log"
+                        },
+                        2
+                      ]
+                    },
+                    {
+                      "ref": "attr.int"
+                    },
+                    {
+                      "ref": "attr.wil"
+                    }
+                  ]
+                },
+                3
+              ]
+            }
+          ]
+        }
+      },
+      "social": {
+        "name": "Limite Social",
+        "value": {
+          "op": "ceil",
+          "of": [
+            {
+              "op": "div",
+              "of": [
+                {
+                  "op": "add",
+                  "of": [
+                    {
+                      "op": "mul",
+                      "of": [
+                        {
+                          "ref": "attr.cha"
+                        },
+                        2
+                      ]
+                    },
+                    {
+                      "ref": "attr.wil"
+                    },
+                    {
+                      "op": "ceil",
+                      "of": [
+                        {
+                          "ref": "attr.ess"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                3
+              ]
+            }
+          ]
+        }
+      },
+      "page": 101
+    },
+    "monitors": {
+      "physical": {
+        "name": "Monitor de Condição Física",
+        "boxes": {
+          "op": "add",
+          "of": [
+            {
+              "op": "ceil",
+              "of": [
+                {
+                  "op": "div",
+                  "of": [
+                    {
+                      "ref": "attr.bod"
+                    },
+                    2
+                  ]
+                }
+              ]
+            },
+            8
+          ]
+        }
+      },
+      "stun": {
+        "name": "Monitor de Condição de Atordoamento",
+        "boxes": {
+          "op": "add",
+          "of": [
+            {
+              "op": "ceil",
+              "of": [
+                {
+                  "op": "div",
+                  "of": [
+                    {
+                      "ref": "attr.wil"
+                    },
+                    2
+                  ]
+                }
+              ]
+            },
+            8
+          ]
+        }
+      },
+      "overflow": {
+        "name": "Excesso",
+        "boxes": {
+          "ref": "attr.bod"
+        }
+      },
+      "wounds": {
+        "boxesPerPenalty": 3,
+        "penalty": -1
+      },
+      "page": 101
+    },
+    "attributeTests": {
+      "composure": {
+        "name": "Compostura",
+        "pool": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.cha"
+            },
+            {
+              "ref": "attr.wil"
+            }
+          ]
+        }
+      },
+      "judgeIntentions": {
+        "name": "Julgar Intenções",
+        "pool": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.cha"
+            },
+            {
+              "ref": "attr.int"
+            }
+          ]
+        }
+      },
+      "memory": {
+        "name": "Memória",
+        "pool": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.log"
+            },
+            {
+              "ref": "attr.wil"
+            }
+          ]
+        }
+      },
+      "liftCarry": {
+        "name": "Erguer/Carregar",
+        "pool": {
+          "op": "add",
+          "of": [
+            {
+              "ref": "attr.bod"
+            },
+            {
+              "ref": "attr.str"
+            }
+          ]
+        }
+      },
+      "page": 152
+    },
+    "lifting": {
+      "unit": "kg",
+      "lift": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "attr.str"
+          },
+          15
+        ]
+      },
+      "overhead": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "attr.str"
+          },
+          5
+        ]
+      },
+      "carry": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "attr.str"
+          },
+          10
+        ]
+      },
+      "page": 152
+    },
+    "movement": {
+      "unit": "m por Turno de Combate",
+      "walk": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "attr.agi"
+          },
+          2
+        ]
+      },
+      "run": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "attr.agi"
+          },
+          4
+        ]
+      },
+      "sprint": "metatypes.json#metatypes",
+      "page": 162
+    },
+    "livingPersona": {
+      "attack": {
+        "ref": "attr.cha"
+      },
+      "sleaze": {
+        "ref": "attr.int"
+      },
+      "dataProcessing": {
+        "ref": "attr.log"
+      },
+      "firewall": {
+        "ref": "attr.wil"
+      },
+      "deviceRating": {
+        "ref": "attr.res"
+      },
+      "page": 101
+    },
+    "reputation": {
+      "streetCred": {
+        "name": "Crédito de Rua",
+        "value": {
+          "op": "floor",
+          "of": [
+            {
+              "op": "div",
+              "of": [
+                {
+                  "ref": "karma.total"
+                },
+                10
+              ]
+            }
+          ]
+        }
+      },
+      "notoriety": {
+        "name": "Notoriedade",
+        "base": 0,
+        "min": 0,
+        "note": "Some os modificadores reputation.notoriety das qualidades"
+      },
+      "publicAwareness": {
+        "name": "Consciência Pública",
+        "base": 0
+      },
+      "page": 368
+    }
+  },
+  "creation": {
+    "karma": 25,
+    "qualities": {
+      "positiveMax": 25,
+      "negativeMax": 25
+    },
+    "attributes": {
+      "atNaturalMaxMax": 1,
+      "pointsPerRating": 1,
+      "note": "Só um atributo Físico ou Mental pode começar no máximo natural; Trunfo, Magia e Ressonância não contam."
+    },
+    "specialAttributes": [
+      "edg",
+      "mag",
+      "res"
+    ],
+    "skills": {
+      "maxRating": 6,
+      "specializationsPerSkill": 1,
+      "specializationCost": 1,
+      "knowledgeMaxRating": 6,
+      "knowledgePoints": {
+        "op": "mul",
+        "of": [
+          {
+            "op": "add",
+            "of": [
+              {
+                "ref": "attr.int"
+              },
+              {
+                "ref": "attr.log"
+              }
+            ]
+          },
+          2
+        ]
+      }
+    },
+    "contacts": {
+      "karma": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "attr.cha"
+          },
+          3
+        ]
+      },
+      "minConnection": 1,
+      "minLoyalty": 1,
+      "minKarma": 2,
+      "maxKarmaPerContact": 7
+    },
+    "resources": {
+      "karmaToNuyen": {
+        "rate": 2000,
+        "maxKarma": 10
+      },
+      "nuyenCarryOver": 5000,
+      "maxAvailability": 12,
+      "maxDeviceRating": 6
+    },
+    "karmaCarryOver": 7,
+    "purchases": {
+      "spell": {
+        "karma": 5,
+        "max": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "attr.mag"
+            },
+            2
+          ]
+        }
+      },
+      "complexForm": {
+        "karma": 4,
+        "max": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "attr.res"
+            },
+            2
+          ]
+        }
+      },
+      "boundSpiritService": {
+        "karma": 1,
+        "maxSpirits": {
+          "ref": "attr.cha"
+        },
+        "force": {
+          "ref": "attr.mag"
+        }
+      },
+      "registeredSpriteTask": {
+        "karma": 1,
+        "maxSprites": {
+          "ref": "attr.cha"
+        },
+        "level": {
+          "ref": "attr.res"
+        }
+      },
+      "fociForceMax": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "attr.mag"
+          },
+          2
+        ]
+      },
+      "powerPoint": {
+        "karma": 5,
+        "max": {
+          "ref": "attr.mag"
+        },
+        "only": "mystic-adept"
+      }
+    },
+    "page": 62
+  },
+  "progression": {
+    "costs": {
+      "attribute": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          5
+        ]
+      },
+      "activeSkill": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          2
+        ]
+      },
+      "skillGroup": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "rating"
+          },
+          5
+        ]
+      },
+      "knowledgeSkill": {
+        "ref": "rating"
+      },
+      "languageSkill": {
+        "ref": "rating"
+      },
+      "specialization": 7,
+      "newKnowledgeOrLanguage": 1,
+      "positiveQuality": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "quality.karma"
+          },
+          2
+        ]
+      },
+      "removeNegativeQuality": {
+        "op": "mul",
+        "of": [
+          {
+            "ref": "quality.karma"
+          },
+          2
+        ]
+      },
+      "spell": 5,
+      "complexForm": 4,
+      "initiation": {
+        "op": "add",
+        "of": [
+          10,
+          {
+            "op": "mul",
+            "of": [
+              {
+                "ref": "grade"
+              },
+              3
+            ]
+          }
+        ]
+      },
+      "submersion": {
+        "op": "add",
+        "of": [
+          10,
+          {
+            "op": "mul",
+            "of": [
+              {
+                "ref": "grade"
+              },
+              3
+            ]
+          }
+        ]
+      },
+      "note": "Custo para subir ao nível rating a partir do anterior; comprar vários níveis soma os degraus."
+    },
+    "maxRating": {
+      "skill": 12,
+      "skillAptitude": 13
+    },
+    "perDowntime": {
+      "attributeRatings": 2,
+      "skillRatings": 3,
+      "skillGroupRatings": 1
+    },
+    "training": {
+      "attribute": {
+        "unit": "week",
+        "time": {
+          "ref": "rating"
+        }
+      },
+      "edge": null,
+      "skill": [
+        {
+          "ratings": [
+            1,
+            4
+          ],
+          "unit": "day",
+          "time": {
+            "ref": "rating"
+          }
+        },
+        {
+          "ratings": [
+            5,
+            8
+          ],
+          "unit": "week",
+          "time": {
+            "ref": "rating"
+          }
+        },
+        {
+          "ratings": [
+            9,
+            13
+          ],
+          "unit": "week",
+          "time": {
+            "op": "mul",
+            "of": [
+              {
+                "ref": "rating"
+              },
+              2
+            ]
+          }
+        }
+      ],
+      "skillGroup": {
+        "unit": "week",
+        "time": {
+          "op": "mul",
+          "of": [
+            {
+              "ref": "rating"
+            },
+            2
+          ]
+        }
+      },
+      "specialization": {
+        "unit": "month",
+        "time": 1
+      },
+      "instructorReduction": 0.25
+    },
+    "page": 103
+  },
+  "legality": {
+    "R": "Restrito",
+    "P": "Proibido"
+  }
+}
