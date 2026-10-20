@@ -45,6 +45,11 @@
       "source": "traditions.json",
       "note": "Define os atributos de Resistência ao Dreno e o espírito de cada categoria de feitiço."
     },
+    "mentor": {
+      "source": "mentors.json",
+      "quality": "mentor-spirit",
+      "note": "Só com a qualidade Espírito Mentor; adeptos místicos escolhem a vantagem de mago ou de adepto."
+    },
     "initiative": {
       "rules": "mechanics.json#derived.initiative"
     },
@@ -178,7 +183,8 @@
         "page": 71,
         "uses": [
           "qualities.json",
-          "mechanics.json#creation.qualities"
+          "mechanics.json#creation.qualities",
+          "mentors.json"
         ]
       },
       {
@@ -242,6 +248,7 @@
     "lifestyles.json",
     "traditions.json",
     "spells.json",
-    "adept-powers.json"
+    "adept-powers.json",
+    "mentors.json"
   ]
 }

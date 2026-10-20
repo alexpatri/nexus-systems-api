@@ -197,6 +197,7 @@
       "name": "Espírito Mentor",
       "kind": "positive",
       "karma": 5,
+      "choice": "mentors.json#mentors",
       "desc": "Todos precisam de alguma ajuda na vida, mesmo que venha de alguém relativamente transparente e insubstancial. Espírito Mentor significa que a personagem segue um espírito patrono (veja Espíritos Mentores, p. 320) que a orienta em sua prática de magia e fornece algumas vantagens e desvantagens para suas habilidades naturais. Uma personagem pode mudar de espíritos mentores, mas só pode ter um espírito mentor de cada vez. Para mudar de espíritos mentores, a personagem precisa primeiro recomprar o espírito mentor atual como se fosse uma qualidade Negativa. Depois, ele pode comprar a qualidade novamente para seguir um novo espírito mentor. Este custo representa o esforço de se separar de um espírito mentor e se ligar a um novo. Cada tradição tem um nome diferente para um espírito mentor. Magos herméticos preferem o termo “espírito mentor”, enquanto xamãs usam a palavra “totem” para o espírito que seguem. Embora os nomes possam variar, a forma na qual o mentor funciona é a mesma. Esta qualidade só está disponível para personagens que tenham um nível de atributo Magia.",
       "page": 74
     },

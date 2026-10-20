@@ -476,6 +476,36 @@ def check_shadowrun(d, sysj, E, W):
             for i, m in enumerate(p.get('modifiers', [])):
                 sr_check_modifier(m, f"{where}[{i}]", E, skill_ids, p.get('parameter'))
 
+    mentors = load(d, 'mentors.json')
+    if mentors and powers:
+        power_by_id = {p['id']: p for p in powers['powers']}
+        quality_by_id = {q['id']: q for q in qualities['qualities']}
+        for m in mentors['mentors']:
+            where = f"mentor {m['id']}"
+            for g in m['adeptGrants']:
+                pw = power_by_id.get(g['power'])
+                if pw is None: E(f"{where}: poder inexistente {g['power']}"); continue
+                per_level = isinstance(pw['powerPoints'], dict) and ('perLevel' in pw['powerPoints'] or 'byLevel' in pw['powerPoints'])
+                if ('levels' in g) != per_level: E(f"{where}: levels só vale para poderes com custo por nível ({g['power']})")
+                sel = g.get('parameter')
+                if sel is None: continue
+                if not pw.get('parameter'): E(f"{where}: {g['power']} não tem parâmetro para restringir"); continue
+                if isinstance(sel, str):
+                    if sel not in pw['parameter'].get('options', []): E(f"{where}: {sel} não é opção de {g['power']}")
+                else:
+                    for gid in sel.get('groups', []):
+                        if gid not in group_ids: E(f"{where}: grupo inexistente {gid}")
+                    for c in sel.get('categories', []) + sel.get('exceptCategories', []):
+                        if c not in SR_SKILL_CATEGORIES: E(f"{where}: categoria inexistente {c}")
+            dq = m.get('disadvantageQuality')
+            if dq:
+                q = quality_by_id.get(dq['quality'])
+                if q is None: E(f"{where}: qualidade inexistente {dq['quality']}"); continue
+                factors = {f['id']: {o['id'] for o in f['options']} for f in q['karma'].get('sum', [])} \
+                    if isinstance(q['karma'], dict) else {}
+                for fid, oid in dq.get('options', {}).items():
+                    if oid not in factors.get(fid, set()): E(f"{where}: opção {fid}={oid} inexistente em {q['id']}")
+
     for l in lifestyles['identities']:
         if l['availability']['legality'] not in mech['legality']:
             E(f"identidade {l['id']}: legalidade fora do vocabulário")

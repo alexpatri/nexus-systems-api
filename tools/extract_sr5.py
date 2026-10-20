@@ -584,8 +584,40 @@ ACTIVATIONS = {"Ação Simples": "simple", "Ação Livre": "free",
                "Ação de Interrupção (–5 do Valor de Iniciativa)": "interrupt"}
 
 
+def grant(power, levels=None, **extra):
+    return {"power": power, **({"levels": levels} if levels else {}), **extra}
+
+
+# (id, nome, poderes gratuitos de adepto, qualidade imposta pela desvantagem)
+MENTORS = [
+    ("eagle", "Águia", [grant("combat-sense", 1)],
+     {"quality": "allergy", "options": {"prevalence": "common", "severity": "moderate"}, "karma": 0,
+      "note": "Alergia a poluentes, sem o bônus de carma"}),
+    ("dog", "Cão", [grant("improved-sense", count=2)], None),
+    ("raven", "Corvo", [grant("traceless-walk"), grant("voice-control", 1)], None),
+    ("cat", "Gato", [grant("light-body", 2)], None),
+    ("wise-warrior", "Guerreiro Sábio", [grant("improved-ability", 1, parameter={"categories": ["combat"]})], None),
+    ("wolf", "Lobo", [grant("attribute-boost", 2, parameter="agi")], None),
+    # "Uma perícia atlética" é lida como uma perícia do grupo Atletismo.
+    ("sea", "Mar", [grant("improved-ability", 1, parameter={"groups": ["athletics"]})], None),
+    # O livro diz "1 nível gratuito de Precisão Ampliada", mas o poder tem custo
+    # fixo por perícia, sem níveis.
+    ("dragonslayer", "Matador de Dragões", [grant("enhanced-accuracy"), grant("danger-sense", 1)], None),
+    ("mountain", "Montanha", [grant("mystic-armor", 1)], None),
+    ("thunderbird", "Pássaro-Trovão", [grant("critical-strike")], None),
+    ("fire-bringer", "Portador da Chama",
+     [grant("improved-ability", 1, parameter={"exceptCategories": ["combat"]})], None),
+    ("rat", "Rato", [grant("natural-immunity", 2)], None),
+    ("seducer", "Sedutor", [grant("improved-ability", 1, parameter={"groups": ["acting", "influence"]})], None),
+    ("serpent", "Serpente", [grant("kinesics", 2)], None),
+    ("shark", "Tubarão", [grant("killing-hands")], None),
+    ("bear", "Urso", [grant("rapid-healing", 1)], None),
+]
+
+
 # Qualidades cuja compra exige escolher um item de outro catálogo.
-QUALITY_CHOICES = {"spirit-affinity": "traditions.json#spiritTypes"}
+QUALITY_CHOICES = {"spirit-affinity": "traditions.json#spiritTypes",
+                   "mentor-spirit": "mentors.json#mentors"}
 
 
 # --- leitura do livro ---
@@ -1679,6 +1711,10 @@ def build_rituals(book):
         heads.append(found[0])
     if heads != sorted(heads):
         raise ExtractionError("rituais fora da ordem do livro")
+    unknown = [t for i, t in enumerate(texts[:-1]) if i > heads[0] and texts[i + 1].startswith("(")
+               and is_heading(t) and i not in heads]
+    if unknown:
+        raise ExtractionError(f"rituais fora do vocabulário: {unknown}")
 
     intro = book.prose("\n".join(texts[1:heads[0]]))
     names = [name for _, name in RITUAL_KEYWORDS]
@@ -1797,6 +1833,57 @@ def build_adept_powers(book):
     }
 
 
+MENTOR_SIDEBARS = {320: ("FOCOS DE QI", None), 321: ("EXEMPLO", None), 322: ("O LADO SOMBRIO", None)}
+
+
+def build_mentors(book):
+    lines, _ = flow(book, 320, 324, MENTOR_SIDEBARS)
+    texts = [line.strip() for _, line in lines]
+    texts = texts[:texts.index("INICIAÇÃO")]
+    pages = [p for p, _ in lines]
+    heads = []
+    for mid, name, *_ in MENTORS:
+        found = [i for i, t in enumerate(texts) if t == name.upper()]
+        if len(found) != 1:
+            raise ExtractionError(f"mentor {name}: {len(found)} cabeçalhos encontrados")
+        heads.append(found[0])
+    if heads != sorted(heads):
+        raise ExtractionError("mentores fora da ordem do livro")
+    known = {name.upper() for _, name, *_ in MENTORS} | {"VANTAGENS", "DESVANTAGENS"}
+    unknown = [t for t in texts[heads[0]:] if is_heading(t) and t not in known]
+    if unknown:
+        raise ExtractionError(f"mentores fora do vocabulário: {unknown}")
+
+    intro = book.prose("\n".join(texts[1:heads[0]]))
+    require(intro, "Adeptos místicos devem escolher a vantagem de adepto ou de mago quando aceitam o espírito "
+            "mentor, e não podem mais mudá-la", "mentores")
+    power_names = {pid: name for pid, name, *_ in ADEPT_POWERS}
+
+    out = []
+    for (mid, name, grants, quality), h, nxt in zip(MENTORS, heads, heads[1:] + [len(texts)]):
+        text = book.prose("\n".join(texts[h + 1:nxt]))
+        m = re.match(r'(.+?) VANTAGENS Todos: (.+?) Mago: (.+?) Adepto: (.+?) DESVANTAGENS (.+?) '
+                     r'Arquétipos Similares: (.+?)$', text)
+        if not m:
+            raise ExtractionError(f"mentor {name}: blocos Vantagens/Desvantagens fora do formato")
+        desc, everyone, magician, adept, drawback, similar = (g.strip() for g in m.groups())
+        for g in grants:
+            require(fold(adept), fold(power_names[g["power"]]), f"mentor {name}, vantagem de adepto")
+            amount = g.get("levels") or g.get("count")
+            if amount and not re.search(rf'\b{amount} (?:níveis|nível|poderes)', adept):
+                raise ExtractionError(f"mentor {name}: vantagem de adepto não concede {amount} de {g['power']}")
+        entry = {"id": mid, "name": name, "desc": desc,
+                 "advantages": {"all": everyone, "magician": magician, "adept": adept},
+                 "adeptGrants": grants, "disadvantage": drawback}
+        if quality:
+            require(drawback, "Alergia (poluentes, moderada)", f"mentor {name}")
+            entry["disadvantageQuality"] = quality
+        entry.update({"similar": [s.strip().rstrip(".") for s in similar.split(",")], "page": pages[h]})
+        out.append(entry)
+
+    return {"desc": intro, "rules": {"mysticAdeptChooses": ["magician", "adept"], "page": 320}, "mentors": out}
+
+
 CATALOGS = {
     "attributes.json": build_attributes,
     "metatypes.json": build_metatypes,
@@ -1809,6 +1896,7 @@ CATALOGS = {
     "traditions.json": build_traditions,
     "spells.json": build_spells,
     "adept-powers.json": build_adept_powers,
+    "mentors.json": build_mentors,
 }
 
 EXPECTED_COUNTS = {
@@ -1823,6 +1911,7 @@ EXPECTED_COUNTS = {
     "traditions.json": {"traditions": 2, "spiritTypes": 6},
     "spells.json": {"spells": 84, "categories": 5, "rituals": 9},
     "adept-powers.json": {"powers": 25},
+    "mentors.json": {"mentors": 16},
 }
 
 
