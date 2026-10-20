@@ -1,0 +1,923 @@
+{
+  "categories": [
+    {
+      "id": "motorcycles",
+      "name": "Motocicletas",
+      "skill": "pilot-ground-craft"
+    },
+    {
+      "id": "cars",
+      "name": "Carros",
+      "skill": "pilot-ground-craft"
+    },
+    {
+      "id": "trucks",
+      "name": "Caminhões e Vans",
+      "skill": "pilot-ground-craft"
+    },
+    {
+      "id": "boats",
+      "name": "Barcos",
+      "skill": "pilot-watercraft"
+    },
+    {
+      "id": "submarines",
+      "name": "Submarinos",
+      "skill": "pilot-watercraft"
+    },
+    {
+      "id": "fixed-wing",
+      "name": "Aeronaves de Asas Fixas",
+      "skill": "pilot-aircraft"
+    },
+    {
+      "id": "rotorcraft",
+      "name": "Asas Rotativas",
+      "skill": "pilot-aircraft"
+    },
+    {
+      "id": "vtol",
+      "name": "VTOL/VSTOL",
+      "skill": "pilot-aircraft"
+    },
+    {
+      "id": "microdrones",
+      "name": "Microdrones",
+      "skill": null
+    },
+    {
+      "id": "minidrones",
+      "name": "Minidrones",
+      "skill": null
+    },
+    {
+      "id": "small-drones",
+      "name": "Drones Pequenos",
+      "skill": null
+    },
+    {
+      "id": "medium-drones",
+      "name": "Drones Médios",
+      "skill": null
+    },
+    {
+      "id": "large-drones",
+      "name": "Drones Grandes",
+      "skill": null
+    }
+  ],
+  "vehicles": [
+    {
+      "id": "dodge-scoot",
+      "name": "Dodge Scoot",
+      "category": "motorcycles",
+      "skill": "pilot-ground-craft",
+      "handling": {
+        "onRoad": 4,
+        "offRoad": 3
+      },
+      "speed": 3,
+      "acceleration": 1,
+      "body": 4,
+      "armor": 4,
+      "pilot": 1,
+      "sensor": 1,
+      "seats": 1,
+      "availability": null,
+      "cost": 3000,
+      "desc": "Essa é uma lambreta elétrica com uma velocidade máxima de não me faça rir. É compacta, econômica, e super acessível, mas nenhum incursor das sombras de respeito seria pego andando em uma.",
+      "page": 463
+    },
+    {
+      "id": "harley-davidson-scorpion",
+      "name": "Harley-Davidson Scorpion",
+      "category": "motorcycles",
+      "skill": "pilot-ground-craft",
+      "handling": {
+        "onRoad": 4,
+        "offRoad": 3
+      },
+      "speed": 4,
+      "acceleration": 2,
+      "body": 8,
+      "armor": 9,
+      "pilot": 1,
+      "sensor": 2,
+      "seats": 1,
+      "availability": null,
+      "cost": 12000,
+      "desc": "Esta moto é uma estradeira clássica, pesada, fortemente cromada, blindada e com estilo para intimidação. Muito popular com um certo tipo de gangues e com orks e trolls grandes e durões que não se preocupam com pequenas coisas como “incorporar um clichê”. Esta moto é resistente o suficiente para ser usada no circuito de motos de combate.",
+      "page": 463
+    },
+    {
+      "id": "yamaha-growler",
+      "name": "Yamaha Growler",
+      "category": "motorcycles",
+      "skill": "pilot-ground-craft",
+      "handling": {
+        "onRoad": 4,
+        "offRoad": 5
+      },
+      "speed": {
+        "onRoad": 3,
+        "offRoad": 4
+      },
+      "acceleration": 1,
+      "body": 5,
+      "armor": 5,
+      "pilot": 1,
+      "sensor": 1,
+      "seats": 1,
+      "availability": null,
+      "cost": 5000,
+      "desc": "Essa é uma moto off-road usada em motocross e outros eventos de esportes radicais, geralmente vista em fotos e vídeos com tanto a moto quanto seu piloto cobertos de poeira. É muito popular com caçadores de emoção, aficionados pela natureza, e traficantes de drogas de carga leve.",
+      "page": 463
+    },
+    {
+      "id": "suzuki-mirage",
+      "name": "Suzuki Mirage",
+      "category": "motorcycles",
+      "skill": "pilot-ground-craft",
+      "handling": {
+        "onRoad": 5,
+        "offRoad": 3
+      },
+      "speed": 6,
+      "acceleration": 3,
+      "body": 5,
+      "armor": 6,
+      "pilot": 1,
+      "sensor": 2,
+      "seats": 1,
+      "availability": null,
+      "cost": 8500,
+      "desc": "Esta moto de corrida japonesa é uma máquina de velocidade elegante, rápida e popular com o outro tipo gangue — vale mencionar que tanto a Scorpion quanto a Mirage são populares com os Cortadores, mas os Ancestrais demonstram uma preferência notável pela Mirage e suas primas e concorrentes. Como a Scorpion, a Mirage também é usada no circuito de motos de combate.",
+      "page": 463
+    },
+    {
+      "id": "chrysler-nissan-jackrabbit",
+      "name": "Chrysler-Nissan Jackrabbit",
+      "category": "cars",
+      "skill": "pilot-ground-craft",
+      "handling": {
+        "onRoad": 4,
+        "offRoad": 3
+      },
+      "speed": 3,
+      "acceleration": 2,
+      "body": 8,
+      "armor": 4,
+      "pilot": 1,
+      "sensor": 2,
+      "seats": 2,
+      "availability": null,
+      "cost": 10000,
+      "desc": "Esse subcompacto barato, popular e elétrico foi fabricado por décadas na América do Norte. Mesmo após a produção norte-americana cessar, dias de imitações genéricas foram fabricadas por todo o terceiro mundo. A quantidade absurda de Chrysler-Nissan Jackrabbits na estrada significa que o modelo antigo ainda deve receber suporte.",
+      "page": 463
+    },
+    {
+      "id": "honda-spirit",
+      "name": "Honda Spirit",
+      "category": "cars",
+      "skill": "pilot-ground-craft",
+      "handling": {
+        "onRoad": 3,
+        "offRoad": 2
+      },
+      "speed": 4,
+      "acceleration": 2,
+      "body": 8,
+      "armor": 6,
+      "pilot": 1,
+      "sensor": 2,
+      "seats": 2,
+      "availability": null,
+      "cost": 12000,
+      "desc": "Esse triciclo elegante de dois lugares possui um motor elétrico e é muito popular com o proletariado do cortiço. O spirit tem um capacete-bolha para clima ruim, com um revestimento químico que “garante a neutralização de 89 por cento da chuva ácida”.",
+      "page": 463
+    },
+    {
+      "id": "hyundai-shin-hyung",
+      "name": "Hyundai Shin-Hyung",
+      "category": "cars",
+      "skill": "pilot-ground-craft",
+      "handling": {
+        "onRoad": 5,
+        "offRoad": 4
+      },
+      "speed": 6,
+      "acceleration": 3,
+      "body": 10,
+      "armor": 6,
+      "pilot": 1,
+      "sensor": 2,
+      "seats": 4,
+      "availability": null,
+      "cost": 28500,
+      "desc": "Esse sedan barato esportivo de quatro portas é um carro rápido e poderoso para a garotada corp se exibir às suas amigas de uma forma socialmente aceitável e construtiva. Disponível direto da fábrica por preço baixo, o Shin-Hyung costuma ser personalizado até o talo por entusiastas da modificação e de rachas, muitas vezes se tornando muito mais funcional e quase irreconhecível. O Shin-Hyung é barato, rápido, e muito manobrável. O que mais você poderia querer? Esses fatos o tornaram muito popular entre elementos das Tríades e da Yakuza assim como gangues de rua endinheiradas e riquinhos",
+      "page": 463
+    },
+    {
+      "id": "eurocar-westwind-3000",
+      "name": "Eurocar Westwind 3000",
+      "category": "cars",
+      "skill": "pilot-ground-craft",
+      "handling": {
+        "onRoad": 6,
+        "offRoad": 4
+      },
+      "speed": 7,
+      "acceleration": 3,
+      "body": 10,
+      "armor": 8,
+      "pilot": 3,
+      "sensor": 5,
+      "seats": 2,
+      "availability": {
+        "value": 13,
+        "legality": null
+      },
+      "cost": 110000,
+      "desc": "Essa máquina baixa, elegante e clássica mistura prazer e negócios com perfeição. Situada perfeitamente na fronteira entre o luxo e desempenho, esse é um carro esportivo turbinado que não passa de um sonho para os pobretões tentando sair das sombras. Suas linhas sexys e motor poderoso o tornam consistentemente poderoso entre entusiastas de carros potentes.",
+      "page": 463
+    },
+    {
+      "id": "ford-americar",
+      "name": "Ford Americar",
+      "category": "cars",
+      "skill": "pilot-ground-craft",
+      "handling": {
+        "onRoad": 4,
+        "offRoad": 3
+      },
+      "speed": 3,
+      "acceleration": 2,
+      "body": 11,
+      "armor": 6,
+      "pilot": 1,
+      "sensor": 2,
+      "seats": 4,
+      "availability": null,
+      "cost": 16000,
+      "desc": "Esse sedan de quatro portas possui um ponto de preço acessível, um porta-malas espaçoso, e funções de segurança que, combinados, o tornaram o carro família mais vendido na América do Norte por décadas antes de perder o posto para o Mercury Comet. O Americar é econômico e confiável, mas não rápido nem sexy. Se você precisa transportar quatro meta-humanos do ponto A ao ponto B, um Ford Americar é provavelmente a forma mais direta e anônima de fazê-lo. Não é chamativo, muito menos estiloso, mas às vezes o chamativo faz você morrer.",
+      "page": 463
+    },
+    {
+      "id": "saeder-krupp-bentley-concordat",
+      "name": "Saeder-Krupp-Bentley Concordat",
+      "category": "cars",
+      "skill": "pilot-ground-craft",
+      "handling": {
+        "onRoad": 5,
+        "offRoad": 4
+      },
+      "speed": 5,
+      "acceleration": 2,
+      "body": 12,
+      "armor": 12,
+      "pilot": 2,
+      "sensor": 4,
+      "seats": 4,
+      "availability": {
+        "value": 10,
+        "legality": null
+      },
+      "cost": 65000,
+      "desc": "Esse sedan de luxo é estiloso, imponente, e impressionante. É rápido e poderoso, seguro e confortável, claramente opulente, e o mais importante, um símbolo de status. O SK-Bentley Concordat é o tipo de carro que celebridades e rappers de orxploitation dirigem; um incursor num volante desses certamente tirou a sorte grande. Ou o roubou.",
+      "page": 463
+    },
+    {
+      "id": "mitsubishi-nightsky",
+      "name": "Mitsubishi Nightsky",
+      "category": "cars",
+      "skill": "pilot-ground-craft",
+      "handling": {
+        "onRoad": 4,
+        "offRoad": 3
+      },
+      "speed": 4,
+      "acceleration": 2,
+      "body": 15,
+      "armor": 15,
+      "pilot": 3,
+      "sensor": 5,
+      "seats": 8,
+      "availability": {
+        "value": 16,
+        "legality": null
+      },
+      "cost": 320000,
+      "desc": "Decadente, segura e de alta tecnologia, essa limusine blindada não é para você. Ela serve para executivos de corp, astros da mídia, e Srs. Johnson; só na companhia deles você curtirá seu interior espaçoso e amenidades luxuosas.",
+      "page": 463
+    },
+    {
+      "id": "toyota-gopher",
+      "name": "Toyota Gopher",
+      "category": "trucks",
+      "skill": "pilot-ground-craft",
+      "handling": {
+        "onRoad": 5,
+        "offRoad": 5
+      },
+      "speed": 4,
+      "acceleration": 2,
+      "body": 14,
+      "armor": 10,
+      "pilot": 1,
+      "sensor": 2,
+      "seats": 3,
+      "availability": null,
+      "cost": 25000,
+      "desc": "Esta é uma pick-up clássica com grande suspensão para estrada de terra, manejo superior e uma base de clientes leais. Este projeto de baixa manutenção é um pouco ultrapassado, mas é geralmente usado em paí- -ses do terceiro mundo e nas áreas rurais, especialmente na NANA. Não é a coisa mais magi que poderia dirigir, embora seu motor poderoso e espaço de armazenamento certamente possam vir a calhar se você tiver algum transporte pesado para fazer.",
+      "page": 463
+    },
+    {
+      "id": "gmc-bulldog",
+      "name": "Van GMC Bulldog",
+      "category": "trucks",
+      "skill": "pilot-ground-craft",
+      "handling": {
+        "onRoad": 3,
+        "offRoad": 3
+      },
+      "speed": 3,
+      "acceleration": 1,
+      "body": 16,
+      "armor": 12,
+      "pilot": 1,
+      "sensor": 2,
+      "seats": 6,
+      "availability": null,
+      "cost": 35000,
+      "desc": "Esta campeã de vendas de longa data da GM é uma van de entrega espaçosa (e blindada!) preferida por todos, desde empresas legítimas de transporte e logística até agências de segurança, grupos mafiosos pesados e incursores das sombras. Tem muito espaço para as pessoas, equipamentos ou o que quer que você precise transportar, além de um motor e chassis que podem aguentar uma tonelada de dano e continuar funcionando.",
+      "page": 463
+    },
+    {
+      "id": "rover-model-2072",
+      "name": "Rover Model 2072",
+      "category": "trucks",
+      "skill": "pilot-ground-craft",
+      "handling": {
+        "onRoad": 5,
+        "offRoad": 5
+      },
+      "speed": 4,
+      "acceleration": 2,
+      "body": 15,
+      "armor": 12,
+      "pilot": 2,
+      "sensor": 4,
+      "seats": 6,
+      "availability": {
+        "value": 10,
+        "legality": null
+      },
+      "cost": 68000,
+      "desc": "Maior e mais poderoso do que o necessário, essa van de luxo é top de linha na sua classe, e um símbolo de status tão forte quanto o Bentley. Além disso, seu tamanho é intimidador e possui todos os acessórios para viajar fora da estrada. Ou, mais geralmente, pelas vizinhanças urbanas de elite. Esse veículo caro está ganhando cada vez mais popularidade com equipes de segurança discretas por causa da sua combinação de status e segurança.",
+      "page": 463
+    },
+    {
+      "id": "ares-roadmaster",
+      "name": "Ares Roadmaster",
+      "category": "trucks",
+      "skill": "pilot-ground-craft",
+      "handling": {
+        "onRoad": 3,
+        "offRoad": 3
+      },
+      "speed": 3,
+      "acceleration": 1,
+      "body": 18,
+      "armor": 18,
+      "pilot": 3,
+      "sensor": 3,
+      "seats": 8,
+      "availability": {
+        "value": 8,
+        "legality": null
+      },
+      "cost": 52000,
+      "desc": "Esta é um carro blindado de combate, meu chapa, e você deve ser grato de poder comprá-lo legalmente. Legitimamente usado para mover produtos por terra que necessitem de transporte seguro, o Roadmaster pode ter a velocidade e o manejo do tanque que é e pode ser qualquer coisa, menos sutil, mas pode aguentar confiavelmente armas leves e até mesmo granadas. Para muitas equipes, é uma troca que vale a pena.",
+      "page": 463
+    },
+    {
+      "id": "samuvani-criscraft-otter",
+      "name": "Samuvani Criscraft Otter",
+      "category": "boats",
+      "skill": "pilot-watercraft",
+      "handling": 4,
+      "speed": 3,
+      "acceleration": 2,
+      "body": 12,
+      "armor": 6,
+      "pilot": 2,
+      "sensor": 2,
+      "seats": 8,
+      "availability": null,
+      "cost": 21000,
+      "desc": "Esta embarcação de tamanho médio é usada principalmente para navegação recreativa, pesca, transporte leve e trabalhos de utilidades. Uma embarcação de cinco metros de comprimento, com um casco aberto de fibra de vidro, a Otter é um barco equilibrado de uso geral que não se destaca em qualquer área.",
+      "page": 464
+    },
+    {
+      "id": "yongkang-gala-trinity",
+      "name": "Yongkang Gala Trinity",
+      "category": "boats",
+      "skill": "pilot-watercraft",
+      "handling": 5,
+      "speed": 6,
+      "acceleration": 3,
+      "body": 10,
+      "armor": 6,
+      "pilot": 1,
+      "sensor": 1,
+      "seats": 3,
+      "availability": {
+        "value": 8,
+        "legality": null
+      },
+      "cost": 37000,
+      "desc": "Essa pequena lancha rápida é conhecida como uma nau de contrabando. Ela é geralmente construída na hora usando componentes preparados e um kit de casco, montada com sua carga diretamente dentro do casco; no local de entrega, a Trinity é desmontada em torno da sua carga, com o lucro do contrabando compensando pelo fato do barco ter sido usado uma só vez.",
+      "page": 464
+    },
+    {
+      "id": "morgan-cutlass",
+      "name": "Morgan Cutlass",
+      "category": "boats",
+      "skill": "pilot-watercraft",
+      "handling": 5,
+      "speed": 4,
+      "acceleration": 2,
+      "body": 16,
+      "armor": 10,
+      "pilot": 3,
+      "sensor": 5,
+      "seats": 6,
+      "availability": {
+        "value": 14,
+        "legality": "R"
+      },
+      "cost": 96000,
+      "desc": "Esse barco de patrulha comum vem equipado com um par de suportes de armas pesados e manuais (geralmente com metralhadoras leves) e um suíte de sensores de alta qualidade.",
+      "page": 464
+    },
+    {
+      "id": "proteus-lamprey",
+      "name": "Proteus Lamprey",
+      "category": "submarines",
+      "skill": "pilot-watercraft",
+      "handling": 3,
+      "speed": 2,
+      "acceleration": 1,
+      "body": 6,
+      "armor": 6,
+      "pilot": 1,
+      "sensor": 3,
+      "seats": 4,
+      "availability": null,
+      "cost": 14000,
+      "desc": "Esse trenó marítimo subaquático é usado para inspeção e transporte submerso, com assentos para até quatro passageiros equipados com roupas de mergulho (apesar de similar a um submarino, o Lamprey não protege seus passageiros dos rigores das profundezas). Modelos militares do lamprey são usados em inserções aquáticas por forças navais de operações especiais com equipamento especializado, como os SEAL Teams da Marinha dos EUCA. O lamprey também possui um armazenamento de drone para um único drone marítimo de tamanho médio ou menor para explorar em maiores profundezas do que os passageiros poderiam suportar.",
+      "page": 464
+    },
+    {
+      "id": "vulkan-electronaut",
+      "name": "Vulkan Electronaut",
+      "category": "submarines",
+      "skill": "pilot-watercraft",
+      "handling": 3,
+      "speed": 3,
+      "acceleration": 1,
+      "body": 12,
+      "armor": 10,
+      "pilot": 4,
+      "sensor": 4,
+      "seats": 2,
+      "availability": {
+        "value": 10,
+        "legality": null
+      },
+      "cost": 108000,
+      "desc": "Esse mini-sub de dois lugares é o mais barato da sua classe e está disponível numa seleção diversa de modelos utilitários. Ele costuma ser usado para patrulhas e reconhecimento de curto alcance e incursões de reabastecimento, mas também pode ser aproveitado por equipes de Incursores das Sombras procurando formas inesperadas de abordar alvos náuticos.",
+      "page": 464
+    },
+    {
+      "id": "artemis-industries-nightwing",
+      "name": "Artemis Industries Nightwing",
+      "category": "fixed-wing",
+      "skill": "pilot-aircraft",
+      "handling": 6,
+      "speed": 3,
+      "acceleration": 1,
+      "body": 4,
+      "armor": 0,
+      "pilot": 1,
+      "sensor": 1,
+      "seats": 1,
+      "availability": {
+        "value": 8,
+        "legality": null
+      },
+      "cost": 20000,
+      "desc": "A Nightwing é um velho modelo de ultraleve, similar aqueles que se originaram no fim do século vinte. A Nightwing possui um motor elétrico encoberto para minimizar o som da aeronave e reduzir emissões de calor — apesar de publicamente servir para prevenir poluição sonora e impacto ambiental, isso tem o efeito colateral de tornar a aeronave pequena e similar a um planador muito furtiva. A Nightwing é muito popular com entusiastas de aviação rural, contrabandistas, e qualquer um que goste de uma inserção furtiva.",
+      "page": 464
+    },
+    {
+      "id": "cessna-c750",
+      "name": "Cessna C750",
+      "category": "fixed-wing",
+      "skill": "pilot-aircraft",
+      "handling": 3,
+      "speed": 5,
+      "acceleration": 3,
+      "body": 18,
+      "armor": 4,
+      "pilot": 2,
+      "sensor": 2,
+      "seats": 4,
+      "availability": {
+        "value": 8,
+        "legality": null
+      },
+      "cost": 146000,
+      "desc": "Esse bimotor civil pode carregar passageiros, transportar carga leve, ou servir como avião de vigilância. Ser um avião econômico e tendo uma estrutura leve, seu preço acessível e comodidade, garantiu que ele também seja usado em operações de contrabando.",
+      "page": 464
+    },
+    {
+      "id": "renault-fiat-fokker-tundra-9",
+      "name": "Renault-Fiat Fokker Tundra-9",
+      "category": "fixed-wing",
+      "skill": "pilot-aircraft",
+      "handling": 3,
+      "speed": 4,
+      "acceleration": 3,
+      "body": 20,
+      "armor": 10,
+      "pilot": 3,
+      "sensor": 3,
+      "seats": 24,
+      "availability": {
+        "value": 12,
+        "legality": null
+      },
+      "cost": 300000,
+      "desc": "Esse jato anfíbio é perfeito para carga pesada e transporte de pessoas e não precisa de uma pista de pouso para aterrissar. É usado por equipes corporativas de logística para reabastecer instalações distantes e por caçadores tanto legais quanto ilegais de presas Despertas. Esse veículo é anfíbio e vem com melhorias de flutuabilidade e flutuação de fábrica, então ele pode decolar a partir da terra e da água.",
+      "page": 464
+    },
+    {
+      "id": "ares-dragon",
+      "name": "Ares Dragon",
+      "category": "rotorcraft",
+      "skill": "pilot-aircraft",
+      "handling": 4,
+      "speed": 4,
+      "acceleration": 3,
+      "body": 22,
+      "armor": 8,
+      "pilot": 3,
+      "sensor": 3,
+      "seats": 18,
+      "availability": {
+        "value": 12,
+        "legality": null
+      },
+      "cost": 355000,
+      "desc": "Esse helicóptero versátil, robusto e tandem (dois rotores) é usado em diversos papeis em áreas urbanas e remotas por todo o Sexto Mundo. Ele costuma ser usado para operações de transporte de carga pesada, geralmente com objetivo militar, como híbrido de aeronave armada/transporte de tropas pela Cavaleiro Errante e sua força especial de elite, a Brigada de Fogo.",
+      "page": 464
+    },
+    {
+      "id": "nissan-hound",
+      "name": "Nissan Hound",
+      "category": "rotorcraft",
+      "skill": "pilot-aircraft",
+      "handling": 5,
+      "speed": 4,
+      "acceleration": 3,
+      "body": 16,
+      "armor": 16,
+      "pilot": 2,
+      "sensor": 4,
+      "seats": 12,
+      "availability": {
+        "value": 13,
+        "legality": "R"
+      },
+      "cost": 425000,
+      "desc": "Esse é um helicóptero de transporte de tecnologia vanguarda usado pelos Fuzileiros Japoneses Imperiais, junto com unidades de Forças Especiais por todo o globo. Justamente por isso, também é muito popular com forças de resposta rápida de segurança corporativa, especialmente aquelas pertencentes a japanacorps, incluindo a Samurai Vermelho da Renraku. Ele vem armado com dois suportes de armas para assegurar que sua carga preciosa sobreviva até o pior dos resgates aéreos e aterris- * Manejo e Velocidade são listadas em Dentro/Fora da Estrada quando barras são usadas. sagens arriscadas.",
+      "page": 464
+    },
+    {
+      "id": "northrup-wasp",
+      "name": "Northrup Wasp",
+      "category": "rotorcraft",
+      "skill": "pilot-aircraft",
+      "handling": 5,
+      "speed": 5,
+      "acceleration": 3,
+      "body": 10,
+      "armor": 8,
+      "pilot": 3,
+      "sensor": 3,
+      "seats": 1,
+      "availability": {
+        "value": 12,
+        "legality": "R"
+      },
+      "cost": 86000,
+      "desc": "Essa aeronave de rotor para uma pessoa é projetada para serviço policial e de segurança. Uma wasp, com blindagem leve e equipada com um suporte de arma pesada, é a resposta de segurança corporativa habitual e padrão para problemas cada vez piores de Incursores das Sombras.",
+      "page": 464
+    },
+    {
+      "id": "ares-venture",
+      "name": "Ares Venture",
+      "category": "vtol",
+      "skill": "pilot-aircraft",
+      "handling": 5,
+      "speed": 7,
+      "acceleration": 4,
+      "body": 16,
+      "armor": 14,
+      "pilot": 4,
+      "sensor": 4,
+      "seats": 6,
+      "availability": {
+        "value": 12,
+        "legality": "P"
+      },
+      "cost": 400000,
+      "desc": "Esse pequeno veículo blindado leve (LAV) é fabricado a partir de partes de pronta-entrega, em fábricas ambientavelmente amigáveis, para uso de contrabandistas por todo o mundo. O Venture é muito usado também por grupos de segurança e militares legítimos além de ser um favorito de contrabandistas que precisam economizar. Ele costuma ser usado como transporte de passageiros ou carga, e variantes altamente armadas e blindadas existem para patrulha. O Venture vende bem entre clientes do terceiro mundo.",
+      "page": 464
+    },
+    {
+      "id": "gmc-banshee",
+      "name": "GMC Banshee",
+      "category": "vtol",
+      "skill": "pilot-aircraft",
+      "handling": 6,
+      "speed": 8,
+      "acceleration": 4,
+      "body": 20,
+      "armor": 18,
+      "pilot": 4,
+      "sensor": 6,
+      "seats": 12,
+      "availability": {
+        "value": 24,
+        "legality": "P"
+      },
+      "cost": 2500000,
+      "desc": "Essa aeronave veloz e supersônica é o t-bird clássico e icônico, e tem a armadura, os armamentos e suítes de sensores para provar. Esse LAV é usado militarmente para reconhecimento e entregas, e é favorecido por contrabandistas de elite para cruzamentos ilegais de fronteiras mais arriscados, com sua capacidade de passar desapercebido por cânions e alta velocidade.",
+      "page": 464
+    },
+    {
+      "id": "federated-boeing-commuter",
+      "name": "Federated Boeing Commuter",
+      "category": "vtol",
+      "skill": "pilot-aircraft",
+      "handling": 3,
+      "speed": 3,
+      "acceleration": 3,
+      "body": 16,
+      "armor": 8,
+      "pilot": 3,
+      "sensor": 3,
+      "seats": 30,
+      "availability": {
+        "value": 10,
+        "legality": null
+      },
+      "cost": 350000,
+      "desc": "Essa aeronave de passageiros com rotores móveis é muito usada como transporte público intermunicipal, passando entre aeroespaçoportos corporativos e levando assarariados pelo mundo todo. Incursores das Sombras não costumam usá-la como equipamento próprio, mas é comum que se deparem com elas, especialmente se estiverem numa missão de extração ou proteção executiva.",
+      "page": 464
+    },
+    {
+      "id": "shiawase-kanmushi",
+      "name": "Shiawase Kanmushi",
+      "category": "microdrones",
+      "skill": "pilot-walker",
+      "handling": 4,
+      "speed": 2,
+      "acceleration": 1,
+      "body": 0,
+      "armor": 0,
+      "pilot": 3,
+      "sensor": 3,
+      "seats": null,
+      "availability": {
+        "value": 8,
+        "legality": null
+      },
+      "cost": 1000,
+      "desc": "Esse é um drone rastejante “inseto” de quatro patas que é confundível com um inseto natural de primeira. É ideal para penetrar áreas confinadas, e suas extremidades com patas de lagartixa e peso leve o tornam capazes de escalar paredes e tetos; entretanto, é muito frágil, e um pisão ou um apagador de etiquetas pode destrui-lo com facilidade. Este drone é operado com a perícia Pilotar Andarilho.",
+      "page": 464
+    },
+    {
+      "id": "sikorsky-bell-microskimmer",
+      "name": "Sikorsky-Bell Microskimmer",
+      "category": "microdrones",
+      "skill": "pilot-ground-craft",
+      "handling": 3,
+      "speed": 3,
+      "acceleration": 1,
+      "body": 0,
+      "armor": 0,
+      "pilot": 3,
+      "sensor": 3,
+      "seats": null,
+      "availability": {
+        "value": 6,
+        "legality": null
+      },
+      "cost": 1000,
+      "desc": "Silencioso e durável, este deslizador no formato de disco é menor do que um frisbee e pode até mesmo deslizar sobre a água. Ele move-se com pequenos jatos bastante fracos. É mais fácil de detectar do que o Kanmushi, mas ainda é muito pequeno. É operado com a perícia Pilotar Veículos Terrestres: a especialização hovercraft é aplicada.",
+      "page": 464
+    },
+    {
+      "id": "mct-fly-spy",
+      "name": "MCT Fly-Spy",
+      "category": "minidrones",
+      "skill": "pilot-aircraft",
+      "handling": 4,
+      "speed": 3,
+      "acceleration": 2,
+      "body": 1,
+      "armor": 0,
+      "pilot": 3,
+      "sensor": 3,
+      "seats": null,
+      "availability": {
+        "value": 8,
+        "legality": null
+      },
+      "cost": 2000,
+      "desc": "Este drone da Mitsuhama tem o tamanho e a forma de um inseto grande, mas pode conseguir melhores altitudes substancialmente. Ele pode servir como um “olho no céu” e é útil para seguir pessoas, dado o fato de que ele é relativamente difícil de detectar. Este drone é operado com a perícia Pilotar Aeronaves.",
+      "page": 464
+    },
+    {
+      "id": "horizon-flying-eye",
+      "name": "Horizon Flying Eye",
+      "category": "minidrones",
+      "skill": "pilot-aircraft",
+      "handling": 4,
+      "speed": 3,
+      "acceleration": 2,
+      "body": 1,
+      "armor": 0,
+      "pilot": 3,
+      "sensor": 3,
+      "seats": null,
+      "availability": {
+        "value": 8,
+        "legality": null
+      },
+      "cost": 2000,
+      "desc": "Esse drone esférico voador usa propulsores omnidirecionais para se manter no ar. Do tamanho de um olho, ele pode rolar no chão, mas precisa voar para ultrapassar obstáculos como escadas e meios-fios. Uma versão com uma granada ofuscante e de fumaça custa 500 ¥ extras; detoná-las destrói o drone. Use Pilotar Aeronaves para operá-lo.",
+      "page": 464
+    },
+    {
+      "id": "aztechnology-crawler",
+      "name": "Aztechnology Crawler",
+      "category": "small-drones",
+      "skill": "pilot-walker",
+      "handling": 4,
+      "speed": 3,
+      "acceleration": 1,
+      "body": 3,
+      "armor": 3,
+      "pilot": 4,
+      "sensor": 3,
+      "seats": null,
+      "availability": {
+        "value": 4,
+        "legality": null
+      },
+      "cost": 4000,
+      "desc": "Esse pequeno drone terrestre consegue lidar com escadas e outros obstáculos. Projetado para operar como bisbilhoteiro remoto em terreno acidentado rural ou urbano, o Crawler é eficiente e robusto. Seu programa Piloto está um passo além da maioria dos drones da sua classe. Este drone é operado com a perícia Pilotar Andarilho.",
+      "page": 464
+    },
+    {
+      "id": "lockheed-optic-x2",
+      "name": "Lockheed Optic-X2",
+      "category": "small-drones",
+      "skill": "pilot-aircraft",
+      "handling": 4,
+      "speed": 4,
+      "acceleration": 3,
+      "body": 2,
+      "armor": 2,
+      "pilot": 3,
+      "sensor": 3,
+      "seats": null,
+      "availability": {
+        "value": 10,
+        "legality": null
+      },
+      "cost": 21000,
+      "desc": "Essa aeronave VSTOL furtiva é do tamanho de um ciberdeck com suas asas dobradas para transporte. Quando ativada, ela fica do tamanho de um grande falcão ou outra ave de rapina. Sua tecnologia patenteada de limite de assinatura a torna favorecida por agências de inteligência e incursores das sombras; sistemas de radar e Testes de Percepção visuais e auditivos sofrem todos –3 de penalidade na pilha de dados para notar o Optic-X2. Este drone é operado com a perícia Pilotar Aeronaves.",
+      "page": 464
+    },
+    {
+      "id": "ares-duelist",
+      "name": "Ares Duelist",
+      "category": "medium-drones",
+      "skill": "pilot-walker",
+      "handling": 3,
+      "speed": 3,
+      "acceleration": 1,
+      "body": 4,
+      "armor": 4,
+      "pilot": 3,
+      "sensor": 3,
+      "seats": null,
+      "availability": {
+        "value": 5,
+        "legality": "R"
+      },
+      "cost": 4500,
+      "desc": "Esse drone andarilho de tamanho médio e quase antropomórfico é uma raridade, e alguns até chamam de excentricidade. Ele é projetado para patrulhar em dois pés como um guarda de segurança meta-humano e está equipado com lâminas de braço como armamentos principais. Além disso, ele é estilizado para que seu chassi externo represente a armadura samurai tradicional oyoroi, utilizada pelos Samurai Vermelhos da Renraku, talvez como um tapa sutil em uma mega concorrente. Um item de nicho raramente colocado em campo, o duelist possui duas vantagens distintas: seu perfil humanoide permite que seja confundido, a distância, com um guarda meta-humano mais versátil, tornando-o útil em instalações protegidas por tripulações limitadas, e suas lâminas de braço são marginalmente mais efetivas em combater espíritos do que os drones tradicionais que só têm armas e mais armas. Esse drone vem com um autosoft singular de Mira (Espadas) Nível 3, e tem um par de armas padrão em suportes especiais de armas. (As espadas montadas não podem ser substituídas por outras armas, mas suportes de arma adicionais podem ser instalados de acordo com as regras normais.) Este drone é operado com a perícia Pilotar Andarilho.",
+      "page": 464
+    },
+    {
+      "id": "gm-nissan-doberman",
+      "name": "GM-Nissan Doberman",
+      "category": "medium-drones",
+      "skill": "pilot-ground-craft",
+      "handling": 5,
+      "speed": 3,
+      "acceleration": 1,
+      "body": 4,
+      "armor": 4,
+      "pilot": 3,
+      "sensor": 3,
+      "seats": null,
+      "availability": {
+        "value": 4,
+        "legality": "R"
+      },
+      "cost": 5000,
+      "desc": "Esse drone de esteiras para patrulha de perímetro pode proteger sua área designada de forma eficiente em condições de dia ou noite. Ele vem equipado com um suporte de arma padrão. Este drone é operado com a perícia Pilotar Veículos Terrestres.",
+      "page": 464
+    },
+    {
+      "id": "mct-nissan-roto-drone",
+      "name": "MCT-Nissan Roto-Drone",
+      "category": "medium-drones",
+      "skill": "pilot-aircraft",
+      "handling": 4,
+      "speed": 4,
+      "acceleration": 2,
+      "body": 4,
+      "armor": 4,
+      "pilot": 3,
+      "sensor": 3,
+      "seats": null,
+      "availability": {
+        "value": 6,
+        "legality": null
+      },
+      "cost": 5000,
+      "desc": "O Roto-Drone é um projeto de drone simples e prático asa rotativa que é altamente modular e personalizável. Trate o seu Corpo como se tivesse mais 3 em seu Nível real para determinar quantos suportes para armas ou personalizações podem ser integrados. Este drone é operado com a perícia Pilotar Aeronaves.",
+      "page": 464
+    },
+    {
+      "id": "cyberspace-designs-dalmatian",
+      "name": "Cyberspace Designs Dalmatian",
+      "category": "large-drones",
+      "skill": "pilot-aircraft",
+      "handling": 5,
+      "speed": 5,
+      "acceleration": 3,
+      "body": 5,
+      "armor": 5,
+      "pilot": 3,
+      "sensor": 3,
+      "seats": null,
+      "availability": {
+        "value": 6,
+        "legality": "R"
+      },
+      "cost": 10000,
+      "desc": "Este drone grande e robusto de reconhecimento e decolagem e pouso vertical pode pairar e tem uma estrutura forte para seu peso leve. É quase do tamanho de um cortador de grama quando armazenado. Quando aplicado, é do tamanho de uma asa delta grande. A Lone Star e a Cavaleiro Errante licenciaram o projeto para funções de vigilância e de patrulha urbana. O Dalmatian é operado com a perícia Pilotar Aeronaves.",
+      "page": 464
+    },
+    {
+      "id": "steel-lynx",
+      "name": "Drone de Combate Steel Lynx",
+      "category": "large-drones",
+      "skill": "pilot-ground-craft",
+      "handling": 5,
+      "speed": 4,
+      "acceleration": 2,
+      "body": 6,
+      "armor": 12,
+      "pilot": 3,
+      "sensor": 3,
+      "seats": null,
+      "availability": {
+        "value": 10,
+        "legality": "R"
+      },
+      "cost": 25000,
+      "desc": "Uma máquina revestida de combate do solo, o Steel Lynx possui quatro pernas com rodas e um suporte para arma pesada. É operado com a perícia Pilotar Veículos Terrestres.",
+      "page": 464
+    }
+  ]
+}

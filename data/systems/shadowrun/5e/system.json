@@ -128,6 +128,21 @@
       "source": "matrix.json#commlinks",
       "attributes": "matrix.json#rules.deviceAttributes"
     },
+    "vehicle": {
+      "source": "vehicles.json",
+      "fields": [
+        "name",
+        "handling",
+        "acceleration",
+        "speed",
+        "pilot",
+        "body",
+        "armor",
+        "sensor",
+        "notes"
+      ],
+      "note": "Manejo e Velocidade podem vir como Dentro/Fora da Estrada (onRoad/offRoad)."
+    },
     "qualities": {
       "source": "qualities.json",
       "fields": [
@@ -276,7 +291,8 @@
           "weapons.json",
           "armor.json",
           "augmentations.json",
-          "matrix.json"
+          "matrix.json",
+          "vehicles.json"
         ]
       },
       {
@@ -324,6 +340,7 @@
     "weapons.json",
     "armor.json",
     "augmentations.json",
-    "matrix.json"
+    "matrix.json",
+    "vehicles.json"
   ]
 }

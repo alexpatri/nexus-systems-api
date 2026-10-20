@@ -426,6 +426,7 @@ def check_shadowrun(d, sysj, E, W):
                 sr_check_modifier(mod, f"metatipo {m['id']} traço {t['id']}[{i}]", E, set())
 
     skill_ids = {s['id'] for s in skills['skills']}
+    skill_category = {s['id']: s['category'] for s in skills['skills']}
     group_ids = {g['id'] for g in skills['groups']}
     if len(skill_ids) != len(skills['skills']): E("skills.json: ids duplicados")
     for s in skills['skills']:
@@ -685,6 +686,27 @@ def check_shadowrun(d, sysj, E, W):
         for p in matrix['programs']:
             if p['category'] not in ('common', 'hacking'): E(f"programa {p['id']}: categoria inválida")
             for i, m in enumerate(p.get('modifiers', [])): sr_check_modifier(m, f"programa {p['id']}[{i}]", E, skill_ids)
+
+    vehicles = load(d, 'vehicles.json')
+    if vehicles:
+        cats = {c['id']: c for c in vehicles['categories']}
+        if len({v['id'] for v in vehicles['vehicles']}) != len(vehicles['vehicles']): E("vehicles.json: ids duplicados")
+        for c in cats.values():
+            if c['skill'] is not None and c['skill'] not in skill_ids: E(f"categoria de veículo {c['id']}: perícia inexistente")
+        for v in vehicles['vehicles']:
+            where = f"veículo {v['id']}"
+            if v['category'] not in cats: E(f"{where}: categoria inexistente")
+            if v['skill'] not in skill_ids or skill_category.get(v['skill']) != 'vehicle':
+                E(f"{where}: perícia de pilotagem inválida {v['skill']!r}")
+            for k in ('handling', 'speed'):
+                x = v[k]
+                if not (isinstance(x, int) or (isinstance(x, dict) and set(x) == {'onRoad', 'offRoad'})):
+                    E(f"{where}: {k} malformado")
+            for k in ('acceleration', 'body', 'armor', 'pilot', 'sensor'):
+                if not isinstance(v[k], int) or v[k] < 0: E(f"{where}: {k} inválido")
+            sr_check_availability(v['availability'], where, E, mech['legality'])
+            sr_check_cost(v['cost'], where, E)
+            if not v.get('desc'): E(f"{where}: desc vazia")
 
     for l in lifestyles['identities']:
         if l['availability']['legality'] not in mech['legality']:

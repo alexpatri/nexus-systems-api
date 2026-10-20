@@ -931,6 +931,36 @@ PROGRAM_MODIFIERS = {
 }
 
 
+VEHICLE_SECTIONS = [
+    ("motorcycles", "Motocicletas", "MOTOCICLETAS"), ("cars", "Carros", "CARROS"),
+    ("trucks", "Caminhões e Vans", "CAMINHÕES E VANS"), ("boats", "Barcos", "BARCOS"),
+    ("submarines", "Submarinos", "SUBMARINOS"), ("fixed-wing", "Aeronaves de Asas Fixas", "AERONAVES DE ASAS FIXAS"),
+    ("rotorcraft", "Asas Rotativas", "ASAS ROTATIVAS"), ("vtol", "VTOL/VSTOL", "VTOL/VSTOL"),
+    ("microdrones", "Microdrones", "MICRODRONES"), ("minidrones", "Minidrones", "MINIDRONES"),
+    ("small-drones", "Drones Pequenos", "DRONES PEQUENOS"), ("medium-drones", "Drones Médios", "DRONES MÉDIOS"),
+    ("large-drones", "Drones Grandes", "DRONES GRANDES"),
+]
+VEHICLE_TABLES = [
+    "TERRESTRES MANEJO* VELOC* ACEL CORPO ARMADURA PILOTO SENSOR ASSENTOS DISP CUSTO",
+    "DRONES MANEJO VELOCIDADE ACEL CORPO ARMADURA PILOTO SENSOR ASSENTOS DISP CUSTO",
+    "BARCOS MANEJO VELOCIDADE ACEL CORPO ARMADURA PILOTO SENSOR ASSENTOS DISP CUSTO",
+    "AERONAVE MANEJO VELOCIDADE ACEL CORPO ARMADURA PILOTO SENSOR ASSENTOS DISP CUSTO",
+]
+# A tabela abrevia o fabricante; a descrição dá o nome completo, usado no catálogo.
+VEHICLE_FULL_NAMES = {
+    "C-N Jackrabbit": "Chrysler-Nissan Jackrabbit", "SK-Bentley Concordat": "Saeder-Krupp-Bentley Concordat",
+    "GMC Bulldog": "Van GMC Bulldog", "Samuvani Otter": "Samuvani Criscraft Otter",
+    "Artemis Nightwing": "Artemis Industries Nightwing", "R-F Fokker Tundra-9": "Renault-Fiat Fokker Tundra-9",
+    "Fed-Boing Commuter": "Federated Boeing Commuter", "S-B Microskimmer": "Sikorsky-Bell Microskimmer",
+    "C-D Dalmatian": "Cyberspace Designs Dalmatian", "Steel Lynx": "Drone de Combate Steel Lynx",
+}
+VEHICLE_IDS = {"Drone de Combate Steel Lynx": "steel-lynx", "Van GMC Bulldog": "gmc-bulldog"}
+# Tabelas de outras seções e o box "Modelos Similares" dividem estas páginas.
+VEHICLE_SIDEBARS = {460: ("BIÔNICO CULTIVADO", None), 461: ("EQUIPAMENTO MÁGICO", None),
+                    462: ("MODELOS SIMILARES", None)}
+VEHICLE_COUNT = 40
+
+
 # Qualidades cuja compra exige escolher um item de outro catálogo.
 QUALITY_CHOICES = {"spirit-affinity": "traditions.json#spiritTypes",
                    "mentor-spirit": "mentors.json#mentors"}
@@ -3021,6 +3051,84 @@ def build_matrix(book):
     }
 
 
+VEHICLE_ROW = re.compile(
+    r'^(?P<name>.+?) (?P<hand>\d+(?: / \d+)?) (?P<speed>\d+(?: / \d+)?) (?P<accel>\d+) (?P<body>\d+) '
+    r'(?P<armor>\d+) (?P<pilot>\d+) (?P<sensor>\d+) (?P<seats>—|\d+) (?P<avail>—|\d+[RP]?) (?P<cost>[\d.]+¥)$')
+PILOT_SKILL = re.compile(r'(?:perícia|Use) (Pilotar [A-ZÀ-Úa-zà-ú ]+?)(?:[.,:;]| para| a | e |$)')
+
+
+def on_off_road(text):
+    parts = [int(x) for x in text.split("/")]
+    return parts[0] if len(parts) == 1 else {"onRoad": parts[0], "offRoad": parts[1]}
+
+
+def pilot_skill(text):
+    m = PILOT_SKILL.search(text)
+    if not m:
+        return None
+    found = fold(m.group(1)).strip()
+    matches = [sid for sid, name, *_ in SKILLS if fold(name).startswith(found)]
+    if len(matches) != 1:
+        raise ExtractionError(f"perícia de pilotagem ambígua ou desconhecida: {m.group(1)!r}")
+    return matches[0]
+
+
+def build_vehicles(book):
+    lines = [(p, t.strip()) for p, t in flow(book, 460, 465, VEHICLE_SIDEBARS)[0]]
+    used, rows = set(), []
+    for title in VEHICLE_TABLES:
+        rows += read_table(lines, title, VEHICLE_ROW, used)
+    require(book.prose(book.page(463)), "Manejo e Velocidade são listadas em Dentro/Fora da Estrada quando barras "
+                                        "são usadas", "veículos terrestres")
+
+    full = {m.group("name"): VEHICLE_FULL_NAMES.get(m.group("name"), m.group("name")) for _, m, _, _ in rows}
+    stops = {h for *_, h in VEHICLE_SECTIONS} | {"DRONES", "VEÍCULOS E DRONES", "EQUIPAMENTO"}
+    texts = item_texts(lines, used, list(full.values()) + ["Interface de fusor", "Suportes de armas"], stops)
+
+    # Seção de cada parágrafo, pela ordem dos títulos no texto corrido.
+    prose_lines = [t for i, (_, t) in enumerate(lines) if i not in used]
+    heading_at = {t: i for i, t in enumerate(prose_lines) if t in {h for *_, h in VEHICLE_SECTIONS}}
+    if len(heading_at) != len(VEHICLE_SECTIONS):
+        raise ExtractionError(f"veículos: seções não encontradas {set(h for *_, h in VEHICLE_SECTIONS) - set(heading_at)}")
+    order = sorted((i, cid, cname, h) for (cid, cname, h), i in zip(VEHICLE_SECTIONS,
+                                                                    [heading_at[h] for *_, h in VEHICLE_SECTIONS]))
+    categories, section_of = [], {}
+    for n, (i, cid, cname, h) in enumerate(order):
+        end = order[n + 1][0] if n + 1 < len(order) else len(prose_lines)
+        body = prose_lines[i + 1:end]
+        intro = book.prose("\n".join(body[:next((k for k, t in enumerate(body)
+                                                  if any(t.startswith(f + ":") for f in full.values())), len(body))]))
+        categories.append({"id": cid, "name": cname, "skill": pilot_skill(intro)})
+        for name in full.values():
+            if any(t.startswith(name + ":") for t in body):
+                section_of[name] = cid
+
+    vehicles = []
+    for _, m, page, _ in rows:
+        name = full[m.group("name")]
+        if name not in texts or name not in section_of:
+            raise ExtractionError(f"veículo {name}: parágrafo de descrição não encontrado")
+        desc, wireless = texts[name]
+        desc = book.prose(desc)
+        category = section_of[name]
+        skill = pilot_skill(desc) or next(c["skill"] for c in categories if c["id"] == category)
+        if skill is None:
+            raise ExtractionError(f"veículo {name}: perícia de pilotagem não encontrada")
+        entry = {"id": VEHICLE_IDS.get(name, slug(name)), "name": name, "category": category, "skill": skill,
+                 "handling": on_off_road(m.group("hand")), "speed": on_off_road(m.group("speed")),
+                 "acceleration": int(m.group("accel")), "body": int(m.group("body")),
+                 "armor": int(m.group("armor")), "pilot": int(m.group("pilot")), "sensor": int(m.group("sensor")),
+                 "seats": None if m.group("seats") == "—" else int(m.group("seats")),
+                 "availability": availability(m.group("avail")), "cost": cost(m.group("cost")), "desc": desc}
+        if wireless:
+            entry["wireless"] = book.prose(wireless)
+        entry["page"] = page
+        vehicles.append(entry)
+    order_ids = [c["id"] for c in categories]
+    vehicles.sort(key=lambda v: order_ids.index(v["category"]))
+    return {"categories": categories, "vehicles": vehicles}
+
+
 CATALOGS = {
     "attributes.json": build_attributes,
     "metatypes.json": build_metatypes,
@@ -3039,6 +3147,7 @@ CATALOGS = {
     "armor.json": build_armor,
     "augmentations.json": build_augmentations,
     "matrix.json": build_matrix,
+    "vehicles.json": build_vehicles,
 }
 
 EXPECTED_COUNTS = {
@@ -3059,6 +3168,7 @@ EXPECTED_COUNTS = {
     "armor.json": {"armor": 12, "modifications": 7},
     "augmentations.json": {"grades": 5},
     "matrix.json": {"commlinks": 7, "cyberdecks": 9, "programs": 26},
+    "vehicles.json": {"vehicles": VEHICLE_COUNT, "categories": len(VEHICLE_SECTIONS)},
 }
 
 
