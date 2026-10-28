@@ -9,9 +9,9 @@ import (
 	"testing"
 	"testing/fstest"
 
-	"rpg-nexus/api/systems/internal/api"
-	"rpg-nexus/api/systems/internal/handler"
-	"rpg-nexus/api/systems/internal/registry"
+	"github.com/alexpatri/nexus-systems-api/internal/api"
+	"github.com/alexpatri/nexus-systems-api/internal/handler"
+	"github.com/alexpatri/nexus-systems-api/internal/registry"
 
 	"github.com/gofiber/fiber/v3"
 )

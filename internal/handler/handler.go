@@ -3,7 +3,7 @@
 package handler
 
 import (
-	"rpg-nexus/api/systems/internal/registry"
+	"github.com/alexpatri/nexus-systems-api/internal/registry"
 
 	"github.com/gofiber/fiber/v3"
 )

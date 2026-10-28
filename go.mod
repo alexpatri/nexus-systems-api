@@ -1,4 +1,4 @@
-module rpg-nexus/api/systems
+module github.com/alexpatri/nexus-systems-api
 
 go 1.22.2
 

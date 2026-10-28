@@ -6,7 +6,7 @@ import (
 	"testing"
 	"testing/fstest"
 
-	"rpg-nexus/api/systems/data"
+	"github.com/alexpatri/nexus-systems-api/data"
 )
 
 func manifestFor(id, version string, catalogs ...string) string {

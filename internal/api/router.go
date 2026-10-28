@@ -1,7 +1,7 @@
 package api
 
 import (
-	"rpg-nexus/api/systems/internal/handler"
+	"github.com/alexpatri/nexus-systems-api/internal/handler"
 
 	"github.com/gofiber/fiber/v3"
 	"github.com/gofiber/fiber/v3/middleware/cors"
