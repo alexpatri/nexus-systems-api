@@ -3,11 +3,11 @@ package main
 import (
 	"log"
 
-	"rpg-nexus/api/systems/data"
-	"rpg-nexus/api/systems/internal/api"
-	"rpg-nexus/api/systems/internal/config"
-	"rpg-nexus/api/systems/internal/handler"
-	"rpg-nexus/api/systems/internal/registry"
+	"github.com/alexpatri/nexus-systems-api/data"
+	"github.com/alexpatri/nexus-systems-api/internal/api"
+	"github.com/alexpatri/nexus-systems-api/internal/config"
+	"github.com/alexpatri/nexus-systems-api/internal/handler"
+	"github.com/alexpatri/nexus-systems-api/internal/registry"
 )
 
 func main() {
