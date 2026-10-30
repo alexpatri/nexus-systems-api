@@ -284,27 +284,72 @@ SR_SELECTS = {'attr': 'attribute', 'attr.max': 'attribute', 'skill.max': 'skill'
 SR_LIMITS = ('physical', 'mental', 'social')
 SR_SKILL_CATEGORIES = {'combat', 'physical', 'social', 'magical', 'resonance', 'technical', 'vehicle'}
 
-# Personagens de exemplo do livro: atributos das p. 67 e 70, resultados da p. 102.
-SR_EXAMPLES = [
-    ('Clara', {'bod': 3, 'agi': 6, 'rea': 3, 'str': 2, 'wil': 4, 'log': 3, 'int': 4, 'cha': 6, 'ess': 6},
-     {'initiative': 7, 'physical': 4, 'mental': 5, 'social': 8, 'physicalBoxes': 10, 'stunBoxes': 10,
-      'overflow': 3, 'contacts': 18, 'knowledge': 14}),
-    # O livro calcula o limite Social do Beto com Essência 6, antes das ampliações.
-    ('Beto', {'bod': 9, 'agi': 4, 'rea': 3, 'str': 11, 'wil': 4, 'log': 3, 'int': 3, 'cha': 3, 'ess': 6},
-     {'initiative': 6, 'physical': 12, 'mental': 5, 'social': 6, 'physicalBoxes': 13, 'stunBoxes': 10,
-      'overflow': 9, 'contacts': 9, 'knowledge': 12}),
-    # A Persona Viva e a Iniciativa da Matriz do exemplo não batem com os
-    # atributos do Jefferson (Ataque 5 com Carisma 3), então ficam de fora.
-    ('Jefferson', {'bod': 3, 'agi': 2, 'rea': 2, 'str': 3, 'wil': 3, 'log': 4, 'int': 4, 'cha': 3, 'ess': 6},
-     {'initiative': 6, 'physical': 4, 'mental': 5, 'social': 5, 'physicalBoxes': 10, 'stunBoxes': 10,
-      'overflow': 3, 'contacts': 9, 'knowledge': 16}),
-]
+FIXTURES = pathlib.Path(__file__).resolve().parent.parent / 'fixtures'
+
+SR_ARITY = {'add': (1, None), 'mul': (1, None), 'min': (1, None), 'max': (1, None),
+            'sub': (2, 2), 'div': (2, 2), 'ceil': (1, 1), 'floor': (1, 1)}
+
+
+class ExprError(Exception):
+    """code é o mesmo que o avaliador do core e o do app devolvem."""
+    def __init__(self, code):
+        super().__init__(code)
+        self.code = code
+
+
+def is_number(o):
+    return isinstance(o, (int, float)) and not isinstance(o, bool)
 
 
 def sr_eval(expr, env):
-    if isinstance(expr, (int, float)) and not isinstance(expr, bool): return expr
-    if 'ref' in expr: return env[expr['ref']]
-    return SR_OPS[expr['op']]([sr_eval(a, env) for a in expr['of']])
+    if is_number(expr): return expr
+    if not isinstance(expr, dict): raise ExprError('malformed')
+    if set(expr) == {'ref'}:
+        if not isinstance(expr['ref'], str): raise ExprError('malformed')
+        if expr['ref'] not in env: raise ExprError('missingRef')
+        return env[expr['ref']]
+    if set(expr) != {'op', 'of'} or not isinstance(expr['of'], list): raise ExprError('malformed')
+    if expr['op'] not in SR_OPS: raise ExprError('unknownOp')
+    lo, hi = SR_ARITY[expr['op']]
+    if len(expr['of']) < lo or (hi is not None and len(expr['of']) > hi): raise ExprError('arity')
+    xs = [sr_eval(a, env) for a in expr['of']]
+    if expr['op'] == 'div' and xs[1] == 0: raise ExprError('divByZero')
+    return SR_OPS[expr['op']](xs)
+
+
+def sr_check_expr_fixtures(d, sysj, E):
+    """Roda os casos de fixtures/<sistema>/<versão>/expr. Os do livro apontam para
+    fórmulas do catálogo: mudança de catálogo que quebra o livro aparece aqui."""
+    files = sorted((FIXTURES / sysj['id'] / d.name / 'expr').glob('*.json'))
+    if not files: E("fixtures de expressão ausentes"); return {}
+    envs_by_file = {}
+    for f in files:
+        doc = json.loads(f.read_text())
+        where = f"fixtures {f.name}"
+        if doc.get('name') != f.stem: E(f"{where}: name {doc.get('name')!r} difere do arquivo")
+        envs = doc.get('envs', {})
+        envs_by_file[f.stem] = envs
+        names = set()
+        for c in doc['cases']:
+            cw = f"{where}: {c.get('name')!r}"
+            if c.get('name') in names: E(f"{cw}: nome repetido")
+            names.add(c.get('name'))
+            if ('expr' in c) == ('formula' in c): E(f"{cw}: precisa de expr ou formula, não dos dois"); continue
+            if ('want' in c) == ('error' in c): E(f"{cw}: precisa de want ou error, não dos dois"); continue
+            expr = c.get('expr')
+            if 'formula' in c:
+                expr = resolve(d, c['formula'])
+                if not is_expr(expr): E(f"{cw}: fórmula não resolve -> {c['formula']}"); continue
+            if 'base' in c and c['base'] not in envs: E(f"{cw}: base desconhecida {c['base']!r}"); continue
+            env = dict(envs.get(c.get('base'), {}), **c.get('env', {}))
+            try:
+                got = sr_eval(expr, env)
+            except ExprError as e:
+                if e.code != c.get('error'): E(f"{cw}: erro {e.code}, esperado {c.get('error') or c['want']!r}")
+                continue
+            if 'error' in c: E(f"{cw}: deu {got}, esperado erro {c['error']}")
+            elif not is_number(c['want']) or got != c['want']: E(f"{cw}: deu {got}, esperado {c['want']}")
+    return envs_by_file
 
 
 def is_expr(o):
@@ -716,21 +761,7 @@ def check_shadowrun(d, sysj, E, W):
 
     # --- exemplos do livro ---
     derived = mech['derived']
-    for name, attrs, want in SR_EXAMPLES:
-        env = {f'attr.{a}': v for a, v in attrs.items()}
-        got = {
-            'initiative': sr_eval(derived['initiative']['physical']['base'], env),
-            'physical': sr_eval(derived['limits']['physical']['value'], env),
-            'mental': sr_eval(derived['limits']['mental']['value'], env),
-            'social': sr_eval(derived['limits']['social']['value'], env),
-            'physicalBoxes': sr_eval(derived['monitors']['physical']['boxes'], env),
-            'stunBoxes': sr_eval(derived['monitors']['stun']['boxes'], env),
-            'overflow': sr_eval(derived['monitors']['overflow']['boxes'], env),
-            'contacts': sr_eval(mech['creation']['contacts']['karma'], env),
-            'knowledge': sr_eval(mech['creation']['skills']['knowledgePoints'], env),
-        }
-        for k, v in want.items():
-            if got[k] != v: E(f"exemplo {name}: {k} dá {got[k]}, o livro diz {v}")
+    envs = sr_check_expr_fixtures(d, sysj, E).get('book-examples', {})
 
     # Beto tem Desejo de Viver 1: Excesso 9 (10), p. 102.
     wtl = next(q for q in qs if q['id'] == 'will-to-live')['modifiers'][0]
@@ -748,10 +779,9 @@ def check_shadowrun(d, sysj, E, W):
     if low * mult * 3 != 12000: E("exemplo Beto: Estilo de Vida Baixo de troll por 3 meses deveria custar 12.000¥")
 
     # Clara tem Potencial Melhorado (Social): limite Social 8 (9), p. 102.
-    if powers:
+    if powers and 'clara' in envs:
         ep = next(p for p in powers['powers'] if p['id'] == 'enhanced-potential')['modifiers'][0]
-        env = {f'attr.{a}': v for a, v in SR_EXAMPLES[0][1].items()}
-        if sr_eval(derived['limits']['social']['value'], env) + sr_eval(ep['add'], {'rating': 1}) != 9:
+        if sr_eval(derived['limits']['social']['value'], envs['clara']) + sr_eval(ep['add'], {'rating': 1}) != 9:
             E("exemplo Clara: Potencial Melhorado (Social) não leva o limite Social a 9")
 
     # Rikki (Magia 5), p. 283–285: Clarividência Potência 4 alcança 20 m; Explosão

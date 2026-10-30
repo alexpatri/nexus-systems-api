@@ -1,0 +1,41 @@
+{
+  "name": "book-examples",
+  "description": "Fórmulas do catálogo com os personagens de exemplo do livro: atributos das p. 67 e 70, resultados da p. 102; progressão da p. 106. O livro calcula o limite Social do Beto com Essência 6, antes das ampliações. A Persona Viva e a Iniciativa da Matriz do Jefferson não batem com os atributos dele (Ataque 5 com Carisma 3) e ficam de fora.",
+  "envs": {
+    "clara": {"attr.bod": 3, "attr.agi": 6, "attr.rea": 3, "attr.str": 2, "attr.wil": 4, "attr.log": 3, "attr.int": 4, "attr.cha": 6, "attr.ess": 6},
+    "beto": {"attr.bod": 9, "attr.agi": 4, "attr.rea": 3, "attr.str": 11, "attr.wil": 4, "attr.log": 3, "attr.int": 3, "attr.cha": 3, "attr.ess": 6},
+    "jefferson": {"attr.bod": 3, "attr.agi": 2, "attr.rea": 2, "attr.str": 3, "attr.wil": 3, "attr.log": 4, "attr.int": 4, "attr.cha": 3, "attr.ess": 6}
+  },
+  "cases": [
+    {"name": "Iniciativa de Clara", "formula": "mechanics.json#derived.initiative.physical.base", "base": "clara", "want": 7},
+    {"name": "Limite Físico de Clara", "formula": "mechanics.json#derived.limits.physical.value", "base": "clara", "want": 4},
+    {"name": "Limite Mental de Clara", "formula": "mechanics.json#derived.limits.mental.value", "base": "clara", "want": 5},
+    {"name": "Limite Social de Clara", "formula": "mechanics.json#derived.limits.social.value", "base": "clara", "want": 8},
+    {"name": "Monitor Físico de Clara", "formula": "mechanics.json#derived.monitors.physical.boxes", "base": "clara", "want": 10},
+    {"name": "Monitor de Atordoamento de Clara", "formula": "mechanics.json#derived.monitors.stun.boxes", "base": "clara", "want": 10},
+    {"name": "Excesso de Clara", "formula": "mechanics.json#derived.monitors.overflow.boxes", "base": "clara", "want": 3},
+    {"name": "Carma de contatos de Clara", "formula": "mechanics.json#creation.contacts.karma", "base": "clara", "want": 18},
+    {"name": "Pontos de conhecimento de Clara", "formula": "mechanics.json#creation.skills.knowledgePoints", "base": "clara", "want": 14},
+    {"name": "Iniciativa de Beto", "formula": "mechanics.json#derived.initiative.physical.base", "base": "beto", "want": 6},
+    {"name": "Limite Físico de Beto", "formula": "mechanics.json#derived.limits.physical.value", "base": "beto", "want": 12},
+    {"name": "Limite Mental de Beto", "formula": "mechanics.json#derived.limits.mental.value", "base": "beto", "want": 5},
+    {"name": "Limite Social de Beto", "formula": "mechanics.json#derived.limits.social.value", "base": "beto", "want": 6},
+    {"name": "Monitor Físico de Beto", "formula": "mechanics.json#derived.monitors.physical.boxes", "base": "beto", "want": 13},
+    {"name": "Monitor de Atordoamento de Beto", "formula": "mechanics.json#derived.monitors.stun.boxes", "base": "beto", "want": 10},
+    {"name": "Excesso de Beto", "formula": "mechanics.json#derived.monitors.overflow.boxes", "base": "beto", "want": 9},
+    {"name": "Carma de contatos de Beto", "formula": "mechanics.json#creation.contacts.karma", "base": "beto", "want": 9},
+    {"name": "Pontos de conhecimento de Beto", "formula": "mechanics.json#creation.skills.knowledgePoints", "base": "beto", "want": 12},
+    {"name": "Iniciativa de Jefferson", "formula": "mechanics.json#derived.initiative.physical.base", "base": "jefferson", "want": 6},
+    {"name": "Limite Físico de Jefferson", "formula": "mechanics.json#derived.limits.physical.value", "base": "jefferson", "want": 4},
+    {"name": "Limite Mental de Jefferson", "formula": "mechanics.json#derived.limits.mental.value", "base": "jefferson", "want": 5},
+    {"name": "Limite Social de Jefferson", "formula": "mechanics.json#derived.limits.social.value", "base": "jefferson", "want": 5},
+    {"name": "Monitor Físico de Jefferson", "formula": "mechanics.json#derived.monitors.physical.boxes", "base": "jefferson", "want": 10},
+    {"name": "Monitor de Atordoamento de Jefferson", "formula": "mechanics.json#derived.monitors.stun.boxes", "base": "jefferson", "want": 10},
+    {"name": "Excesso de Jefferson", "formula": "mechanics.json#derived.monitors.overflow.boxes", "base": "jefferson", "want": 3},
+    {"name": "Carma de contatos de Jefferson", "formula": "mechanics.json#creation.contacts.karma", "base": "jefferson", "want": 9},
+    {"name": "Pontos de conhecimento de Jefferson", "formula": "mechanics.json#creation.skills.knowledgePoints", "base": "jefferson", "want": 16},
+    {"name": "Atributo para o nível 3", "formula": "mechanics.json#progression.costs.attribute", "env": {"rating": 3}, "want": 15},
+    {"name": "Perícia ativa para o nível 2", "formula": "mechanics.json#progression.costs.activeSkill", "env": {"rating": 2}, "want": 4},
+    {"name": "Perícia ativa para o nível 6", "formula": "mechanics.json#progression.costs.activeSkill", "env": {"rating": 6}, "want": 12}
+  ]
+}
