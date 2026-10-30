@@ -40,8 +40,19 @@ Nível — vêm como árvores de expressão, não como texto:
 Os operadores são `add`, `sub`, `mul`, `div`, `ceil`, `floor`, `min` e `max`; as
 folhas são números ou `{"ref": …}`, com as referências listadas em
 `mechanics.json#expressions`. O avaliador de referência está em
-`tools/validate.py` (`sr_eval`), que também confere as fórmulas contra os
-personagens de exemplo do livro.
+`tools/validate.py` (`sr_eval`).
+
+### Fixtures
+
+`fixtures/` guarda os casos que o core (Go) e o app (TS) rodam para calcular
+igual. Fica fora de `data/`, então não entra no binário da API; o core importa
+`github.com/alexpatri/nexus-systems-api/fixtures` só nos testes.
+
+`fixtures/shadowrun/5e/expr/` tem os casos do avaliador de fórmulas:
+`operators.json` fixa a semântica de cada operador e os códigos de erro
+(`malformed`, `unknownOp`, `arity`, `missingRef`, `divByZero`), e
+`book-examples.json` aponta para fórmulas do catálogo com os personagens de
+exemplo do livro. O `validate.py` roda todos eles com o `sr_eval`.
 
 ## Adicionar um sistema
 
