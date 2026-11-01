@@ -509,6 +509,32 @@ SR_GEAR_ELEMENTS = {'electricity', 'flechette'}
 SR_GEAR_SPECIALS = {'grenade', 'missile', 'chemical', 'special', 'toxin'}
 
 
+def sr_ids(o):
+    """Todo id de objeto num catálogo, em qualquer nível."""
+    if isinstance(o, dict):
+        if isinstance(o.get('id'), str): yield o['id']
+        for v in o.values(): yield from sr_ids(v)
+    elif isinstance(o, list):
+        for v in o: yield from sr_ids(v)
+
+
+def sr_check_quality_rules(d, q, meta_ids, E):
+    """Requisitos e exclusões (shadowrun-contrato-da-ficha.md, seção 7)."""
+    where = f"qualidade {q['id']}"
+    req = q.get('requires', {})
+    if set(req) - {'metatype', 'special'}: E(f"{where}: requires com campo desconhecido")
+    for m in req.get('metatype', []):
+        if m not in meta_ids: E(f"{where}: requires.metatype inexistente {m}")
+    if 'metatype' in req and not req['metatype']: E(f"{where}: requires.metatype vazio")
+    if 'special' in req and req['special'] not in ('mag', 'res'): E(f"{where}: requires.special deve ser mag ou res")
+    for flag in ('unique', 'creationOnly'):
+        if flag in q and q[flag] is not True: E(f"{where}: {flag} só existe como true")
+    for x in q.get('excludes', []):
+        other = load(d, f"{x.get('catalog')}.json")
+        if other is None: E(f"{where}: excludes aponta para catálogo inexistente {x.get('catalog')}")
+        elif x.get('id') not in set(sr_ids(other)): E(f"{where}: excludes aponta para id inexistente {x.get('catalog')}/{x.get('id')}")
+
+
 def check_shadowrun(d, sysj, E, W):
     attributes = load(d, 'attributes.json')
     metatypes = load(d, 'metatypes.json')
@@ -609,6 +635,7 @@ def check_shadowrun(d, sysj, E, W):
             if m.get('target') == 'reputation.notoriety' and (m['add'] < 0) != (q['kind'] == 'positive'):
                 E(f"qualidade {q['id']}: sinal da notoriedade incoerente com o tipo")
         if not q.get('desc'): E(f"qualidade {q['id']}: desc vazia")
+        sr_check_quality_rules(d, q, meta_ids, E)
 
     powers = load(d, 'adept-powers.json')
     if powers:
