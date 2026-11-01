@@ -21,3 +21,20 @@ func TestEmbedsExpressionCases(t *testing.T) {
 		}
 	}
 }
+
+func TestEmbedsSheetFixtures(t *testing.T) {
+	paths, err := fs.Glob(FS(), "shadowrun/5e/*.json")
+	if err != nil || len(paths) == 0 {
+		t.Fatalf("nenhuma fixture de ficha embutida: %v", err)
+	}
+	for _, p := range paths {
+		raw, _ := fs.ReadFile(FS(), p)
+		var doc struct {
+			Data   map[string]any  `json:"data"`
+			Expect json.RawMessage `json:"expect"`
+		}
+		if err := json.Unmarshal(raw, &doc); err != nil || doc.Data == nil || doc.Expect == nil {
+			t.Errorf("%s: %v", p, err)
+		}
+	}
+}

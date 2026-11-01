@@ -1,0 +1,14 @@
+{
+  "name": "lenient-unknown-metatype",
+  "description": "Metatipo fora do catálogo. Strict devolve só o que o Lenient recusa.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Ana"}, "priorities": {"metatype": "B", "attributes": "A", "magic": "E", "skills": "C", "resources": "D"}, "metatype": "goblin"},
+  "expect": {
+    "lenient": [
+      {"step": "metatype", "path": "metatype", "code": "catalog.unknownId", "params": {"catalog": "metatypes", "id": "goblin"}}
+    ],
+    "strict": [
+      {"step": "metatype", "path": "metatype", "code": "catalog.unknownId", "params": {"catalog": "metatypes", "id": "goblin"}}
+    ]
+  }
+}

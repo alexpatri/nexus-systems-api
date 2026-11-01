@@ -1,0 +1,16 @@
+{
+  "name": "grok-step-2",
+  "description": "Troll da maquete no passo 2: prioridades distribuídas, atributos pagos e Trunfo 2 com carma, já que troll na B não tem pontos especiais.",
+  "schemaVersion": 1,
+  "data": {"identity": {"concept": "Samurai urbano"}, "priorities": {"metatype": "B", "attributes": "A", "magic": "E", "skills": "C", "resources": "D"}, "metatype": "troll", "attributes": {"bod": {"points": 4}, "agi": {"points": 3}, "rea": {"points": 3}, "str": {"points": 3}, "wil": {"points": 2}, "log": {"points": 1}, "int": {"points": 2}, "cha": {"points": 1}, "edg": {"karma": 1}}},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
+      {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}},
+      {"step": "finishing", "path": "identity.name", "code": "required", "params": {"field": "identity.name"}}
+    ],
+    "derived": {"attributes": {"bod": {"natural": 9, "augmented": 9}, "agi": {"natural": 4, "augmented": 4}, "rea": {"natural": 4, "augmented": 4}, "str": {"natural": 8, "augmented": 8}, "wil": {"natural": 3, "augmented": 3}, "log": {"natural": 2, "augmented": 2}, "int": {"natural": 3, "augmented": 3}, "cha": {"natural": 2, "augmented": 2}, "edg": {"natural": 2, "augmented": 2}}, "essence": 6, "limits": {"physical": 10, "mental": 4, "social": 5}, "initiative": {"physical": {"base": 7, "dice": 1}, "matrixAR": {"base": 7, "dice": 1}}, "monitors": {"physical": 13, "stun": 10, "overflow": 9, "woundPenalty": 0}, "armor": 1, "attributeTests": {"composure": 5, "judgeIntentions": 5, "memory": 5, "liftCarry": 17}, "movement": {"walk": 8, "run": 16, "sprintPerHit": 1}, "lifting": {"lift": 120, "overhead": 40, "carry": 80}, "reputation": {"streetCred": 0, "notoriety": 0, "publicAwareness": 0}, "budgets": {"special": {"total": 0, "spent": 0}, "attributes": {"total": 24, "spent": 19}, "skills": {"total": 28, "spent": 0}, "skillGroups": {"total": 2, "spent": 0}, "knowledge": {"total": 10, "spent": 0}, "karma": {"total": 25, "spent": 10}, "nuyen": {"total": 50000, "spent": 0}, "contacts": {"total": 6, "spent": 0}}},
+    "summary": {"title": "", "subtitle": "Troll · Samurai urbano", "highlights": [{"label": "Essência", "value": "6"}, {"label": "Carma", "value": "15"}], "progress": {"step": 6, "total": 9}}
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "attribute-above-max",
+  "description": "Carisma 5 em troll, que tem máximo 4.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Grok"}, "priorities": {"metatype": "B", "attributes": "A", "magic": "E", "skills": "C", "resources": "D"}, "metatype": "troll", "attributes": {"cha": {"points": 4}}},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "metatype", "path": "attributes.cha.points", "code": "attributes.aboveMax", "params": {"attribute": "cha", "value": 5, "max": 4}},
+      {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
+      {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
+    ],
+    "derived": {"attributes": {"cha": {"natural": 5}}, "budgets": {"attributes": {"total": 24, "spent": 4}}}
+  }
+}

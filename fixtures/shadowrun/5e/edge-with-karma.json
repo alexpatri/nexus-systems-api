@@ -1,0 +1,16 @@
+{
+  "name": "edge-with-karma",
+  "description": "Elfo com Trunfo 1 + 1 ponto especial + 2 níveis de carma: o carma sobe por cima dos pontos, de 2 para 3 (15) e de 3 para 4 (20), e passa dos 25.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Lia"}, "priorities": {"metatype": "C", "attributes": "B", "magic": "E", "skills": "A", "resources": "D"}, "metatype": "elf", "attributes": {"edg": {"points": 1, "karma": 2}}},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "karma", "path": "budgets.karma", "code": "budget.exceeded", "params": {"budget": "karma", "total": 25, "spent": 35}},
+      {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
+      {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
+    ],
+    "derived": {"attributes": {"edg": {"natural": 4}}, "budgets": {"special": {"total": 3, "spent": 1}, "karma": {"total": 25, "spent": 35}}},
+    "summary": {"highlights": [{"label": "Essência", "value": "6"}, {"label": "Carma", "value": "-10"}]}
+  }
+}

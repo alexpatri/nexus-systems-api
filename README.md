@@ -54,6 +54,12 @@ igual. Fica fora de `data/`, então não entra no binário da API; o core import
 `book-examples.json` aponta para fórmulas do catálogo com os personagens de
 exemplo do livro. O `validate.py` roda todos eles com o `sr_eval`.
 
+`fixtures/shadowrun/5e/*.json` são fichas: `data` e o que a estratégia tem que
+devolver em cada modo de validação, nos derivados e no resumo (formato em
+`shadowrun-contrato-da-ficha.md`). O `validate.py` não roda a estratégia; ele
+confere a forma, os códigos e os ids, e, nas fichas com `example`, que os
+atributos e os derivados batem com o personagem de `book-examples.json`.
+
 ## Adicionar um sistema
 
 1. Crie `data/systems/{id}/{versao}/system.json` com `id` e `apiVersion` batendo
