@@ -1,0 +1,15 @@
+{
+  "name": "two-at-max",
+  "description": "Humano com Corpo 6 e Agilidade 6: só um atributo Físico ou Mental começa no máximo.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Ana"}, "priorities": {"metatype": "D", "attributes": "A", "magic": "E", "skills": "B", "resources": "C"}, "metatype": "human", "attributes": {"bod": {"points": 5}, "agi": {"points": 5}}},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "metatype", "path": "attributes", "code": "attributes.tooManyAtMax", "params": {"attributes": ["bod", "agi"], "allowed": 1}},
+      {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
+      {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
+    ],
+    "derived": {"attributes": {"bod": {"natural": 6}, "agi": {"natural": 6}}}
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "lenient-shape",
+  "description": "Tipo errado, letra fora de A–E, número negativo, não inteiro e atributo que não se compra.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": 3}, "priorities": {"metatype": "F"}, "attributes": {"bod": {"points": -1}, "agi": {"karma": 1.5}, "ess": {"points": 1}}},
+  "expect": {
+    "lenient": [
+      {"step": "finishing", "path": "identity.name", "code": "shape.invalid", "params": {"expected": "string"}},
+      {"step": "metatype", "path": "priorities.metatype", "code": "shape.invalid", "params": {"expected": "priority"}},
+      {"step": "metatype", "path": "attributes.bod.points", "code": "shape.invalid", "params": {"expected": "integer"}},
+      {"step": "metatype", "path": "attributes.agi.karma", "code": "shape.invalid", "params": {"expected": "integer"}},
+      {"step": "metatype", "path": "attributes.ess", "code": "shape.invalid", "params": {"expected": "absent"}}
+    ],
+    "strict": [
+      {"step": "finishing", "path": "identity.name", "code": "shape.invalid", "params": {"expected": "string"}},
+      {"step": "metatype", "path": "priorities.metatype", "code": "shape.invalid", "params": {"expected": "priority"}},
+      {"step": "metatype", "path": "attributes.bod.points", "code": "shape.invalid", "params": {"expected": "integer"}},
+      {"step": "metatype", "path": "attributes.agi.karma", "code": "shape.invalid", "params": {"expected": "integer"}},
+      {"step": "metatype", "path": "attributes.ess", "code": "shape.invalid", "params": {"expected": "absent"}}
+    ]
+  }
+}

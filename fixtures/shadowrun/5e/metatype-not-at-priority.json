@@ -1,0 +1,15 @@
+{
+  "name": "metatype-not-at-priority",
+  "description": "Troll com Metatipo na C, que só tem humano, elfo, anão e ork.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Grok"}, "priorities": {"metatype": "C", "attributes": "A", "magic": "E", "skills": "B", "resources": "D"}, "metatype": "troll"},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "metatype", "path": "metatype", "code": "metatype.notAtPriority", "params": {"metatype": "troll", "priority": "C"}},
+      {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
+      {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
+    ],
+    "derived": {"attributes": {"bod": {"natural": 5}, "str": {"natural": 5}, "cha": {"natural": 1}}}
+  }
+}

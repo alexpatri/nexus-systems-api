@@ -1,0 +1,15 @@
+{
+  "name": "priorities-duplicate",
+  "description": "Prioridade A em Atributos e Perícias; a C fica sem coluna.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Grok"}, "priorities": {"metatype": "B", "attributes": "A", "magic": "E", "skills": "A", "resources": "D"}, "metatype": "troll", "attributes": {"bod": {"points": 4}, "agi": {"points": 3}, "rea": {"points": 3}, "str": {"points": 3}, "wil": {"points": 2}, "log": {"points": 1}, "int": {"points": 2}, "cha": {"points": 1}}},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "metatype", "path": "priorities", "code": "priorities.duplicate", "params": {"priority": "A", "columns": ["attributes", "skills"]}},
+      {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
+      {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
+    ],
+    "derived": {"budgets": {"attributes": {"total": 24, "spent": 19}, "skills": {"total": 46, "spent": 0}}}
+  }
+}

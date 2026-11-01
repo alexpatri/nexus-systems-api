@@ -352,6 +352,78 @@ def sr_check_expr_fixtures(d, sysj, E):
     return envs_by_file
 
 
+SR_CODES = {
+    'shape.invalid', 'catalog.unknownId', 'key.duplicate', 'required', 'priorities.duplicate',
+    'metatype.notAtPriority', 'attributes.aboveMax', 'attributes.tooManyAtMax', 'attributes.notAllowed',
+    'budget.exceeded', 'magic.notAtPriority', 'magic.notAllowed', 'magic.freeSkillsCount',
+    'magic.freeSkillNotAllowed', 'magic.formulasMax', 'magic.complexFormsMax', 'magic.powerLevelMax',
+    'magic.parameterRequired', 'magic.spiritsMax', 'qualities.levelOutOfRange', 'qualities.optionRequired',
+    'qualities.choiceRequired', 'qualities.duplicate', 'skills.aboveMax', 'skills.restricted',
+    'skills.groupConflict', 'skills.specializationNotAllowed', 'skills.nativeLanguageCount',
+    'gear.availabilityMax', 'gear.ratingOutOfRange', 'gear.deviceRatingMax', 'gear.deckArrayInvalid',
+    'gear.programsMax', 'essence.depleted', 'contacts.costOutOfRange', 'resources.startingRollOutOfRange',
+    'play.notEmpty',
+}
+SR_COLUMNS = ('metatype', 'attributes', 'magic', 'skills', 'resources')
+SR_LETTERS = set('ABCDE')
+
+
+def sr_check_sheet_fixtures(d, sysj, E, metatypes, envs):
+    """Fixtures de ficha em fixtures/<sistema>/<versão>/*.json. Não roda a estratégia:
+    confere a forma, os ids e, nos exemplos do livro, que os atributos e os
+    derivados esperados batem com os personagens e as fórmulas do catálogo."""
+    files = sorted((FIXTURES / sysj['id'] / d.name).glob('*.json'))
+    if not files: E("fixtures de ficha ausentes"); return
+    steps = {s['id'] for s in sysj['creation']['steps']}
+    metas = {m['id']: m for m in metatypes['metatypes']}
+    derived = load(d, 'mechanics.json')['derived']
+    for f in files:
+        doc = json.loads(f.read_text())
+        where = f"fixtures {f.name}"
+        if doc.get('name') != f.stem: E(f"{where}: name {doc.get('name')!r} difere do arquivo")
+        if doc.get('schemaVersion') != sysj['schemaVersion']: E(f"{where}: schemaVersion diverge do system.json")
+        data, expect = doc.get('data'), doc.get('expect')
+        if not isinstance(data, dict) or not isinstance(expect, dict): E(f"{where}: data e expect são objetos"); continue
+        if set(expect) - {'lenient', 'strict', 'derived', 'summary'}: E(f"{where}: campo desconhecido em expect")
+        for mode in ('lenient', 'strict'):
+            for v in expect.get(mode, []):
+                if v.get('step') not in steps: E(f"{where}: {mode} com step desconhecido {v.get('step')!r}")
+                if v.get('code') not in SR_CODES: E(f"{where}: {mode} com código desconhecido {v.get('code')!r}")
+                if not isinstance(v.get('path'), str): E(f"{where}: {mode} sem path")
+        shaped = {v['path'] for v in expect.get('lenient', []) if v.get('code') == 'shape.invalid'}
+        unknown = {(v['params']['catalog'], v['params']['id']) for v in expect.get('lenient', [])
+                   if v.get('code') == 'catalog.unknownId'}
+        if 'metatype' in data and data['metatype'] not in metas and ('metatypes', data['metatype']) not in unknown:
+            E(f"{where}: metatipo desconhecido {data['metatype']!r} sem catalog.unknownId no lenient")
+        for col, letter in data.get('priorities', {}).items():
+            if (col not in SR_COLUMNS or letter not in SR_LETTERS) and f"priorities.{col}" not in shaped:
+                E(f"{where}: prioridade inválida {col}={letter!r} sem shape.invalid no lenient")
+
+        if 'example' not in doc: continue
+        env = envs.get(doc['example'])
+        meta = metas.get(data.get('metatype'))
+        if env is None or meta is None: E(f"{where}: exemplo {doc['example']!r} ou metatipo desconhecido"); continue
+        for a in SR_ATTRS[:8]:
+            buy = data.get('attributes', {}).get(a, {})
+            got = meta['attributes'][a]['min'] + buy.get('points', 0) + buy.get('karma', 0)
+            if got != env[f'attr.{a}']: E(f"{where}: {a} dá {got}, o exemplo tem {env[f'attr.' + a]}")
+        want = expect.get('derived', {})
+        formulas = {
+            ('limits', 'physical'): derived['limits']['physical']['value'],
+            ('limits', 'mental'): derived['limits']['mental']['value'],
+            ('limits', 'social'): derived['limits']['social']['value'],
+            ('monitors', 'physical'): derived['monitors']['physical']['boxes'],
+            ('monitors', 'stun'): derived['monitors']['stun']['boxes'],
+            ('monitors', 'overflow'): derived['monitors']['overflow']['boxes'],
+        }
+        for (group, key), expr in formulas.items():
+            if key in want.get(group, {}) and want[group][key] != sr_eval(expr, env):
+                E(f"{where}: derived.{group}.{key} diverge da fórmula do catálogo")
+        base = want.get('initiative', {}).get('physical', {}).get('base')
+        if base is not None and base != sr_eval(derived['initiative']['physical']['base'], env):
+            E(f"{where}: derived.initiative.physical.base diverge da fórmula do catálogo")
+
+
 def is_expr(o):
     return isinstance(o, dict) and ('op' in o or 'ref' in o)
 
@@ -762,6 +834,7 @@ def check_shadowrun(d, sysj, E, W):
     # --- exemplos do livro ---
     derived = mech['derived']
     envs = sr_check_expr_fixtures(d, sysj, E).get('book-examples', {})
+    sr_check_sheet_fixtures(d, sysj, E, metatypes, envs)
 
     # Beto tem Desejo de Viver 1: Excesso 9 (10), p. 102.
     wtl = next(q for q in qs if q['id'] == 'will-to-live')['modifiers'][0]

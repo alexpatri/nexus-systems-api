@@ -1,0 +1,15 @@
+{
+  "name": "magic-without-awakening",
+  "description": "Pontos especiais em Magia sem despertar.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Ana"}, "priorities": {"metatype": "A", "attributes": "B", "magic": "E", "skills": "C", "resources": "D"}, "metatype": "human", "attributes": {"mag": {"points": 2}}},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "metatype", "path": "attributes.mag.points", "code": "attributes.notAllowed", "params": {"attribute": "mag"}},
+      {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
+      {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
+    ],
+    "derived": {"budgets": {"special": {"total": 9, "spent": 2}}}
+  }
+}
