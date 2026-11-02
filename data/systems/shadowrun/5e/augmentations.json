@@ -591,6 +591,11 @@
         "min": 1,
         "max": 4
       },
+      "capacity": {
+        "accepts": [
+          "eyeware"
+        ]
+      },
       "levels": [
         {
           "rating": 1,
@@ -720,6 +725,11 @@
       "rating": {
         "min": 1,
         "max": 4
+      },
+      "capacity": {
+        "accepts": [
+          "earware"
+        ]
       },
       "levels": [
         {
@@ -1331,6 +1341,13 @@
       "name": "Antebraço",
       "category": "cyberlimb",
       "type": "cyberware",
+      "capacity": {
+        "accepts": [
+          "cyberlimb-accessory",
+          "cyberlimb-enhancement",
+          "cyber-implant-weapon"
+        ]
+      },
       "variants": [
         {
           "id": "obvious",
@@ -1370,6 +1387,13 @@
       "name": "Braço completo",
       "category": "cyberlimb",
       "type": "cyberware",
+      "capacity": {
+        "accepts": [
+          "cyberlimb-accessory",
+          "cyberlimb-enhancement",
+          "cyber-implant-weapon"
+        ]
+      },
       "variants": [
         {
           "id": "obvious",
@@ -1409,6 +1433,13 @@
       "name": "Canela",
       "category": "cyberlimb",
       "type": "cyberware",
+      "capacity": {
+        "accepts": [
+          "cyberlimb-accessory",
+          "cyberlimb-enhancement",
+          "cyber-implant-weapon"
+        ]
+      },
       "variants": [
         {
           "id": "obvious",
@@ -1448,6 +1479,11 @@
       "name": "Crânio",
       "category": "cyberlimb",
       "type": "cyberware",
+      "capacity": {
+        "accepts": [
+          "headware"
+        ]
+      },
       "variants": [
         {
           "id": "obvious",
@@ -1486,6 +1522,13 @@
       "name": "Mão/pé",
       "category": "cyberlimb",
       "type": "cyberware",
+      "capacity": {
+        "accepts": [
+          "cyberlimb-accessory",
+          "cyberlimb-enhancement",
+          "cyber-implant-weapon"
+        ]
+      },
       "variants": [
         {
           "id": "obvious",
@@ -1525,6 +1568,13 @@
       "name": "Perna completa",
       "category": "cyberlimb",
       "type": "cyberware",
+      "capacity": {
+        "accepts": [
+          "cyberlimb-accessory",
+          "cyberlimb-enhancement",
+          "cyber-implant-weapon"
+        ]
+      },
       "variants": [
         {
           "id": "obvious",
@@ -1564,6 +1614,11 @@
       "name": "Tronco",
       "category": "cyberlimb",
       "type": "cyberware",
+      "capacity": {
+        "accepts": [
+          "bodyware"
+        ]
+      },
       "variants": [
         {
           "id": "obvious",

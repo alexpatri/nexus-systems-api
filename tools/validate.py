@@ -270,7 +270,7 @@ SR_OPS = {
 }
 SR_UNARY = {'ceil', 'floor'}
 SR_REF = re.compile(r'^(attr\.(' + '|'.join(SR_ATTRS) + r')|rating|grade|karma\.total|quality\.karma'
-                    r'|matrix\.dataProcessing|force|netHits|limit\.physical)$')
+                    r'|matrix\.dataProcessing|force|netHits|limit\.physical|essence\.lost)$')
 SR_TARGETS = {
     'attr.max', 'skill.max', 'limit', 'monitor.overflow', 'wound.ignoredBoxes', 'wound.boxesPerPenalty',
     'reputation.notoriety', 'essence.cyberwareLoss', 'lifestyle.cost', 'language.native',
@@ -361,8 +361,10 @@ SR_CODES = {
     'qualities.choiceRequired', 'qualities.duplicate', 'qualities.requirementNotMet', 'qualities.unique',
     'qualities.excluded', 'qualities.choiceNotAllowed', 'skills.aboveMax', 'skills.restricted',
     'skills.groupConflict', 'skills.specializationNotAllowed', 'skills.nativeLanguageCount',
-    'gear.availabilityMax', 'gear.ratingOutOfRange', 'gear.deviceRatingMax', 'gear.deckArrayInvalid',
-    'gear.programsMax', 'essence.depleted', 'contacts.costOutOfRange', 'resources.startingRollOutOfRange',
+    'gear.availabilityMax', 'gear.ratingOutOfRange', 'gear.costOutOfRange', 'gear.variantRequired',
+    'gear.parameterRequired', 'gear.parameterNotAllowed', 'gear.gradeNotAllowed', 'gear.notInstallable',
+    'gear.hostRequired', 'gear.capacityExceeded', 'gear.deviceRatingMax', 'gear.deckArrayInvalid',
+    'resources.primaryLifestyleDuplicate', 'resources.lifestyleNotAllowed', 'essence.depleted', 'contacts.costOutOfRange', 'resources.startingRollOutOfRange',
     'play.notEmpty',
 }
 SR_COLUMNS = ('metatype', 'attributes', 'magic', 'skills', 'resources')
@@ -905,8 +907,14 @@ def check_shadowrun(d, sysj, E, W):
             if uses_rating and 'rating' not in a: E(f"{where}: fórmula com Nível sem faixa de rating")
             if 'levels' in a and [l['rating'] for l in a['levels']] != list(range(1, a['rating']['max'] + 1)):
                 E(f"{where}: levels devem cobrir 1..rating.max")
+            accepts = a.get('capacity', {}).get('accepts') if isinstance(a.get('capacity'), dict) else None
+            provides = any('provides' in (p.get('capacity') or {}) for p in a.get('levels', []) + a.get('variants', [])
+                           if isinstance(p.get('capacity'), dict))
+            if provides != (accepts is not None): E(f"{where}: hospedeiro precisa de capacity.accepts no item e provides no nível ou variante")
+            if accepts is not None and (not accepts or set(accepts) - categories): E(f"{where}: accepts com categoria inexistente")
             for part in [a] + a.get('levels', []) + a.get('variants', []):
                 cap = part.get('capacity')
+                if part is a and accepts is not None: continue
                 if a['type'] == 'bioware' and cap is not None: E(f"{where}: biônico não tem capacidade")
                 if cap not in (None, 'included') and not (isinstance(cap, dict) and len(cap) == 1
                                                           and set(cap) <= {'cost', 'provides'}):
@@ -971,6 +979,17 @@ def check_shadowrun(d, sysj, E, W):
             E(f"identidade {l['id']}: legalidade fora do vocabulário")
     costs = [l['cost'] for l in lifestyles['lifestyles'] if 'cost' in l]
     if costs != sorted(costs): E("lifestyles.json: estilos de vida devem vir em ordem crescente de custo")
+
+    res = mech['creation']['resources']
+    if res.get('rounding') not in ('ceil', 'floor', 'round'): E("mechanics.json: creation.resources.rounding inválido")
+    if augs and set(res.get('grades', [])) - {g['id'] for g in augs['grades']}: E("mechanics.json: grau de criação inexistente")
+    loss = mech['derived'].get('essenceLoss', {})
+    if not loss.get('attributes') or set(loss['attributes']) - {'mag', 'res'}: E("mechanics.json: essenceLoss.attributes só aceita mag e res")
+    if loss.get('applies') not in ('max-and-value', 'max'): E("mechanics.json: essenceLoss.applies inválido")
+    if 'essence.lost' not in mech['expressions']['refs']: E("mechanics.json: essence.lost fora de expressions.refs")
+    sr_check_expr(loss.get('loss'), "mechanics.json essenceLoss.loss", E)
+    # Jimmy, p. 278: Essência 5,8 leva a Magia de 4 a 3.
+    if 4 - sr_eval(loss['loss'], {'essence.lost': 0.2}) != 3: E("exemplo Jimmy: Essência 5,8 deveria tirar 1 de Magia")
 
     smax = mech['creation'].get('specialAttributeMax', {})
     for a in ('mag', 'res'):
