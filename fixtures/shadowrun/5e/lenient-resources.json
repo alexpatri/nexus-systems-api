@@ -20,7 +20,7 @@
       {"step": "resources", "path": "resources.devices[d2].programs", "code": "catalog.unknownId", "params": {"catalog": "programs", "id": "nuke"}},
       {"step": "resources", "path": "resources.devices[d3].id", "code": "catalog.unknownId", "params": {"catalog": "commlinks", "id": "pocket-secretary"}},
       {"step": "resources", "path": "resources.devices[d3].options", "code": "catalog.unknownId", "params": {"catalog": "commlinkOptions", "id": "jetpack"}},
-      {"step": "resources", "path": "resources.vehicles[w1]", "code": "key.duplicate", "params": {"key": "w1"}},
+      {"step": "resources", "path": "resources.weapons[w1]", "code": "key.duplicate", "params": {"key": "w1"}},
       {"step": "resources", "path": "resources.vehicles[v2].id", "code": "catalog.unknownId", "params": {"catalog": "vehicles", "id": "batmobile"}}
     ],
     "strict": [
@@ -39,7 +39,7 @@
       {"step": "resources", "path": "resources.devices[d2].programs", "code": "catalog.unknownId", "params": {"catalog": "programs", "id": "nuke"}},
       {"step": "resources", "path": "resources.devices[d3].id", "code": "catalog.unknownId", "params": {"catalog": "commlinks", "id": "pocket-secretary"}},
       {"step": "resources", "path": "resources.devices[d3].options", "code": "catalog.unknownId", "params": {"catalog": "commlinkOptions", "id": "jetpack"}},
-      {"step": "resources", "path": "resources.vehicles[w1]", "code": "key.duplicate", "params": {"key": "w1"}},
+      {"step": "resources", "path": "resources.weapons[w1]", "code": "key.duplicate", "params": {"key": "w1"}},
       {"step": "resources", "path": "resources.vehicles[v2].id", "code": "catalog.unknownId", "params": {"catalog": "vehicles", "id": "batmobile"}}
     ]
   }
