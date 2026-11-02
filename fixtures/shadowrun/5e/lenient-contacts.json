@@ -1,0 +1,22 @@
+{
+  "name": "lenient-contacts",
+  "description": "Lenient em contacts: nome que não é texto, Conexão e Lealdade que não são inteiros, campo desconhecido e key repetida com um idioma.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Tess", "concept": "Atravessadora"}, "priorities": {"metatype": "D", "attributes": "C", "magic": "E", "skills": "B", "resources": "A"}, "metatype": "human", "attributes": {"bod": {"points": 2}, "agi": {"points": 2}, "rea": {"points": 2}, "str": {"points": 2}, "wil": {"points": 2}, "log": {"points": 2}, "int": {"points": 2}, "cha": {"points": 2}}, "skills": {"languages": [{"key": "l1", "name": "Inglês", "native": true}]}, "resources": {"startingNuyenRoll": 3, "lifestyles": [{"key": "r0", "id": "street", "primary": true}]}, "contacts": [{"key": "c1", "name": 5, "connection": "3", "loyalty": 2.5, "phone": "555"}, {"key": "l1", "connection": 1, "loyalty": 1, "notes": "Deve um favor"}]},
+  "expect": {
+    "lenient": [
+      {"step": "karma", "path": "contacts[c1].connection", "code": "shape.invalid", "params": {"expected": "integer"}},
+      {"step": "karma", "path": "contacts[c1].loyalty", "code": "shape.invalid", "params": {"expected": "integer"}},
+      {"step": "karma", "path": "contacts[c1].name", "code": "shape.invalid", "params": {"expected": "string"}},
+      {"step": "karma", "path": "contacts[c1].phone", "code": "shape.invalid", "params": {"expected": "absent"}},
+      {"step": "skills", "path": "skills.languages[l1]", "code": "key.duplicate", "params": {"key": "l1"}}
+    ],
+    "strict": [
+      {"step": "karma", "path": "contacts[c1].connection", "code": "shape.invalid", "params": {"expected": "integer"}},
+      {"step": "karma", "path": "contacts[c1].loyalty", "code": "shape.invalid", "params": {"expected": "integer"}},
+      {"step": "karma", "path": "contacts[c1].name", "code": "shape.invalid", "params": {"expected": "string"}},
+      {"step": "karma", "path": "contacts[c1].phone", "code": "shape.invalid", "params": {"expected": "absent"}},
+      {"step": "skills", "path": "skills.languages[l1]", "code": "key.duplicate", "params": {"key": "l1"}}
+    ]
+  }
+}

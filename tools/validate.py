@@ -364,7 +364,7 @@ SR_CODES = {
     'gear.availabilityMax', 'gear.ratingOutOfRange', 'gear.costOutOfRange', 'gear.variantRequired',
     'gear.parameterRequired', 'gear.parameterNotAllowed', 'gear.gradeNotAllowed', 'gear.notInstallable',
     'gear.hostRequired', 'gear.capacityExceeded', 'gear.deviceRatingMax', 'gear.deckArrayInvalid',
-    'gear.excluded', 'gear.duplicate', 'resources.primaryLifestyleDuplicate', 'resources.lifestyleNotAllowed', 'essence.depleted', 'contacts.costOutOfRange', 'resources.startingRollOutOfRange',
+    'gear.excluded', 'gear.duplicate', 'resources.primaryLifestyleDuplicate', 'resources.lifestyleNotAllowed', 'essence.depleted', 'contacts.costOutOfRange', 'contacts.ratingOutOfRange', 'resources.startingRollOutOfRange',
     'play.notEmpty',
 }
 SR_COLUMNS = ('metatype', 'attributes', 'magic', 'skills', 'resources')
@@ -504,6 +504,7 @@ def sr_check_sheet_budgets(where, data, want, d, E):
     got['powerPoints'] = sum(sr_power_cost(powers[p['id']], p) for p in magic.get('powers', []) if p['id'] in powers)
     gear = sr_gear(d, data)
     got['nuyen'] = gear['nuyen']
+    got['contacts'] = sum(x.get('connection', 1) + x.get('loyalty', 1) for x in data.get('contacts', []))
     got['karmaToNuyen'] = data.get('resources', {}).get('karmaToNuyen', 0)
     if 'essence' in want and round(want['essence'] * 1000) != 6000 - gear['essence']:
         E(f"{where}: essence {want['essence']}, o catálogo dá {(6000 - gear['essence']) / 1000}")
@@ -1180,6 +1181,11 @@ def check_shadowrun(d, sysj, E, W):
     sr_check_expr(loss.get('loss'), "mechanics.json essenceLoss.loss", E)
     # Jimmy, p. 278: Essência 5,8 leva a Magia de 4 a 3.
     if 4 - sr_eval(loss['loss'], {'essence.lost': 0.2}) != 3: E("exemplo Jimmy: Essência 5,8 deveria tirar 1 de Magia")
+
+    ct = mech['creation']['contacts']
+    for lo, hi in (('minConnection', 'maxConnection'), ('minLoyalty', 'maxLoyalty')):
+        if not (isinstance(ct.get(hi), int) and ct[hi] >= ct[lo]): E(f"mechanics.json: contacts.{hi} deve ser inteiro ≥ {lo}")
+    if not ct['minKarma'] <= ct['maxKarmaPerContact']: E("mechanics.json: contacts.minKarma acima de maxKarmaPerContact")
 
     smax = mech['creation'].get('specialAttributeMax', {})
     for a in ('mag', 'res'):
