@@ -364,7 +364,7 @@ SR_CODES = {
     'gear.availabilityMax', 'gear.ratingOutOfRange', 'gear.costOutOfRange', 'gear.variantRequired',
     'gear.parameterRequired', 'gear.parameterNotAllowed', 'gear.gradeNotAllowed', 'gear.notInstallable',
     'gear.hostRequired', 'gear.capacityExceeded', 'gear.deviceRatingMax', 'gear.deckArrayInvalid',
-    'resources.primaryLifestyleDuplicate', 'resources.lifestyleNotAllowed', 'essence.depleted', 'contacts.costOutOfRange', 'resources.startingRollOutOfRange',
+    'gear.excluded', 'gear.duplicate', 'resources.primaryLifestyleDuplicate', 'resources.lifestyleNotAllowed', 'essence.depleted', 'contacts.costOutOfRange', 'resources.startingRollOutOfRange',
     'play.notEmpty',
 }
 SR_COLUMNS = ('metatype', 'attributes', 'magic', 'skills', 'resources')
@@ -436,6 +436,39 @@ def sr_check_sheet_ids(where, data, lenient, d, E):
     for i in skills.get('active', {}): need('skills', i)
     for i in skills.get('groups', {}): need('skillGroups', i)
     for k in skills.get('knowledge', []): need('knowledgeCategories', k['category'])
+    life, armor, augs, matrix = (load(d, f) for f in ('lifestyles.json', 'armor.json', 'augmentations.json', 'matrix.json'))
+    known.update({
+        'lifestyles': {x['id'] for x in life['lifestyles']}, 'lifestyleOptions': {x['id'] for x in life['options']},
+        'weapons': {x['id'] for x in load(d, 'weapons.json')['weapons']}, 'armor': {x['id'] for x in armor['armor']},
+        'armorModifications': {x['id'] for x in armor['modifications']},
+        'armorOptions': {f"{a['id']}.{o['id']}" for a in armor['armor'] for o in a.get('options', [])},
+        'augmentations': {x['id'] for x in augs['augmentations']}, 'grades': {g['id'] for g in augs['grades']},
+        'augmentationVariants': {f"{a['id']}.{v['id']}" for a in augs['augmentations'] for v in a.get('variants', [])},
+        'commlinks': {x['id'] for x in matrix['commlinks']}, 'commlinkOptions': {x['id'] for x in matrix['commlinkOptions']},
+        'cyberdecks': {x['id'] for x in matrix['cyberdecks']}, 'programs': {x['id'] for x in matrix['programs']},
+        'vehicles': {x['id'] for x in load(d, 'vehicles.json')['vehicles']},
+    })
+    res = data.get('resources', {})
+    for x in res.get('lifestyles', []):
+        need('lifestyles', x['id'])
+        for o in x.get('options', []): need('lifestyleOptions', o)
+    for x in res.get('weapons', []): need('weapons', x['id'])
+    for x in res.get('armor', []):
+        need('armor', x['id'])
+        for o in x.get('options', []): need('armorOptions', f"{x['id']}.{o}")
+        for m in x.get('modifications', []): need('armorModifications', m['id'])
+    for x in res.get('augmentations', []):
+        need('augmentations', x['id'])
+        if 'grade' in x: need('grades', x['grade'])
+        if 'variant' in x: need('augmentationVariants', f"{x['id']}.{x['variant']}")
+    for x in res.get('devices', []):
+        if x.get('kind') == 'commlink':
+            need('commlinks', x['id'])
+            for o in x.get('options', []): need('commlinkOptions', o)
+        elif x.get('kind') == 'cyberdeck':
+            need('cyberdecks', x['id'])
+            for o in x.get('programs', []): need('programs', o)
+    for x in res.get('vehicles', []): need('vehicles', x['id'])
 
 
 def sr_power_cost(power, item):
@@ -469,10 +502,153 @@ def sr_check_sheet_budgets(where, data, want, d, E):
     got['formulas'] = sum(len(ids) for ids in magic.get('formulas', {}).values())
     got['complexForms'] = len(magic.get('complexForms', []))
     got['powerPoints'] = sum(sr_power_cost(powers[p['id']], p) for p in magic.get('powers', []) if p['id'] in powers)
+    gear = sr_gear(d, data)
+    got['nuyen'] = gear['nuyen']
+    got['karmaToNuyen'] = data.get('resources', {}).get('karmaToNuyen', 0)
+    if 'essence' in want and round(want['essence'] * 1000) != 6000 - gear['essence']:
+        E(f"{where}: essence {want['essence']}, o catálogo dá {(6000 - gear['essence']) / 1000}")
+    if 'armor' in want and want['armor'] != gear['armor']:
+        E(f"{where}: armor {want['armor']}, o catálogo dá {gear['armor']}")
+    for a, v in want.get('attributes', {}).items():
+        if 'augmented' in v and 'natural' in v and a in SR_ATTRS[:8] and v['augmented'] != v['natural'] + gear['bonus'].get(a, 0):
+            E(f"{where}: attributes.{a}.augmented diverge dos bônus do catálogo")
+    dice = want.get('initiative', {}).get('physical', {}).get('dice')
+    if dice is not None and dice != min(1 + gear['dice'], 5): E(f"{where}: dados de iniciativa física divergem do catálogo")
     budgets = want.get('budgets', {})
     for name, value in got.items():
         if name in budgets and budgets[name].get('spent') != value:
             E(f"{where}: budgets.{name}.spent {budgets[name].get('spent')}, o catálogo dá {value}")
+
+
+def sr_price(c, rating):
+    """Preço de catálogo: número, { add }, { value }, fórmula com rating; faixa { min, max } devolve o mínimo."""
+    if c is None: return 0
+    if is_number(c): return c
+    if is_expr(c): return sr_eval(c, {'rating': rating})
+    for k in ('add', 'value', 'min'):
+        if k in c: return c[k]
+    return 0
+
+
+def sr_part(item, entry):
+    """O item com o nível ou a variante escolhida por cima."""
+    part = dict(item)
+    if 'levels' in item:
+        part.update(next((l for l in item['levels'] if l['rating'] == entry.get('rating', item['rating']['min'])), {}))
+    if 'variants' in item:
+        part.update(next((v for v in item['variants'] if v.get('id') == entry.get('variant')), {}))
+    return part
+
+
+def sr_rating(item, entry):
+    return entry.get('rating', item['rating']['min']) if 'rating' in item else 1
+
+
+def sr_ceil_div(num, den):
+    return -(-num // den)
+
+
+def sr_gear(d, data):
+    """Nuyen gasto, Essência em milésimos, bônus de atributo, armadura e dados extras de iniciativa (seção 3)."""
+    res = data.get('resources', {})
+    mech = load(d, 'mechanics.json')
+    life = load(d, 'lifestyles.json')
+    styles = {x['id']: x for x in life['lifestyles']}
+    lopts = {x['id']: x for x in life['options']}
+    idents = {x['id']: x for x in life['identities']}
+    weapons = {x['id']: x for x in load(d, 'weapons.json')['weapons']}
+    armor_cat = load(d, 'armor.json')
+    armors = {x['id']: x for x in armor_cat['armor']}
+    mods = {x['id']: x for x in armor_cat['modifications']}
+    augs_cat = load(d, 'augmentations.json')
+    augs = {x['id']: x for x in augs_cat['augmentations']}
+    grades = {g['id']: g for g in augs_cat['grades']}
+    matrix = load(d, 'matrix.json')
+    links = {x['id']: x for x in matrix['commlinks']}
+    link_opts = {x['id']: x for x in matrix['commlinkOptions']}
+    decks = {x['id']: x for x in matrix['cyberdecks']}
+    programs = {x['id']: x for x in matrix['programs']}
+    vehicles = {x['id']: x for x in load(d, 'vehicles.json')['vehicles']}
+    meta = next((m for m in load(d, 'metatypes.json')['metatypes'] if m['id'] == data.get('metatype')), None)
+    qcat = {q['id']: q for q in load(d, 'qualities.json')['qualities']}
+    pcat = {p['id']: p for p in load(d, 'adept-powers.json')['powers']}
+
+    nuyen = 0
+    mults = [round(m['mul'] * 100) for t in (meta or {}).get('traits', []) for m in t.get('modifiers', [])
+             if m['target'] == 'lifestyle.cost']
+    for x in res.get('lifestyles', []):
+        st = styles.get(x['id'], {})
+        opts = [lopts[o]['cost'] for o in x.get('options', []) if o in lopts]
+        num = st.get('cost', 0) * (100 + sum(o.get('percent', 0) for o in opts)) + sum(o.get('add', 0) for o in opts) * 100
+        den = 100
+        for m in mults: num, den = num * m, den * 100
+        nuyen += sr_ceil_div(num * x.get('months', 1), den)
+    for x in res.get('identities', []):
+        nuyen += sr_price(idents['fake-sin']['cost'], x.get('rating', 1))
+        nuyen += sum(sr_price(idents['fake-license']['cost'], l.get('rating', 1)) for l in x.get('licenses', []))
+    for x in res.get('weapons', []):
+        w = weapons.get(x['id'])
+        if w: nuyen += sr_price(w['cost'], sr_rating(w, x)) * x.get('quantity', 1)
+    for x in res.get('armor', []):
+        a = armors.get(x['id'])
+        if not a: continue
+        ranged = isinstance(a['cost'], dict) and 'min' in a['cost']
+        nuyen += x.get('cost', a['cost']['min']) if ranged else sr_price(a['cost'], 1)
+        aopts = {o['id']: o for o in a.get('options', [])}
+        nuyen += sum(sr_price(aopts[o]['cost'], 1) for o in x.get('options', []) if o in aopts)
+        nuyen += sum(sr_price(mods[m['id']]['cost'], sr_rating(mods[m['id']], m)) for m in x.get('modifications', []) if m['id'] in mods)
+    loss_mul = 100
+    for it in data.get('qualities', []):
+        for m in qcat.get(it['id'], {}).get('modifiers', []):
+            if m['target'] == 'essence.cyberwareLoss': loss_mul = loss_mul * round(m['mul'] * 100) // 100
+    essence, bonus, armor_add, dice = 0, {}, 0, 0
+    def apply(ms, rating, parameter=None):
+        nonlocal armor_add, dice
+        for m in ms or []:
+            v = sr_eval(m.get('add', 0), {'rating': rating})
+            if m['target'] == 'attr':
+                of = parameter if m.get('of') == 'parameter' else m['of']
+                bonus[of] = bonus.get(of, 0) + v
+            elif m['target'] == 'armor': armor_add += v
+            elif m['target'] == 'initiative.dice': dice += v
+    for x in res.get('augmentations', []):
+        a = augs.get(x['id'])
+        if not a: continue
+        part, r = sr_part(a, x), sr_rating(a, x)
+        g = grades.get(x.get('grade', 'standard'), grades['standard'])
+        nuyen += sr_ceil_div(sr_price(part.get('cost'), r) * round(g['cost'] * 100), 100)
+        if 'installedIn' not in x and part.get('essence') is not None:
+            milli = round(sr_eval(part['essence'], {'rating': r}) * 1000)
+            s = loss_mul if a['type'] == 'cyberware' else 100
+            essence += sr_ceil_div(milli * round(g['essence'] * 100) * s, 10000)
+        apply(part.get('modifiers'), r, x.get('parameter'))
+    for x in res.get('devices', []):
+        if x['kind'] == 'commlink' and x['id'] in links:
+            nuyen += links[x['id']]['cost'] + sum(sr_price(link_opts[o]['cost'], 1) for o in x.get('options', []) if o in link_opts)
+        elif x['kind'] == 'cyberdeck' and x['id'] in decks:
+            nuyen += decks[x['id']]['cost'] + sum(programs[p]['cost'] for p in x.get('programs', []) if p in programs)
+    nuyen += sum(vehicles[x['id']]['cost'] for x in res.get('vehicles', []) if x['id'] in vehicles)
+    nuyen += sum(x['cost'] * x.get('quantity', 1) for x in res.get('other', []))
+    for p in data.get('magic', {}).get('powers', []):
+        if p['id'] in pcat: apply(pcat[p['id']].get('modifiers'), p.get('rating', 1), p.get('parameter'))
+    for t in (meta or {}).get('traits', []): apply(t.get('modifiers'), 1)
+
+    worn = [0]
+    best = {'helmet': 0, 'shield': 0}
+    for x in res.get('armor', []):
+        a = armors.get(x['id'])
+        if not a: continue
+        if a['category'] in best:
+            best[a['category']] = max(best[a['category']], a['armor']['add']); continue
+        v = a['armor']
+        for o in a.get('options', []):
+            if o['id'] in x.get('options', []) and 'armor' in o:
+                v = v + o['armor']['add'] if isinstance(o['armor'], dict) else max(v, o['armor'])
+        worn.append(v)
+    armor = max(worn) + best['helmet'] + best['shield'] + armor_add
+    cap = mech['augmentation']['maxAttributeBonus']
+    return {'nuyen': nuyen, 'essence': essence, 'bonus': {a: min(v, cap) for a, v in bonus.items()},
+            'armor': armor, 'dice': dice}
 
 
 def sr_check_sheet_fixtures(d, sysj, E, metatypes, envs):
@@ -517,6 +693,9 @@ def sr_check_sheet_fixtures(d, sysj, E, metatypes, envs):
             buy = data.get('attributes', {}).get(a, {})
             got = meta['attributes'][a]['min'] + buy.get('points', 0) + buy.get('karma', 0)
             if got != env[f'attr.{a}']: E(f"{where}: {a} dá {got}, o exemplo tem {env[f'attr.' + a]}")
+        gear = sr_gear(d, data)
+        env = dict(env, **{f'attr.{a}': env[f'attr.{a}'] + b for a, b in gear['bonus'].items()})
+        env['attr.ess'] = (6000 - gear['essence']) / 1000
         want = expect.get('derived', {})
         formulas = {
             ('limits', 'physical'): derived['limits']['physical']['value'],
@@ -528,6 +707,12 @@ def sr_check_sheet_fixtures(d, sysj, E, metatypes, envs):
         }
         qcat = {q['id']: q for q in load(d, 'qualities.json')['qualities']}
         bonus = {('monitors', 'overflow'): sr_quality_mods(qcat, data, 'monitor.overflow')}
+        pcat = {x['id']: x for x in load(d, 'adept-powers.json')['powers']}
+        for it in data.get('magic', {}).get('powers', []):
+            for m in pcat.get(it['id'], {}).get('modifiers', []):
+                if m['target'] == 'limit':
+                    of = it.get('parameter') if m.get('of') == 'parameter' else m.get('of')
+                    bonus[('limits', of)] = bonus.get(('limits', of), 0) + sr_eval(m['add'], {'rating': it.get('rating', 1)})
         for (group, key), expr in formulas.items():
             if key in want.get(group, {}) and want[group][key] != sr_eval(expr, env) + bonus.get((group, key), 0):
                 E(f"{where}: derived.{group}.{key} diverge da fórmula do catálogo")
@@ -927,6 +1112,11 @@ def check_shadowrun(d, sysj, E, W):
                 if a['weapon']['skill'] not in skill_ids: E(f"{where}: perícia de arma inexistente")
                 sr_check_damage(a['weapon']['damage'], where, E, SR_GEAR_ELEMENTS, SR_GEAR_SPECIALS)
             if not a.get('desc'): E(f"{where}: desc vazia")
+            ids = {x['id'] for x in augs['augmentations']}
+            for x in a.get('excludes', []):
+                if x.get('catalog') != 'augmentations' or x.get('id') not in ids or x['id'] == a['id']:
+                    E(f"{where}: excludes aponta para ampliação inexistente {x!r}")
+            if 'unique' in a and a['unique'] is not True: E(f"{where}: unique só aceita true")
 
         # Compras do Beto, p. 97: Melhorias de Reação 2 por 26.000¥ e
         # revestimento ósseo de plástico por 8.000¥.
