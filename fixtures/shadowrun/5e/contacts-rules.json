@@ -1,0 +1,17 @@
+{
+  "name": "contacts-rules",
+  "description": "Contato acima de 7 de carma, Lealdade acima de 6 e Conexão abaixo de 1 (p. 98 e 387); campo ausente vale 1. O que passa do carma gratuito (Carisma 3 × 3) sai do carma do personagem, sem estourar o orçamento de contatos.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Tess", "concept": "Atravessadora"}, "priorities": {"metatype": "D", "attributes": "C", "magic": "E", "skills": "B", "resources": "A"}, "metatype": "human", "attributes": {"bod": {"points": 2}, "agi": {"points": 2}, "rea": {"points": 2}, "str": {"points": 2}, "wil": {"points": 2}, "log": {"points": 2}, "int": {"points": 2}, "cha": {"points": 2}}, "skills": {"languages": [{"key": "l1", "name": "Inglês", "native": true}]}, "resources": {"startingNuyenRoll": 3, "lifestyles": [{"key": "r0", "id": "street", "primary": true}]}, "contacts": [{"key": "c1", "name": "Chefão", "connection": 5, "loyalty": 3}, {"key": "c2", "name": "Irmã", "loyalty": 7}, {"key": "c3", "name": "Ninguém", "connection": 0}, {"key": "c4", "name": "Barman"}]},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "karma", "path": "contacts[c1]", "code": "contacts.costOutOfRange", "params": {"min": 2, "max": 7}},
+      {"step": "karma", "path": "contacts[c2]", "code": "contacts.costOutOfRange", "params": {"min": 2, "max": 7}},
+      {"step": "karma", "path": "contacts[c2].loyalty", "code": "contacts.ratingOutOfRange", "params": {"field": "loyalty", "min": 1, "max": 6}},
+      {"step": "karma", "path": "contacts[c3]", "code": "contacts.costOutOfRange", "params": {"min": 2, "max": 7}},
+      {"step": "karma", "path": "contacts[c3].connection", "code": "contacts.ratingOutOfRange", "params": {"field": "connection", "min": 1, "max": 12}}
+    ],
+    "derived": {"budgets": {"contacts": {"total": 9, "spent": 19}, "karma": {"total": 25, "spent": 10}}}
+  }
+}
