@@ -1,0 +1,11 @@
+{
+  "name": "augmented-initiative",
+  "description": "Reflexos Aprimorados 1 com Melhorias de Reação 2, que o livro deixa juntar com o sem fio (p. 455): Reação +3 e um dado extra, limite Físico com a Reação ampliada; o ciberdeck dá as iniciativas de RV com o Datagrama da faixa escolhida.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Zap", "concept": "Decker veloz"}, "priorities": {"metatype": "D", "attributes": "C", "magic": "E", "skills": "B", "resources": "A"}, "metatype": "human", "attributes": {"bod": {"points": 2}, "agi": {"points": 2}, "rea": {"points": 2}, "str": {"points": 2}, "wil": {"points": 2}, "log": {"points": 2}, "int": {"points": 2}, "cha": {"points": 2}}, "skills": {"languages": [{"key": "l1", "name": "Inglês", "native": true}]}, "resources": {"startingNuyenRoll": 3, "lifestyles": [{"key": "r0", "id": "street", "primary": true}], "augmentations": [{"key": "a1", "id": "wired-reflexes", "rating": 1}, {"key": "a2", "id": "reaction-enhancers", "rating": 2}], "devices": [{"key": "d1", "kind": "cyberdeck", "id": "novatech-navigator", "array": {"attack": 6, "sleaze": 5, "dataProcessing": 4, "firewall": 3}}]}},
+  "expect": {
+    "lenient": [],
+    "strict": [],
+    "derived": {"attributes": {"rea": {"natural": 3, "augmented": 6}}, "essence": 3.4, "limits": {"physical": 5}, "initiative": {"physical": {"base": 9, "dice": 2}, "matrixVRCold": {"base": 7, "dice": 3}, "matrixVRHot": {"base": 7, "dice": 4}}}
+  }
+}

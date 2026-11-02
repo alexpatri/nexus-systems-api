@@ -1,0 +1,27 @@
+{
+  "name": "gear-rules",
+  "description": "Um caso de cada regra de equipamento: nível fora da faixa (arco 11, licença 7), disponibilidade acima de 12 com nível, grau e opção (Amplificador de Paladar 5, Reflexos Aprimorados 2 alphaware, Vedação química, SIN 5), grau betaware na criação, variante e parâmetro que faltam, parâmetro fora do catálogo, custo de Roupa abaixo da faixa, com-link de nível 7 e faixa de deck que não é a do modelo.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Vex", "concept": "Colecionador de problemas"}, "priorities": {"metatype": "D", "attributes": "C", "magic": "E", "skills": "B", "resources": "A"}, "metatype": "human", "attributes": {"bod": {"points": 2}, "agi": {"points": 2}, "rea": {"points": 2}, "str": {"points": 2}, "wil": {"points": 2}, "log": {"points": 2}, "int": {"points": 2}, "cha": {"points": 2}}, "skills": {"languages": [{"key": "l1", "name": "Inglês", "native": true}]}, "resources": {"startingNuyenRoll": 3, "lifestyles": [{"key": "r0", "id": "street", "primary": true}], "weapons": [{"key": "w1", "id": "bow", "rating": 11}], "augmentations": [{"key": "a1", "id": "taste-booster", "rating": 5}, {"key": "a2", "id": "datajack", "grade": "betaware"}, {"key": "a3", "id": "wired-reflexes", "rating": 2, "grade": "alphaware"}, {"key": "a4", "id": "bone-lacing"}, {"key": "a5", "id": "reflex-recorder"}, {"key": "a6", "id": "reflex-recorder", "parameter": "juggling"}], "armor": [{"key": "ar1", "id": "clothing", "cost": 10}, {"key": "ar2", "id": "full-body-armor", "options": ["chemical-seal"]}], "devices": [{"key": "d1", "kind": "commlink", "id": "fairlight-caliban"}, {"key": "d2", "kind": "cyberdeck", "id": "erika-mcd-1", "array": {"attack": 4, "sleaze": 4, "dataProcessing": 2, "firewall": 1}}], "identities": [{"key": "i1", "name": "Vex Doe", "rating": 5, "licenses": [{"key": "l9", "name": "Porte de arma", "rating": 7}]}]}},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "resources", "path": "resources.weapons[w1].rating", "code": "gear.ratingOutOfRange", "params": {"item": "bow", "min": 1, "max": 10}},
+      {"step": "resources", "path": "resources.augmentations[a1]", "code": "gear.availabilityMax", "params": {"item": "taste-booster", "availability": 15, "max": 12}},
+      {"step": "resources", "path": "resources.augmentations[a2].grade", "code": "gear.gradeNotAllowed", "params": {"item": "datajack", "grade": "betaware"}},
+      {"step": "resources", "path": "resources.augmentations[a3]", "code": "gear.availabilityMax", "params": {"item": "wired-reflexes", "availability": 14, "max": 12}},
+      {"step": "resources", "path": "resources.augmentations[a4].variant", "code": "gear.variantRequired", "params": {"item": "bone-lacing"}},
+      {"step": "resources", "path": "resources.augmentations[a5].parameter", "code": "gear.parameterRequired", "params": {"item": "reflex-recorder"}},
+      {"step": "resources", "path": "resources.augmentations[a6].parameter", "code": "gear.parameterNotAllowed", "params": {"item": "reflex-recorder", "parameter": "juggling"}},
+      {"step": "resources", "path": "resources.armor[ar1].cost", "code": "gear.costOutOfRange", "params": {"item": "clothing", "min": 20, "max": 100000}},
+      {"step": "resources", "path": "resources.armor[ar2]", "code": "gear.availabilityMax", "params": {"item": "full-body-armor", "availability": 20, "max": 12}},
+      {"step": "resources", "path": "resources.devices[d1]", "code": "gear.deviceRatingMax", "params": {"item": "fairlight-caliban", "max": 6}},
+      {"step": "resources", "path": "resources.devices[d1]", "code": "gear.availabilityMax", "params": {"item": "fairlight-caliban", "availability": 14, "max": 12}},
+      {"step": "resources", "path": "resources.devices[d2].array", "code": "gear.deckArrayInvalid", "params": {"item": "erika-mcd-1"}},
+      {"step": "resources", "path": "resources.identities[i1]", "code": "gear.availabilityMax", "params": {"item": "fake-sin", "availability": 15, "max": 12}},
+      {"step": "resources", "path": "resources.identities[i1].licenses[l9]", "code": "gear.availabilityMax", "params": {"item": "fake-license", "availability": 21, "max": 12}},
+      {"step": "resources", "path": "resources.identities[i1].licenses[l9].rating", "code": "gear.ratingOutOfRange", "params": {"item": "fake-license", "min": 1, "max": 6}}
+    ],
+    "derived": {"essence": 3.13, "attributes": {"rea": {"natural": 3, "augmented": 5}}, "initiative": {"physical": {"dice": 3}}}
+  }
+}

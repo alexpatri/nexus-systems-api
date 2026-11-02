@@ -1,0 +1,46 @@
+{
+  "name": "lenient-resources",
+  "description": "Lenient em resources: catalog.unknownId de cada catálogo, opção e variante do próprio item, kind fora do vocabulário, atributo do deck e meses que não são inteiros, campo desconhecido e key repetida.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Nil", "concept": "Rascunho"}, "priorities": {"metatype": "D", "attributes": "C", "magic": "E", "skills": "B", "resources": "A"}, "metatype": "human", "attributes": {"bod": {"points": 2}, "agi": {"points": 2}, "rea": {"points": 2}, "str": {"points": 2}, "wil": {"points": 2}, "log": {"points": 2}, "int": {"points": 2}, "cha": {"points": 2}}, "skills": {"languages": [{"key": "l1", "name": "Inglês", "native": true}]}, "resources": {"startingNuyenRoll": 3, "cash": 100, "lifestyles": [{"key": "r0", "id": "street", "primary": true, "options": ["pool"]}, {"key": "r1", "id": "castle", "months": "2"}], "weapons": [{"key": "w1", "id": "laser-rifle"}], "armor": [{"key": "ar1", "id": "armor-jacket", "options": ["cape"], "modifications": [{"key": "m1", "id": "kevlar-weave"}]}], "augmentations": [{"key": "a1", "id": "bone-lacing", "variant": "adamantium", "grade": "omegaware"}, {"key": "a2", "id": "cyber-tail"}], "devices": [{"key": "d1", "kind": "tablet", "id": "meta-link"}, {"key": "d2", "kind": "cyberdeck", "id": "erika-mcd-1", "array": {"attack": "4"}, "programs": ["nuke"]}, {"key": "d3", "kind": "commlink", "id": "pocket-secretary", "options": ["jetpack"]}], "vehicles": [{"key": "w1", "id": "yamaha-growler"}, {"key": "v2", "id": "batmobile"}]}},
+  "expect": {
+    "lenient": [
+      {"step": "resources", "path": "resources.cash", "code": "shape.invalid", "params": {"expected": "absent"}},
+      {"step": "resources", "path": "resources.lifestyles[r0].options", "code": "catalog.unknownId", "params": {"catalog": "lifestyleOptions", "id": "pool"}},
+      {"step": "resources", "path": "resources.lifestyles[r1].id", "code": "catalog.unknownId", "params": {"catalog": "lifestyles", "id": "castle"}},
+      {"step": "resources", "path": "resources.lifestyles[r1].months", "code": "shape.invalid", "params": {"expected": "integer"}},
+      {"step": "resources", "path": "resources.weapons[w1].id", "code": "catalog.unknownId", "params": {"catalog": "weapons", "id": "laser-rifle"}},
+      {"step": "resources", "path": "resources.armor[ar1].options", "code": "catalog.unknownId", "params": {"catalog": "armorOptions", "id": "armor-jacket.cape"}},
+      {"step": "resources", "path": "resources.armor[ar1].modifications[m1].id", "code": "catalog.unknownId", "params": {"catalog": "armorModifications", "id": "kevlar-weave"}},
+      {"step": "resources", "path": "resources.augmentations[a1].variant", "code": "catalog.unknownId", "params": {"catalog": "augmentationVariants", "id": "bone-lacing.adamantium"}},
+      {"step": "resources", "path": "resources.augmentations[a1].grade", "code": "catalog.unknownId", "params": {"catalog": "grades", "id": "omegaware"}},
+      {"step": "resources", "path": "resources.augmentations[a2].id", "code": "catalog.unknownId", "params": {"catalog": "augmentations", "id": "cyber-tail"}},
+      {"step": "resources", "path": "resources.devices[d1].kind", "code": "shape.invalid", "params": {"expected": "deviceKind"}},
+      {"step": "resources", "path": "resources.devices[d2].array.attack", "code": "shape.invalid", "params": {"expected": "integer"}},
+      {"step": "resources", "path": "resources.devices[d2].programs", "code": "catalog.unknownId", "params": {"catalog": "programs", "id": "nuke"}},
+      {"step": "resources", "path": "resources.devices[d3].id", "code": "catalog.unknownId", "params": {"catalog": "commlinks", "id": "pocket-secretary"}},
+      {"step": "resources", "path": "resources.devices[d3].options", "code": "catalog.unknownId", "params": {"catalog": "commlinkOptions", "id": "jetpack"}},
+      {"step": "resources", "path": "resources.vehicles[w1]", "code": "key.duplicate", "params": {"key": "w1"}},
+      {"step": "resources", "path": "resources.vehicles[v2].id", "code": "catalog.unknownId", "params": {"catalog": "vehicles", "id": "batmobile"}}
+    ],
+    "strict": [
+      {"step": "resources", "path": "resources.cash", "code": "shape.invalid", "params": {"expected": "absent"}},
+      {"step": "resources", "path": "resources.lifestyles[r0].options", "code": "catalog.unknownId", "params": {"catalog": "lifestyleOptions", "id": "pool"}},
+      {"step": "resources", "path": "resources.lifestyles[r1].id", "code": "catalog.unknownId", "params": {"catalog": "lifestyles", "id": "castle"}},
+      {"step": "resources", "path": "resources.lifestyles[r1].months", "code": "shape.invalid", "params": {"expected": "integer"}},
+      {"step": "resources", "path": "resources.weapons[w1].id", "code": "catalog.unknownId", "params": {"catalog": "weapons", "id": "laser-rifle"}},
+      {"step": "resources", "path": "resources.armor[ar1].options", "code": "catalog.unknownId", "params": {"catalog": "armorOptions", "id": "armor-jacket.cape"}},
+      {"step": "resources", "path": "resources.armor[ar1].modifications[m1].id", "code": "catalog.unknownId", "params": {"catalog": "armorModifications", "id": "kevlar-weave"}},
+      {"step": "resources", "path": "resources.augmentations[a1].variant", "code": "catalog.unknownId", "params": {"catalog": "augmentationVariants", "id": "bone-lacing.adamantium"}},
+      {"step": "resources", "path": "resources.augmentations[a1].grade", "code": "catalog.unknownId", "params": {"catalog": "grades", "id": "omegaware"}},
+      {"step": "resources", "path": "resources.augmentations[a2].id", "code": "catalog.unknownId", "params": {"catalog": "augmentations", "id": "cyber-tail"}},
+      {"step": "resources", "path": "resources.devices[d1].kind", "code": "shape.invalid", "params": {"expected": "deviceKind"}},
+      {"step": "resources", "path": "resources.devices[d2].array.attack", "code": "shape.invalid", "params": {"expected": "integer"}},
+      {"step": "resources", "path": "resources.devices[d2].programs", "code": "catalog.unknownId", "params": {"catalog": "programs", "id": "nuke"}},
+      {"step": "resources", "path": "resources.devices[d3].id", "code": "catalog.unknownId", "params": {"catalog": "commlinks", "id": "pocket-secretary"}},
+      {"step": "resources", "path": "resources.devices[d3].options", "code": "catalog.unknownId", "params": {"catalog": "commlinkOptions", "id": "jetpack"}},
+      {"step": "resources", "path": "resources.vehicles[w1]", "code": "key.duplicate", "params": {"key": "w1"}},
+      {"step": "resources", "path": "resources.vehicles[v2].id", "code": "catalog.unknownId", "params": {"catalog": "vehicles", "id": "batmobile"}}
+    ]
+  }
+}
