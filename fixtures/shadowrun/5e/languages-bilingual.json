@@ -1,0 +1,15 @@
+{
+  "name": "languages-bilingual",
+  "description": "Bilíngue permite dois idiomas nativos; três passam do limite.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Ana"}, "priorities": {"metatype": "D", "attributes": "B", "magic": "E", "skills": "A", "resources": "C"}, "metatype": "human", "qualities": [{"key": "q1", "id": "bilingual"}], "skills": {"languages": [{"key": "l1", "name": "Inglês", "native": true}, {"key": "l2", "name": "Espanhol", "native": true}, {"key": "l3", "name": "Japonês", "native": true}]}},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "skills", "path": "skills.languages", "code": "skills.nativeLanguageCount", "params": {"expected": 2, "got": 3}},
+      {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
+      {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
+    ],
+    "derived": {"skills": {"languages": {"l2": {"native": true}}}}
+  }
+}

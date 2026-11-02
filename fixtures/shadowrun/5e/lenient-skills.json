@@ -1,0 +1,28 @@
+{
+  "name": "lenient-skills",
+  "description": "Ids fora do catálogo em qualidades, opções, perícias, grupos e categorias; número negativo; paidWith desconhecido; key repetida.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Ana"}, "qualities": [{"key": "q1", "id": "super-strength"}, {"key": "q2", "id": "addiction", "option": "extreme"}, {"key": "q3", "id": "high-pain-tolerance", "rating": -1}], "skills": {"active": {"flying": {"points": 1}, "blades": {"points": 1, "specialization": {"name": "Facas", "paidWith": "cash"}}}, "groups": {"piloting": {"points": 1}}, "knowledge": [{"key": "k1", "name": "Culinária", "category": "cooking", "points": 1}], "languages": [{"key": "l1", "name": "Inglês", "native": true}, {"key": "l1", "name": "Japonês", "points": 1}]}},
+  "expect": {
+    "lenient": [
+      {"step": "qualities", "path": "qualities[q1].id", "code": "catalog.unknownId", "params": {"catalog": "qualities", "id": "super-strength"}},
+      {"step": "qualities", "path": "qualities[q2].option", "code": "catalog.unknownId", "params": {"catalog": "qualityOptions", "id": "addiction.extreme"}},
+      {"step": "qualities", "path": "qualities[q3].rating", "code": "shape.invalid", "params": {"expected": "integer"}},
+      {"step": "skills", "path": "skills.active.blades.specialization.paidWith", "code": "shape.invalid", "params": {"expected": "paidWith"}},
+      {"step": "skills", "path": "skills.active.flying", "code": "catalog.unknownId", "params": {"catalog": "skills", "id": "flying"}},
+      {"step": "skills", "path": "skills.groups.piloting", "code": "catalog.unknownId", "params": {"catalog": "skillGroups", "id": "piloting"}},
+      {"step": "skills", "path": "skills.knowledge[k1].category", "code": "catalog.unknownId", "params": {"catalog": "knowledgeCategories", "id": "cooking"}},
+      {"step": "skills", "path": "skills.languages[l1]", "code": "key.duplicate", "params": {"key": "l1"}}
+    ],
+    "strict": [
+      {"step": "qualities", "path": "qualities[q1].id", "code": "catalog.unknownId", "params": {"catalog": "qualities", "id": "super-strength"}},
+      {"step": "qualities", "path": "qualities[q2].option", "code": "catalog.unknownId", "params": {"catalog": "qualityOptions", "id": "addiction.extreme"}},
+      {"step": "qualities", "path": "qualities[q3].rating", "code": "shape.invalid", "params": {"expected": "integer"}},
+      {"step": "skills", "path": "skills.active.blades.specialization.paidWith", "code": "shape.invalid", "params": {"expected": "paidWith"}},
+      {"step": "skills", "path": "skills.active.flying", "code": "catalog.unknownId", "params": {"catalog": "skills", "id": "flying"}},
+      {"step": "skills", "path": "skills.groups.piloting", "code": "catalog.unknownId", "params": {"catalog": "skillGroups", "id": "piloting"}},
+      {"step": "skills", "path": "skills.knowledge[k1].category", "code": "catalog.unknownId", "params": {"catalog": "knowledgeCategories", "id": "cooking"}},
+      {"step": "skills", "path": "skills.languages[l1]", "code": "key.duplicate", "params": {"key": "l1"}}
+    ]
+  }
+}

@@ -6,8 +6,9 @@
   "expect": {
     "lenient": [],
     "strict": [
-      {"step": "karma", "path": "budgets.karma", "code": "budget.exceeded", "params": {"budget": "karma", "total": 25, "spent": 35}},
+      {"step": "skills", "path": "skills.languages", "code": "skills.nativeLanguageCount", "params": {"expected": 1, "got": 0}},
       {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
+      {"step": "karma", "path": "budgets.karma", "code": "budget.exceeded", "params": {"budget": "karma", "total": 25, "spent": 35}},
       {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
     ],
     "derived": {"attributes": {"edg": {"natural": 4}}, "budgets": {"special": {"total": 3, "spent": 1}, "karma": {"total": 25, "spent": 35}}},

@@ -1,0 +1,24 @@
+{
+  "name": "qualities-invalid",
+  "description": "Cada regra de qualidade da fatia 4.2: requisito de metatipo e de despertar, escolha que falta e fora do permitido, nível acima da faixa, opção que falta, única repetida e duplicada com a mesma escolha.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Grok"}, "priorities": {"metatype": "B", "attributes": "A", "magic": "E", "skills": "C", "resources": "D"}, "metatype": "troll", "attributes": {"bod": {"points": 4}, "agi": {"points": 3}, "rea": {"points": 3}, "str": {"points": 3}, "wil": {"points": 2}, "log": {"points": 1}, "int": {"points": 2}, "cha": {"points": 1}}, "qualities": [{"key": "q1", "id": "elf-poser"}, {"key": "q2", "id": "spirit-affinity"}, {"key": "q3", "id": "high-pain-tolerance", "rating": 4}, {"key": "q4", "id": "addiction"}, {"key": "q5", "id": "lucky"}, {"key": "q6", "id": "lucky"}, {"key": "q7", "id": "exceptional-attribute", "choice": "edg"}, {"key": "q8", "id": "exceptional-attribute", "choice": "str"}, {"key": "q9", "id": "exceptional-attribute", "choice": "str"}], "skills": {"languages": [{"key": "l1", "name": "Inglês", "native": true}]}},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "qualities", "path": "budgets.positiveQualities", "code": "budget.exceeded", "params": {"budget": "positiveQualities", "total": 25, "spent": 101}},
+      {"step": "qualities", "path": "qualities[q1]", "code": "qualities.requirementNotMet", "params": {"quality": "elf-poser", "requirement": "metatype"}},
+      {"step": "qualities", "path": "qualities[q2]", "code": "qualities.requirementNotMet", "params": {"quality": "spirit-affinity", "requirement": "mag"}},
+      {"step": "qualities", "path": "qualities[q2].choice", "code": "qualities.choiceRequired", "params": {"quality": "spirit-affinity"}},
+      {"step": "qualities", "path": "qualities[q3].rating", "code": "qualities.levelOutOfRange", "params": {"quality": "high-pain-tolerance", "max": 3}},
+      {"step": "qualities", "path": "qualities[q4].option", "code": "qualities.optionRequired", "params": {"quality": "addiction"}},
+      {"step": "qualities", "path": "qualities[q6]", "code": "qualities.unique", "params": {"quality": "lucky"}},
+      {"step": "qualities", "path": "qualities[q7].choice", "code": "qualities.choiceNotAllowed", "params": {"quality": "exceptional-attribute", "choice": "edg"}},
+      {"step": "qualities", "path": "qualities[q9]", "code": "qualities.duplicate", "params": {"quality": "exceptional-attribute"}},
+      {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
+      {"step": "karma", "path": "budgets.karma", "code": "budget.exceeded", "params": {"budget": "karma", "total": 31, "spent": 101}},
+      {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
+    ],
+    "derived": {"budgets": {"positiveQualities": {"total": 25, "spent": 101}, "negativeQualities": {"total": 25, "spent": 6}, "karma": {"total": 31, "spent": 101}}}
+  }
+}

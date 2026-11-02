@@ -1,0 +1,16 @@
+{
+  "name": "skill-limits",
+  "description": "Perícia acima de 6, Pistolas 7 liberada por Aptidão e Conjuração sem despertar.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Ana"}, "priorities": {"metatype": "D", "attributes": "B", "magic": "E", "skills": "A", "resources": "C"}, "metatype": "human", "qualities": [{"key": "q1", "id": "aptitude", "choice": "pistols"}], "skills": {"active": {"automatics": {"points": 7}, "pistols": {"points": 7}, "spellcasting": {"points": 1}}, "languages": [{"key": "l1", "name": "Inglês", "native": true}]}},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "skills", "path": "skills.active.automatics.points", "code": "skills.aboveMax", "params": {"skill": "automatics", "value": 7, "max": 6}},
+      {"step": "skills", "path": "skills.active.spellcasting", "code": "skills.restricted", "params": {"skill": "spellcasting"}},
+      {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
+      {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
+    ],
+    "derived": {"skills": {"active": {"pistols": {"rating": 7, "pool": 8}, "automatics": {"rating": 7, "pool": 8}, "spellcasting": {"rating": 1}}}, "budgets": {"skills": {"total": 46, "spent": 15}, "positiveQualities": {"total": 25, "spent": 14}, "karma": {"total": 25, "spent": 14}}}
+  }
+}

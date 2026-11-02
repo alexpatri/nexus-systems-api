@@ -1,16 +1,17 @@
 {
   "name": "clara-attributes",
   "example": "clara",
-  "description": "Atributos da Clara, p. 67. Metatipo e prioridades inferidos dos mínimos e máximos (elfa com Atributos na B fecha 20 pontos); conferir no livro.",
+  "description": "Atributos da Clara, p. 67 do livro (PDF 67): elfa com Metatipo na D, sem pontos especiais, e Atributos na B.",
   "schemaVersion": 1,
-  "data": {"identity": {"name": "Clara"}, "priorities": {"metatype": "C", "attributes": "B", "magic": "D", "skills": "A", "resources": "E"}, "metatype": "elf", "attributes": {"bod": {"points": 2}, "agi": {"points": 4}, "rea": {"points": 2}, "str": {"points": 1}, "wil": {"points": 3}, "log": {"points": 2}, "int": {"points": 3}, "cha": {"points": 3}}},
+  "data": {"identity": {"name": "Clara"}, "priorities": {"metatype": "D", "attributes": "B", "magic": "A", "skills": "C", "resources": "E"}, "metatype": "elf", "attributes": {"bod": {"points": 2}, "agi": {"points": 4}, "rea": {"points": 2}, "str": {"points": 1}, "wil": {"points": 3}, "log": {"points": 2}, "int": {"points": 3}, "cha": {"points": 3}}},
   "expect": {
     "lenient": [],
     "strict": [
+      {"step": "skills", "path": "skills.languages", "code": "skills.nativeLanguageCount", "params": {"expected": 1, "got": 0}},
       {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
       {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
     ],
-    "derived": {"attributes": {"bod": {"natural": 3}, "agi": {"natural": 6}, "rea": {"natural": 3}, "str": {"natural": 2}, "wil": {"natural": 4}, "log": {"natural": 3}, "int": {"natural": 4}, "cha": {"natural": 6}}, "limits": {"physical": 4, "mental": 5, "social": 8}, "initiative": {"physical": {"base": 7, "dice": 1}}, "monitors": {"physical": 10, "stun": 10, "overflow": 3}, "budgets": {"special": {"total": 3, "spent": 0}, "attributes": {"total": 20, "spent": 20}, "knowledge": {"total": 14, "spent": 0}, "contacts": {"total": 18, "spent": 0}}},
+    "derived": {"attributes": {"bod": {"natural": 3}, "agi": {"natural": 6}, "rea": {"natural": 3}, "str": {"natural": 2}, "wil": {"natural": 4}, "log": {"natural": 3}, "int": {"natural": 4}, "cha": {"natural": 6}}, "limits": {"physical": 4, "mental": 5, "social": 8}, "initiative": {"physical": {"base": 7, "dice": 1}}, "monitors": {"physical": 10, "stun": 10, "overflow": 3}, "budgets": {"special": {"total": 0, "spent": 0}, "attributes": {"total": 20, "spent": 20}, "knowledge": {"total": 14, "spent": 0}, "contacts": {"total": 18, "spent": 0}}},
     "summary": {"title": "Clara", "subtitle": "Elfo"}
   }
 }

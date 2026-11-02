@@ -1,0 +1,16 @@
+{
+  "name": "skill-groups",
+  "description": "Grupo Atletismo 2 vale para Corrida, Ginástica e Natação; pontos numa perícia do grupo e especialização nela são proibidos.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Grok"}, "priorities": {"metatype": "B", "attributes": "A", "magic": "E", "skills": "C", "resources": "D"}, "metatype": "troll", "attributes": {"bod": {"points": 4}, "agi": {"points": 3}, "rea": {"points": 3}, "str": {"points": 3}, "wil": {"points": 2}, "log": {"points": 1}, "int": {"points": 2}, "cha": {"points": 1}}, "skills": {"groups": {"athletics": {"points": 2}}, "active": {"running": {"points": 1}, "gymnastics": {"specialization": {"name": "Escalada", "paidWith": "points"}}}, "languages": [{"key": "l1", "name": "Inglês", "native": true}]}},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "skills", "path": "skills.active.gymnastics.specialization", "code": "skills.specializationNotAllowed", "params": {"skill": "gymnastics"}},
+      {"step": "skills", "path": "skills.active.running.points", "code": "skills.groupConflict", "params": {"skill": "running", "group": "athletics"}},
+      {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
+      {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
+    ],
+    "derived": {"skills": {"active": {"running": {"rating": 3, "pool": 11}, "gymnastics": {"rating": 2, "pool": 6}, "swimming": {"rating": 2, "pool": 10}}}, "budgets": {"skills": {"total": 28, "spent": 2}, "skillGroups": {"total": 2, "spent": 2}}}
+  }
+}

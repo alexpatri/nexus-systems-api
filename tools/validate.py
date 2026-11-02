@@ -358,7 +358,8 @@ SR_CODES = {
     'budget.exceeded', 'magic.notAtPriority', 'magic.notAllowed', 'magic.freeSkillsCount',
     'magic.freeSkillNotAllowed', 'magic.formulasMax', 'magic.complexFormsMax', 'magic.powerLevelMax',
     'magic.parameterRequired', 'magic.spiritsMax', 'qualities.levelOutOfRange', 'qualities.optionRequired',
-    'qualities.choiceRequired', 'qualities.duplicate', 'skills.aboveMax', 'skills.restricted',
+    'qualities.choiceRequired', 'qualities.duplicate', 'qualities.requirementNotMet', 'qualities.unique',
+    'qualities.excluded', 'qualities.choiceNotAllowed', 'skills.aboveMax', 'skills.restricted',
     'skills.groupConflict', 'skills.specializationNotAllowed', 'skills.nativeLanguageCount',
     'gear.availabilityMax', 'gear.ratingOutOfRange', 'gear.deviceRatingMax', 'gear.deckArrayInvalid',
     'gear.programsMax', 'essence.depleted', 'contacts.costOutOfRange', 'resources.startingRollOutOfRange',
@@ -366,6 +367,73 @@ SR_CODES = {
 }
 SR_COLUMNS = ('metatype', 'attributes', 'magic', 'skills', 'resources')
 SR_LETTERS = set('ABCDE')
+
+
+def sr_quality_cost(q, item):
+    """Custo de uma qualidade na ficha (seção 3 do contrato): fixo, por nível, por opção ou soma de opções."""
+    k = q['karma']
+    if isinstance(k, int): return k
+    if 'perLevel' in k: return k['perLevel'] * item.get('rating', 1)
+    if 'options' in k:
+        return next((o['karma'] for o in k['options'] if o['id'] == item.get('option')), 0)
+    chosen = item.get('options', {})
+    return sum(next((o['karma'] for o in g['options'] if o['id'] == chosen.get(g['id'])), 0) for g in k['sum'])
+
+
+def sr_quality_mods(qcat, data, target):
+    """Soma dos add de um alvo nas qualidades da ficha, com rating e times."""
+    total = 0
+    for item in data.get('qualities', []):
+        for m in qcat.get(item['id'], {}).get('modifiers', []):
+            if m['target'] == target:
+                env = {'rating': item.get('rating', 1)}
+                total += sr_eval(m['add'], env) * sr_eval(m.get('times', 1), env)
+    return total
+
+
+def sr_check_sheet_ids(where, data, lenient, d, E):
+    """Ids das seções de qualidades e perícias existem, salvo os que o Lenient espera recusar."""
+    unknown = {(v['params']['catalog'], v['params']['id']) for v in lenient if v.get('code') == 'catalog.unknownId'}
+    qcat = {q['id']: q for q in load(d, 'qualities.json')['qualities']}
+    sk = load(d, 'skills.json')
+    known = {'qualities': set(qcat), 'skills': {x['id'] for x in sk['skills']}, 'skillGroups': {g['id'] for g in sk['groups']},
+             'knowledgeCategories': {c['id'] for c in sk['knowledge']['categories']}}
+    def need(catalog, id_):
+        if id_ not in known[catalog] and (catalog, id_) not in unknown:
+            E(f"{where}: {catalog} inexistente {id_!r} sem catalog.unknownId no lenient")
+    for item in data.get('qualities', []):
+        need('qualities', item['id'])
+        q = qcat.get(item['id'])
+        if q and 'option' in item and isinstance(q['karma'], dict) and 'options' in q['karma']:
+            if item['option'] not in {o['id'] for o in q['karma']['options']} and ('qualityOptions', f"{item['id']}.{item['option']}") not in unknown:
+                E(f"{where}: opção inexistente {item['id']}.{item['option']}")
+    skills = data.get('skills', {})
+    for i in skills.get('active', {}): need('skills', i)
+    for i in skills.get('groups', {}): need('skillGroups', i)
+    for k in skills.get('knowledge', []): need('knowledgeCategories', k['category'])
+
+
+def sr_check_sheet_budgets(where, data, want, d, E):
+    """Gasto dos orçamentos de qualidades e de pontos de perícia, refeito pelo catálogo."""
+    qcat = {q['id']: q for q in load(d, 'qualities.json')['qualities']}
+    spent = {'positive': 0, 'negative': 0}
+    for item in data.get('qualities', []):
+        q = qcat.get(item['id'])
+        if q: spent[q['kind']] += sr_quality_cost(q, item)
+    skills = data.get('skills', {})
+    spec = lambda x: 1 if x.get('specialization', {}).get('paidWith') == 'points' else 0
+    got = {
+        'positiveQualities': spent['positive'],
+        'negativeQualities': spent['negative'],
+        'skills': sum(x.get('points', 0) + spec(x) for x in skills.get('active', {}).values()),
+        'skillGroups': sum(x.get('points', 0) for x in skills.get('groups', {}).values()),
+        'knowledge': sum(x.get('points', 0) + spec(x) for x in skills.get('knowledge', []) +
+                         [l for l in skills.get('languages', []) if not l.get('native')]),
+    }
+    budgets = want.get('budgets', {})
+    for name, value in got.items():
+        if name in budgets and budgets[name].get('spent') != value:
+            E(f"{where}: budgets.{name}.spent {budgets[name].get('spent')}, o catálogo dá {value}")
 
 
 def sr_check_sheet_fixtures(d, sysj, E, metatypes, envs):
@@ -398,6 +466,9 @@ def sr_check_sheet_fixtures(d, sysj, E, metatypes, envs):
         for col, letter in data.get('priorities', {}).items():
             if (col not in SR_COLUMNS or letter not in SR_LETTERS) and f"priorities.{col}" not in shaped:
                 E(f"{where}: prioridade inválida {col}={letter!r} sem shape.invalid no lenient")
+        sr_check_sheet_ids(where, data, expect.get('lenient', []), d, E)
+        if expect.get('lenient') == []:
+            sr_check_sheet_budgets(where, data, expect.get('derived', {}), d, E)
 
         if 'example' not in doc: continue
         env = envs.get(doc['example'])
@@ -416,8 +487,10 @@ def sr_check_sheet_fixtures(d, sysj, E, metatypes, envs):
             ('monitors', 'stun'): derived['monitors']['stun']['boxes'],
             ('monitors', 'overflow'): derived['monitors']['overflow']['boxes'],
         }
+        qcat = {q['id']: q for q in load(d, 'qualities.json')['qualities']}
+        bonus = {('monitors', 'overflow'): sr_quality_mods(qcat, data, 'monitor.overflow')}
         for (group, key), expr in formulas.items():
-            if key in want.get(group, {}) and want[group][key] != sr_eval(expr, env):
+            if key in want.get(group, {}) and want[group][key] != sr_eval(expr, env) + bonus.get((group, key), 0):
                 E(f"{where}: derived.{group}.{key} diverge da fórmula do catálogo")
         base = want.get('initiative', {}).get('physical', {}).get('base')
         if base is not None and base != sr_eval(derived['initiative']['physical']['base'], env):
@@ -507,6 +580,32 @@ def sr_check_damage(dmg, where, E, elements, specials):
 
 SR_GEAR_ELEMENTS = {'electricity', 'flechette'}
 SR_GEAR_SPECIALS = {'grenade', 'missile', 'chemical', 'special', 'toxin'}
+
+
+def sr_ids(o):
+    """Todo id de objeto num catálogo, em qualquer nível."""
+    if isinstance(o, dict):
+        if isinstance(o.get('id'), str): yield o['id']
+        for v in o.values(): yield from sr_ids(v)
+    elif isinstance(o, list):
+        for v in o: yield from sr_ids(v)
+
+
+def sr_check_quality_rules(d, q, meta_ids, E):
+    """Requisitos e exclusões (shadowrun-contrato-da-ficha.md, seção 7)."""
+    where = f"qualidade {q['id']}"
+    req = q.get('requires', {})
+    if set(req) - {'metatype', 'special'}: E(f"{where}: requires com campo desconhecido")
+    for m in req.get('metatype', []):
+        if m not in meta_ids: E(f"{where}: requires.metatype inexistente {m}")
+    if 'metatype' in req and not req['metatype']: E(f"{where}: requires.metatype vazio")
+    if 'special' in req and req['special'] not in ('mag', 'res'): E(f"{where}: requires.special deve ser mag ou res")
+    for flag in ('unique', 'creationOnly'):
+        if flag in q and q[flag] is not True: E(f"{where}: {flag} só existe como true")
+    for x in q.get('excludes', []):
+        other = load(d, f"{x.get('catalog')}.json")
+        if other is None: E(f"{where}: excludes aponta para catálogo inexistente {x.get('catalog')}")
+        elif x.get('id') not in set(sr_ids(other)): E(f"{where}: excludes aponta para id inexistente {x.get('catalog')}/{x.get('id')}")
 
 
 def check_shadowrun(d, sysj, E, W):
@@ -609,6 +708,7 @@ def check_shadowrun(d, sysj, E, W):
             if m.get('target') == 'reputation.notoriety' and (m['add'] < 0) != (q['kind'] == 'positive'):
                 E(f"qualidade {q['id']}: sinal da notoriedade incoerente com o tipo")
         if not q.get('desc'): E(f"qualidade {q['id']}: desc vazia")
+        sr_check_quality_rules(d, q, meta_ids, E)
 
     powers = load(d, 'adept-powers.json')
     if powers:

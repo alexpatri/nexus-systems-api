@@ -6,6 +6,9 @@
       "kind": "positive",
       "karma": 7,
       "choice": "traditions.json#spiritTypes",
+      "requires": {
+        "special": "mag"
+      },
       "desc": "Disponível apenas para usuários de magia, a qualidade Afinidade Espiritual permite que um personagem esteja sintonizado a um tipo de espírito (veja Espíritos, p. 303). Esses espíritos acham o personagem interessante, são atraídos por ele e mais inclinados a ajudá-lo. Eles podem relutar para atacar o personagem e, se forçados, provavelmente não usarão força letal. Observadores e servos não contam para esta qualidade, pois são construídos e não são invocados como espíritos normais. A Afinidade Espiritual fornece aos magos 1 serviço adicional de espírito para cada espírito daquele tipo e também +1 de modificador na pilha de dados para os Testes de Vinculação. Usuários de Magia podem possuir esta qualidade para um tipo de espírito que não seja parte da sua tradição mágica.",
       "page": 71
     },
@@ -27,6 +30,20 @@
           }
         }
       ],
+      "excludes": [
+        {
+          "catalog": "adept-powers",
+          "id": "pain-resistance"
+        },
+        {
+          "catalog": "augmentations",
+          "id": "pain-editor"
+        },
+        {
+          "catalog": "augmentations",
+          "id": "damage-compensators"
+        }
+      ],
       "desc": "Alto Limiar de Dor permite que o personagem continue suportando a dor como se já tivesse um monte na sua cabeça. Um personagem com Alto Limiar de Dor pode ignorar uma caixa de dano por nível desta qualidade ao calcular os modificadores de ferimento (veja Modificadores de Ferimento, p. 169). Então, um personagem com esta qualidade em Nível 2 pode receber 4 caixas de dano, mas continuar sem modificadores de ferimento, como se tivesse apenas 2 caixas de dano. Então, o modificador de ferimento de –1 começaria a agir quando o personagem sofresse a quinta caixa de dano. Esta qualidade não pode ser usada com o poder de adepto Resistência à Dor, biônico editor de dor ou biônico compensador de dano.",
       "page": 72
     },
@@ -43,6 +60,14 @@
       "name": "Aparência Humana",
       "kind": "positive",
       "karma": 6,
+      "requires": {
+        "metatype": [
+          "elf",
+          "dwarf",
+          "ork",
+          "troll"
+        ]
+      },
       "desc": "Um personagem meta-humano com a qualidade Aparência Humana pode se passar por humano na maioria das circunstâncias. PdMs humanos respondem com atitudes neutras com relação a tais personagens ao fazer testes de perícias Sociais (p. 139), mesmo aqueles humanos que sejam especialmente preconceituosos contra meta-humanos. O personagem pode sofrer uma animosidade maior de PdMs que sejam preconceituosos contra humanos e que o confundam com um humano ou não confiem nos seus motivos para tentar parecer humano. Apenas elfos, anões e orks podem escolher a qualidade Aparência Humana.",
       "page": 72
     },
@@ -60,6 +85,7 @@
           "add": 1
         }
       ],
+      "unique": true,
       "desc": "Esta qualidade é como você se torna ainda superior ao melhor do mundo. O limite padrão para perícias é 12. Ocasionalmente, existe uma personagem que pode superar os limites e ser realmente excepcional em uma perícia específica. Com esta qualidade específica, a personagem pode ter uma perícia com nível 7 durante a criação e pode aumentá-la até chegar a 13. Os personagens só podem escolher a qualidade Aptidão uma vez.",
       "page": 72
     },
@@ -103,6 +129,7 @@
           "add": 1
         }
       ],
+      "creationOnly": true,
       "desc": "Personagens que tenham essa qualidade leem, escrevem e falam um segundo idioma fluentemente. Eles podem listar um segundo idioma como nativo (veja Perícias de Idioma, p. 150). Esta qualidade só pode ser adquirida durante a criação de personagem: sua escolha dá ao personagem uma segunda perícia de idioma livre durante a Etapa Cinco: Comprar Perícias Ativas, de Conhecimento e de Idioma (p. 88).",
       "page": 72
     },
@@ -125,6 +152,9 @@
       "name": "Camaleão Astral",
       "kind": "positive",
       "karma": 10,
+      "requires": {
+        "special": "mag"
+      },
       "desc": "Com a qualidade Camaleão Astral, a assinatura astral do personagem se mistura com o cenário do espaço astral e é difícil de ser detectado. Todas as assinaturas deixadas pelo personagem duram apenas a metade do tempo de outras assinaturas astrais. Indivíduos que tentem sentir assinaturas astrais deixadas para trás por um personagem com esta qualidade recebem -2 de modificador na pilha de dados no Teste de Sentido Astral. Apenas personagens com nível de Magia e capazes de deixar assinaturas astrais podem ter esta qualidade.",
       "page": 74
     },
@@ -359,6 +389,7 @@
           "add": -1
         }
       ],
+      "unique": true,
       "desc": "Os dados rolam e a moeda gira a favor desta personagem com muita frequência, dando à ela uma chance de deixar outros de boca aberta com sua boa sorte. Sortudo permite que a personagem tenha um atributo Trunfo um ponto maior do que o máximo do metatipo (por exemplo, uma personagem humana poderia aumentar seu Trunfo para 8). Perceba que escolher esta qualidade não aumenta realmente o nível atual de Trunfo da personagem, apenas dá a oportunidade para isso. O custo de Carma para ganhar o ponto adicional ainda deve ser pago. Esta qualidade só pode ser escolhida uma vez e deve ser aprovada pelo mestre. A qualidade Sortudo não pode ser combinada com Atributo Excepcional. Essa qualidade reduz a Notoriedade em 1 (p. 368).",
       "page": 76
     },
@@ -586,6 +617,11 @@
           "add": 1
         }
       ],
+      "requires": {
+        "metatype": [
+          "human"
+        ]
+      },
       "desc": "O Elfo Poser é um personagem humano que quer ser um elfo. Ele se associa com elfos o máximo possível, fala como elfos e altera sua aparência para parecer um elfo. Personagens com esta qualidade podem passar por cirurgia cosmética para ter orelhas e olhos élficos e podem se passar por elfos com sucesso e evitar os modificadores Sociais negativos associados ao fato de não ser elfo. Elfos de verdade consideram Elfos Poser uma vergonha, muitos humanos pensam neles como vendidos e outros metatipos geralmente consideram os posers patéticos. Se um elfo descobrir o segredo do personagem, provavelmente ele o tratará com desprezo e hostilidade (veja a Tabela de Modificadores Sociais, p. 140). Um elfo poser exposto também pode enfrentar um estigma de humanos preconceituosos como um “traidor da raça”. Apenas personagens humanos podem assumir a qualidade Elfo Poser. Essa qualidade aumenta a Notoriedade em 1 (p. 368).",
       "page": 80
     },
@@ -594,6 +630,7 @@
       "name": "Estilo Distinto",
       "kind": "negative",
       "karma": 5,
+      "unique": true,
       "desc": "Uma personagem com a qualidade Estilo Distinto tem pelo menos um aspecto da sua aparência, maneirismo ou personalidade que a torna memorável de forma inconveniente. Escolhas para Estilo Distinto incluem, entre outros: tatuagens que não podem ser escondidas facilmente, um sotaque ou forma de falar incomum, escolhas de roupas bizarras, cicatrizes, símbolos de gangues ou pessoais, ampliações personalizadas e berrantes e modificações não meta-humanas, como uma cauda. Perceba que o que é distinto em uma cultura ou local pode não ser em outra. O Estilo Distinto que o jogador escolhe torna sua personagem fácil de ser lembrada. Qualquer um que tente identificar, rastrear ou localizar fisicamente esta personagem (ou obter informações através da coleta de dados) recebe +2 de modificador na pilha de dados nos testes relevantes. Se um PdM fizer um Teste de Memória (p. 152) para determinar o quanto se lembra da personagem, reduza o Limiar de Dificuldade em 1, até um mínimo de 1. Esta qualidade é de natureza física e não se aplica a buscas astrais. Esta qualidade só pode ser escolhida uma vez. Esta qualidade é incompatível com Cara Genérica.",
       "page": 80
     },
@@ -602,6 +639,9 @@
       "name": "Farol Astral",
       "kind": "negative",
       "karma": 10,
+      "requires": {
+        "special": "mag"
+      },
       "desc": "A assinatura astral de um personagem com Farol Astral parece, bem, um farol: altamente visível no plano astral. A assinatura também dura o dobro de tempo do que duraria sem a qualidade Farol Astral. Outros que tentem senti-la recebem -1 no limiar do seu teste de Sentido Astral para obter informações sobre ela. Apenas personagens com nível de Magia podem ter esta qualidade.",
       "page": 80
     },
@@ -706,6 +746,12 @@
           "add": 1
         }
       ],
+      "requires": {
+        "metatype": [
+          "human",
+          "elf"
+        ]
+      },
       "desc": "Influenciado pelo Rock Goblin ou pelas tendências orxploitation supervalorizadas, um Ork Poser é um elfo ou humano que altera sua aparência para parecer um ork. Várias biomodificações cosméticas (implantes de presas, esteroides, alterações de laringe etc.) permitem que ele se passe por um ork. Ork Posers são um constrangimento para muitos orks, mas alguns toleram, e até apreciam, o elogio por trás do esforço. Isso significa que um ork que descubra o segredo do personagem pode ficar muito hostil em relação a ele ou estar disposto a deixar o personagem entrar para a “família”, desde que ele passe no ritual de trote adequado para provar sua “orkidão”. Um poser ork exposto também pode enfrentar o estigma de outros humanos ou elfos como “traidores da raça” se tais humanos/elfos tiverem preconceito contra orks. Apenas humanos e elfos podem assumir a qualidade Ork Poser. Essa qualidade aumenta a Notoriedade em 1 (p. 368).",
       "page": 82
     },
@@ -809,6 +855,9 @@
           "add": 1
         }
       ],
+      "requires": {
+        "special": "mag"
+      },
       "desc": "Uma personagem com Ruína Espiritual realmente incomoda um tipo específico de espírito (p. 303). Seja pela personagem ter uma reputação por ferir este tipo de espírito ou algo em sua aura que os enfureça, os espíritos do tipo afetado por Ruína Espiritual provavelmente perturbarão a personagem quando ela está em sua presença e poderão relutar em obedecer ou executar favores para a personagem ou seus amigos. Se os espíritos deste tipo receberem uma ordem para atacar um grupo que inclua a personagem, tais espíritos a escolherão e tentarão destruí-la primeiro. Os espíritos afetados sempre usarão força letal contra personagens com a qualidade Ruína Espiritual. Se a personagem com Ruína Espiritual tentar invocar ou vincular este espírito, ela sofre –2 de modificador na pilha de dados para a tentativa. Se a invocadora tentar banir um espírito deste tipo, o espírito recebe +2 de modificador na pilha de dados para resistir a essa tentativa. Observadores e servos não contam para Ruína Espiritual, pois são construídos e não são invocados como espíritos normais. Esta qualidade só pode ser escolhida por usuários de magia. Usuários de magia podem possuir esta qualidade para um tipo de espírito que não seja parte da sua tradição mágica. Essa qualidade aumenta a Notoriedade em 1 (p. 368).",
       "page": 83
     },
