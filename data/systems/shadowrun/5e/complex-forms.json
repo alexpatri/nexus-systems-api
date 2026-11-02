@@ -39,6 +39,28 @@
       "name": "Firewall"
     }
   ],
+  "spriteTypes": [
+    {
+      "id": "courier",
+      "name": "Mensageiro"
+    },
+    {
+      "id": "crack",
+      "name": "Invasor"
+    },
+    {
+      "id": "data",
+      "name": "Dados"
+    },
+    {
+      "id": "fault",
+      "name": "Defeito"
+    },
+    {
+      "id": "machine",
+      "name": "Máquina"
+    }
+  ],
   "rules": {
     "levelMax": {
       "op": "mul",

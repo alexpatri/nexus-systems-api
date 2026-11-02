@@ -756,6 +756,10 @@ def check_shadowrun(d, sysj, E, W):
         targets = {t['id'] for t in forms['targets']}
         matrix = {a['id'] for a in forms['matrixAttributes']}
         if len({f['id'] for f in forms['complexForms']}) != len(forms['complexForms']): E("complex-forms.json: ids duplicados")
+        sprites = forms.get('spriteTypes', [])
+        if not sprites or len({x['id'] for x in sprites}) != len(sprites): E("complex-forms.json: spriteTypes vazio ou com id duplicado")
+        for x in sprites:
+            if not x.get('name'): E(f"tipo de sprite {x['id']}: nome vazio")
         for f in forms['complexForms']:
             if f['target'] not in targets: E(f"forma complexa {f['id']}: alvo inexistente {f['target']}")
             for o in f.get('parameter', {}).get('options', []):
@@ -930,6 +934,10 @@ def check_shadowrun(d, sysj, E, W):
             E(f"identidade {l['id']}: legalidade fora do vocabulário")
     costs = [l['cost'] for l in lifestyles['lifestyles'] if 'cost' in l]
     if costs != sorted(costs): E("lifestyles.json: estilos de vida devem vir em ordem crescente de custo")
+
+    smax = mech['creation'].get('specialAttributeMax', {})
+    for a in ('mag', 'res'):
+        if not (isinstance(smax.get(a), int) and smax[a] > 0): E(f"mechanics.json: specialAttributeMax.{a} deve ser inteiro positivo")
 
     # --- exemplos do livro ---
     derived = mech['derived']

@@ -447,6 +447,11 @@
       "mag",
       "res"
     ],
+    "specialAttributeMax": {
+      "mag": 6,
+      "res": 6,
+      "page": 66
+    },
     "skills": {
       "maxRating": 6,
       "specializationsPerSkill": 1,
