@@ -1,0 +1,19 @@
+{
+  "name": "magician-rules",
+  "description": "Mago na A sem tradição, com uma perícia dada que não é de Magia, 13 feitiços para um máximo de 12 (3 além dos 10 gratuitos, a 5 de carma) e poder de adepto.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Ana"}, "priorities": {"metatype": "D", "attributes": "B", "magic": "A", "skills": "C", "resources": "E"}, "metatype": "human", "magic": {"awakening": "magician", "freeSkills": ["pistols"], "formulas": {"spells": ["shatter", "powerbolt", "powerball", "acid-stream", "toxic-wave", "flamethrower", "fireball", "knockout", "stunbolt", "stunball", "lightning-bolt", "ball-lightning", "punch"]}, "powers": [{"key": "p1", "id": "mystic-armor", "rating": 1}]}, "skills": {"languages": [{"key": "l1", "name": "Inglês", "native": true}]}},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "magic", "path": "magic.tradition", "code": "required", "params": {"field": "magic.tradition"}},
+      {"step": "magic", "path": "magic.freeSkills", "code": "magic.freeSkillsCount", "params": {"expected": 2, "got": 1}},
+      {"step": "magic", "path": "magic.freeSkills", "code": "magic.freeSkillNotAllowed", "params": {"skill": "pistols"}},
+      {"step": "magic", "path": "magic.formulas.spells", "code": "magic.formulasMax", "params": {"group": "spells", "max": 12}},
+      {"step": "magic", "path": "magic.powers", "code": "magic.notAllowed", "params": {"field": "powers", "awakening": "magician"}},
+      {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
+      {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
+    ],
+    "derived": {"attributes": {"mag": {"natural": 6}}, "initiative": {"astral": {"base": 2, "dice": 2}}, "skills": {"active": {"pistols": {"rating": 5, "pool": 6}}}, "budgets": {"formulas": {"total": 10, "spent": 13}, "karma": {"total": 25, "spent": 15}}}
+  }
+}

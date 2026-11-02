@@ -1,0 +1,17 @@
+{
+  "name": "jefferson-magic",
+  "example": "jefferson",
+  "description": "Jefferson, tecnomante na B, pelo livro (PDF 70): Ressonância 4 + 2 pontos especiais = 6, Compilar e Registrar 4, Limpador e Editor. A tabela de prioridades (PDF 65) dá três perícias e quatro formas na B; o exemplo escolhe duas de cada, e a falta da terceira perícia é violação. Forma complexa a menos é sobra, não violação.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Jefferson", "concept": "Tecnomante das ruas"}, "priorities": {"metatype": "D", "attributes": "C", "magic": "B", "skills": "E", "resources": "A"}, "metatype": "human", "attributes": {"bod": {"points": 2}, "agi": {"points": 1}, "rea": {"points": 1}, "str": {"points": 2}, "wil": {"points": 2}, "log": {"points": 3}, "int": {"points": 3}, "cha": {"points": 2}, "edg": {"points": 1}, "res": {"points": 2}}, "qualities": [{"key": "q1", "id": "natural-hardening"}, {"key": "q2", "id": "analytical-mind"}, {"key": "q3", "id": "resistance-to-pathogens-toxins", "option": "one", "notes": "Gás lacrimogêneo"}, {"key": "q4", "id": "addiction", "option": "moderate", "notes": "MQTs"}, {"key": "q5", "id": "dependents", "option": "inconvenience", "notes": "Namorada que mora junto"}, {"key": "q6", "id": "prejudiced", "options": {"prevalence": "common", "degree": "biased"}, "notes": "Escravos de aluguel corporativos"}], "skills": {"active": {"automatics": {"points": 2}, "computer": {"points": 3}, "electronic-warfare": {"points": 1}, "forgery": {"points": 2}, "hacking": {"points": 5}, "hardware": {"points": 1}, "perception": {"points": 2}, "pistols": {"points": 2}}, "knowledge": [{"key": "k1", "name": "Negociantes de MQT", "category": "street", "points": 2}, {"key": "k2", "name": "Corporações", "category": "street", "points": 2}, {"key": "k3", "name": "Tecnautas", "category": "street", "points": 2}, {"key": "k4", "name": "Atravessadores", "category": "street", "points": 1}, {"key": "k5", "name": "Tecnomantes Locais", "category": "street", "points": 2}, {"key": "k6", "name": "Medidas de Segurança da Matriz", "category": "interests", "points": 2}, {"key": "k7", "name": "Srs. Johnsons", "category": "street", "points": 1}, {"key": "k8", "name": "Sistemas Operacionais", "category": "interests", "points": 2}, {"key": "k9", "name": "Neoanarquistas", "category": "street", "points": 1}], "languages": [{"key": "l1", "name": "Inglês", "native": true}, {"key": "l2", "name": "Japonês", "points": 1}]}, "magic": {"awakening": "technomancer", "freeSkills": ["compiling", "registering"], "complexForms": ["cleaner", "editor"]}},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "magic", "path": "magic.freeSkills", "code": "magic.freeSkillsCount", "params": {"expected": 3, "got": 2}},
+      {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
+      {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
+    ],
+    "derived": {"attributes": {"res": {"natural": 6}, "edg": {"natural": 3}}, "initiative": {"matrixVRCold": {"base": 8, "dice": 3}, "matrixVRHot": {"base": 8, "dice": 4}}, "skills": {"active": {"compiling": {"rating": 4, "pool": 10}, "registering": {"rating": 4, "pool": 10}}}, "budgets": {"special": {"total": 3, "spent": 3}, "complexForms": {"total": 4, "spent": 2}, "karma": {"total": 45, "spent": 19}}},
+    "summary": {"highlights": [{"label": "Essência", "value": "6"}, {"label": "Carma", "value": "26"}]}
+  }
+}

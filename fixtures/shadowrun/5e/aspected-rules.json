@@ -1,0 +1,18 @@
+{
+  "name": "aspected-rules",
+  "description": "Mago aspectado em Convocação na B com o grupo dado Feitiçaria: o grupo tem que ser o do aspecto, e as perícias de Feitiçaria ficam restritas; Invocação é do aspecto.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Ana"}, "priorities": {"metatype": "D", "attributes": "C", "magic": "B", "skills": "A", "resources": "E"}, "metatype": "human", "magic": {"awakening": "aspected-magician", "tradition": "hermetic", "aspect": "conjuring", "freeSkillGroups": ["sorcery"]}, "skills": {"active": {"summoning": {"points": 1}}, "languages": [{"key": "l1", "name": "Inglês", "native": true}]}},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "magic", "path": "magic.freeSkillGroups", "code": "magic.freeSkillNotAllowed", "params": {"skill": "sorcery"}},
+      {"step": "skills", "path": "skills.active.counterspelling", "code": "skills.restricted", "params": {"skill": "counterspelling"}},
+      {"step": "skills", "path": "skills.active.ritual-spellcasting", "code": "skills.restricted", "params": {"skill": "ritual-spellcasting"}},
+      {"step": "skills", "path": "skills.active.spellcasting", "code": "skills.restricted", "params": {"skill": "spellcasting"}},
+      {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
+      {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
+    ],
+    "derived": {"attributes": {"mag": {"natural": 5}}, "initiative": {"astral": {"base": 2, "dice": 2}}, "skills": {"active": {"summoning": {"rating": 1, "pool": 6}, "spellcasting": {"rating": 4, "pool": 9}}}}
+  }
+}

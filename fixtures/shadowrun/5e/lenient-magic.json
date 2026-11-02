@@ -1,0 +1,34 @@
+{
+  "name": "lenient-magic",
+  "description": "Ids fora do catálogo em cada campo de magia, aspecto e vantagem de mentor fora do vocabulário, número negativo.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Ana"}, "magic": {"awakening": "shaman", "tradition": "chaos", "aspect": "necromancy", "mentorAdvantage": "both", "freeSkills": ["flying"], "formulas": {"spells": ["fireball-xl"]}, "complexForms": ["matrix-nuke"], "powers": [{"key": "p1", "id": "flight"}], "spirits": [{"key": "s1", "type": "ghost", "services": 1}], "sprites": [{"key": "s2", "type": "virus", "tasks": 1}], "powerPointsKarma": -1}},
+  "expect": {
+    "lenient": [
+      {"step": "magic", "path": "magic.awakening", "code": "catalog.unknownId", "params": {"catalog": "awakenings", "id": "shaman"}},
+      {"step": "magic", "path": "magic.tradition", "code": "catalog.unknownId", "params": {"catalog": "traditions", "id": "chaos"}},
+      {"step": "magic", "path": "magic.aspect", "code": "shape.invalid", "params": {"expected": "aspect"}},
+      {"step": "magic", "path": "magic.mentorAdvantage", "code": "shape.invalid", "params": {"expected": "mentorAdvantage"}},
+      {"step": "magic", "path": "magic.freeSkills", "code": "catalog.unknownId", "params": {"catalog": "skills", "id": "flying"}},
+      {"step": "magic", "path": "magic.formulas.spells", "code": "catalog.unknownId", "params": {"catalog": "spells", "id": "fireball-xl"}},
+      {"step": "magic", "path": "magic.complexForms", "code": "catalog.unknownId", "params": {"catalog": "complexForms", "id": "matrix-nuke"}},
+      {"step": "magic", "path": "magic.powers[p1].id", "code": "catalog.unknownId", "params": {"catalog": "adeptPowers", "id": "flight"}},
+      {"step": "karma", "path": "magic.spirits[s1].type", "code": "catalog.unknownId", "params": {"catalog": "spiritTypes", "id": "ghost"}},
+      {"step": "karma", "path": "magic.sprites[s2].type", "code": "catalog.unknownId", "params": {"catalog": "spriteTypes", "id": "virus"}},
+      {"step": "karma", "path": "magic.powerPointsKarma", "code": "shape.invalid", "params": {"expected": "integer"}}
+    ],
+    "strict": [
+      {"step": "magic", "path": "magic.awakening", "code": "catalog.unknownId", "params": {"catalog": "awakenings", "id": "shaman"}},
+      {"step": "magic", "path": "magic.tradition", "code": "catalog.unknownId", "params": {"catalog": "traditions", "id": "chaos"}},
+      {"step": "magic", "path": "magic.aspect", "code": "shape.invalid", "params": {"expected": "aspect"}},
+      {"step": "magic", "path": "magic.mentorAdvantage", "code": "shape.invalid", "params": {"expected": "mentorAdvantage"}},
+      {"step": "magic", "path": "magic.freeSkills", "code": "catalog.unknownId", "params": {"catalog": "skills", "id": "flying"}},
+      {"step": "magic", "path": "magic.formulas.spells", "code": "catalog.unknownId", "params": {"catalog": "spells", "id": "fireball-xl"}},
+      {"step": "magic", "path": "magic.complexForms", "code": "catalog.unknownId", "params": {"catalog": "complexForms", "id": "matrix-nuke"}},
+      {"step": "magic", "path": "magic.powers[p1].id", "code": "catalog.unknownId", "params": {"catalog": "adeptPowers", "id": "flight"}},
+      {"step": "karma", "path": "magic.spirits[s1].type", "code": "catalog.unknownId", "params": {"catalog": "spiritTypes", "id": "ghost"}},
+      {"step": "karma", "path": "magic.sprites[s2].type", "code": "catalog.unknownId", "params": {"catalog": "spriteTypes", "id": "virus"}},
+      {"step": "karma", "path": "magic.powerPointsKarma", "code": "shape.invalid", "params": {"expected": "integer"}}
+    ]
+  }
+}
