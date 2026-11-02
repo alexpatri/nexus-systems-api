@@ -504,6 +504,8 @@
       },
       "minConnection": 1,
       "minLoyalty": 1,
+      "maxConnection": 12,
+      "maxLoyalty": 6,
       "minKarma": 2,
       "maxKarmaPerContact": 7
     },
