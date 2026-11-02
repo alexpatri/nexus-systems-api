@@ -1,0 +1,11 @@
+{
+  "name": "rounding",
+  "description": "Grau usado com fração: Essência 0,25 × 1,25 = 0,3125 sobe para 0,313 e preços de 2.250¥ e 1.250¥ × 0,75 sobem para 1.688¥ e 938¥ (p. 48: arredonda para cima). Cada item arredonda uma vez, no fim.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Penny", "concept": "Comprador de usados"}, "priorities": {"metatype": "D", "attributes": "C", "magic": "E", "skills": "B", "resources": "A"}, "metatype": "human", "attributes": {"bod": {"points": 2}, "agi": {"points": 2}, "rea": {"points": 2}, "str": {"points": 2}, "wil": {"points": 2}, "log": {"points": 2}, "int": {"points": 2}, "cha": {"points": 2}}, "skills": {"languages": [{"key": "l1", "name": "Inglês", "native": true}]}, "resources": {"startingNuyenRoll": 3, "lifestyles": [{"key": "r0", "id": "street", "primary": true}], "augmentations": [{"key": "a1", "id": "ultrasound-sensor", "rating": 1, "grade": "used"}, {"key": "a2", "id": "damper", "grade": "used"}, {"key": "a3", "id": "hand-razors", "grade": "used"}]}},
+  "expect": {
+    "lenient": [],
+    "strict": [],
+    "derived": {"essence": 5.312, "budgets": {"nuyen": {"total": 450000, "spent": 11626}}}
+  }
+}

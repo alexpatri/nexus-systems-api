@@ -19,7 +19,8 @@
       "matrix.dataProcessing": "Datagrama da persona em uso (ciberdeck, com-link ou persona viva)",
       "force": "Potência do feitiço, ritual ou preparação",
       "netHits": "Sucessos restantes do teste",
-      "limit.physical": "Limite Físico do personagem (precisão de armas que usam o limite)"
+      "limit.physical": "Limite Físico do personagem (precisão de armas que usam o limite)",
+      "essence.lost": "Essência inicial do metatipo menos a atual"
     }
   },
   "derived": {
@@ -429,6 +430,22 @@
         "base": 0
       },
       "page": 368
+    },
+    "essenceLoss": {
+      "attributes": [
+        "mag",
+        "res"
+      ],
+      "loss": {
+        "op": "ceil",
+        "of": [
+          {
+            "ref": "essence.lost"
+          }
+        ]
+      },
+      "applies": "max-and-value",
+      "page": 278
     }
   },
   "creation": {
@@ -497,7 +514,13 @@
       },
       "nuyenCarryOver": 5000,
       "maxAvailability": 12,
-      "maxDeviceRating": 6
+      "maxDeviceRating": 6,
+      "rounding": "ceil",
+      "grades": [
+        "standard",
+        "alphaware",
+        "used"
+      ]
     },
     "karmaCarryOver": 7,
     "purchases": {

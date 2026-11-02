@@ -591,6 +591,11 @@
         "min": 1,
         "max": 4
       },
+      "capacity": {
+        "accepts": [
+          "eyeware"
+        ]
+      },
       "levels": [
         {
           "rating": 1,
@@ -720,6 +725,11 @@
       "rating": {
         "min": 1,
         "max": 4
+      },
+      "capacity": {
+        "accepts": [
+          "earware"
+        ]
       },
       "levels": [
         {
@@ -985,6 +995,12 @@
         }
       ],
       "desc": "Placas de plástico endurecido e fibra de cerâmica são ligadas à pele do usuário. As placas são claramente visíveis, e são ainda mais óbvias ao toque, mas podem ser cosmeticamente estilizadas para cor e textura superficial. Couraça dérmica fornece Armadura bônus igual ao seu Nível (cumulativo com outras Armaduras, sem aumentar a Sobrecarga). Couraça dérmica não pode ser combinada com outras ampliações à pele que fornecem armadura, incluindo ortopele.",
+      "excludes": [
+        {
+          "catalog": "augmentations",
+          "id": "orthoskin"
+        }
+      ],
       "page": 454
     },
     {
@@ -1137,6 +1153,12 @@
       ],
       "desc": "Esta operação altamente invasiva e dolorosa, com consequências para toda a vida, adiciona uma multiplicidade de amplificadores neurais e estimuladores de adrenalina em locais estratégicos em todo o corpo para catapultá-lo em um novo mundo, onde tudo ao seu redor parece se mover em câmera lenta. O sistema inclui gatilhos manuais e sem fio para ligar e desligar os reflexos cabeados. Ativar ou desativar o gatilho manualmente exige uma Ação Complexa, fazê-lo sem fio é uma Ação Simples. Quando ativado, cada Nível de reflexos cabeados concede +1 de Reação (e o bônus correspondente na Iniciativa) e +1D6 de Dado de Iniciativa. Reflexos cabeados são incompatíveis com aumentos que afetam a Reação ou a Iniciativa.",
       "wireless": "O sistema é compatível com melhorias de reação sem fio, e o bônus total de Reação dos dois sistemas pode ser acima de +4 se ambos os sistemas tiverem a parte sem fio ativada.",
+      "excludes": [
+        {
+          "catalog": "augmentations",
+          "id": "synaptic-booster"
+        }
+      ],
       "page": 454
     },
     {
@@ -1234,6 +1256,13 @@
         }
       ],
       "desc": "Seus ossos são revestidos com correntes de malha de reforço de plástico ou metal, melhorando a sua integridade e resistência à tração (e somando- -se ao peso total do seu corpo). Revestimento ósseo vem em três tipos: plástico, alumínio, e titânio — você só pode ter um instalado no seu corpo por vez. Isso fornece Corpo adicional para resistir a danos físicos, um pouco de Armadura (cumulativa com outras Armaduras, sem aumentar a Carga), e muda o seu dano de combate desarmado, tudo isso listado na Tabela de Revestimento Ósseo. O revestimento ósseo é incompatível com outras ampliações que adicionam ou alteram seus ossos (como a ampliação de densidade óssea).",
+      "excludes": [
+        {
+          "catalog": "augmentations",
+          "id": "bone-density-augmentation"
+        }
+      ],
+      "unique": true,
       "page": 454
     },
     {
@@ -1292,6 +1321,16 @@
         }
       ],
       "desc": "Por que perder o tempo exercitando quando você pode simplesmente instalar uma musculatura? Músculos sintéticos criados em tanques substituem ou aumentam os seus próprios e tratamentos de cálcio e de reforço do esqueleto contribuem para a sua força total. Ela aumenta seus atributos Força e Agilidade com o seu Nível. Não pode ser combinada com outras ampliações para os músculos, incluindo o aumento muscular ou tonificante muscular biônico.",
+      "excludes": [
+        {
+          "catalog": "augmentations",
+          "id": "muscle-toner"
+        },
+        {
+          "catalog": "augmentations",
+          "id": "muscle-augmentation"
+        }
+      ],
       "page": 454
     },
     {
@@ -1331,6 +1370,13 @@
       "name": "Antebraço",
       "category": "cyberlimb",
       "type": "cyberware",
+      "capacity": {
+        "accepts": [
+          "cyberlimb-accessory",
+          "cyberlimb-enhancement",
+          "cyber-implant-weapon"
+        ]
+      },
       "variants": [
         {
           "id": "obvious",
@@ -1370,6 +1416,13 @@
       "name": "Braço completo",
       "category": "cyberlimb",
       "type": "cyberware",
+      "capacity": {
+        "accepts": [
+          "cyberlimb-accessory",
+          "cyberlimb-enhancement",
+          "cyber-implant-weapon"
+        ]
+      },
       "variants": [
         {
           "id": "obvious",
@@ -1409,6 +1462,13 @@
       "name": "Canela",
       "category": "cyberlimb",
       "type": "cyberware",
+      "capacity": {
+        "accepts": [
+          "cyberlimb-accessory",
+          "cyberlimb-enhancement",
+          "cyber-implant-weapon"
+        ]
+      },
       "variants": [
         {
           "id": "obvious",
@@ -1448,6 +1508,11 @@
       "name": "Crânio",
       "category": "cyberlimb",
       "type": "cyberware",
+      "capacity": {
+        "accepts": [
+          "headware"
+        ]
+      },
       "variants": [
         {
           "id": "obvious",
@@ -1486,6 +1551,13 @@
       "name": "Mão/pé",
       "category": "cyberlimb",
       "type": "cyberware",
+      "capacity": {
+        "accepts": [
+          "cyberlimb-accessory",
+          "cyberlimb-enhancement",
+          "cyber-implant-weapon"
+        ]
+      },
       "variants": [
         {
           "id": "obvious",
@@ -1525,6 +1597,13 @@
       "name": "Perna completa",
       "category": "cyberlimb",
       "type": "cyberware",
+      "capacity": {
+        "accepts": [
+          "cyberlimb-accessory",
+          "cyberlimb-enhancement",
+          "cyber-implant-weapon"
+        ]
+      },
       "variants": [
         {
           "id": "obvious",
@@ -1564,6 +1643,11 @@
       "name": "Tronco",
       "category": "cyberlimb",
       "type": "cyberware",
+      "capacity": {
+        "accepts": [
+          "bodyware"
+        ]
+      },
       "variants": [
         {
           "id": "obvious",
@@ -2412,6 +2496,12 @@
         }
       ],
       "desc": "Este tratamento de fiação biológica aprimora o tecido muscular existente, em vez de substituí-lo com músculos cultivados em tanques. Cabos musculares cultivados especialmente são tecidos nas fibras musculares existentes, aumentando a massa muscular e a força bruta, proporcionando uma aparência mais volumosa. A ampliação muscular adiciona seu Nível à sua Força. Este biônico é incompatível com ampliações que aumentem a Força, incluindo os cibernéticos de substituição muscular.",
+      "excludes": [
+        {
+          "catalog": "augmentations",
+          "id": "muscle-replacement"
+        }
+      ],
       "page": 458
     },
     {
@@ -3001,6 +3091,16 @@
         }
       ],
       "desc": "As células nervosas que constituem a medula espinhal são ampliadas e replicadas com este biônico, aumentando a largura da frequência neural. O resultado é um tempo de reação muito mais rápido. O amplificador concede um bônus de +1 de Reação (e o ajuste correspondente na Iniciativa) e +1D6 de Dado de Iniciativa por ponto do Nível. O amplificador de sinapses não pode ser combinado com outras formas de melhoria de Reação ou Iniciativa.",
+      "excludes": [
+        {
+          "catalog": "augmentations",
+          "id": "reaction-enhancers"
+        },
+        {
+          "catalog": "augmentations",
+          "id": "wired-reflexes"
+        }
+      ],
       "page": 460
     },
     {
@@ -3082,6 +3182,13 @@
         "kind": "skill"
       },
       "desc": "O primeiro passo para esta receita especial é cultivar um pouco de material neural adicional em um grupo pequeno. Quando isso é completamente preparado, você o joga no crânio e anexa nos nervos para os reflexos motores. E então, você tem um meta-humano com uma memória muscular melhor. O gravador de reflexos adiciona 1 ao Nível de uma perícia específica ligada a um atributo Físico. Vários gravadores podem ser usados para perícias diferentes, mas você não pode implantar dois gravadores de reflexos para a mesma perícia. O gravador de reflexos biônico é incompatível com o habilitrônico.",
+      "excludes": [
+        {
+          "catalog": "augmentations",
+          "id": "skillwires"
+        }
+      ],
+      "unique": true,
       "page": 460
     },
     {

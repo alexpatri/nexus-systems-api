@@ -1,0 +1,13 @@
+{
+  "name": "essence-depleted",
+  "description": "Sistema Sensível dobra a Essência de ciberware: Reflexos Aprimorados 2 tiram 6 e a Essência chega a 0.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Sid", "concept": "Ciborgue"}, "priorities": {"metatype": "D", "attributes": "C", "magic": "E", "skills": "B", "resources": "A"}, "metatype": "human", "attributes": {"bod": {"points": 2}, "agi": {"points": 2}, "rea": {"points": 2}, "str": {"points": 2}, "wil": {"points": 2}, "log": {"points": 2}, "int": {"points": 2}, "cha": {"points": 2}}, "skills": {"languages": [{"key": "l1", "name": "Inglês", "native": true}]}, "resources": {"startingNuyenRoll": 3, "lifestyles": [{"key": "r0", "id": "street", "primary": true}], "augmentations": [{"key": "a1", "id": "wired-reflexes", "rating": 2}]}, "qualities": [{"key": "q1", "id": "sensitive-system"}]},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "resources", "path": "resources.augmentations", "code": "essence.depleted", "params": {"essence": 0}}
+    ],
+    "derived": {"essence": 0, "budgets": {"negativeQualities": {"total": 25, "spent": 12}, "karma": {"total": 37, "spent": 0}}}
+  }
+}

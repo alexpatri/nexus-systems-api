@@ -1,0 +1,12 @@
+{
+  "name": "essence-loss",
+  "description": "Adepto com Magia 6 compra ciber-olhos 1 alphaware (0,16), conector de dados usado (0,125) e Aumento Muscular 2 (0,4): Essência 5,315, uma fração perdida, Magia e máximo caem para 5 (p. 278) e os Pontos de Poder também (p. 279). Reflexos Melhorados 1 soma Reação e um dado de iniciativa; Força +2 do biônico e +3 do poder param no teto de +4 (p. 94).",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Kenji", "concept": "Adepto de rua"}, "priorities": {"metatype": "D", "attributes": "C", "magic": "B", "skills": "E", "resources": "A"}, "metatype": "human", "attributes": {"bod": {"points": 2}, "agi": {"points": 2}, "rea": {"points": 2}, "str": {"points": 2}, "wil": {"points": 2}, "log": {"points": 2}, "int": {"points": 2}, "cha": {"points": 2}}, "skills": {"languages": [{"key": "l1", "name": "Inglês", "native": true}]}, "resources": {"startingNuyenRoll": 3, "lifestyles": [{"key": "r0", "id": "street", "primary": true}], "augmentations": [{"key": "a1", "id": "cybereyes", "rating": 1, "grade": "alphaware"}, {"key": "a2", "id": "datajack", "grade": "used"}, {"key": "a3", "id": "muscle-augmentation", "rating": 2}]}, "magic": {"awakening": "adept", "freeSkills": ["unarmed-combat"], "powers": [{"key": "p1", "id": "improved-reflexes", "rating": 1}, {"key": "p2", "id": "improved-physical-attribute", "rating": 3, "parameter": "str"}]}},
+  "expect": {
+    "lenient": [],
+    "strict": [],
+    "derived": {"attributes": {"mag": {"natural": 5, "augmented": 5}, "rea": {"natural": 3, "augmented": 4}, "str": {"natural": 3, "augmented": 7}}, "essence": 5.315, "initiative": {"physical": {"dice": 2}}, "budgets": {"powerPoints": {"total": 5, "spent": 4.5}, "nuyen": {"total": 450000, "spent": 67550}}},
+    "summary": {"highlights": [{"label": "Essência", "value": "5,315"}, {"label": "Carma", "value": "25"}], "progress": {"step": 9, "total": 9}}
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "exclusions",
+  "description": "O que o livro não deixa juntar: Alto Limiar de Dor com Compensadores de Dano (qualities.json#excludes), Reforçador Sináptico com Melhorias de Reação (p. 459), dois revestimentos ósseos (p. 455) e dois Gravadores de Reflexos na mesma perícia (p. 460). A violação fica no segundo item.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Moss", "concept": "Leão de chácara"}, "priorities": {"metatype": "D", "attributes": "C", "magic": "E", "skills": "B", "resources": "A"}, "metatype": "human", "attributes": {"bod": {"points": 2}, "agi": {"points": 2}, "rea": {"points": 2}, "str": {"points": 2}, "wil": {"points": 2}, "log": {"points": 2}, "int": {"points": 2}, "cha": {"points": 2}}, "skills": {"languages": [{"key": "l1", "name": "Inglês", "native": true}]}, "resources": {"startingNuyenRoll": 3, "lifestyles": [{"key": "r0", "id": "street", "primary": true}], "augmentations": [{"key": "a1", "id": "damage-compensators", "rating": 2}, {"key": "a2", "id": "reaction-enhancers", "rating": 1}, {"key": "a3", "id": "synaptic-booster", "rating": 1}, {"key": "a4", "id": "bone-lacing", "variant": "plastic"}, {"key": "a5", "id": "bone-lacing", "variant": "aluminum"}, {"key": "a6", "id": "reflex-recorder", "parameter": "pistols"}, {"key": "a7", "id": "reflex-recorder", "parameter": "blades"}, {"key": "a8", "id": "reflex-recorder", "parameter": "pistols"}]}, "qualities": [{"key": "q1", "id": "high-pain-tolerance", "rating": 1}]},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "qualities", "path": "qualities[q1]", "code": "qualities.excluded", "params": {"quality": "high-pain-tolerance", "with": "damage-compensators"}},
+      {"step": "resources", "path": "resources.augmentations[a3]", "code": "gear.excluded", "params": {"item": "synaptic-booster", "with": "reaction-enhancers"}},
+      {"step": "resources", "path": "resources.augmentations[a5]", "code": "gear.duplicate", "params": {"item": "bone-lacing"}},
+      {"step": "resources", "path": "resources.augmentations[a8]", "code": "gear.duplicate", "params": {"item": "reflex-recorder"}}
+    ],
+    "derived": {"essence": 3.2}
+  }
+}

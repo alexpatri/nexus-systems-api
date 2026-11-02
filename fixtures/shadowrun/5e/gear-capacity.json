@@ -1,0 +1,18 @@
+{
+  "name": "gear-capacity",
+  "description": "Capacidade: ciber-olhos 1 (4) com 5 de melhorias, Drone ocular fora de hospedeiro, Conexão de imagens que já vem incluída, smartlink em ciber-ouvidos, hospedeiro que não existe, braço com blindagem e coldre dentro da capacidade, e colete com 10 de modificações em 9. Item instalado não gasta Essência; a armadura soma o maior colete, capacete, escudo e a blindagem do braço.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Iris", "concept": "Olhos de vidro"}, "priorities": {"metatype": "D", "attributes": "C", "magic": "E", "skills": "B", "resources": "A"}, "metatype": "human", "attributes": {"bod": {"points": 2}, "agi": {"points": 2}, "rea": {"points": 2}, "str": {"points": 2}, "wil": {"points": 2}, "log": {"points": 2}, "int": {"points": 2}, "cha": {"points": 2}}, "skills": {"languages": [{"key": "l1", "name": "Inglês", "native": true}]}, "resources": {"startingNuyenRoll": 3, "lifestyles": [{"key": "r0", "id": "street", "primary": true}], "augmentations": [{"key": "a1", "id": "cybereyes", "rating": 1}, {"key": "a2", "id": "vision-magnification", "installedIn": "a1"}, {"key": "a3", "id": "low-light-vision", "installedIn": "a1"}, {"key": "a4", "id": "flare-compensation", "installedIn": "a1"}, {"key": "a5", "id": "ocular-drone"}, {"key": "a6", "id": "image-link", "installedIn": "a1"}, {"key": "a7", "id": "smartlink", "installedIn": "a8"}, {"key": "a8", "id": "cyberears", "rating": 1}, {"key": "a9", "id": "datajack", "installedIn": "zz"}, {"key": "a10", "id": "full-arm", "variant": "obvious"}, {"key": "a11", "id": "cyberlimb-armor", "rating": 2, "installedIn": "a10"}, {"key": "a12", "id": "cyber-holster", "installedIn": "a10"}], "armor": [{"key": "ar1", "id": "armor-vest", "modifications": [{"key": "m1", "id": "thermal-damping", "rating": 6}, {"key": "m2", "id": "insulation", "rating": 4}]}, {"key": "ar2", "id": "helmet"}, {"key": "ar3", "id": "ballistic-shield"}]}},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "resources", "path": "resources.augmentations[a1]", "code": "gear.capacityExceeded", "params": {"item": "cybereyes", "capacity": 4, "used": 5}},
+      {"step": "resources", "path": "resources.augmentations[a5]", "code": "gear.hostRequired", "params": {"item": "ocular-drone"}},
+      {"step": "resources", "path": "resources.augmentations[a6].installedIn", "code": "gear.notInstallable", "params": {"item": "image-link"}},
+      {"step": "resources", "path": "resources.augmentations[a7].installedIn", "code": "gear.notInstallable", "params": {"item": "smartlink"}},
+      {"step": "resources", "path": "resources.augmentations[a9].installedIn", "code": "gear.notInstallable", "params": {"item": "datajack"}},
+      {"step": "resources", "path": "resources.armor[ar1]", "code": "gear.capacityExceeded", "params": {"item": "armor-vest", "capacity": 9, "used": 10}}
+    ],
+    "derived": {"essence": 4.6, "armor": 19}
+  }
+}

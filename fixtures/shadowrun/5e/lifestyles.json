@@ -1,0 +1,17 @@
+{
+  "name": "lifestyles",
+  "description": "Anão paga 20% a mais: Médio por 2 meses com Extra Seguro, Apertado e Área de Trabalho sai ceil((5.000 × 110% + 1.000) × 1,2 × 2) = 15.600¥; o Baixo sem meses conta um mês (2.400¥). Dois estilos primários, Hospitalizado na criação, carma em nuyen acima de 10, nuyen estourado e rolagem acima de 4D6 do primário.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Durin", "concept": "Ferreiro"}, "priorities": {"metatype": "C", "attributes": "D", "magic": "B", "skills": "A", "resources": "E"}, "metatype": "dwarf", "attributes": {}, "skills": {"languages": [{"key": "l1", "name": "Inglês", "native": true}]}, "resources": {"karmaToNuyen": 11, "startingNuyenRoll": 25, "lifestyles": [{"key": "r1", "id": "middle", "months": 2, "primary": true, "options": ["extra-secure", "special-work-area", "cramped"]}, {"key": "r2", "id": "low", "primary": true}, {"key": "r3", "id": "hospitalized"}], "other": [{"key": "r4", "name": "Oficina portátil", "cost": 20000}]}},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "resources", "path": "budgets.karmaToNuyen", "code": "budget.exceeded", "params": {"budget": "karmaToNuyen", "total": 10, "spent": 11}},
+      {"step": "resources", "path": "budgets.nuyen", "code": "budget.exceeded", "params": {"budget": "nuyen", "total": 28000, "spent": 38000}},
+      {"step": "resources", "path": "resources.lifestyles[r2].primary", "code": "resources.primaryLifestyleDuplicate"},
+      {"step": "resources", "path": "resources.lifestyles[r3]", "code": "resources.lifestyleNotAllowed", "params": {"lifestyle": "hospitalized"}},
+      {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "resources.startingRollOutOfRange", "params": {"min": 4, "max": 24}}
+    ],
+    "derived": {"startingNuyen": 2500, "budgets": {"nuyen": {"total": 28000, "spent": 38000}, "karmaToNuyen": {"total": 10, "spent": 11}, "karma": {"total": 25, "spent": 11}}}
+  }
+}
