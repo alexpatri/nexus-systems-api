@@ -1,0 +1,15 @@
+{
+  "name": "mystic-adept-karma",
+  "description": "Adepto místico na C (Magia 3) com Espírito Mentor sem a vantagem escolhida; carma em 1 feitiço além dos 5, 2 Pontos de Poder e 5 serviços de espírito, somando 25 com o mentor.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Ana"}, "priorities": {"metatype": "D", "attributes": "B", "magic": "C", "skills": "A", "resources": "E"}, "metatype": "human", "attributes": {"cha": {"points": 1}}, "qualities": [{"key": "q1", "id": "mentor-spirit", "choice": "wolf"}], "magic": {"awakening": "mystic-adept", "tradition": "shamanic", "formulas": {"spells": ["shatter", "powerbolt", "heal", "stunbolt", "influence", "clout"]}, "powerPointsKarma": 2, "powers": [{"key": "p1", "id": "killing-hands"}], "spirits": [{"key": "s1", "type": "water", "services": 3}, {"key": "s2", "type": "fire", "services": 2}]}, "skills": {"languages": [{"key": "l1", "name": "Inglês", "native": true}]}},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "magic", "path": "magic.mentorAdvantage", "code": "required", "params": {"field": "magic.mentorAdvantage"}},
+      {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
+      {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
+    ],
+    "derived": {"attributes": {"mag": {"natural": 3}}, "budgets": {"formulas": {"total": 5, "spent": 6}, "powerPoints": {"total": 2, "spent": 0.5}, "karma": {"total": 25, "spent": 25}}}
+  }
+}

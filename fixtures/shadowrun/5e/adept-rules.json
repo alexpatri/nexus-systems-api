@@ -1,0 +1,21 @@
+{
+  "name": "adept-rules",
+  "description": "Adepto na B (Magia 6, 6 pontos de poder): tradição e feitiço não valem para adepto; Ampliar Atributo 7 passa de Magia; Habilidade Melhorada sem perícia; Golpe Crítico com perícia fora das opções; 6,25 pontos gastos; Conjuração restrita.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Ana"}, "priorities": {"metatype": "D", "attributes": "C", "magic": "B", "skills": "A", "resources": "E"}, "metatype": "human", "magic": {"awakening": "adept", "tradition": "hermetic", "freeSkills": ["pistols"], "formulas": {"spells": ["blast"]}, "powers": [{"key": "p1", "id": "improved-reflexes", "rating": 3}, {"key": "p2", "id": "attribute-boost", "rating": 7, "parameter": "agi"}, {"key": "p3", "id": "improved-ability", "rating": 1}, {"key": "p4", "id": "critical-strike", "parameter": "pistols"}]}, "skills": {"active": {"spellcasting": {"points": 1}}, "languages": [{"key": "l1", "name": "Inglês", "native": true}]}},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "magic", "path": "budgets.powerPoints", "code": "budget.exceeded", "params": {"budget": "powerPoints", "total": 6, "spent": 6.25}},
+      {"step": "magic", "path": "magic.formulas", "code": "magic.notAllowed", "params": {"field": "formulas", "awakening": "adept"}},
+      {"step": "magic", "path": "magic.powers[p2].rating", "code": "magic.powerLevelMax", "params": {"power": "attribute-boost", "max": 6}},
+      {"step": "magic", "path": "magic.powers[p3].parameter", "code": "magic.parameterRequired", "params": {"power": "improved-ability"}},
+      {"step": "magic", "path": "magic.powers[p4].parameter", "code": "magic.parameterNotAllowed", "params": {"power": "critical-strike", "parameter": "pistols"}},
+      {"step": "magic", "path": "magic.tradition", "code": "magic.notAllowed", "params": {"field": "tradition", "awakening": "adept"}},
+      {"step": "skills", "path": "skills.active.spellcasting", "code": "skills.restricted", "params": {"skill": "spellcasting"}},
+      {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
+      {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
+    ],
+    "derived": {"attributes": {"mag": {"natural": 6}}, "skills": {"active": {"pistols": {"rating": 4, "pool": 5}}}, "budgets": {"powerPoints": {"total": 6, "spent": 6.25}, "karma": {"total": 25, "spent": 5}}}
+  }
+}

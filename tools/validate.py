@@ -357,7 +357,7 @@ SR_CODES = {
     'metatype.notAtPriority', 'attributes.aboveMax', 'attributes.tooManyAtMax', 'attributes.notAllowed',
     'budget.exceeded', 'magic.notAtPriority', 'magic.notAllowed', 'magic.freeSkillsCount',
     'magic.freeSkillNotAllowed', 'magic.formulasMax', 'magic.complexFormsMax', 'magic.powerLevelMax',
-    'magic.parameterRequired', 'magic.spiritsMax', 'qualities.levelOutOfRange', 'qualities.optionRequired',
+    'magic.parameterRequired', 'magic.parameterNotAllowed', 'magic.spiritsMax', 'qualities.levelOutOfRange', 'qualities.optionRequired',
     'qualities.choiceRequired', 'qualities.duplicate', 'qualities.requirementNotMet', 'qualities.unique',
     'qualities.excluded', 'qualities.choiceNotAllowed', 'skills.aboveMax', 'skills.restricted',
     'skills.groupConflict', 'skills.specializationNotAllowed', 'skills.nativeLanguageCount',
@@ -407,10 +407,42 @@ def sr_check_sheet_ids(where, data, lenient, d, E):
         if q and 'option' in item and isinstance(q['karma'], dict) and 'options' in q['karma']:
             if item['option'] not in {o['id'] for o in q['karma']['options']} and ('qualityOptions', f"{item['id']}.{item['option']}") not in unknown:
                 E(f"{where}: opção inexistente {item['id']}.{item['option']}")
+    magic = data.get('magic', {})
+    spells = load(d, 'spells.json')
+    known.update({
+        'awakenings': {a['id'] for a in load(d, 'awakening.json')['awakenings']},
+        'traditions': {t['id'] for t in load(d, 'traditions.json')['traditions']},
+        'spiritTypes': {t['id'] for t in load(d, 'traditions.json')['spiritTypes']},
+        'spriteTypes': {t['id'] for t in load(d, 'complex-forms.json')['spriteTypes']},
+        'complexForms': {f['id'] for f in load(d, 'complex-forms.json')['complexForms']},
+        'adeptPowers': {p['id'] for p in load(d, 'adept-powers.json')['powers']},
+        'spells': {x['id'] for x in spells['spells']},
+        'rituals': {x['id'] for x in spells['rituals']},
+    })
+    known['preparations'] = known['spells']
+    for field, catalog in (('awakening', 'awakenings'), ('tradition', 'traditions')):
+        if field in magic: need(catalog, magic[field])
+    for i in magic.get('freeSkills', []): need('skills', i)
+    for i in magic.get('freeSkillGroups', []): need('skillGroups', i)
+    for group, ids in magic.get('formulas', {}).items():
+        for i in ids: need(group, i)
+    for i in magic.get('complexForms', []): need('complexForms', i)
+    for p in magic.get('powers', []): need('adeptPowers', p['id'])
+    for x in magic.get('spirits', []): need('spiritTypes', x['type'])
+    for x in magic.get('sprites', []): need('spriteTypes', x['type'])
     skills = data.get('skills', {})
     for i in skills.get('active', {}): need('skills', i)
     for i in skills.get('groups', {}): need('skillGroups', i)
     for k in skills.get('knowledge', []): need('knowledgeCategories', k['category'])
+
+
+def sr_power_cost(power, item):
+    """Pontos de poder de um poder na ficha: fixo, por nível, por nível em tabela ou por sentido."""
+    c, r = power['powerPoints'], item.get('rating', 1)
+    if not isinstance(c, dict): return c
+    if 'perLevel' in c: return c['perLevel'] * r
+    if 'byLevel' in c: return c['byLevel'][r - 1] if 0 < r <= len(c['byLevel']) else 0
+    return c['each'] * r
 
 
 def sr_check_sheet_budgets(where, data, want, d, E):
@@ -430,6 +462,11 @@ def sr_check_sheet_budgets(where, data, want, d, E):
         'knowledge': sum(x.get('points', 0) + spec(x) for x in skills.get('knowledge', []) +
                          [l for l in skills.get('languages', []) if not l.get('native')]),
     }
+    magic = data.get('magic', {})
+    powers = {p['id']: p for p in load(d, 'adept-powers.json')['powers']}
+    got['formulas'] = sum(len(ids) for ids in magic.get('formulas', {}).values())
+    got['complexForms'] = len(magic.get('complexForms', []))
+    got['powerPoints'] = sum(sr_power_cost(powers[p['id']], p) for p in magic.get('powers', []) if p['id'] in powers)
     budgets = want.get('budgets', {})
     for name, value in got.items():
         if name in budgets and budgets[name].get('spent') != value:
@@ -756,6 +793,10 @@ def check_shadowrun(d, sysj, E, W):
         targets = {t['id'] for t in forms['targets']}
         matrix = {a['id'] for a in forms['matrixAttributes']}
         if len({f['id'] for f in forms['complexForms']}) != len(forms['complexForms']): E("complex-forms.json: ids duplicados")
+        sprites = forms.get('spriteTypes', [])
+        if not sprites or len({x['id'] for x in sprites}) != len(sprites): E("complex-forms.json: spriteTypes vazio ou com id duplicado")
+        for x in sprites:
+            if not x.get('name'): E(f"tipo de sprite {x['id']}: nome vazio")
         for f in forms['complexForms']:
             if f['target'] not in targets: E(f"forma complexa {f['id']}: alvo inexistente {f['target']}")
             for o in f.get('parameter', {}).get('options', []):
@@ -930,6 +971,10 @@ def check_shadowrun(d, sysj, E, W):
             E(f"identidade {l['id']}: legalidade fora do vocabulário")
     costs = [l['cost'] for l in lifestyles['lifestyles'] if 'cost' in l]
     if costs != sorted(costs): E("lifestyles.json: estilos de vida devem vir em ordem crescente de custo")
+
+    smax = mech['creation'].get('specialAttributeMax', {})
+    for a in ('mag', 'res'):
+        if not (isinstance(smax.get(a), int) and smax[a] > 0): E(f"mechanics.json: specialAttributeMax.{a} deve ser inteiro positivo")
 
     # --- exemplos do livro ---
     derived = mech['derived']

@@ -1,0 +1,18 @@
+{
+  "name": "technomancer-rules",
+  "description": "Tecnomante na A (Ressonância 6): ponto especial em Magia não vale; 13 formas complexas para um máximo de 12 (6 além das 7 gratuitas, a 4 de carma); quatro sprites com Carisma 1; 24 + 5 tarefas passam do carma.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Teo"}, "priorities": {"metatype": "B", "attributes": "C", "magic": "A", "skills": "D", "resources": "E"}, "metatype": "human", "attributes": {"mag": {"points": 1}}, "magic": {"awakening": "technomancer", "freeSkills": ["compiling", "registering", "hacking"], "complexForms": ["static-bomb", "resonance-channel", "tattletale", "diffusion", "editor", "resonance-spike", "transcendent-grid", "infusion", "cleaner", "stitches", "pulse-storm", "puppeteer", "static-veil"], "sprites": [{"key": "s1", "type": "data", "tasks": 2}, {"key": "s2", "type": "machine", "tasks": 1}, {"key": "s3", "type": "courier", "tasks": 1}, {"key": "s4", "type": "fault", "tasks": 1}]}, "skills": {"languages": [{"key": "l1", "name": "Inglês", "native": true}]}},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "metatype", "path": "attributes.mag.points", "code": "attributes.notAllowed", "params": {"attribute": "mag"}},
+      {"step": "magic", "path": "magic.complexForms", "code": "magic.complexFormsMax", "params": {"max": 12}},
+      {"step": "karma", "path": "magic.sprites", "code": "magic.spiritsMax", "params": {"max": 1}},
+      {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
+      {"step": "karma", "path": "budgets.karma", "code": "budget.exceeded", "params": {"budget": "karma", "total": 25, "spent": 29}},
+      {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
+    ],
+    "derived": {"attributes": {"res": {"natural": 6}}, "initiative": {"matrixVRCold": {"base": 2, "dice": 3}}, "skills": {"active": {"compiling": {"rating": 5, "pool": 11}, "hacking": {"rating": 5, "pool": 6}}}, "budgets": {"special": {"total": 7, "spent": 1}, "complexForms": {"total": 7, "spent": 13}, "karma": {"total": 25, "spent": 29}}}
+  }
+}
