@@ -1,0 +1,15 @@
+{
+  "name": "skills-karma",
+  "description": "Carma em perícias degrau a degrau: Automáticas 2→4 (6 + 8), grupo Furtividade 0→1 (5), conhecimento 1→2 (2), idioma 0→2 (1 + 2) e especialização com carma (7), 31 ao todo.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Ana"}, "priorities": {"metatype": "D", "attributes": "B", "magic": "E", "skills": "A", "resources": "C"}, "metatype": "human", "skills": {"active": {"automatics": {"points": 2, "karma": 2}, "blades": {"points": 1, "specialization": {"name": "Facas", "paidWith": "karma"}}}, "groups": {"stealth": {"karma": 1}}, "knowledge": [{"key": "k1", "name": "Gangues", "category": "street", "points": 1, "karma": 1}], "languages": [{"key": "l1", "name": "Inglês", "native": true}, {"key": "l2", "name": "Japonês", "karma": 2}]}},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
+      {"step": "karma", "path": "budgets.karma", "code": "budget.exceeded", "params": {"budget": "karma", "total": 25, "spent": 31}},
+      {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
+    ],
+    "derived": {"skills": {"active": {"automatics": {"rating": 4, "pool": 5}, "blades": {"rating": 1, "pool": 2}}, "knowledge": {"k1": {"rating": 2, "pool": 3}}, "languages": {"l2": {"rating": 2, "pool": 3}}}, "budgets": {"skills": {"total": 46, "spent": 3}, "skillGroups": {"total": 10, "spent": 0}, "knowledge": {"total": 4, "spent": 1}, "karma": {"total": 25, "spent": 31}}}
+  }
+}

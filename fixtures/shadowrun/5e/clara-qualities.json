@@ -1,0 +1,16 @@
+{
+  "name": "clara-qualities",
+  "example": "clara",
+  "description": "Clara com qualidades (PDF 86) e conhecimentos (PDF 92), pelo livro. Os 10 de carma em Pontos de Poder e as perícias ativas (Sentido Astral é mágica) entram com a fatia 4.3; sem eles, o carma fica em 36 em vez dos 26 do livro.",
+  "schemaVersion": 1,
+  "data": {"identity": {"name": "Clara", "concept": "Adepta mística desSINada"}, "priorities": {"metatype": "D", "attributes": "B", "magic": "A", "skills": "C", "resources": "E"}, "metatype": "elf", "attributes": {"bod": {"points": 2}, "agi": {"points": 4}, "rea": {"points": 2}, "str": {"points": 1}, "wil": {"points": 3}, "log": {"points": 2}, "int": {"points": 3}, "cha": {"points": 3}}, "qualities": [{"key": "q1", "id": "mentor-spirit", "choice": "sea"}, {"key": "q2", "id": "focused-concentration", "rating": 2}, {"key": "q3", "id": "code-of-honor", "notes": "Não matar outros elfos"}, {"key": "q4", "id": "distinctive-style", "notes": "Tatuagens de gangue"}, {"key": "q5", "id": "addiction", "option": "mild", "notes": "Glória"}], "skills": {"knowledge": [{"key": "k1", "name": "Atravessadores", "category": "street", "points": 1}, {"key": "k2", "name": "Táticas de Agências da Lei", "category": "street", "points": 2}, {"key": "k3", "name": "Crime Organizado", "category": "street", "points": 1}, {"key": "k4", "name": "Traficantes de Rua", "category": "street", "points": 2}, {"key": "k5", "name": "Identificação de Gangues de Rua", "category": "street", "points": 3}, {"key": "k6", "name": "Política de Gangues de Rua", "category": "street", "points": 3}], "languages": [{"key": "l1", "name": "Inglês", "native": true}, {"key": "l2", "name": "Sperethiel", "points": 2}]}},
+  "expect": {
+    "lenient": [],
+    "strict": [
+      {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
+      {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
+    ],
+    "derived": {"reputation": {"notoriety": 1}, "skills": {"knowledge": {"k5": {"rating": 3, "pool": 7}}, "languages": {"l2": {"rating": 2, "pool": 6}}}, "budgets": {"special": {"total": 0, "spent": 0}, "knowledge": {"total": 14, "spent": 14}, "positiveQualities": {"total": 25, "spent": 13}, "negativeQualities": {"total": 25, "spent": 24}, "karma": {"total": 49, "spent": 13}}},
+    "summary": {"highlights": [{"label": "Essência", "value": "6"}, {"label": "Carma", "value": "36"}]}
+  }
+}

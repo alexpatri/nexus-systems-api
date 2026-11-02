@@ -12,6 +12,7 @@
       {"step": "metatype", "path": "priorities.metatype", "code": "required", "params": {"field": "priorities.metatype"}},
       {"step": "metatype", "path": "priorities.resources", "code": "required", "params": {"field": "priorities.resources"}},
       {"step": "metatype", "path": "priorities.skills", "code": "required", "params": {"field": "priorities.skills"}},
+      {"step": "skills", "path": "skills.languages", "code": "skills.nativeLanguageCount", "params": {"expected": 1, "got": 0}},
       {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
       {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}},
       {"step": "finishing", "path": "identity.name", "code": "required", "params": {"field": "identity.name"}}

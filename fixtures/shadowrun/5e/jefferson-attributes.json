@@ -1,16 +1,17 @@
 {
   "name": "jefferson-attributes",
   "example": "jefferson",
-  "description": "Atributos do Jefferson, p. 70. Metatipo e prioridades inferidos dos mínimos e máximos (humano com Atributos na C fecha 16 pontos; tecnomante na B, como a nota de priorities.json); conferir no livro.",
+  "description": "Atributos do Jefferson, p. 67 do livro (PDF 67): humano com Metatipo na D, 1 ponto especial em Trunfo e Atributos na C. Os 2 pontos em Ressonância entram com o despertar (fatia 4.3).",
   "schemaVersion": 1,
-  "data": {"identity": {"name": "Jefferson"}, "priorities": {"metatype": "E", "attributes": "C", "magic": "B", "skills": "A", "resources": "D"}, "metatype": "human", "attributes": {"bod": {"points": 2}, "agi": {"points": 1}, "rea": {"points": 1}, "str": {"points": 2}, "wil": {"points": 2}, "log": {"points": 3}, "int": {"points": 3}, "cha": {"points": 2}}},
+  "data": {"identity": {"name": "Jefferson"}, "priorities": {"metatype": "D", "attributes": "C", "magic": "B", "skills": "E", "resources": "A"}, "metatype": "human", "attributes": {"bod": {"points": 2}, "agi": {"points": 1}, "rea": {"points": 1}, "str": {"points": 2}, "wil": {"points": 2}, "log": {"points": 3}, "int": {"points": 3}, "cha": {"points": 2}, "edg": {"points": 1}}},
   "expect": {
     "lenient": [],
     "strict": [
+      {"step": "skills", "path": "skills.languages", "code": "skills.nativeLanguageCount", "params": {"expected": 1, "got": 0}},
       {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
       {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
     ],
-    "derived": {"attributes": {"bod": {"natural": 3}, "agi": {"natural": 2}, "rea": {"natural": 2}, "str": {"natural": 3}, "wil": {"natural": 3}, "log": {"natural": 4}, "int": {"natural": 4}, "cha": {"natural": 3}}, "limits": {"physical": 4, "mental": 5, "social": 5}, "initiative": {"physical": {"base": 6, "dice": 1}}, "monitors": {"physical": 10, "stun": 10, "overflow": 3}, "budgets": {"special": {"total": 1, "spent": 0}, "attributes": {"total": 16, "spent": 16}, "knowledge": {"total": 16, "spent": 0}, "contacts": {"total": 9, "spent": 0}}},
+    "derived": {"attributes": {"bod": {"natural": 3}, "agi": {"natural": 2}, "rea": {"natural": 2}, "str": {"natural": 3}, "wil": {"natural": 3}, "log": {"natural": 4}, "int": {"natural": 4}, "cha": {"natural": 3}, "edg": {"natural": 3}}, "limits": {"physical": 4, "mental": 5, "social": 5}, "initiative": {"physical": {"base": 6, "dice": 1}}, "monitors": {"physical": 10, "stun": 10, "overflow": 3}, "budgets": {"special": {"total": 3, "spent": 1}, "attributes": {"total": 16, "spent": 16}, "knowledge": {"total": 16, "spent": 0}, "contacts": {"total": 9, "spent": 0}}},
     "summary": {"title": "Jefferson", "subtitle": "Humano"}
   }
 }

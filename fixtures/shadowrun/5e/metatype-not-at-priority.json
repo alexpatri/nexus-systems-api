@@ -7,6 +7,7 @@
     "lenient": [],
     "strict": [
       {"step": "metatype", "path": "metatype", "code": "metatype.notAtPriority", "params": {"metatype": "troll", "priority": "C"}},
+      {"step": "skills", "path": "skills.languages", "code": "skills.nativeLanguageCount", "params": {"expected": 1, "got": 0}},
       {"step": "resources", "path": "resources.lifestyles", "code": "required", "params": {"field": "resources.lifestyles"}},
       {"step": "final-calculations", "path": "resources.startingNuyenRoll", "code": "required", "params": {"field": "resources.startingNuyenRoll"}}
     ],
