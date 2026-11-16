@@ -12,6 +12,9 @@ func NewApp(h *handler.Handler) *fiber.App {
 	app.Use(cors.New(cors.Config{
 		ExposeHeaders: fiber.HeaderETag,
 		AllowHeaders:  fiber.HeaderIfNoneMatch,
+		// O If-None-Match faz toda revalidação de catálogo pedir preflight a
+		// outra origem; 2 h é o máximo que o Chrome guarda.
+		MaxAge: 7200,
 	}))
 
 	app.Get("/health", h.Health)
