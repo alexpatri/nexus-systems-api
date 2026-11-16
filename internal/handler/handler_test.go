@@ -233,3 +233,20 @@ func TestCORSExposesETag(t *testing.T) {
 		t.Errorf("Access-Control-Expose-Headers = %q, quer conter ETag", got)
 	}
 }
+
+func TestPreflightIsCached(t *testing.T) {
+	req := httptest.NewRequest(http.MethodOptions, "/api/vileborn/v1/origins", nil)
+	req.Header.Set(fiber.HeaderOrigin, "https://app.exemplo.test")
+	req.Header.Set(fiber.HeaderAccessControlRequestMethod, http.MethodGet)
+	req.Header.Set(fiber.HeaderAccessControlRequestHeaders, "if-none-match")
+	res, err := newApp(t).Test(req)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got := res.Header.Get(fiber.HeaderAccessControlMaxAge); got != "7200" {
+		t.Errorf("Access-Control-Max-Age = %q", got)
+	}
+	if got := res.Header.Get(fiber.HeaderAccessControlAllowHeaders); !strings.Contains(strings.ToLower(got), "if-none-match") {
+		t.Errorf("Access-Control-Allow-Headers = %q", got)
+	}
+}
